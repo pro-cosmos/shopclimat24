@@ -11,7 +11,7 @@ define('HTTPS_CATALOG', 'http://pt.loc/');
 define('DIR_APPLICATION', '/var/www/pt.loc/admin/');
 define('DIR_SYSTEM', '/var/www/pt.loc/system/');
 define('DIR_IMAGE', '/var/www/pt.loc/image/');
-define('DIR_STORAGE', DIR_SYSTEM . 'storage/');
+define('DIR_STORAGE', '/var/www/storage-shopclimat24/');
 define('DIR_CATALOG', '/var/www/pt.loc/catalog/');
 define('DIR_LANGUAGE', DIR_APPLICATION . 'language/');
 define('DIR_TEMPLATE', DIR_APPLICATION . 'view/template/');
