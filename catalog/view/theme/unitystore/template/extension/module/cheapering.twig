@@ -1,0 +1,159 @@
+{% set show_attribute = "1" %}
+{% set limit_attribute = "6" %}
+{% set dlina_attribute = "40" %}
+{% set attribute_hover_module_setting = "1" %}
+<form class="" action="" method="post">
+	<div class="option-div product">
+		<h3 class="text-center"><i></i>{{ text_cheaper }}<i></i></h3><br />
+		<div class="close"><i class="fa fa-times" aria-hidden="true"></i></div>
+		<div class="col-lg-4">
+			<div class="image">
+				{% if image %}<a href="{{ href }}" title=""><img src="{{ image }}" alt="" title="" id="images" /></a>{% endif %}
+			</div>
+		</div>
+		<div class="col-lg-8">
+		<h3>{{ name }}</h3>
+		{% if price %}
+		<span class="price">
+		  <ul class="list-unstyled text-left">
+			{% if special == false %}
+			<li>
+			  <h2>{{ price }}</h2>
+			</li>
+			{% else %}
+			<li>
+			  <h2>{{ special }}</h2><span style="text-decoration: line-through;">{{ price }}</span>
+			</li>
+			{% endif %}
+			{% if tax %}
+			<li>{{ text_tax }} {{ tax }}</li>
+			{% endif %}
+		  </ul>
+		</span>
+		{% endif %}
+		<input type="hidden" id="price" value="{{ pr }}" />
+		</div>
+		<div class="col-lg-12">
+		<div class="clearboth"></div>
+		</div>
+		<div class="clearfix"></div><br />
+		<div class="forming_quick col">
+			<input type="hidden" class="form-control" name="input_date" id="input_date" value="{{ date }}" />
+			<input type="hidden" name="input_product_id" id="input_product_id" value="{{ product_id }}" />
+			<div class="col-sm-12 form-group required">
+				<div class="input-group"><span class="input-group-addon input_fio"><i class="fa fa-user"></i></span><input type="text" class="form-control" name="input_fio" id="input_fio" placeholder="{{ text_fio }}" value="" /></div>
+			</div>
+			<div class="col-sm-12 form-group required">
+				<div class="input-group"><span class="input-group-addon input_phone"><i class="fa fa-phone"></i></span><input type="text" class="form-control" name="input_phone" id="input_phone" placeholder="{{ text_phone }}" value="" /></div>
+			</div>
+			<div class="col-sm-12 form-group required">
+				<div class="input-group"><span class="input-group-addon input_email"><i class="fa fa-envelope-o"></i></span><input type="email" class="form-control" name="input_email" id="input_email" placeholder="{{ text_email }}" value="" /></div>
+			</div>
+			<div class="col-sm-12 form-group">
+				<div class="input-group required"><span class="input-group-addon input_href"><i class="fa fa-link" aria-hidden="true"></i></span><input type="text" class="form-control" name="input_href" id="input_href" placeholder="{{ text_href }}" value="" /></div>
+			</div>
+			<div class="col-sm-12 form-group">
+				<div class="input-group"><span class="input-group-addon"><i class="fa fa-commenting-o"></i></span><textarea placeholder="{{ text_comment }}" class="form-control" name="input_commenttext" id="input_commenttext"></textarea></div>
+			</div>
+			<div class="clearfix"></div>
+			<div class="col-lg-12">
+				<button type="submit" class="btn btn-primary" onclick="return quick_pay_button();"><i class="fa fa-envelope-o"></i><span class="hidden-xs"> {{ send }}</span></button>
+				<button type="submit" class="btn btn-white pull-right" onclick="return closedivshadow();"><i class="fa fa-sign-out"></i><span class="hidden-xs"> {{ close }}</span></button>
+			</div><div class="clearfix"></div><br />
+			{% if cheapering_text and cheapering_text != "" %}
+				<div class="col-xs-12 col-sm-12 checkbox person{% if cheapering_format == 'text' %} text_person{% endif %}">
+					{% if cheapering_format and cheapering_format == 'checkbox' %}
+					<div class="col-xs-12 col-sm-12">
+						<input type="checkbox" name="input_zachita" id="zachita" value="1" />
+						<label for="zachita"><span class="text_p">{{ cheapering_text }}</span></label>
+					</div>
+					{% endif %}
+					{% if cheapering_format and cheapering_format == 'text' %}
+						{{ cheapering_text }}
+					{% endif %}
+				</div>
+			{% endif %}
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</form>
+<script ><!--
+function quick_pay_button() {
+	var emailvalid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	var date = $('#input_date').val();
+	var product_id = $('#input_product_id').val();
+	var qyantity = $('#cont').val();
+	var price = $('#price').val();
+	var fio = $('#input_fio').val();
+	var href = $('#input_href').val();
+	href = encodeURIComponent(href);
+	var email = $('#input_email').val();
+	var phone = $('#input_phone').val();
+	var comment = $('#input_commenttext').val();
+	comment = encodeURIComponent(comment);
+	var zachita = '';
+	if ($('input[name=\'input_zachita\']:checked').val()) {zachita = '&zachita=' + $('input[name=\'input_zachita\']:checked').val();}
+	data = $('#option1_'+product_id+' input[type=\'radio\']:checked, #option1_'+product_id+' input[type=\'checkbox\']:checked, #option1_'+product_id+' select');
+	var options = data.serialize();
+
+	$.ajax({
+		url: 'index.php?route=extension/module/cheapering/quick',
+		type: 'post',
+		data: options + '&date=' + date + '&prod_id=' + product_id + '&qyantity=' + qyantity + '&price=' + price + '&name=' + fio + '&phone=' + phone + '&href=' + href + '&email=' + email + '&comment=' + comment + zachita,
+		dataType: 'json',
+		success: function(json) {
+			if (json['error']) {
+				{% if cheapering_status_your_name %}if (json['error']['name']) {$('.required .input_fio').addClass('red'); $('.required .input_fio').find('.fa').addClass('red'); $('#input_fio').addClass('red');} else {$('.required .input_fio').removeClass('red'); $('.required .input_fio').find('.fa').removeClass('red'); $('#input_fio').removeClass('red');}{% endif %}
+				{% if cheapering_status_phone %}if (json['error']['phone']) {$('.required .input_phone').addClass('red'); $('.required .input_phone').find('.fa').addClass('red'); $('#input_phone').addClass('red');} else {$('.required .input_phone').removeClass('red'); $('.required .input_phone').find('.fa').removeClass('red'); $('#input_phone').removeClass('red');}{% endif %}
+				if (json['error']['href']) {$('.required .input_href').addClass('red'); $('.required .input_href').find('.fa').addClass('red'); $('#input_href').addClass('red');} else {$('.required .input_href').removeClass('red'); $('.required .input_href').find('.fa').removeClass('red'); $('#input_href').removeClass('red');}
+				{% if cheapering_status_email %}if (json['error']['email']) {$('.required .input_email').addClass('red'); $('.required .input_email').find('.fa').addClass('red'); $('#input_email').addClass('red');} else {$('.required .input_email').removeClass('red'); $('.required .input_email').find('.fa').removeClass('red'); $('#input_email').removeClass('red');}{% endif %}
+				{% if cheapering_format and cheapering_format == 'checkbox' %}if (json['error']['zachita']) {$('.text_p').addClass('red');} else {$('.text_p').removeClass('red');}{% endif %}
+			}
+			if (json['message']) {
+				swal(
+					json.message
+				)
+			}
+		}
+	});
+	return false;
+
+}
+setTimeout(function () {
+	$('.header-popup').addClass('show').addClass('animated').addClass('flipInX');
+}, 1000);
+//--></script>
+<script>
+	function closedivshadow(){
+		$('body .divshadow').removeClass('animated').removeClass('bounceIn').addClass('animated bounceOut');
+		setTimeout(function() {
+			$('body .divshadow').empty();
+			$('body .divshadow').removeClass('show');
+			$('.modal-bg').removeClass('show');
+			$('body .divshadow').removeClass('cheapering').removeClass('divcart').removeClass('quickpay').removeClass('callbacking').removeClass('reviews_popup').removeClass('col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 col-xs-offset-1 col-xs-10');
+		},700)
+	}
+	$('body .divshadow .close').click(function() {
+		closedivshadow();
+	});
+	$(document).mouseup(function (e) {
+		var container = $('body .divshadow.show');
+		var containerfind = $('body').find('.divshadow.show').html();
+		if (containerfind != null && container.has(e.target).length === 0) {
+			closedivshadow();
+		}
+	});
+	$(document).keydown(function(e) {
+		var container = $('body .divshadow.show');
+		var containerfind = $('body').find('.divshadow.show').html();
+		if (containerfind != null && e.keyCode === 27) {
+			closedivshadow();
+			return false;
+		}
+	});
+	
+	$(document).ready(function() {
+		$('body .divshadow').addClass('cheapering').addClass('col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 col-xs-offset-1 col-xs-10');
+		centering('.divshadow');
+	});	
+</script>

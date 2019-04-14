@@ -1,0 +1,382 @@
+{% set show_attribute = "1" %}
+{% set limit_attribute = "6" %}
+{% set dlina_attribute = "40" %}
+{% set attribute_hover_module_setting = "1" %}
+<div class="option-div">
+	<div class="header-popup hide">{{ quick_button }}</div>
+	<div class="close"><i class="fa fa-times" aria-hidden="true"></i></div>
+	<div class="col-sm-6">
+		<div class="image">
+			{% if image %}<a href="{{ href }}" title=""><img src="{{ image }}" alt="" title="" id="images" /></a>{% endif %}
+			<div class="images-add">
+				<a data-clickimage="{{ image }}" title=""><img src="{{ image_addit }}" alt="" title="" /></a>
+				{% for image in images %}
+					<a data-clickimage="{{ image.popup }}" title=""><img src="{% if image.popup %}{{ image.thumb }}{% else %}{{ no_image_addit }}{% endif %}" title="" alt="" /></a>
+				{% endfor %}
+			</div>
+			<script><!--
+				$(document).ready(function() {
+					var img = $('#images').attr('src');
+					if (img != undefined) {
+						var imgWidth = img.substring(img.lastIndexOf('-') + 1, img.lastIndexOf('x'));
+						var imgHeight = img.substring(img.lastIndexOf('x') + 1, img.lastIndexOf('.'));
+					}
+					$('.images-add img').click(function() {
+						var newsrc = $(this).parent().attr('data-clickimage');
+						$('#images').attr({
+							src: newsrc,
+							title: $(this).attr('title'),
+							alt: $(this).attr('alt'),
+							width: imgWidth,
+							height: imgHeight
+						});
+						$('#images').parent().attr('data-clickimage', newsrc);
+					});
+				});
+			//--></script>
+		</div>
+	</div>
+	<div class="col-sm-6">
+	<div class="tabs-a">
+		<ul class="nav nav-tabs">
+		<li class="active"><a href="#tab-general" data-toggle="tab">{{ tab_general }}</a></li>
+		<li><a href="#tab-description" data-toggle="tab">{{ tab_description }}</a></li>
+		{% if attribute_groups %}
+			<li><a href="#tab-specification" data-toggle="tab">{{ tab_attribute }}</a></li>
+		{% endif %}
+		{% if review_status %}
+			<li><a href="#tab-review" data-toggle="tab">{{ tab_review }}</a></li>
+		{% endif %}
+		</ul>
+	</div>
+	<div class="tab-content">
+		<div class="tab-pane active" id="tab-general">
+		<h2>{{ name }}</h2>
+		<b>{{ text_manufacturer }}</b> <a href="{{ link_manufacturers }}">{{ manufacturer }}</a><br />
+		<b>{{ text_model }}</b> {{ model }}<br />
+		<b>{{ text_stock }}</b> {{ stock }}<hr>
+		{% if price %}
+		<span class="price">
+		  <ul class="list-unstyled">
+			{% if special == false %}
+			<li>
+			  <h2>{{ price }}</h2>
+			</li>
+			{% else %}
+			<li>
+			  <h2>{{ special }}</h2><span style="text-decoration: line-through;">{{ price }}</span>
+			</li>
+			{% endif %}
+			{% if tax %}
+			<li>{{ text_tax }} {{ tax }}</li>
+			{% endif %}
+		  </ul>
+		</span><hr>
+		{% endif %}
+		{% if show_attribute=="1" %}
+			{% set qa="0" %}
+			{% if attributes %}
+				{% for attribute in attributes %}
+					{% for attribute in attribute.attribute %}
+						{% if qa < limit_attribute %}
+							<b>{{ attribute.name }}:</b> {{ attribute.text }}<br />
+							{% set qa=qa+1 %}
+						{% endif %}
+					{% endfor %}
+				{% endfor %}
+				{% if qa >= limit_attribute %}
+					{{ td_more }}
+				{% endif %}
+				<hr>
+			{% endif %}
+		{% endif %}
+		{% if options %}
+			{% if attribute_hover_module_setting=="1" %}
+				<div class="options" id="option1_{{ product_id }}">
+					{% set d=0 %}
+					{% for option in options %}
+						{% if option.type == 'radio' %}
+							{% set d=d+1 %}
+							<div id="option1-{{ option.product_option_id }}" class="option">
+								<span class="bold">{{ option.name }}:</span><br style="margin-bottom: 6px;" />
+								{% for option_value in option.product_option_value %}
+								  <input type="radio" name="option[{{ option.product_option_id }}]" value="{{ option_value.product_option_value_id }}" id="option-value1-{{ option_value.product_option_value_id }}" class="none" />
+								  {% if option_value.quantity'] > 0 %}
+										<label for="option-value1-{{ option_value.product_option_value_id }}" class="noselect{{ d }} noselect">{{ option_value.name }}{% if option_value.price and option_value.price != '0' %}<span class="append">{{ option_value.price_prefix }} {{ option_value.price }}</span>{% endif %}</label>
+								  {% else %}
+										<label for="option-value1-{{ option_value.product_option_value_id }}" class="noquantityselect">{{ option_value.name }}{% if option_value.price and option_value.price != '0' %}<span class="append">{{ option_value.price_prefix }} {{ option_value.price }}</span>{% endif %}</label>
+								  {% endif %}
+								{% endfor %}
+							</div>
+							<script><!--
+							$(document).ready(function() {
+							   $('label.noselect{{ d }}').click(function(){
+								  $('label.yesselect{{ d }}').removeClass('yesselect{{ d }}').removeClass('yesselect').addClass('noselect{{ d }}').addClass('noselect');
+								  $(this).removeClass('noselect{{ d }}').removeClass('noselect').addClass('yesselect{{ d }}').addClass('yesselect');
+							   });
+							});
+							//--></script>
+						{% endif %}
+						{% if option.type == 'select' %}
+						<div id="option1-{{ option.product_option_id }}" class="option">
+							<span class="bold">{{ option.name }}:</span><br style="margin-bottom: 6px;" />
+							<div class="custom-select">
+								<i class="fa fa-chevron-down"></i>
+								<select name="option[{{ option.product_option_id }}]">
+									<option value="">{{ text_select }}</option>
+									{% for option_value in option.product_option_value %}
+										<option value="{{ option_value.product_option_value_id }}">{{ option_value.name }}{% if option_value.price and option_value.price != '0' %} ({{ option_value.price_prefix }}{{ option_value.price }}){% endif %}</option>
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+						<br />
+						{% endif %}
+						{% if option.type == 'image' %}
+						{% set d=d+1 %}
+						<div id="option1-{{ option.product_option_id }}" class="option">
+							<span class="bold">{{ option.name }}:</span><br />
+							{% for option_value in option.product_option_value %}
+								<input type="radio" name="option[{{ option.product_option_id }}]" value="{{ option_value.product_option_value_id }}" id="option-value1-{{ option_value.product_option_value_id }}" class="none" />
+								{% if option_value.quantity > 0 %}
+									<label for="option-value1-{{ option_value.product_option_value_id }}" class="noselect{{ d }} noselect"><img src="{{ option_value.image }}" alt="{{ option_value.name }}" title="{{ option_value.name }}" /></label>
+								{% else %}
+									<label for="option-value1-{{ option_value.product_option_value_id }}"><img src="{{ option_value.image }}" alt="{{ option_value.name }}" title="{{ option_value.name }}" class="noquantityselect" /></label>
+								{% endif %}
+							{% endfor %}
+						</div>
+						<br />
+						<script><!--
+							$(document).ready(function() {
+							   $('label.noselect{{ d }}').click(function(){
+								  $('label.yesselect{{ d }}').removeClass('yesselect{{ d }}').removeClass('yesselect').addClass('noselect{{ d }}').addClass('noselect');
+								  $(this).removeClass('noselect{{ d }}').removeClass('noselect').addClass('yesselect{{ d }}').addClass('yesselect');
+							   });
+							});
+						//--></script>
+						{% endif %}
+						{% if option.type == 'checkbox' %}
+							{% if option.required %}
+							<div id="option1-{{ option.product_option_id }}" class="option">
+								{{ option.name }}:<br />
+								{% for option_value in option.product_option_value %}
+									<input type="checkbox" name="option[{{ option.product_option_id }}][]" value="{{ option_value.product_option_value_id }}" id="option-value1-{{ option_value.product_option_value_id }}" />
+									<label for="option-value1-{{ option_value.product_option_value_id }}">{{ option_value.name }} {% if option_value.price and option_value.price != '0' %} ({{ option_value.price_prefix }}{{ option_value.price }}){% endif %}</label><br />
+								{% endfor %}
+							</div>
+							{% endif %}
+						{% endif %}
+					{% endfor %}
+				 </div>
+			{% endif %}
+		{% endif %}
+		<div class="cart_block">
+			<div class="quantity-input">
+				<span class="minus1"><i class="fa fa-minus"></i></span>
+				<input id="cont" type="text" name="quantity" value="{{ minimum }}" size="2" class="form-control" />
+				<span class="plus1"><i class="fa fa-plus"></i></span>
+				<input type="hidden" name="product_id" value="{{ product_id }}" />
+			</div>
+			<input type="hidden" name="product_id" value="{{ product_id }}" />
+			<button type="button" class="btn-button" onclick="cart.add('{{ product_id }}');"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">{{ button_cart }}</span></button>
+		</div>
+		</div>
+		<div class="tab-pane" id="tab-description">{{ description }}</div>
+		{% if attribute_groups %}
+		<div class="tab-pane" id="tab-specification">
+		  <table class="table table-bordered">
+			{% for attribute_group in attribute_groups %}
+			<thead>
+			  <tr>
+				<td colspan="2"><strong>{{ attribute_group.name }}</strong></td>
+			  </tr>
+			</thead>
+			<tbody>
+			  {% for attribute in attribute_group.attribute %}
+			  <tr>
+				<td>{{ attribute.name }}</td>
+				<td>{{ attribute.text }}</td>
+			  </tr>
+			  {% endfor %}
+			</tbody>
+			{% endfor %}
+		  </table>
+		</div>
+		{% endif %}
+		{% if review_status %}
+		<div class="tab-pane" id="tab-review">
+		  <form class="form-horizontal" id="form-review">
+		    <div id="review"></div>
+			<h2>{{ text_write }}</h2>
+			{% if review_guest %}
+			<div class="form-group required">
+			  <div class="col-sm-12">
+				<label class="control-label" for="input-name">{{ entry_name }}</label>
+				<input type="text" name="name" value="" id="input-name" class="form-control" />
+			  </div>
+			</div>
+			<div class="form-group required">
+			  <div class="col-sm-12">
+				<label class="control-label" for="input-review">{{ entry_review }}</label>
+				<textarea name="text" rows="5" id="input-review" class="form-control"></textarea>
+				<div class="help-block">{{ text_note }}</div>
+			  </div>
+			</div>
+			<div class="form-group required">
+			  <div class="col-sm-12">
+				<label class="control-label">{{ entry_rating }}</label>
+				&nbsp;&nbsp;&nbsp; {{ entry_bad }}&nbsp;
+				<input type="radio" name="rating" value="1" />
+				&nbsp;
+				<input type="radio" name="rating" value="2" />
+				&nbsp;
+				<input type="radio" name="rating" value="3" />
+				&nbsp;
+				<input type="radio" name="rating" value="4" />
+				&nbsp;
+				<input type="radio" name="rating" value="5" />
+				&nbsp;{{ entry_good }}</div>
+			</div>
+			<div id="review"></div>
+			{{ captcha }}
+			<div class="buttons clearfix">
+			  <div class="pull-right">
+				<button type="button" id="button-review" data-loading-text="{{ text_loading }}" class="btn btn-primary">{{ $button_continue }}</button>
+			  </div>
+			</div>
+			{% else %}
+				{{ text_log }}
+			{% endif %}
+		  </form>
+		</div>
+		{% endif %}
+	</div>
+	</div>
+	<div class="clearfix"></div>
+<script ><!--
+$(document).ready(function() {
+    $('.minus1').click(function () {
+        var $input = $(this).parent().find('#cont');
+        var count = parseInt($input.val()) - 1;
+        count = count < {{ minimum }} ? {{ minimum }} : count;
+        $input.val(count);
+        $input.change();
+        return false;
+    });
+    $('.plus1').click(function () {
+        var $input = $(this).parent().find('#cont');
+        $input.val(parseInt($input.val()) + 1);
+        $input.change();
+        return false;
+    });
+});
+//--></script>
+<script>
+	function closedivshadow(){
+		$('body .divshadow').empty();
+		$('body .divshadow').removeClass('show');
+		bluring();
+	}
+	$('body .divshadow .close').click(function() {
+		closedivshadow();
+	});
+	$(document).mouseup(function (e) {
+		var container = $('body .divshadow.show');
+		var containerfind = $('body').find('.divshadow.show').html();
+		if (containerfind != null && container.has(e.target).length === 0) {
+			closedivshadow();
+		}
+	});
+	$(document).keydown(function(e) {
+		var container = $('body .divshadow.show');
+		var containerfind = $('body').find('.divshadow.show').html();
+		if (containerfind != null && e.keyCode === 27) {
+			closedivshadow();
+			return false;
+		}
+	});
+	
+	$(document).ready(function() {
+		centering('.divshadow');
+	});	
+	
+	function read_price_live() {
+		var html = '';
+		$.ajax({
+			url: 'index.php?route=extension/module/divshadow/readquickliveprice',
+			dataType: 'json',
+			success: function(json) {
+				$('#price').val(json['price_system']);
+				
+				$('span.price').empty();
+				if (json['tax']) {var tax = '<li>{{ text_tax }} ' + json['tax']+ '</li>';} else {var tax = '';}
+				if (json['special_noformat'] != 'false') {
+					html  = '<ul class="list-unstyled animated winking"><li><h2>' + json['special'] + '</h2> <span style="text-decoration: line-through;">' + json['price'] + '</span></li>' + tax + '<ul>';
+				} else {
+					html  = '<ul class="list-unstyled animated winking"><li><h2>' + json['price'] + '</h2></li>' + tax + '<ul>';
+				}
+				
+				$('span.price').append(html);
+		}});
+	}
+	function write_price_live() {
+		var product_id = {{ product_id }};
+		var qyantity = $('#cont').val();
+		data: data = $('#option1_'+product_id+' input[type=\'radio\']:checked, #option1_'+product_id+' input[type=\'checkbox\']:checked, #option1_'+product_id+' select');
+		var options = data.serialize();
+		$.ajax({
+			url: 'index.php?route=extension/module/divshadow/quickliveprice',
+			type: 'post',
+			data: options + '&product_id=' + product_id + '&qyantity=' + qyantity,
+			dataType: 'json',
+			success: function(json) {
+				  json.message;
+			}
+		});
+	}
+$(document).ready(function() {
+	write_price_live();
+	setTimeout(function () {
+		read_price_live();
+	}, 100);
+});
+	$('input[name^=option\\[], select[name^=option\\[], #cont').on('change', function(){
+		write_price_live();
+		setTimeout(function () {
+			read_price_live();
+		}, 100);
+	});
+setTimeout(function () {
+	$('.header-popup').addClass('show').addClass('animated').addClass('flipInX');
+}, 1000);
+$('#review').load('index.php?route=product/product/review&product_id={{ product_id }}');
+$('#button-review').on('click', function() {
+	$.ajax({
+		url: 'index.php?route=product/product/write&product_id={{ product_id }}',
+		type: 'post',
+		dataType: 'json',
+		data: $("#form-review").serialize(),
+		beforeSend: function() {
+			$('#button-review').button('loading');
+		},
+		complete: function() {
+			$('#button-review').button('reset');
+		},
+		success: function(json) {
+			$('.alert-success, .alert-danger').remove();
+
+			if (json['error']) {
+				$('#review').after('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + '</div>');
+			}
+
+			if (json['success']) {
+				$('#review').after('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + '</div>');
+
+				$('input[name=\'name\']').val('');
+				$('textarea[name=\'text\']').val('');
+				$('input[name=\'rating\']:checked').prop('checked', false);
+			}
+		}
+	});
+});
+</script>

@@ -1,0 +1,26 @@
+{% if reviews %}
+{% for review in reviews %}
+<div class="review-comment-str"></div>
+<div class="review-list">
+  <div class="author">
+  <div class="avatar"><img src = "catalog/view/theme/unitystore/image/noavatar.png" /></div>
+  </div>
+  <div class="author_name">
+  {{ napisal }}<b>{{ review.author }}</b> {{ ot }} {{ review.date_added }}
+  </div><br />
+  <div class="rating">
+	  {% for i in 1..5 %}
+		{% if review.rating < i %}
+			<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+		{% else %}
+			<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+		{% endif %}
+	  {% endfor %}
+  </div>
+  <br />{{ review.text }}
+</div>
+{% endfor %}
+<div class="text-right">{{ pagination }}</div>
+{% else %}
+<p>{{ text_no_reviews }}</p>
+{% endif %}

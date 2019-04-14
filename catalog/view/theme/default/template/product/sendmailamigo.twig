@@ -1,0 +1,44 @@
+<script>
+	function sending() {
+		var emailvalid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		var email = $('#inputemail').val();
+		if(email != "")
+		{
+			if(!emailvalid.test(email)) {
+				swal(
+				  '{{ text_error_email }}'
+				)
+				return false;
+			} else {
+				$.ajax({
+					url: 'index.php?route=extension/module/newsletter/news',
+					type: 'post',
+					data: 'email=' + $('#inputemail').val() + '&user_token={{ user_token }}',
+					dataType: 'json',
+					success: function(json) {
+						swal(
+						  json.message
+						)
+					}
+				});
+				return false;
+			}
+		}
+		else
+		{
+			swal(
+			  '{{ text_empty_email }}'
+			)
+			$(email).focus();
+			return false;
+		}
+	}
+</script>
+<form class="form-inline" method="post">
+	<div class="col-sm-9">
+		<input id="input_fio" class="form-control margin-right" type="text" value="" placeholder="Отправить другу по e-mail" name="input_fio">
+	</div>
+	<div class="col-sm-3">
+		<button id="button-send-amigo" class="btn btn-danger btn-block pull-right" data-loading-text="Загрузка..." type="button"><i class="fa fa-envelope-o"></i> Отправить</button>
+	</div>
+</form>

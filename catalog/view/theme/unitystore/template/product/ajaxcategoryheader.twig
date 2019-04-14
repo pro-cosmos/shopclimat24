@@ -1,0 +1,59 @@
+<div class="list-group category">
+	<ul class="nav">
+		{% set m = 0 %}
+		{% for category in categories %}
+			<li{% if category.children %} class="dropdown"{% endif %}>
+				<a href="{{ category.href }}">{{ category.name }}</a>{% if category.children %}<i class="dropdown-toggle fa fa-chevron-down btn btn-absolute" data-toggle="dropdown"></i>{% endif %}
+				{% if category.children %}
+				<div class="dropdown-menu col-xs-12">
+					<div class="tab-content">
+						<div class="dropdown-inner">
+							{% for children in category.children|batch(category.children|length / category.column|round(1, 'ceil')) %}
+								  <ul class="list-unstyled">
+								  {% for child in children %}
+										<li><a href="{{ child.href }}" class="col-sm-12">{{ child.name }}</a>
+										{% if child.children %}
+											<ul class="dropdown-menu podcategory">
+												{% for child_3 in child.children %}
+													<li><a href="{{ child_3.href }}">{{ child_3.name }}</a></li>
+												{% endfor %}
+											</ul>
+											<span class="clearfix"></span>
+										{% endif %}
+										</li>
+									{% endfor %}
+								  </ul>
+							{% endfor %}
+						</div>
+					</div>
+					<div class="clearfix"></div><hr />
+					<ul class="nav nav-tabs col-sm-12 hidden-xs">
+						{% if category.description %}<li class="active"><a class="btn btn-link" href="#descr_category{{ category.category_id }}" data-toggle="tab"><i class="fa fa-align-justify after-fa"></i> Описание <i class="fa fa-chevron-down"></i></a></li>{% endif %}
+						{% if category.manufacturers %}<li{% if category.description == false %} class="active"{% endif %}><a class="btn btn-link" href="#descr_manuf{{ category.category_id }}" data-toggle="tab"><i class="fa fa-tags after-fa" aria-hidden="true"></i> Бренды <i class="fa fa-chevron-down"></i></a></li>{% endif %}
+					</ul><div class="clearfix"></div>
+					<div class="tab-content col-sm-12 hidden-xs">
+						{% if category.description %}
+						<div class="tab-pane active row hide_template" id="descr_category{{ category.category_id }}">
+							<div class="col-sm-10 text-justify">{{ category.description }}</div>
+							<div class="col-sm-2 text-right">{% if category.image %}<img src="{{ category.image }}" alt="" title="" />{% endif %}</div>
+						</div>
+						{% endif %}
+						<div class="tab-pane{% if category.description == false %} active{% endif %} hide_template" id="descr_manuf{{ category.category_id }}">
+							{% if category.manufacturers %}
+								<div class="row">
+									<ul class="list-unstyled manuf_template">
+										{% for manufacturers in category.manufacturers %}
+											<li><a href="{{ manufacturers.href }}">{% if manufacturers.image %}<img src="{{ manufacturers.image }}" alt="" title="" />{% else %}{{ manufacturers.name }}{% endif %}</a></li>
+										{% endfor %}
+									</ul>
+								</div>
+							{% endif %}
+						</div>
+					</div>
+				  </div>
+				{% endif %}
+			</li>
+			{% set m=m+1 %}
+		{% endfor %}
+	</ul>
+</div>

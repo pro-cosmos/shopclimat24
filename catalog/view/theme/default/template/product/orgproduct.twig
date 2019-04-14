@@ -1,0 +1,55 @@
+<div itemscope itemtype="https://schema.org/Product">
+		<meta itemprop="name" content="{{ heading_title }}" />
+		<link itemprop="url" href="{{ href }}" />
+		{% if thumb %}<link itemprop="image" href="{{ thumb }}" />{% endif %}
+		{% if manufacturer %}<meta itemprop="brand" content="{{ manufacturer }}" />{% endif %}
+		{% if manufacturer %}<meta itemprop="manufacturer" content="{{ manufacturer }}" />{% endif %}
+		{% if model %}<meta itemprop="model" content="{{ model }}" />{% endif %}
+		{% if upc %}<meta itemprop="gtin12" content="{{ upc }}" />{% endif %}
+		{% if ean %}<meta itemprop="gtin8" content="{{ ean }}" />{% endif %}
+		{% if isbn %}<meta itemprop="productID" content="{{ isbn }}" />{% endif %}
+		{% if category_name %}<meta itemprop="category" content="{{ category_name }}" />{% endif %}
+		<div itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
+		{% if rating %}
+			<meta itemprop="ratingValue" content="{{ rating }}">
+			<meta itemprop="reviewCount" content="1">
+		{% endif %}
+		</div>
+		<div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+		<meta itemprop="priceCurrency" content="{{ curr }}" />
+		{% if price %}<meta itemprop="price" content="{% if special == false %}{{ price }}{% else %}{{ special }}{% endif %}" />{% endif %}
+		<link itemprop="availability" href="https://schema.org/InStock" />
+		</div>
+		<meta itemprop="description" content="{{ description }}" />
+		{% if ratings %}
+			{% for rating in ratings %}
+				<div itemprop="review" itemscope itemtype="https://schema.org/Review">
+				<meta itemprop="author" content="{{ rating.author }}" />
+				<meta itemprop="datePublished" content="{{ rating.date_added }}" />
+				<div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+				<meta itemprop="worstRating" content = "1" />
+				<meta itemprop="ratingValue" content="{{ rating.rating }}" />
+				<meta itemprop="bestRating" content="5" />
+				</div>
+				<meta itemprop="description" content="{{ rating.text }}" />
+				<meta itemprop="itemReviewed" content=" " />
+				</div>
+			{% endfor %}
+		{% endif %}
+		{% if products %}
+			{% set k = 1 %}
+			{% for product in products %}
+				<div id="related-product-{{ k }}" itemprop="isRelatedTo" itemscope itemtype="https://schema.org/Product">
+				<meta itemprop="name" content="{{ product.name }}" />
+				<meta itemprop="description" content="{{ product.description }}" />
+				<link itemprop="url" href="{{ product.href }}" />
+				<link itemprop="image" href="{{ product.thumb }}" />
+				<div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+				<meta itemprop="priceCurrency" content="{{ curr }}" />
+				{% if product.price %}<meta itemprop="price" content="{% if product.special == false %}{{ product.price }}{% else %}{{ product.special }}{% endif %}" />{% endif %}
+				</div>	   
+				</div>
+				{% set k=k+1 %}
+			{% endfor %}
+		{% endif %}
+		</div>

@@ -1,0 +1,169 @@
+.param_schetchik {
+	
+}
+.param_schetchik.yes_schetchik {
+	min-height: 80px;
+}
+#content .param_schetchik .param {
+	display: inline-block;
+    max-width: 45%;
+}
+#column-left .carous .price {
+	clear: both;
+}
+.param_schetchik .schetchik.left_schetchik {
+    float: none;
+}
+.param_schetchik .schetchik {
+	display: inline-block;
+    float: right;
+}
+.time_circles {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/**
+ *	This is all the elements used to house all text used
+ * in time circles
+ **/
+.time_circles > div {
+    position: absolute;
+    text-align: center;
+	top: 22px;
+}
+/**
+ *	Titles (Days, Hours, etc)
+ **/
+.DateCountdown {
+    padding: 0 0 12px 0;
+    height: 75px;
+    width: 250px;
+}
+.time_circles > div > h4 {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Century Gothic', Arial;
+    line-height: 1;
+	margin-top: 22px;
+	font-size: 11px;
+}
+
+/**
+ *	Time numbers, ie: 12
+ **/
+.time_circles > div > span {
+    margin: 0;
+    padding: 0;
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-family: 'Century Gothic', Arial;
+    line-height: 1;
+    font-weight: bold;
+}
+.carous hr.poln {
+    width: 40%;
+}
+.DateCountdown.left {
+	margin-left: -7px;
+}
+.carous h1 {
+	margin-top: 0px;
+}
+.carous .img-responsive {
+    display: inline;
+	margin-bottom: 10px;
+}
+.carous h2 a {
+	color: #eb0d24;
+	font-size: 21px;
+}
+.carous p {
+	font-size: 14px;
+}
+.carous .owl-pagination {
+    background: #ffffff;
+}
+.carous {
+	position: relative;
+}
+.carous .owl-carousel {
+	position: initial;
+}
+.carous .owl-carousel .owl-item {
+    padding: 10px 0 15px;
+}
+
+.carous h2 {
+	margin-top: 0;
+}
+.carous hr {
+	margin: 15px 0;
+}
+
+
+/* jQuery Countdown styles 1.6.3. */
+.hasCountdown {
+	position: relative;
+	z-index: 1;
+}
+.countdown_rtl {
+	direction: rtl;
+}
+.countdown_holding span {
+	color: #888;
+}
+.countdown_row {
+	clear: both;
+	width: 100%;
+	padding: 0px 2px;
+	text-align: center;
+}
+.countdown_section {
+	display: inline-block;
+	font-size: 75%;
+	text-align: center;
+	
+}
+.countdown_section + .countdown_section {
+	margin-left: 5px;
+}
+.countdown_amount {
+	font-size: 200%;
+	background: #999999;
+	padding: 0 5px;
+	color: #ffffff;
+	min-width: 35px;
+	display: block;
+}
+.countdown_descr {
+	display: block;
+	width: 100%;
+}
+.schetchik {
+	bottom: 0;
+    left: 50%;
+    margin-left: -95px;
+    padding: 7px 6px;
+    position: absolute;
+    width: 190px;
+}
+.schetchik .opacity_countdown {
+	background: #ffffff;
+    border-radius: 2px;
+    bottom: 0;
+    box-shadow: 0 0 3px #000;
+    left: 0;
+    opacity: 0.31;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 0;
+}
+.carous .image {
+	text-align: center;
+}

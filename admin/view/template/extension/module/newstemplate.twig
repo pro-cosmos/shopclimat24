@@ -1,0 +1,284 @@
+{{ header }} {{column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" form="form-category" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+	    {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if error_warning %}
+    <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+      </div>
+      <div class="panel-body">
+		<form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-category" class="form-horizontal">
+		<div class="form-group">
+            <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
+            <div class="col-sm-10">
+				<div class="row">
+					<select name="module_newstemplate_status" id="input-status" class="form-control">
+					    {% if module_newstemplate_status %}
+							<option value="1" selected="selected">{{ text_enabled }}</option>
+							<option value="0">{{ text_disabled }}</option>
+						{% else %}
+							<option value="1">{{ text_enabled }}</option>
+							<option value="0" selected="selected">{{ text_disabled }}</option>
+						{% endif %}
+					</select><br /><br />
+				</div>
+            </div>
+        </div>
+		<div class="form-group">
+            <label class="col-sm-2 control-label" for="input-status">{{ news_limit }}</label>
+            <div class="col-sm-3">
+				{{ news_limit_h1 }}<br /><br />
+				<input type="text" name="module_newstemplate_limit_h1" value="{% if module_newstemplate_limit_h1 %}{{ module_newstemplate_limit_h1 }}{% else %} 60 {% endif %}" size="40" style="margin-bottom: 10px;" class="form-control" /><br />
+				<br /><br />
+            </div>
+			<div class="col-sm-3">
+				{{ text_limit_description }}<br /><br />
+				<input type="text" name="module_newstemplate_limit_description" value="{% if module_newstemplate_limit_description %}{{ module_newstemplate_limit_description }}{% else %}160{% endif %}" size="40" style="margin-bottom: 10px;" class="form-control" /><br />
+				<br /><br />
+            </div>
+			<div class="col-sm-4">
+				{{ text_limit_description_newsall }}<br /><br />
+				<input type="text" name="module_newstemplate_limit_description_all" value="{% if module_newstemplate_limit_description_all %}{{ module_newstemplate_limit_description_all }}{% else %}400{% endif %}" size="40" style="margin-bottom: 10px;" class="form-control" /><br />
+				<br /><br />
+			</div>
+        </div>
+		<div class="form-group">
+            <label class="col-sm-2 control-label" for="input-status">{{ news_setting_image }}</label>
+            <div class="col-sm-3">
+				{{ entry_width }}<br /><br />
+				<input type="text" name="module_newstemplate_image_width" value="{% if module_newstemplate_image_width %}{{ module_newstemplate_image_width }}{% else %}100{% endif %}" size="40" style="margin-bottom: 10px;" class="form-control" /><br />
+				<br /><br />
+            </div>
+			<div class="col-sm-3">
+			   {{ entry_height }}<br /><br />
+				<input type="text" name="module_newstemplate_image_height" value="{% if module_newstemplate_image_height %}{{ module_newstemplate_image_height }}{% else %}100{% endif %}" size="40" style="margin-bottom: 10px;" class="form-control" /><br />
+				<br /><br />
+            </div>
+			<div class="col-sm-4"></div>
+        </div>
+		<div class="form-group">
+            <div class="col-sm-2">
+			<b onclick="add_news();" class="btn btn-primary" style="margin: 0 0 10px 10px;">Добавить новость</b>
+			<br /><br /><br />
+			<ul class="nav nav-pills nav-stacked" id="option">
+				<div id="end_newsfootertab_a"></div>
+				{% set new_row_footer = 0 %}
+				{% if modules_news %}
+					{% for module_news in modules_news %}
+						{% for language in languages %}
+							{% if language.code == config_admin_language %}
+								{% if module_news.news_h1[language['code']] and module_news.news_h1[language['code']] != "" %}
+									<li{% if new_row_footer==0 %} class="active"{% endif %}>
+										<a href="#newsfootertab-{{ new_row_footer }}" data-toggle="tab">
+											<i class="fa fa-minus-circle" id="news-{{ new_row_footer }}" onclick="$('a[href=\'#newsfootertab-{{ new_row_footer }}\']').parent().remove(); $('#newsfootertab-{{ new_row_footer }}').remove(); $('#option a:first').tab('show');"></i>&nbsp;&nbsp;&nbsp;
+											{{ module_news.news_h1[language['code']] }}
+										</a>
+									</li>
+								{% endif %}
+							{% endif %}
+						{% endfor %}
+						{% set new_row_footer = new_row_footer + 1 %}
+					{% endfor %}
+				{% endif %}
+			  </ul>
+			</div>
+            <div class="col-sm-10">
+				{% set new_row_footer = 0 %}
+				<div class="tab-content">
+				<div id="end_newsfootertab"></div>
+				{% set name_news_n = "" %}
+				{% if modules_news %}
+					{% for module_news in modules_news %}
+						{% for language in languages %}
+							{% if language.code == config_admin_language %}
+								{% if module_news.news_h1[language['code']] %}
+									{% set name_news_n = module_news.news_h1[language['code']] %}
+								{% endif %}
+							{% endif %}
+						{% endfor %}
+						{% if name_news_n != "" %}
+							<div id="newsfootertab-{{ new_row_footer }}" class="tab-pane{% if new_row_footer==0 %} active{% endif %} newsfootertab">
+								{{ name_news }}<br /><br />
+								<ul class="nav nav-tabs" id="content-language">
+									{% set k = 0 %}
+									{% for language in languages %}
+										<li{% if k == 0 %} class="active"{% endif %}><a href=".text-language1{{ language.language_id }}" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /> {{ language.name }}</a></li>
+											{% set k = k + 1 %}
+									{% endfor %}
+								</ul>
+								<div class="tab-content col-sm-12">
+									{% set k = 0 %}
+									{% for language in languages %}
+										<div class="tab-pane{% if k == 0 %} active{% endif %} text-language1{{ language.language_id }} col-sm-6">
+										<div class="row">
+											<input type="text" name="featured_news[{{ new_row_footer }}][news_h1][{{ language.code }}]" value="{% if module_news.news_h1[language.code] %}{{ module_news.news_h1[language['code']] }}{% endif %}" size="40" style="margin-bottom: 10px;" class="form-control" />
+										</div>
+										</div>
+										{% set k = k + 1 %}
+									{% endfor %}
+								</div><br /><br /><br />
+								<div class="image{{ new_row_footer }}" style="border: 0 none; display: inline-table; margin-right: 40px; padding: 10px; vertical-align: middle; margin-bottom: 25px;">
+									<a href="" id="thumb-image3{{ new_row_footer }}" data-toggle="image" class="img-thumbnail"  style="float: left; margin-right: 10px;"><img src="{% if module_news.news_image_resize %}{{ module_news.news_image_resize }}{% else %}{{ news_no_image }}{% endif %}" alt="" title="" data-placeholder="{{ news_no_image }}" /></a>
+									<input type="hidden" name="featured_news[{{ new_row_footer }}][news_image]" value="{% if module_news.news_image %}{{ module_news.news_image }}{% else %}no_image.png{% endif %}" id="input-image3{{ new_row_footer }}" /><br /><br />
+								</div>
+								<div class="image" style="border: 0 none; display: inline-table; padding: 10px; vertical-align: middle;">
+								{{ data_news }}&nbsp;
+									<input type="text" name="featured_news[{{ new_row_footer }}][news_date]" value="{% if module_news.news_date %}{{ module_news.news_date }}{% else %}{{ modules_date }}{% endif %}" size="40" style="margin-bottom: 10px;" class="date" /><br />
+									{{ sort_news }}&nbsp;
+									<input type="text" name="featured_news[{{ new_row_footer }}][news_sort]" value="{% if module_news.news_sort %}{{ module_news.news_sort }}{% else %}0{% endif %}" size="40" style="margin-bottom: 10px;" /><br />
+									{% if module_news.news_on == 1 %}
+									<input type="checkbox" name="featured_news[{{ new_row_footer }}][news_on]" value="1" checked="checked" />
+									{% else %}
+									<input type="checkbox" name="featured_news[{{ new_row_footer }}][news_on]" value="1" />
+									{% endif %} {{ footer_news }}<br /><br />
+								</div>
+								<ul class="nav nav-tabs" id="language">
+									{% set n = 0 %}
+									{% for language in languages %}
+										<li{% if n == 0 %} class="active"{% endif %}><a href="#language{{ language.language_id }}{{ new_row_footer }}" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /> {{ language.name }}</a></li>
+										{% set n = n + 1 %}
+									{% endfor %}
+								</ul>
+								<div class="tab-content">
+								{% set m = 0 %}
+									{% for language in languages %}
+										<div class="tab-pane{% if m == 0 %} active{% endif %}" id="language{{ language.language_id }}{{ new_row_footer }}">
+											<input type="hidden" name="featured_news[{{ new_row_footer }}][news_id]" value="{{ new_row_footer }}" /> <textarea id="news-{{ new_row_footer }}-{{ language.language_id }}" class="form-control summernote{% if m == 0 %} active{% endif %}" type="text" name="featured_news[{{ new_row_footer }}][news_text][{{ language.code }}]" value="" maxlength="10000" size="200" style="height: 120px; width: 555px; margin-bottom: 5px;" class="" />{% if module_news.news_text[language['code']] %}{{ module_news.news_text[language['code']] }}{% endif %}</textarea>
+											<script type="text/javascript"><!--
+												$('#news-' + {{ new_row_footer }} + '-{{ language.language_id }}').summernote({height: 300});
+											//--></script>
+										</div>
+										{% set m = m + 1 %}
+									{% endfor %}
+								</div>
+							 </div>
+						{% endif %}
+						{% set new_row_footer = new_row_footer + 1 %}
+					{% endfor %}
+				{% endif %}
+				</div>
+			</div>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript"><!--
+function remove_news(news) {
+	$('#news-' + news).remove();
+	$('#newsfootertab-' + news).remove();
+};
+$('.date').datetimepicker({
+	pickTime: false,
+	locale: 'ru'
+});
+var new_row_footer_a = {{ new_row_footer }};
+function add_news_a() {
+	$('#option li').removeClass('active');
+	$('.newsfootertab').removeClass('active');
+
+	html  = '<li class="active"><a href="#newsfootertab-' + new_row_footer_a + '" data-toggle="tab"><i class="fa fa-minus-circle" id="news-' + new_row_footer_a + '" onclick="remv(' + new_row_footer_a + ');"></i>&nbsp;&nbsp;&nbsp;{{ new_news }}</a></li>';
+
+	$('#end_newsfootertab_a').after(html);
+	
+	new_row_footer_a++;
+};
+function remv(new_row_footer_a) {
+	$('a[href=\'#newsfootertab-' + new_row_footer_a + '\']').parent().remove();
+	$('#newsfootertab-' + new_row_footer_a).remove();
+	$('#option a:first').tab('show');
+}
+var new_row_footer = {{ new_row_footer }};
+
+function add_news() {
+
+	add_news_a();
+
+	html  = '<div id="newsfootertab-' + new_row_footer + '" class="tab-pane newsfootertab active">';
+		
+		html += '{{ name_news }}<br /><br />';
+	
+		html += '<ul class="nav nav-tabs" id="content-language">';
+			{% set k = 0 %}
+			{% for language in languages %}
+				html += '<li{% if k == 0 %} class="active"{% endif %}><a href=".text-language1{{ language.language_id }}" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /> {{ language.name }}</a></li>';
+				{% set k = k + 1 %}
+			{% endfor %}
+		html += '</ul>';
+		
+		html += '<div class="tab-content col-sm-12">';
+			{% set k = 0 %}
+			{% for language in languages %}
+				html += '<div class="tab-pane{% if k == 0 %} active{% endif %} text-language1{{ language.language_id }} col-sm-6">';
+				html += '<div class="row">';
+					html += '<input type="text" name="featured_news[' + new_row_footer + '][news_h1][{{ language.code }}]" value="{% if module_news.news_h1[language.code] %}{{ module_news.news_h1[language['code']] }}{% endif %}" size="40" style="margin-bottom: 10px;" class="form-control" />';
+				html += '</div>';
+				html += '</div>';
+				{% set k = k + 1 %}
+			{% endfor %}
+		html += '</div><br /><br />';
+
+		html += '<div class="image' + new_row_footer + '" style="border: 0 none; display: inline-table; margin-right: 40px; padding: 10px; vertical-align: middle; margin-bottom: 25px;"><a href="" id="thumb-image3' + new_row_footer + '" data-toggle="image" class="img-thumbnail"  style="float: left; margin-right: 10px;"><img src="{{ news_no_image }}" alt="" title="" data-placeholder="{{ news_no_image }}" /></a><input type="hidden" name="featured_news[' + new_row_footer + '][news_image]" value="no_image.png" id="input-image3' + new_row_footer + '" /><br /><br /></div>';
+
+		html += '<div class="image" style="border: 0 none; display: inline-table; padding: 10px; vertical-align: middle;">{{ data_news }}&nbsp;';
+		html += '<input type="text" name="featured_news[' + new_row_footer + '][news_date]" value="{{ modules_date }}" size="40" style="margin-bottom: 10px;" class="date" /><br />';
+		html += '{{ sort_news }}&nbsp;';
+		html += '<input type="text" name="featured_news[' + new_row_footer + '][news_sort]" value="1" size="40" style="margin-bottom: 10px;"  /><br />';
+		html += '<input type="checkbox" name="featured_news[' + new_row_footer + '][news_on]" value="1" checked="checked" /> {{ footer_news }}<br /><br />';
+		html += '</div>';
+		
+		html += '<ul class="nav nav-tabs" id="language">';
+			{% set n = 0 %}
+			{% for language in languages %}
+				html += '<li{% if n == 0 %} class="active"{% endif %}><a href="#language{{ language.language_id }}' + new_row_footer + '" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /> {{ language.name }}</a></li>';
+				{% set n = n + 1 %}
+			{% endfor %}
+		html += '</ul>';
+		html += '<div class="tab-content">';
+		{% set m = 0 %}
+			{% for language in languages %}
+				html += '<div class="tab-pane{% if m == 0 %} active{% endif %}" id="language{{ language.language_id }}' + new_row_footer + '">';
+					html += '<input type="hidden" name="featured_news[' + new_row_footer + '][news_id]" value="' + new_row_footer + '" /> <textarea id="news-' + new_row_footer + '-{{ language.language_id }}" class="form-control summernote{% if m == 0 %} active{% endif %}" type="text" name="featured_news[' + new_row_footer + '][news_text][{{ language.code }}]" value="" maxlength="10000" size="200" style="height: 120px; width: 555px; margin-bottom: 5px;" class="" />{% if module_news.news_text[language['code']] %}{{ module_news.news_text[language['code']] }}{% endif %}</textarea>';
+				html += '</div>';
+				{% set m = m + 1 %}
+			{% endfor %}
+		html += '</div>';
+		
+		
+	html += '<br /></div>';
+	$('#end_newsfootertab').after(html);
+
+	{% for language in languages %}
+		$('#news-' + new_row_footer + '-{{ language.language_id }}').summernote({height: 300});
+		
+	{% endfor %}
+	
+	$('.date').datetimepicker({
+		pickTime: false,
+		locale: 'ru'
+	});
+
+	new_row_footer++;
+	
+};
+
+//--></script>
+{{ footer }}

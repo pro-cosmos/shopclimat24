@@ -1,0 +1,205 @@
+<div class="input-group col-sm-10 text-center margin-center">
+	<ul class="nav nav-tabs categorycarousel col-sm-4 input-group white">
+		<li class="active"><a href="#tab-category" class="tab-category" data-toggle="tab">{{ heading_title }}</a></li>
+		<li><a href="#tab-manuf" class="tab-manuf" data-toggle="tab">{{ heading_manuf }}</a></li>
+	</ul>
+	<div class="line-border"></div>
+</div>
+<div class="tab-content">
+<div class="tab-pane active" id="tab-category">
+{% if module.position == 'content_top' or module.position == 'content_bottom' %}
+<div class="relative box content_position categorycarousel">
+	<div id="owl-example{{ gen1 }}" class="owl-carousel top-pagination" style="display: block;">
+	{% for category_m in categories_m %}
+		<div class="trapezium">
+			<div class="image text-center"><a href="{{ category_m.href }}">
+			{% if category_m.thumb %}
+				<img src="{{ category_m.thumb }}" title="{{ category_m.name }}" alt="{{ category_m.name }}" />
+			{% else %}
+				<img src="{{ no_thumb }}" title="{{ category_m.name }}" alt="{{ category_m.name }}" />
+			{% endif %}
+			</a></div>
+			<div class="name"><a href="{{ category_m.href }}">{{ category_m.name }}</a></div>
+			{% if style_on_off_categ_2_module_carousel == "1" %}
+				<ul>
+					{% set kol = style_kol_vo_podcateg %}
+					{% set kol_v = 0 %}
+					{% for child_m in category_m.children %}
+						{% set kol_v=kol_v + 1 %}
+						{% if kol_v <= kol %}
+							<li><a href="{{ child_m.href }}">{{ child_m.name }}</a></li>
+						{% endif %}
+					{% endfor %}
+					{% if child_m.kol and category_m.children %}
+						{% if child_m.kol > kol %}<li><a href="{{ category_m.href }}" style="text-decoration: none;">...</a></li>{% endif %}
+					{% endif %}
+				</ul>
+			{% endif %}
+		</div>
+	{% endfor %}
+	</div>
+</div>
+{% endif %}
+{% if module.position == 'content_top' %}
+<script>
+$(document).ready(function() {
+	cols = $('#column-right, #column-left').length;
+	if (cols == 2) {
+		$("#owl-example{{ gen1 }}").owlCarousel({
+		navigation : true,
+		slideSpeed : 200,
+		paginationSpeed : 400,
+		navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>','<i class="fa fa-chevron-right fa-5x"></i>'],
+		items : 2,
+		itemsDesktop : [1400, 1],
+		itemsDesktopSmall : [979, 1],
+		itemsTablet : [768, 2],
+		itemsTabletSmall : [590, 1],
+		itemsMobile : [479, 1],
+		pagination: false
+		});
+	} else if (cols == 1) {
+		$("#owl-example{{ gen1 }}").owlCarousel({
+		navigation : true,
+		slideSpeed : 200,
+		paginationSpeed : 400,
+		navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>','<i class="fa fa-chevron-right fa-5x"></i>'],
+		items : 4,
+		itemsDesktop : [1400, 3],
+		itemsDesktopSmall : [997, 2],
+		itemsTablet : [767, 3],
+		itemsTabletSmall : [590, 2],
+		itemsMobile : [479, 1],
+		pagination: false
+		});
+	} else {
+		$("#owl-example{{ gen1 }}").owlCarousel({
+		navigation : true,
+		slideSpeed : 200,
+		paginationSpeed : 400,
+		navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>','<i class="fa fa-chevron-right fa-5x"></i>'],
+		items : 5,
+		itemsDesktop : [1400, 4],
+		itemsDesktopSmall : [1014, 3],
+		itemsTablet : [767, 3],
+		itemsTabletSmall : [590, 2],
+		itemsMobile : [479, 1],
+		pagination: false
+		});
+	}
+	$('#manufacturer{{ gen3 }}').owlCarousel({
+		items: 7,
+		autoPlay: 3000,
+		navigation: true,
+		navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>','<i class="fa fa-chevron-right fa-5x"></i>'],
+		pagination: false
+	});
+});
+</script>
+{% endif %}
+{% if module.position == 'content_bottom' %}
+<script>
+	$(document).ready(function() {
+		$("#owl-example{{ gen1 }}").owlCarousel({
+		navigation : true,
+		slideSpeed : 200,
+		paginationSpeed : 400,
+		navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>','<i class="fa fa-chevron-right fa-5x"></i>'],
+		items : 5,
+		itemsDesktop : [1400, 4],
+		itemsDesktopSmall : [1014, 3],
+		itemsTablet : [767, 3],
+		itemsTabletSmall : [590, 2],
+		itemsMobile : [479, 1]
+		});
+	});
+	$('#manufacturer{{ gen3 }}').owlCarousel({
+		items: 7,
+		autoPlay: 3000,
+		navigation: true,
+		navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>','<i class="fa fa-chevron-right fa-5x"></i>'],
+		pagination: false
+	});
+</script>
+{% endif %}
+{% if module.position == 'column_left' or module.position == 'column_right' %}
+	<div class="row relative column_position categorycarousel">
+		<h3>{{ heading_title }}</h3>
+		<div id="owl-example{{ gen2 }}" class="owl-carousel">
+		{% for category_m in categories_m %}
+			<div>
+				<div class="image"><a href="{{ category_m.href }}">
+				{% if category_m.thumb %}
+					<img src="{{ category_m.thumb }}" title="{{ category_m.name }}" alt="{{ category_m.name }}" />
+				{% else %}
+					<img src="{{ no_thumb }}" title="{{ category_m.name }}" alt="{{ category_m.name }}" />
+				{% endif %}
+				</a></div>
+				<div class="name"><a href="{{ category_m.href }}">{{ category_m.name }}</a></div>
+				{% if style_on_off_categ_2_module_carousel == "1" %}
+					<ul>
+						{% set kol = style_kol_vo_podcateg %}
+						{% set kol_v = 0 %}
+						{% for child_m in category_m.children %}
+							{% set kol_v=kol_v+1 %}
+							{% if kol_v <= kol %}
+								<li><a href="{{ child_m.href }}">{{ child_m.name }}</a></li>
+							{% endif %}
+						{% endfor %}
+						{% if child_m.kol %}
+							{% if child_m.kol > kol %}<li><a href="{{ category_m.href }}" style="text-decoration: none;">...</a></li>{% endif %}
+						{% endif %}
+					</ul>
+				{% endif %}
+			</div>
+		{% endfor %}
+		</div>
+	<script>
+		$(document).ready(function() {
+			$("#owl-example{{ gen2 }}").owlCarousel({
+			  navigation : true,
+			  slideSpeed : 200,
+			  paginationSpeed : 400,
+			  rewindNav: true,
+			  navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>','<i class="fa fa-chevron-right fa-5x"></i>'],
+			  items: 1,
+			  itemsDesktop: false,
+			  itemsDesktopSmall : false,
+			  itemsTablet: false,
+			  itemsTabletSmall: false,
+			  itemsMobile : false
+			});
+		});
+	</script>
+	</div>
+{% endif %}
+</div>
+<div class="tab-pane active" id="tab-manuf">
+	<div class="tab-manuf">
+		<div id="manufacturer{{ gen3 }}" class="owl-carousel manufacturer-banner">
+		{% for manufacturer in manufacturers %}
+			<div class="item text-center">
+				{% if manufacturer.link %}
+					<a href="{{ manufacturer.link }}" class="trapezium"><img src="{{ manufacturer.image }}" alt="{{ manufacturer.name }}" class="img-responsive" /></a>
+				{% else %}
+					<img src="{{ manufacturer.image }}" alt="{{ manufacturer.name }}" class="img-responsive" />
+				{% endif %}
+			</div>
+		{% endfor %}
+		</div>
+	</div>
+</div>
+{% if module.position == 'column_left' or module.position == 'column_right' %}
+	<script>
+		$(document).ready(function() {
+			$('#manufacturer{{ gen3 }}').owlCarousel({
+				items: 1,
+				autoPlay: 3000,
+				navigation: true,
+				navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>','<i class="fa fa-chevron-right fa-5x"></i>'],
+				pagination: false
+			});
+		});
+	</script>
+{% endif %}
+</div>

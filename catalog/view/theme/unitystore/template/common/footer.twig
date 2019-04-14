@@ -1,0 +1,157 @@
+<footer>
+{% if information_block_footer == false %}{% set information_block_footer = '0' %}{% endif %}
+{% if support_block_footer == false %}{% set support_block_footer = '0' %}{% endif %}
+{% if more_block_footer == false %}{% set more_block_footer = '0' %}{% endif %}
+{% if sign_block_footer == false %}{% set sign_block_footer = '0' %}{% endif %}
+{% set schet = information_block_footer + support_block_footer + more_block_footer + sign_block_footer %}
+{% if schet == '4' %}{% set width = " col-lg-3 col-md-3 col-sm-6 col-xs-6 col-xm-12" %}
+{% elseif schet == '3' %}{% set width = " col-sm-4 col-xs-6 col-xm-12" %}
+{% elseif schet == '2' %}{% set width = " col-sm-6 col-xs-6 col-xm-12" %}
+{% elseif schet == '1' %}{% set width = " col-sm-12 col-xs-6 col-xm-12" %}{% else %}{% set width = "" %}{% endif %}
+<div class="container {% if information_block_footer!='1' and support_block_footer!='1' and more_block_footer!='1' and sign_block_footer!='1' %} hide{% endif %}">
+  <div id="footer" class="row padding">
+    {% if information_block_footer=='1' %}
+		{% if informations %}
+              <div class="column{{ width }}">
+                <h3>{{ text_information }}</h3>
+                <ul>
+				  {% for information in informations %}
+                  <li><a href="{{ information.href }}">{{ information.title }}</a></li>
+                  {% endfor %}
+                </ul>
+              </div>
+          {% endif %}
+    {% endif %}
+	{% if support_block_footer=='1' %}
+      <div class="column{{ width }}">
+        <h3>{{ text_service }}</h3>
+        <ul>
+          <li><a href="{{ contact }}">{{ text_contact }}</a></li>
+          <li><a href="{{ return }}">{{ text_return }}</a></li>
+          <li><a href="{{ sitemap }}">{{ text_sitemap }}</a></li>
+        </ul>
+      </div>
+    {% endif %}
+	{% if more_block_footer=='1' %}
+      <div class="column{{ width }}">
+        <h3>{{ text_extra }}</h3>
+        <ul>
+          <li><a href="{{ manufacturer }}">{{ text_manufactur }}</a></li>
+          <li><a href="{{ voucher }}">{{ text_voucher }}</a></li>
+          <li><a href="{{ affiliate }}">{{ text_affiliate }}</a></li>
+          <li><a href="{{ special }}">{{ text_special }}</a></li>
+        </ul>
+      </div>
+    {% endif %}
+	{% if sign_block_footer=='1' %}
+	  <div class="column{{ width }}">
+		<h3>{{ text_account }}</h3>
+		<ul>
+		  <li><a href="{{ account }}">{{ text_account }}</a></li>
+		  <li><a href="{{ order }}">{{ text_order }}</a></li>
+		  <li><a href="{{ newsletter }}">{{ text_newsletter }}</a></li>
+		</ul>
+	  </div>
+	{% endif %}
+</div>
+</div>
+<div style="clear: both;"></div>
+</footer>
+{% if news_letter_status %}
+	<div class="subsc">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-xs-12 btn-white subsc"><div class="col-sm-12 col-xs-12"><div class="btn-border-top"></div></div></div>
+				<div class="col-sm-12 btn-white padding2x">
+					{{ controller_newsletter }}
+					<div class="col-lg-2 col-md-3 col-sm-1 col-xs-3 hidden-xm text-right">
+						<a href="" class="btn btn-border btn-no-bg scrolling"><span class="hidden-xs hidden-sm">{{ text_topping }}&nbsp;&nbsp;&nbsp;</span><i class="fa fa-chevron-up"></i></a>
+					</div>
+					<br />
+					<div class="clearfix"></div>
+				</div>
+				<div class="col-sm-12 col-xs-12 btn-white subsc"><div class="col-sm-12 col-xs-12"><div class="btn-border-top"></div></div></div>
+			</div>
+		</div>
+	</div>
+{% endif %}
+<div class="subsc">
+	<div class="container">
+		<div class="row">
+		<div class="col-sm-12 btn-white padding">
+			{% if statii_horizontal_menu_footers %}
+				<div class="{% if modules_pay or modules_social %}col-lg-4 col-md-3 col-sm-6 col-xs-6 col-xm-12{% else %}col-lg-6 col-md-6 col-sm-6 col-xs-6 col-xm-12{% endif %}">
+						<ul class="list-unstyled">
+							{% for statii in statii_horizontal_menu_footers %}
+								<li><a href="{{ statii.href }}">{{ statii.statii }}</a></li>
+							{% endfor %}
+						</ul>
+				</div>
+			{% endif %}
+			{% if text1_one_block_footer %}
+				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xs-6 col-xm-12">
+					{{ text1_one_block_footer }}
+				</div>
+			{% endif %}
+			{% if modules_pay or modules_social %}
+				<div class="col-lg-4 col-md-5 col-sm-12 col-xs-12 col-xm-12 padding-bottom">
+					<div class="row-lg row-md">
+						<div class="row">
+							{% if modules_social %}
+								<div class="col-lg-12 col-md-12 col-sm-6 col-xs-6 col-xm-12">
+									<div class="footer_head">{{ my_social }}</div>
+									<div class="social_img">
+										{% for module_social in modules_social %}
+											<a href="{{ module_social.social_href }}"><img src="/image/{{ module_social.social_image }}" alt="" /></a>
+										{% endfor %}
+									</div>
+								</div>
+							{% endif %}
+							{% if modules_pay %}
+								<div class="col-lg-12 col-md-12 col-sm-6 col-xs-6 col-xm-12">
+									<div class="footer_head margin-top">{{ my_pay }}</div>
+									<div class="btn-no-bg btn-border border-radius pull-left">
+										{% for module_pay in modules_pay %}
+											<img src="/image/{{ module_pay.pay_image }}" alt="" title="" />
+										{% endfor %}
+									</div>
+								</div>
+							{% endif %}
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			{% endif %}
+			{% if text2_one_block_footer %}
+				<div class="col-sm-12 col-xs-12"><div class="btn-border-top"></div></div>
+				<div class="btn-white col-sm-12 col-xs-12 subsc">
+					<span class="footer-size padding">{{ text2_one_block_footer }}</span>
+					<div style="clear: both;"></div>
+				</div>
+			{% endif %}
+	</div>
+	</div>
+	</div>
+</div>
+<div class="modal-bg"></div>
+{% if cacheviewed_status %}{{ cache_viewed_footer }}{% endif %}
+<script><!--
+$('.dropdown-enter').click(function(){
+$(this).next('.dropdown-box').slideToggle(300);
+$(this).toggleClass('active');
+});
+//--></script>
+<script src="catalog/view/theme/unitystore/js/jquery.viewportchecker.js"></script>
+<script>
+	setTimeout(function(){
+		$('.product-thumb .image').viewportChecker({
+			classToAdd: 'animated bounceIn'
+		});
+	}, 500);
+	setTimeout(function(){
+		$('.stiker-module-popular, .stiker-module-special, .stiker-module-new').viewportChecker({
+			classToAdd: 'animated bounceIn'
+		});
+	}, 1000);
+</script>
+</body></html>

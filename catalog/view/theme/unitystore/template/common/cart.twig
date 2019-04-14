@@ -1,0 +1,175 @@
+<div id="cart" class="btn-group btn-block text-right">
+  <button type="button" data-toggle="dropdown" data-loading-text="{{ text_loading }}" class="btn btn-inverse btn-block btn-lg text-right dropdown-toggle"><i class="fa fa-shopping-cart" aria-hidden="true"><span id="cart-total">{% if products %}{{ count_cart }}{% else %}0{% endif %}</span></i>
+  </button>
+  <div class="dropdown-menu pull-right"><div>
+  <ul class="list-unstyled">
+	<li class="closecart"><i class="fa fa-times" aria-hidden="true"></i></li>
+	{% if products or vouchers %}
+	<li>
+	  <div class="no-border col-sm-12">
+	  {% for product in products %}
+		<div class="row">
+		  <div class="text-center col-lg-2 col-md-2 col-sm-2 col-xs-4 col-xm-5 padding">{% if product.thumb %}
+			<a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-thumbnail" /></a>
+			{% endif %}</div>
+		  <div class="text-left col-lg-4 col-md-4 col-sm-4 col-xs-8 col-xm-7 padding"><a href="{{ product.href }}">{{ product.name }}</a>
+			{% if product.option %}
+			{% for option in product.option %}
+			<br />
+			- <small>{{ option.name }} {{ option.value }}</small>
+			{% endfor %}
+			{% endif %}
+			{% if product.recurring %}
+			<br />
+			- <small>{{ text_recurring }} {{ product.recurring }}</small>
+			{% endif %}</div>
+		  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-5 col-xm-6 text-right padding">
+			<div class="quantity-input-cart">
+				<span class="minus-cart btn-sm pull-left"><i class="fa fa-minus"></i></span>
+				<input id="cont-cart" type="text" name="quantity" value="{{ product.quantity }}" size="2" class="form-control btn-sm pull-left" data-cart-id="{{ product.cart_id }}" />
+				<span class="plus-cart btn-sm pull-left"><i class="fa fa-plus"></i></span>
+			</div>
+		  </div>
+		  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-5 col-xm-3 padding padding-top padding-top">{{ product.total }}</div>
+		  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2 col-xm-3 padding"><button type="button" onclick="cart.remove('{{ product.cart_id }}');" title="{{ button_remove }}" class="btn btn-danger btn-xs"><i class="fa fa-times"></i> <span class="visible-xm hidden-xs hidden-sm hidden-md hidden-lg">{{ button_remove }}</span></button></div>
+		</div>
+		{% endfor %}
+		{% for voucher in vouchers %}
+		<div>
+		  <div class="text-center col-lg-2 col-md-2 col-sm-2 col-xs-2 col-xm-12 padding"></div>
+		  <div class="text-left col-lg-6 col-md-5 col-sm-5 col-xs-5 col-xm-12 padding">{{ voucher.description }}</div>
+		  <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2 col-xm-4 text-right padding">x&nbsp;1</div>
+		  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 col-xm-4 padding">{{ voucher.amount }}</div>
+		  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-xm-4 padding"><button type="button" onclick="voucher.remove('{{ voucher.key }}');" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-times"></i></button></div>
+		</div>
+		{% endfor %}
+	  </div>
+	</li>
+	<li>
+	  <div>
+		<div class="row">
+		  {% for total in totals %}
+		  <div class="col-sm-12 col-xs-12">
+			  <div class="row">
+				<div class="col-lg-8 col-md-7 col-sm-7 col-xs-8 col-xm-7 text-right border-top padding"><strong>{{ total.title }}</strong></div>
+				<div class="col-lg-4 col-md-5 col-sm-5 col-xs-4 col-xm-5 text-right border-top padding">{{ total.text }}</div>
+			  </div>
+		  </div>
+		  {% endfor %}
+		</div>
+	  </div>
+	</li>
+	{% else %}
+	<li>
+	  <p class="text-center empty empty_cart">{{ text_empty }}</p>
+	</li>
+	{% endif %}
+  </ul>
+  <div class="clearfix"></div><br />
+  {% if products or vouchers %}
+	  {% if quickpay_status %}
+	  <div class="col-sm-12 quickblock">
+		<form class="" action="" method="post">
+		<div class="forming_quick col">
+			<input type="hidden" class="form-control" name="input_date_cart" id="input_date_cart" value="{{ date }}" />
+			<div class="row">
+				<div class="row"><br />
+					<div class="col-lg-6 col-sm-12 form-group{% if quickpay_status_your_name %} required{% endif %}">
+						<div class="input-group"><span class="input-group-addon input_fio_cart"><i class="fa fa-user"></i></span><input type="text" class="form-control" name="input_fio_cart" id="input_fio_cart" placeholder="{{ text_fio }}" value="" /></div>
+					</div>
+					<div class="col-lg-6 col-sm-12 form-group{% if quickpay_status_email %} required{% endif %}">
+						<div class="input-group"><span class="input-group-addon input_email_cart"><i class="fa fa-envelope-o"></i></span><input type="email" class="form-control" name="input_email_cart" id="input_email_cart" placeholder="{{ text_email }}" value="" /></div>
+					</div>
+					<div class="col-lg-6 col-sm-12 form-group{% if quickpay_status_phone %} required{% endif %}">
+						<div class="input-group"><span class="input-group-addon input_phone_cart"><i class="fa fa-phone"></i></span><input type="text" class="form-control" name="input_phone_cart" id="input_phone_cart" placeholder="{{ text_phone }}" value="" /></div>
+					</div>
+					<div class="col-lg-6 col-sm-12 form-group">
+						<div class="input-group"><span class="input-group-addon"><i class="fa fa-commenting-o"></i></span><textarea placeholder="{{ text_comment }}" class="form-control" name="input_commenttext_cart" id="input_commenttext_cart"></textarea></div>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			{% if quickpay_text and quickpay_text != "" %}
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 checkbox text-justify person{% if quickpay_format == 'text' %} text_person{% endif %}">
+						{% if quickpay_format and quickpay_format == 'checkbox' %}
+							<input type="checkbox" name="input_zachita_cart" id="zachita_cart" value="1" />
+							<label for="zachita_cart"><span class="text_p">{{ quickpay_text }}</span></label>
+						{% endif %}
+						{% if quickpay_format and quickpay_format == 'text' %}
+							{{ quickpay_text }}
+						{% endif %}
+					</div>
+				</div>
+			{% endif %}
+			<div class="clearfix"></div><br />
+		</div>
+		</form>
+	  </div>
+	  {% endif %}
+	  <div class="col-sm-12 col-xs-12 quick_button_block">
+		  <div class="row">
+			<p class="text-right">
+				{% if quickpay_status %}<a onclick="return quick_pay_button_show();" class="button_cart pull-left btn btn-danger"><i class="fa fa-clock-o"></i> <span class="hidden-sm hidden-xs">{{ quick_check }}</span></a>{% else %}<a onclick="closedivshadow(); deletedivcartul();" class="button_cart pull-left btn btn-danger"><i class="fa fa-clock-o"></i> <span class="hidden-sm hidden-xs">{{ close }}</span></a>{% endif %}
+				<a href="{{ cart }}" class="btn btn-white"><strong class="but"><i class="fa fa-shopping-cart"></i> <span class="hidden-sm hidden-xs">{{ text_cart }}</span></strong></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="{{ checkout }}" class="btn btn-primary"><strong class="but"><i class="fa fa-share"></i> <span class="hidden-sm hidden-xs">{{ text_checkout }}</span></strong></a></p>
+		  </div>
+	  </div>
+	  {% endif %}
+  </div></div>
+</div>
+<script>
+function quick_pay_button_Cart() {
+	var emailvalid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	var date = $('.divcart #input_date_cart').val();
+	var fio = $('.divcart #input_fio_cart').val();
+	var email = $('.divcart #input_email_cart').val();
+	var phone = $('.divcart #input_phone_cart').val();
+	var comment = $('.divcart #input_commenttext_cart').val();
+	var price = '';
+	{% if total.text %}price = '&price=' + '{{ total.text }}';{% endif %}
+	var zachita = '';
+	if ($('.divcart input[name=\'input_zachita_cart\']:checked').val()) {zachita = '&zachita=' + $('.divcart input[name=\'input_zachita_cart\']:checked').val();}
+	$.ajax({
+		url: 'index.php?route=extension/module/quickpay/quickCart',
+		type: 'post',
+		data: '&date=' + date + '&name=' + fio + '&phone=' + phone + '&email=' + email + '&comment=' + comment + price + zachita,
+		dataType: 'json',
+		success: function(json) {
+			if (json['error']) {
+				{% if quickpay_status_your_name %}if (json['error']['name']) {$('.divcart .required .input_fio_cart').addClass('red'); $('.divcart .required .input_fio_cart').find('.fa').addClass('red'); $('.divcart #input_fio_cart').addClass('red');} else {$('.divcart .required .input_fio_cart').removeClass('red'); $('.divcart .required .input_fio_cart').find('.fa').removeClass('red'); $('.divcart #input_fio_cart').removeClass('red');}{% endif %}
+				{% if quickpay_status_phone %}if (json['error']['phone']) {$('.divcart .required .input_phone_cart').addClass('red'); $('.divcart .required .input_phone_cart').find('.fa').addClass('red'); $('.divcart #input_phone_cart').addClass('red');} else {$('.divcart .required .input_phone_cart').removeClass('red'); $('.divcart .required .input_phone_cart').find('.fa').removeClass('red'); $('.divcart #input_phone_cart').removeClass('red');}{% endif %}
+				{% if quickpay_status_email %}if (json['error']['email']) {$('.divcart .required .input_email_cart').addClass('red'); $('.divcart .required .input_email_cart').find('.fa').addClass('red'); $('.divcart .required #input_email_cart').addClass('red');} else {$('.divcart .divcart .required .input_email_cart').removeClass('red'); $('.divcart .divcart .required .input_email_cart').find('.fa').removeClass('red'); $('.divcart #input_email_cart').removeClass('red');}{% endif %}
+				{% if quickpay_format and quickpay_format == 'checkbox' %}if (json['error']['zachita']) {$('.text_p').addClass('red');} else {$('.text_p').removeClass('red');}{% endif %}
+				$('.alert, .text-danger').remove();
+			}
+			if (json['message']) {
+				swal(
+					json['message']
+				)
+				setTimeout(function () {
+					$('#cart > button').html('<i class="fa fa-shopping-cart" aria-hidden="true"><span id="cart-total">' + json['total'] + '</span></i>');
+					deletedivcartul();
+				}, 100);
+				
+			}
+		}
+	});
+	return false;
+}
+function quick_pay_button_show() {
+	$('.quickblock').slideToggle(500);
+	$('.button_cart').toggleClass('yes_quick');
+	if ($('.button_cart').hasClass('yes_quick')) {
+		$('.button_cart').attr('onclick', 'return quick_pay_button_Cart();');
+		$('.button_cart span').text('{{ send }}');
+		$('.button_cart .fa').attr('class', 'fa fa-send');
+	} else {
+		$('.button_cart').attr('onclick', 'return quick_pay_button_show();');
+		$('.button_cart span').text('{{ quick_check }}');
+		$('.button_cart .fa').attr('class', 'fa fa-clock-o');
+	}
+	$('.divcart #zachita_cart').attr('id', 'div_zachita_cart');
+	$('.divcart label[for=\'zachita_cart\']').attr('for', 'div_zachita_cart');
+}
+</script>

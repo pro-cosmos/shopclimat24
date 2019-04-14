@@ -1,0 +1,589 @@
+{% set attribute_hover_module_setting = "1" %}
+<div class="option-div quickpay quickpay-product">
+	<h3 class="text-center"><i></i>{{ quick_pay }}<i></i></h3><br />
+	<div class="close"><i class="fa fa-times" aria-hidden="true"></i></div>
+	<div class="col-lg-4 col-sm-4 col-xs-12">
+		<div class="image">
+		{% if image %}<a href="{{ href }}" title=""><img src="{{ image }}" alt="" title="" id="images" class="img-responsive" /></a>{% endif %}
+		</div>
+	</div>
+	<div class="col-lg-8 col-sm-8 col-xs-12 border-right">
+	<h3>{{ name }}</h3>
+	{% if price %}
+	<span class="price">
+	  <ul class="list-unstyled text-left">
+	    {% if special == false %}
+		<li>
+		  <h2>{{ price }}</h2>
+		</li>
+		{% else %}
+		<li>
+		  <h2>{{ special }}</h2><span style="text-decoration: line-through;">{{ price }}</span>
+		</li>
+		{% endif %}
+		{% if tax %}
+		<li>{{ text_tax }} {{ tax }}</li>
+		{% endif %}
+	  </ul>
+	</span>
+	{% endif %}
+	<input type="hidden" id="price" value="{{ pr }}" />
+	</div>
+	<div class="clearfix"></div>
+	<br />
+	<div class="col-sm-12">
+	<div class="row">
+	<div class="tab-content">
+	<div class="tab-pane active" id="tab-general">
+	<form class="" action="" method="post">
+	{% if options %}
+		{% if attribute_hover_module_setting=="1" %}
+			{% set parity = 1 %}
+			{% for option in options %}
+				{% set parity=parity+1 %}
+			{% endfor %}
+			{% if parity > 2 %}{% set class='col-sm-12 col-xs-12' %}{% else %}{% set class='col-sm-12 col-xs-12' %}{% endif %}
+			<div class="options" id="option1_{{ product_id }}">
+				<div class="border-block"><h4 class="col-sm-12"><strong>{{ text_options }}</strong></h4>
+				{% set d=0 %}
+				{% for option in options %}
+				<div class="{{ class }}">
+					{% if option.type == 'radio' %}
+						{% set d=d+1 %}
+						<div class="row form-group{% if option.required %} required{% endif %}">
+						  <label class="control-label col-sm-3 col-xs-3">{{ option.name }}</label>
+						  <div id="input-option{{ option.product_option_id }}" class="col-sm-9 col-xs-9">
+							{% for option_value in option.product_option_value %}
+							<div class="radio" {% if option_value.image %}data-clickimage="{{ option_value.image_popup }}"{% endif %}>
+							  <input type="radio" name="option[{{ option.product_option_id }}]" value="{{ option_value.product_option_value_id }}" id="option-value-{{ option_value.product_option_value_id }}" class="none" />
+							 <label for="option-value-{{ option_value.product_option_value_id }}" class="noselect{{ d }} noselect{% if option_value.image %} images_option{% endif %}">
+								 {% if option_value.image %}<img src="{{ option_value.image }}" alt="{{ option_value.name }}{% if option_value.price %}{{ option_value.price_prefix }}{{ option_value.price }}{% endif %}" /> {% endif %}
+								 {{ option_value.name }}
+							  </label>
+							  {% if option_value.price and option_value.price != '0' %}<span class="append">{{ option_value.price_prefix }} {{ option_value.price }}</span>{% endif %}
+							</div>
+							{% endfor %}
+						  </div><div class="clearfix"></div>
+						</div>
+					{% endif %}
+					{% if option.type == 'select' %}
+					<div class="row form-group{% if option.required %} required{% endif %}">
+					  <label class="control-label col-sm-3" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
+					  <div class="col-sm-9">
+						  <div class="custom-select">
+							<select name="option[{{ option.product_option_id }}]" id="input-option{{ option.product_option_id }}" class="form-control">
+								<option value="">{{ text_select }}</option>
+								{% for option_value in option.product_option_value %}
+								<option value="{{ option_value.product_option_value_id }}" class="images_option" {% if option_value.image %}data-clickimage="{{ option_value.image_popup }}"{% endif %}>{{ option_value.name }}
+								{% if option_value.price %}
+								({{ option_value.price_prefix }}{{ option_value.price }})
+								{% endif %}
+								</option>
+								{% endfor %}
+							</select>
+						   </div>
+					   </div>
+					</div>
+					{% endif %}
+					{% set m = 3 %}
+					{% if option.type == 'checkbox' %}
+						{% set d=d+1 %}
+						<div class="form-group{% if option.required %} required{% endif %}">
+						  <label class="control-label">{{ option.name }}</label>
+						  <div id="input-option{{ option.product_option_id }}" class="option">
+							{% for option_value in option.product_option_value %}
+							{% set m=m+1 %}
+							<div class="checkbox" {% if option_value.image %}data-clickimage="{{ option_value.image_popup }}"{% endif %}>
+							  <input type="checkbox" name="option[{{ option.product_option_id }}][]" value="{{ option_value.product_option_value_id }}" id="option-value-{{ option_value.product_option_value_id }}" class="none" />
+							  <label for="option-value-{{ option_value.product_option_value_id }}" class="noselect{{ m }}{{ d }} noselect{% if option_value.image %} images_option{% endif %}">
+								  {% if option_value.image %}<img src="{{ option_value.image }}" alt="{{ option_value.name }}{% if option_value.price %}{{ option_value.price_prefix }}{{ option_value.price }}{% endif %}" /> {% endif %}
+								  {{ option_value.name }}
+							  </label>
+							  {% if option_value.price and option_value.price != '0' %}<span class="append">{{ option_value.price_prefix }} {{ option_value.price }}</span>{% endif %}
+							</div>
+							{% endfor %}
+						  </div>
+						</div>
+					{% endif %}
+					{% if option.type == 'text' %}
+					<div class="form-group{% if option.required %} required{% endif %}">
+					  <label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
+					  <input type="text" name="option[{{ option.product_option_id }}]" value="{{ option.value }}" placeholder="{{ option.name }}" id="input-option{{ option.product_option_id }}" class="form-control" />
+					</div>
+					{% endif %}
+					{% if option.type == 'file' %}
+					<div class="form-group{% if option.required %} required{% endif %}">
+					  <label class="control-label">{{ option.name }}</label>
+					  <button type="button" id="button-upload{{ option.product_option_id }}" data-loading-text="{{ text_loading }}" class="btn btn-default btn-block"><i class="fa fa-upload"></i> {{ button_upload }}</button>
+					  <input type="hidden" name="option[{{ option.product_option_id }}]" value="" id="input-option{{ option.product_option_id }}" />
+					</div>
+					{% endif %}
+					{% if option.type == 'date' %}
+					<div class="form-group{% if option.required %} required{% endif %}">
+					  <label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
+					  <div class="input-group date">
+						<input type="text" name="option[{{ option.product_option_id }}]" value="{{ option.value }}" data-date-format="YYYY-MM-DD" id="input-option{{ option.product_option_id }}" class="form-control" />
+						<span class="input-group-btn">
+						<button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+						</span></div>
+					</div>
+					{% endif %}
+					{% if option.type == 'datetime' %}
+					<div class="form-group{% if option.required %} required{% endif %}">
+					  <label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
+					  <div class="input-group datetime">
+						<input type="text" name="option[{{ option.product_option_id }}]" value="{{ option.value }}" data-date-format="YYYY-MM-DD HH:mm" id="input-option{{ option.product_option_id }}" class="form-control" />
+						<span class="input-group-btn">
+						<button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
+						</span></div>
+					</div>
+					{% endif %}
+					{% if option.type == 'time' %}
+					<div class="form-group{% if option.required %} required{% endif %}">
+					  <label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
+					  <div class="input-group time">
+						<input type="text" name="option[{{ option.product_option_id }}]" value="{{ option.value }}" data-date-format="HH:mm" id="input-option{{ option.product_option_id }}" class="form-control" />
+						<span class="input-group-btn">
+						<button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
+						</span></div>
+					</div>
+					{% endif %}
+					{% if option.type == 'textarea' %}
+					<div class="form-group{% if option.required %} required{% endif %}">
+					  <label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
+					  <textarea name="option[{{ option.product_option_id }}]" rows="5" placeholder="{{ option.name }}" id="input-option{{ option.product_option_id }}" class="form-control">{{ option.value }}</textarea>
+					</div>
+					{% endif %}
+				</div>
+				{% endfor %}<div class="clearfix"></div>
+				</div>
+			 </div>
+		{% endif %}
+	{% endif %}
+	<br />
+	<div class="border-block">
+		<div class="cart_block">
+			<h4><strong>{{ text_qyantity }}</strong></h4>
+			<div class="quantity-input col-sm-12">
+				<span class="minus1 btn-sm"><i class="fa fa-minus"></i></span>
+				<input id="cont-quick" type="text" name="quantity" value="{% if minimum %}{{ minimum }}{% else %}1{% endif %}" size="2" class="form-control btn-sm" />
+				<span class="plus1 btn-sm"><i class="fa fa-plus"></i></span>
+				<input type="hidden" name="product_id" value="{{ product_id }}" />
+			</div><div class="clearfix"></div>
+		</div><div class="clearfix"></div>
+	</div>
+	<div class="clearboth"></div>
+	<div class="clearfix"></div>
+	<div class="forming_quick col">
+			<input type="hidden" class="form-control" name="input_date" id="input_date" value="{{ date }}" />
+			<input type="hidden" name="input_product_id" id="input_product_id" value="{{ product_id }}" />
+			<div class="row"><br />
+				<div class="col-sm-12 form-group required">
+					<div class="input-group"><span class="input-group-addon input_fio"><i class="fa fa-user"></i></span><input type="text" class="form-control" name="input_fio" id="input_fio" placeholder="{{ text_fio }}" value="" /></div>
+				</div>
+				<div class="col-sm-12 form-group required">
+					<div class="input-group"><span class="input-group-addon input_email"><i class="fa fa-envelope-o"></i></span><input type="email" class="form-control" name="input_email" id="input_email" placeholder="{{ text_email }}" value="" /></div>
+				</div>
+				<div class="col-sm-12 form-group required">
+					<div class="input-group"><span class="input-group-addon input_phone"><i class="fa fa-phone"></i></span><input type="text" class="form-control" name="input_phone" id="input_phone" placeholder="{{ text_phone }}" value="" /></div>
+				</div>
+				<div class="col-sm-12 form-group">
+					<div class="input-group"><span class="input-group-addon"><i class="fa fa-commenting-o"></i></span><textarea placeholder="{{ text_comment }}" class="form-control" name="input_commenttext" id="input_commenttext"></textarea></div>
+				</div>
+			</div>
+			<div class="col-sm-12">
+				<div class="row">
+					<button type="submit" class="btn btn-primary pull-left" onclick="return quick_pay_button();"><i class="fa fa-clock-o"></i><span class="hidden-xs"> {{ quick_check }}</span></button>
+					<button type="button" id="button-cart" data-loading-text="{{ text_loading }}" class="btn btn-white pull-left"><i class="fa fa-shopping-cart"></i><span class="hidden-xs"> {{ button_cart }}</span></button>
+					<button type="submit" class="btn btn-white pull-right" onclick="return closedivshadow();"><i class="fa fa-sign-out"></i><span class="hidden-xs"> {{ close }}</span></button>
+				</div>
+			</div>
+			<div class="clearfix"></div><br />
+			{% if quickpay_text and quickpay_text != "" %}
+				<div class="col-xs-12 col-sm-12 checkbox text-justify person{% if quickpay_format == 'text' %} text_person{% endif %}">
+					{% if quickpay_format and quickpay_format == 'checkbox' %}
+						<input type="checkbox" name="input_zachita" id="zachita" value="1" />
+						<label for="zachita"><span class="text_p">{{ quickpay_text }}</span></label>
+					{% endif %}
+					{% if quickpay_format and quickpay_format == 'text' %}
+						{{ quickpay_text }}
+					{% endif %}
+				</div>
+			{% endif %}
+	</div>
+	</form>
+	</div>
+	<div class="tab-pane" id="tab-description">{{ description_all }}</div>
+	{% if attribute_groups %}
+	<div class="tab-pane" id="tab-specification">
+	  <table class="table table-bordered">
+	    {% for attribute_group in attribute_groups %}
+		<thead>
+		  <tr>
+			<td colspan="2"><strong>{{ attribute_group.name }}</strong></td>
+		  </tr>
+		</thead>
+		<tbody>
+		  {% for attribute in attribute_group.attribute %}
+		  <tr>
+			<td>{{ attribute.name }}</td>
+			<td>{{ attribute.text }}</td>
+		  </tr>
+		  {% endfor %}
+		</tbody>
+		{% endfor %}
+	  </table>
+	</div>
+	{% endif %}
+	{% if review_status %}
+	<div class="tab-pane col-sm-12" id="tab-review">
+	  <form class="form-horizontal" id="form-review">
+		<div id="review"></div>
+		<h2>{{ text_write }}</h2>
+		{% if review_guest %}
+		<div class="form-group required">
+		  <div class="col-sm-12">
+			<label class="control-label" for="input-name">{{ entry_name }}</label>
+			<input type="text" name="name" value="{{ customer_name }}" id="input-name" class="form-control" />
+		  </div>
+		</div>
+		<div class="form-group required">
+		  <div class="col-sm-12">
+			<label class="control-label" for="input-review">{{ entry_review }}</label>
+			<textarea name="text" rows="5" id="input-review" class="form-control"></textarea>
+			<div class="help-block">{{ text_note }}</div>
+		  </div>
+		</div>
+		<div class="form-group required">
+		  <div class="col-sm-12">
+			<label class="control-label">{{ entry_rating }}</label>
+			&nbsp;&nbsp;&nbsp; {{ entry_bad }}&nbsp;
+			<input type="radio" name="rating" value="1" />
+			&nbsp;
+			<input type="radio" name="rating" value="2" />
+			&nbsp;
+			<input type="radio" name="rating" value="3" />
+			&nbsp;
+			<input type="radio" name="rating" value="4" />
+			&nbsp;
+			<input type="radio" name="rating" value="5" />
+			&nbsp;{{ entry_good }}</div>
+		</div>
+		{{ captcha }}
+		<div class="buttons clearfix">
+		  <div class="pull-right">
+			<button type="button" id="button-review" data-loading-text="{{ text_loading }}" class="btn btn-primary">{{ button_continue }}</button>
+		  </div>
+		</div>
+		{% else %}
+			{{ text_login }}
+		{% endif %}
+	  </form>
+	</div>
+	{% endif %}
+	</div>
+	</div>
+	</div>
+	<div class="clearfix"></div>
+	
+	<div class="clearfix"></div>
+<script><!--
+$(document).ready(function() {
+    $('.quickpay .minus1').click(function () {
+        var $input = $(this).parent().find('#cont-quick');
+        var count = parseInt($input.val()) - 1;
+        count = count < {% if minimum %}{{ minimum }}{% else %}1{% endif %} ? {% if minimum %}{{ minimum }}{% else %}1{% endif %} : count;
+        $input.val(count);
+        $input.change();
+        return false;
+    });
+    $('.quickpay .plus1').click(function () {
+        var $input = $(this).parent().find('#cont-quick');
+        $input.val(parseInt($input.val()) + 1);
+        $input.change();
+        return false;
+    });
+});
+function quick_pay_button() {
+	var emailvalid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	var date = $('#input_date').val();
+	var product_id = $('#input_product_id').val();
+	var qyantity = $('#cont-quick').val();
+	var price = $('#price').val();
+	var fio = $('#input_fio').val();
+	var email = $('#input_email').val();
+	var phone = $('#input_phone').val();
+	var comment = $('#input_commenttext').val();
+	var zachita = '';
+	if ($('input[name=\'input_zachita\']:checked').val()) {zachita = '&zachita=' + $('input[name=\'input_zachita\']:checked').val();}
+	
+	data = $('#option1_'+product_id+' input[type=\'radio\']:checked, #option1_'+product_id+' input[type=\'checkbox\']:checked, #option1_'+product_id+' select');
+	var options = data.serialize();
+
+	$.ajax({
+		url: 'index.php?route=extension/module/quickpay/quick',
+		type: 'post',
+		data: options + '&date=' + date + '&product_id=' + product_id + '&qyantity=' + qyantity + '&price=' + price + '&name=' + fio + '&phone=' + phone + '&email=' + email + '&comment=' + comment + zachita,
+		dataType: 'json',
+		success: function(json) {
+			$('.form-group').removeClass('has-error');
+			if (json['error']) {
+				{% if quickpay_status_your_name %}if (json['error']['name']) {$('.required .input_fio').addClass('red'); $('.required .input_fio').find('.fa').addClass('red'); $('#input_fio').addClass('red');} else {$('.required .input_fio').removeClass('red'); $('.required .input_fio').find('.fa').removeClass('red'); $('#input_fio').removeClass('red');}{% endif %}
+				{% if quickpay_status_phone %}if (json['error']['phone']) {$('.required .input_phone').addClass('red'); $('.required .input_phone').find('.fa').addClass('red'); $('#input_phone').addClass('red');} else {$('.required .input_phone').removeClass('red'); $('.required .input_phone').find('.fa').removeClass('red'); $('#input_phone').removeClass('red');}{% endif %}
+				{% if quickpay_status_email %}if (json['error']['email']) {$('.required .input_email').addClass('red'); $('.required .input_email').find('.fa').addClass('red'); $('#input_email').addClass('red');} else {$('.required .input_email').removeClass('red'); $('.required .input_email').find('.fa').removeClass('red'); $('#input_email').removeClass('red');}{% endif %}
+				{% if quickpay_format and quickpay_format == 'checkbox' %}if (json['error']['zachita']) {$('.text_p').addClass('red');} else {$('.text_p').removeClass('red');}{% endif %}
+				$('.alert, .text-danger').remove();
+				if (json['error']['option']) {
+					for (i in json['error']['option']) {
+						var element = $('#input-option' + i.replace('_', '-'));
+						
+							if (element.parent().hasClass('input-group')) {
+								element.parent().after('<div class="col-sm-3 col-xs-3"></div><div class="text-danger col-sm-9 col-xs-9">' + json['error']['option'][i] + '</div>');
+							} else {
+								element.after('<div class="col-sm-3 col-xs-3"></div><div class="text-danger col-sm-9 col-xs-9">' + json['error']['option'][i] + '</div>');
+							}
+							if (element.parent().hasClass('custom-select')) {
+								element.parent().after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+							}
+						
+					}
+				}
+				$('.text-danger').parent().addClass('has-error');
+			}
+			if (json['message']) {
+				swal(
+					json.message
+				)
+			}
+		}
+	});
+	return false;
+
+
+}
+var arr_options = $('.product input[name^=option\\[], .product select[name^=option\\[]').serialize();
+if (arr_options){
+	arr_options = arr_options.split('&');
+	arr_options.forEach(function(item_arr, i_arr) {
+		item_arr = decodeURIComponent(item_arr);
+		item_arr = item_arr.split('=');
+		setTimeout(function() {
+			$('.quickpay .options input[name=\'' + item_arr[0] + '\'][value=\'' + item_arr[1] + '\']').trigger('click');
+			$('.quickpay .custom-select select[name=\'' + item_arr[0] + '\'] option[value=\'' + item_arr[1] + '\']').prop('selected', 'selected').trigger('change');
+		}, 0)
+	});
+}
+var arr_count = $('.product #cont-quick').serialize();
+if (arr_count){
+	setTimeout(function() {
+		$('.quickpay #cont-quick').attr('value', arr_count.split('=')[1]);
+	}, 0)
+	setTimeout(function() {
+		$('.quickpay #cont-quick').change();
+	}, 200)
+}
+function read_price_live_quick() {
+	var html = '';
+	var product_id = $('#input_product_id').val();
+	var qyantity = $('#cont-quick').val();
+	data: data = $('#option1_'+product_id+' input[type=\'radio\']:checked, #option1_'+product_id+' input[type=\'checkbox\']:checked, #option1_'+product_id+' select');
+	var options = data.serialize();
+	$.ajax({
+		url: 'index.php?route=extension/module/quickpay/readquickliveprice',
+		dataType: 'json',
+		type: 'post',
+		data: options + '&product_id=' + product_id + '&qyantity=' + qyantity,
+		success: function(json) {
+			$('#price').val(json['price_system']);
+			
+			$('span.price').empty();
+			if (json['tax']) {var tax = '<li>{{ text_tax }} ' + json['tax']+ '</li>';} else {var tax = '';}
+			if (json['special_noformat'] != 'false') {
+				html  = '<ul class="list-unstyled text-left animated winking"><li><h2>' + json['special'] + '</h2> <span style="text-decoration: line-through;">' + json['price'] + '</span></li>' + tax + '<ul>';
+			} else {
+				html  = '<ul class="list-unstyled text-left animated winking"><li><h2>' + json['price'] + '</h2></li>' + tax + '<ul>';
+			}
+			
+			$('span.price').append(html);
+	}});
+}
+if (arr_options || arr_count) {
+	setTimeout(function () {
+		read_price_live_quick();
+	}, 300);
+	setTimeout(function () {
+		$('.quickpay input[name^=option\\[], .quickpay select[name^=option\\[], .quickpay #cont-quick').on('change', function(){
+			read_price_live_quick();
+		});
+	}, 1000);	
+} else {
+	$('.quickpay input[name^=option\\[], .quickpay select[name^=option\\[], .quickpay #cont-quick').on('change', function(){
+		read_price_live_quick();
+	});
+}
+$('.quickpay textarea[name^=option\\[]').on('change', function(){
+	recalcing_price();
+});
+
+//--></script>
+<script>
+	function closedivshadow(){
+		$('body .divshadow').removeClass('animated').removeClass('bounceIn').addClass('animated bounceOut');
+		setTimeout(function() {
+			$('body .divshadow').empty();
+			$('body .divshadow').removeClass('show');
+			$('.modal-bg').removeClass('show');
+			$('body .divshadow').removeClass('cheapering').removeClass('divcart').removeClass('quickpay').removeClass('callbacking').removeClass('col-lg-offset-4 col-lg-4 col-sm-offset-3 col-sm-6 col-xs-offset-1 col-xs-10');
+		},700)
+	}
+	function closediv(){
+		$('body .divshadow').removeClass('animated').removeClass('bounceIn').addClass('animated bounceOut');
+		setTimeout(function() {
+			$('body .divshadow').empty();
+			$('body .divshadow').removeClass('show');
+			$('body .divshadow').removeClass('cheapering').removeClass('divcart').removeClass('quickpay').removeClass('callbacking').removeClass('col-lg-offset-4 col-lg-4 col-sm-offset-3 col-sm-6 col-xs-offset-1 col-xs-10');
+		},700)
+	}
+	$('body .divshadow .close').click(function() {
+		closedivshadow();
+	});
+	$(document).mouseup(function (e) {
+		var container = $('body .divshadow.show');
+		var containerfind = $('body').find('.divshadow.show').html();
+		if (containerfind != null && container.has(e.target).length === 0) {
+			closedivshadow();
+		}
+	});
+	$(document).keydown(function(e) {
+		var container = $('body .divshadow.show');
+		var containerfind = $('body').find('.divshadow.show').html();
+		if (containerfind != null && e.keyCode === 27) {
+			closedivshadow();
+			return false;
+		}
+	});
+	
+	$(document).ready(function() {
+		centering('.divshadow');
+	});	
+	setTimeout(function () {
+		$('.header-popup').addClass('show').addClass('animated').addClass('flipInX');
+	}, 1000);
+	$(document).ready(function() {
+		$('body .divshadow').addClass('quickpay').addClass('col-lg-offset-4 col-lg-4 col-sm-offset-3 col-sm-6 col-xs-offset-1 col-xs-10');
+		centering('.divshadow');
+	});	
+</script>
+<script><!--
+	$(document).ready(function() {
+	   $('.checkbox label').click(function(){
+		   if ($(this).hasClass("yesselect")) {$(this).removeClass('yesselect');} else {$(this).addClass('yesselect');}
+	   });
+	   $('.radio label.noselect').click(function(){
+		  var theClass_id = parseInt($(this).attr('class').replace(/\D+/g,""));
+		  $('label.yesselect' + theClass_id).removeClass('yesselect' + theClass_id).removeClass('yesselect').addClass('noselect' + theClass_id).addClass('noselect');
+		  $(this).removeClass('noselect' + theClass_id).removeClass('noselect').addClass('yesselect' + theClass_id).addClass('yesselect');
+	   });
+	});
+//--></script>
+<script><!--
+$('#button-cart').on('click', function() {
+	var qyantity = $('.quickpay-product #cont-quick').val();
+	$.ajax({
+		url: 'index.php?route=checkout/cartopenstore/add',
+		type: 'post',
+		data: $('.quickpay-product #cont-quick, .quickpay-product .cart_block input[name=\'product_id\'], .quickpay-product .options input[type=\'text\'], .quickpay-product .options input[type=\'hidden\'], .quickpay-product .options input[type=\'radio\']:checked, .quickpay-product .options input[type=\'checkbox\']:checked, .quickpay-product .options select, .quickpay-product .options textarea'),
+		dataType: 'json',
+		beforeSend: function() {
+			$('#button-cart').button('loading');
+		},
+		complete: function() {
+			$('#button-cart').button('reset');
+		},
+		success: function(json) {
+			$('.alert, .text-danger').remove();
+			$('.form-group').removeClass('has-error');
+
+			if (json['error']) {
+				if (json['error']['option']) {
+					for (i in json['error']['option']) {
+						var element = $('#input-option' + i.replace('_', '-'));
+						if (element.parent().hasClass('input-group')) {
+							element.parent().after('<div class="col-sm-3 col-xs-3"></div><div class="text-danger col-sm-9 col-xs-9">' + json['error']['option'][i] + '</div>');
+						} else {
+							element.after('<div class="col-sm-3 col-xs-3"></div><div class="text-danger col-sm-9 col-xs-9">' + json['error']['option'][i] + '</div>');
+						}
+						if (element.parent().hasClass('custom-select')) {
+							element.parent().after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+						}
+					}
+				}
+
+				if (json['error']['recurring']) {
+					$('select[name=\'recurring_id\']').after('<div class="col-sm-3 col-xs-3"></div><div class="text-danger col-sm-9 col-xs-9">' + json['error']['recurring'] + '</div>');
+				}
+
+				// Highlight any found errors
+				$('.text-danger').parent().addClass('has-error');
+			}
+
+			if (json['success']) {
+				$('.breadcrumb').after('<div class="alert alert-success">' + json['success'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+				
+				closediv();
+				
+				$('#cart > .dropdown-menu').load('index.php?route=common/cart/info .dropdown-menu');
+				
+				setTimeout(function () {
+					$('#cart > button').html('<i class="fa fa-shopping-cart" aria-hidden="true"><span id="cart-total">' + json['total'] + '</span></i>').trigger('click');
+				}, 1000);
+			
+			}
+		},
+        error: function(xhr, ajaxOptions, thrownError) {
+            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+	});
+});
+$('#review').delegate('.pagination a', 'click', function(e) {
+    e.preventDefault();
+
+    $('#review').fadeOut('slow');
+
+    $('#review').load(this.href);
+
+    $('#review').fadeIn('slow');
+});
+
+$('#review').load('index.php?route=product/product/review&product_id={{ product_id }}');
+
+$('#button-review').on('click', function() {
+	$.ajax({
+		url: 'index.php?route=product/product/write&product_id={{ product_id }}',
+		type: 'post',
+		dataType: 'json',
+		data: $("#form-review").serialize(),
+		beforeSend: function() {
+			$('#button-review').button('loading');
+		},
+		complete: function() {
+			$('#button-review').button('reset');
+		},
+		success: function(json) {
+			$('.alert-success, .alert-danger').remove();
+
+			if (json['error']) {
+				$('#review').after('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + '</div>');
+			}
+
+			if (json['success']) {
+				$('#review').after('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + '</div>');
+
+				$('input[name=\'name\']').val('');
+				$('textarea[name=\'text\']').val('');
+				$('input[name=\'rating\']:checked').prop('checked', false);
+			}
+		}
+	});
+});
+//--></script>

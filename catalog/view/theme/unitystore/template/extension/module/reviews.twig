@@ -1,0 +1,133 @@
+<div class="relative box content_position reviews">
+<div class="col-sm-12 input-group margin-bottom reviews-header_content_top">
+	<h3 class="pull-left"><span>{{ heading_title }}</span></h3>
+	<div class="line-border"></div>
+</div>
+  <div id="owl-example{{ gen1 }}" class="owl-carousel reviews" style="display: block;">
+	  {% for product in products %}
+		  <div>
+			<div class="image relative">
+				{% if product.thumb %}
+					<a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" /></a>
+				{% else %}
+					<a href="{{ product.href }}"><img src="{{ no_image }}" alt="{{ product.name }}" /></a>
+				{% endif %}
+			</div>
+			<div class="name"><a href="{{ product.href }}">{{ product.name }}</a></div>
+			<div class="rating">
+				{% for i in 1..5 %}
+					{% if product.rating < i %}
+						<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+					{% else %}
+						<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+					{% endif %}
+				{% endfor %}&nbsp;&nbsp;<a onclick="ajaxpopup('index.php?route=extension/module/carous/review&amp;prod_id={{ product.product_id }}&amp;limit=5&amp;popup_all=1')">({{ product.review_tot }})</a>
+			</div>
+			<div class="review">{{ product.text_review }}</div>
+			
+			<div class="podrobnee"><a onclick="ajaxpopup('index.php?route=extension/module/carous/review&amp;prod_id={{ product.product_id }}&amp;limit=5&amp;popup_all=1')">{{ podrobnee }} ({{ product.review_tot }})</a></div>
+		  </div>
+	  {% endfor %}
+  </div>
+</div>
+{% if setting.position == 'content_top' %}
+<script>
+$(document).ready(function() {
+	cols = $('#column-right, #column-left').length;
+	if (cols == 2) {
+		$("#owl-example{{ gen1 }}").owlCarousel({
+		navigation : true,
+		slideSpeed : 200,
+		paginationSpeed : 400,
+		navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>','<i class="fa fa-chevron-right fa-5x"></i>'],
+		items : 2,
+		itemsDesktop : [1400, 1],
+		itemsDesktopSmall : [979, 1],
+		itemsTablet : [768, 2],
+		itemsTabletSmall : [590, 1],
+		itemsMobile : [479, 1]
+		});
+	} else if (cols == 1) {
+		$("#owl-example{{ gen1 }}").owlCarousel({
+		navigation : true,
+		slideSpeed : 200,
+		paginationSpeed : 400,
+		navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>','<i class="fa fa-chevron-right fa-5x"></i>'],
+		items : 3,
+		itemsDesktop : [1400, 2],
+		itemsDesktopSmall : [997, 1],
+		itemsTablet : [767, 2],
+		itemsTabletSmall : [590, 1],
+		itemsMobile : [479, 1]
+		});
+	} else {
+		$("#owl-example{{ gen1 }}").owlCarousel({
+		navigation : true,
+		slideSpeed : 200,
+		paginationSpeed : 400,
+		navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>','<i class="fa fa-chevron-right fa-5x"></i>'],
+		items : 4,
+		itemsDesktop : [1400, 3],
+		itemsDesktopSmall : [1014, 2],
+		itemsTablet : [767, 2],
+		itemsTabletSmall : [590, 1],
+		itemsMobile : [479, 1]
+		});
+	}
+});
+</script>
+{% elseif setting.position == 'content_bottom' %}
+<script>
+	$(document).ready(function() {
+		$("#owl-example{{ gen1 }}").owlCarousel({
+		navigation : true,
+		slideSpeed : 200,
+		paginationSpeed : 400,
+		navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>','<i class="fa fa-chevron-right fa-5x"></i>'],
+		items : 4,
+		itemsDesktop : [1400, 3],
+		itemsDesktopSmall : [1014, 2],
+		itemsTablet : [767, 2],
+		itemsTabletSmall : [590, 1],
+		itemsMobile : [479, 1]
+		});
+	});
+</script>
+{% endif %}
+{% if setting.position == 'column_left' or setting.position == 'column_right' %}
+<div class="col-sm-12 relative column_position">
+  <h3 class="row">{{ heading_tit }}</h3>
+  <div class="reviews row">
+	{% for product in products %}
+		  <div class="trapezium">
+			<div class="image relative">
+				{% if product.thumb %}
+					<a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" /></a>
+				{% else %}
+					<a href="{{ product.href }}"><img src="{{ no_image }}" alt="{{ product.name }}" /></a>
+				{% endif %}
+			</div>
+			<div class="name"><a href="{{ product.href }}">{{ product.name }}</a></div>
+			<div class="rating">
+				{% for i in 1..5 %}
+					{% if product.rating < i %}
+						<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+					{% else %}
+						<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+					{% endif %}
+				{% endfor %}
+			</div>
+			<div class="review">{{ product.text_review }}</div>
+			<div class="podrobnee"><a onClick="ajaxpopup('{{ product.add_reviews }}&limit=5&popup_all=1')">{{ podrobnee }} ({{ product.review_tot }})</a></div>
+			<div class="clear"></div>
+		  </div>
+	{% endfor %}
+  </div>
+</div><div class="clearfix"></div>
+{% endif %}
+<script>
+	$(document).ready(function() {
+		$('#owl-example{{ gen1 }}').prepend($('.reviews-header_content_top'));
+		$('#owl-example{{ gen1 }}').prepend($('.reviews-header_content_top'));
+	});
+</script>

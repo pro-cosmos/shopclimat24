@@ -1,0 +1,57 @@
+.owl-item > div .name {
+	text-align: center;
+}
+.categorycarousel .owl-carousel .name a {
+    background: #666666;
+    color: #fff;
+    display: block;
+    font-size: 15px;
+    margin-bottom: 15px;
+    padding: 5px 15px;
+    text-shadow: 0 0 2px #333;
+    text-transform: uppercase;
+}
+.categorycarousel .owl-carousel .owl-item > div ul	{
+	list-style: none outside none;
+	padding-left: 0;
+	text-align: left;
+}
+.categorycarousel ul {
+	list-style: none outside none;
+	padding-left: 0;
+}
+.categorycarousel .owl-carousel .owl-item > div ul li a {
+    font-size: 13px;
+    line-height: 19px;
+    text-decoration: underline;
+}
+.categorycarousel .owl-carousel .owl-item {
+	padding: 0 10px;
+}
+
+.categorycarousel .owl-carousel .owl-item > div ul {
+	margin-bottom: 0;
+	list-style-type: none;
+	padding-left: 0;
+}
+.cat-slide-info {
+	background: url("../image/bgset.png") repeat-x scroll 0 -554px rgba(0, 0, 0, 0);
+	height: 40px;
+}
+.cat-slide-info .thide {
+	background: url("../image/catslideinfo.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+	margin: 0 auto;
+	padding-top: 10px;
+	position: relative;
+	top: 12px;
+	width: 222px;
+}
+.thide {
+	display: block;
+	height: 0;
+	line-height: normal;
+	overflow: hidden;
+}
+.owl-carousel.reviews .owl-wrapper {
+	display: block;
+}

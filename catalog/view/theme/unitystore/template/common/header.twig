@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<!--[if IE 8 ]><html dir="{{ direction }}" lang="{{ lang }}" class="ie8"><![endif]-->
+<!--[if IE 9 ]><html dir="{{ direction }}" lang="{{ lang }}" class="ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html dir="{{ direction }}" lang="{{ lang }}">
+<!--<![endif]-->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>{{ title }}</title>
+{% if robots %}
+<meta name="robots" content="{{ robots }}" />
+{% endif %}
+<base href="{{ base }}" />
+{% if description %}
+<meta name="description" content="{{ description }}" />
+{% endif %}
+{% if keywords %}
+<meta name="keywords" content="{{ keywords }}" />
+{% endif %}
+<meta property="og:title" content="{{ title }}" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{ og_url }}" />
+{% if og_image %}
+<meta property="og:image" content="{{ og_image }}" />
+{% else %}
+<meta property="og:image" content="{{ logo }}" />
+{% endif %}
+<meta property="og:site_name" content="{{ name }}" />
+<script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js"></script>
+<link href="catalog/view/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+<script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js"></script>
+<link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700" rel="stylesheet" type="text/css" />
+<link href="catalog/view/theme/unitystore/js/jquery/colorbox/colorbox.css" rel="stylesheet">
+<link href="catalog/view/theme/unitystore/stylesheet/dynamic.css" rel="stylesheet">
+<script src="catalog/view/theme/unitystore/js/jquery/colorbox/jquery.colorbox.js"></script>
+<script src="catalog/view/theme/unitystore/js/common.js"></script>
+<script src="catalog/view/theme/unitystore/js/add_bc.js"></script>
+<script src="catalog/view/theme/unitystore/js/quick_search.js"></script>
+{% for style in styles %}
+<link href="{{ style.href }}" type="text/css" rel="{{ style.rel }}" media="{{ style.media }}" />
+{% endfor %}
+<link href="catalog/view/theme/unitystore/stylesheet/stylesheet.css" rel="stylesheet">
+<link href="catalog/view/theme/unitystore/stylesheet/responsive.css" rel="stylesheet">
+{% for script in scripts %}
+<script src="{{ script }}" type="text/javascript"></script>
+{% endfor %}
+{% for link in links %}
+<link href="{{ link.href }}" rel="{{ link.rel }}" />
+{% endfor %}
+{% for analytic in analytics %}
+{{ analytic }}
+{% endfor %}
+<link href="catalog/view/javascript/sweetalert/sweetalert2.min.css" rel="stylesheet">
+<script src="catalog/view/javascript/sweetalert/sweetalert2.min.js" async defer></script>
+<script>
+	$(function (){
+	    $('input:submit').each(function (){
+	        $(this).after('<label for="'+this.id+'">'+this.id+'</label>');
+	    });
+});
+</script>
+<script><!--
+$("button.close").click(function () {
+   $("#modal-login").css("display", "none");
+});
+//--></script>
+{% include 'unitystore/template/common/settemplate.twig' %}
+</head>
+{% set header_category_block = "1" %}
+<body class="{{ class }}">
+<div class="top_line"></div>
+<div id="message-success"></div>
+<div class="divshadow"></div>
+<div class="divcart"></div>
+{% if bannertop_status %}{{ controller_bannertop }}{% endif %}
+<nav id="top">
+  <div class="container">
+	<div id="top-links" class="nav col-sm-12">
+		<div class="pull-right">
+		  <ul class="list-inline">
+			<li class="visible-xs-inline-block visible-sm-inline-block"><a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;<span class="hidden-xs">{{ text_account }}</span> <i class="fa fa-chevron-down"></i></a>
+				<ul class="dropdown-menu mobile_article">
+					{% if logged %}
+						<li><a href="{{ account }}">{{ text_account }}</a></li>
+						<li><a href="{{ order }}">{{ text_order }}</a></li>
+						<li><a href="{{ transaction }}">{{ text_transaction }}</a></li>
+						<li><a href="{{ download }}">{{ text_download }}</a></li>
+						<li><a href="{{ logout }}">{{ text_logout }}</a></li>
+					{% else %}
+						<li><a href="{{ register }}">{{ text_register }}</a></li>
+						<li><a href="{{ login }}">{{ text_login_template }}</a></li>
+					{% endif %}
+				</ul>
+			</li>
+			<li class="hidden-xs"><a href="{{ shopping_cart }}" data-toggle="tooltip" data-placement="bottom" title="{{ text_shopping_cart }}"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;<span class="hidden-xs hidden-sm">{{ text_shopping_cart }}</span></a></li>
+			<li class="hidden-xs"><a href="{{ checkout }}" data-toggle="tooltip" data-placement="bottom" title="{{ text_checkout }}"><i class="fa fa-share"></i>&nbsp;&nbsp;<span class="hidden-xs hidden-sm">{{ text_checkout }}</span></a></li>
+			{{ currency }}
+			{{ language }}
+		  </ul>
+		</div>
+	    <div class="pull-left">
+			<ul class="list-inline">
+				{% if statii_horizontal_menu_header or informations %}
+				<li class="visible-xs-inline-block visible-sm-inline-block menu_tablet"><a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;&nbsp;
+				<span class="hidden-xm hidden-sm">{{ text_menu }}</span></a>
+					{% if statii_horizontal_menu_header or informations %}
+						<ul class="dropdown-menu mobile_article">
+							{% if statii_horizontal_menu_header %}
+								{% for key, statii in statii_horizontal_menu_header %}
+									<li><a href="{{ statii.href }}">{{ statii.statii }}</a></li>
+								{% endfor %}
+							{% endif %}
+						</ul>
+					{% endif %}
+				</li>
+				{% endif %}
+				{% if manuf %}
+					<li class="hidden-xs"><a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-codepen" aria-hidden="true"></i>&nbsp;&nbsp;<span class="hidden-xs hidden-sm">{{ text_manufacturers }}</span> <i class="fa fa-chevron-down"></i></a>
+					<ul class="dropdown-menu manuf">
+					{% for categ in manuf %}
+					  {% if categ.manufacturer %}
+						{% for manufacturer in categ.manufacturer %}
+							<li><a href="{{ manufacturer.href }}">{% if manufacturer.image %}<img src="{{ manufacturer.image }}" alt="" title="" /> {% endif %}{{ manufacturer.name }}</a></li>
+						{% endfor %}
+					  {% endif %}
+				    {% endfor %}
+					</ul></li>
+				{% endif %}
+				{% if informations %}
+					<li class="hidden-xs"><a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-info" aria-hidden="true"></i>&nbsp;&nbsp;<span class="hidden-xs hidden-sm">{{ text_information }}</span> <i class="fa fa-chevron-down"></i></a>
+					<ul class="dropdown-menu">
+					  {% for information in informations %}
+					  <li><a href="{{ information.href }}">{{ information.title }}</a></li>
+					  {% endfor %}
+					</ul></li>
+				{% endif %}
+			</ul>
+	    </div>
+	</div>
+  </div>
+</nav>
+  <div class="header">
+    <div class="bg-header container">
+		<div id="logo" class="col-sm-3 col-xs-12">
+		  <div class="row">
+			  {% if logo %}
+				  <a href="{{ home }}"><img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive hidden" /></a>
+			  {% else %}
+				<h1><a href="{{ home }}">{{ name }}</a></h1>
+			  {% endif %}
+		  </div>
+	  </div>
+	  <div class="col-sm-9 col-xs-12">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="row">
+							<div class="col-sm-12 text-left">
+								<div class="row header-contact">
+									<div class="col-lg-6 col-md-5 hidden-sm hidden-xs">
+										<div class="articles text-right">
+											{% if statii_horizontal_menu_header %}
+												<ul>
+													{% for key,statii in statii_horizontal_menu_header %}
+														<li data-id="{{ key }}"><a href="{{ statii.href }}">{{ statii.statii }}</a></li>
+													{% endfor %}
+													<li class="more_articles"><a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-chevron-down"></i></a>
+														<ul class="dropdown-menu"></ul>
+													</li>
+												</ul>
+											{% endif %}
+										</div>
+									</div>
+									<div class="col-lg-5 col-sm-10 col-md-5 text-right">
+										<div class="phone-header text-left">
+											{% if not module_callbacking_status %}<div class="margin-bottom"></div>{% endif %}
+											<button class="btn dropdown-toggle btn-link" data-toggle="dropdown"><i class="fa fa-phone-square"></i>
+												{{ config_telephone }}<i class="fa fa-chevron-down"></i>
+											</button>
+											{% if header_contacts %}
+												<div class="dropdown-menu">
+													{{ header_contacts }}
+												</div>
+											{% endif %}
+											<a class="btn openrecall{% if not module_callbacking_status %} hiden{% endif %}" onclick="getajaxcallbacking('route=extension/module/callbacking')">
+												<span class="callback">{{ callback }}</span>
+											</a>
+										</div>
+									</div>
+									<div class="col-lg-1 col-md-2 col-sm-2 hidden-xs">
+										{{ cart }}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	  </div>
+      <div id="search_tablet" class="search_tablet col-xs-12"></div>
+	  {% if address %}
+		  <div class="contacts-right-header col-sm-3">
+			<span class="inner">
+				{{ address }}<br /><br />
+				{{ open }}
+			</span>
+		  </div>
+	  {% endif %}
+	</div>
+	<div class="header_block">
+		<div class="bg-container container">
+			<div class="row">
+				{% if header_category_block == "1" %}
+					<div class="navbar_category col-sm-3">
+						<button data-target=".navbar-category-collapse" data-toggle="collapse" class="btn btn-navbar" type="button">
+						<span class="visible-category">&nbsp;&nbsp;&nbsp;{{ text_category }}</span><i class="fa fa-bars"></i></button>
+						<div class="category">
+							<div class="navbar-category-collapse category-collapse collapse">{{ category_header }}</div>
+						</div>
+					</div>
+				{% endif %}
+				<div class="col-sm-9">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="col-sm-2 text-center hidden-xs">
+								<div class="row">
+									<a href="{{ wishlist }}" id="wishlist-total" title="{{ text_wishlist }}" class="btn btn-border-turquoise"><i class="fa fa-heart"></i> <span class="hidden-xs hidden-sm hidden-md">{{ text_wishlist }}</span></a>
+								</div>
+							</div>
+							<div class="col-sm-7 text-right">
+								{{ search }}
+							</div>
+							<div class="col-sm-3 hidden-xs">
+								<div class="row">
+									<div id="welcome">
+									{% if logged == false %}
+										  <div class="dropdown-login"><span onclick="ajaxpopup('index.php?route=extension/module/loginpopup');" class="dropdown-toggle animated zoomIn" role="button" data-toggle="dropdown"><i class="fa fa-user"></i><span class="hidden-xs hidden-sm hidden-md">&nbsp;&nbsp;{{ login_enter }}</span></span></div>
+									{% else %}
+										  <div class="dropdown-login">
+											<span class="dropdown-account" role="button" data-toggle="dropdown">{{ text_account }}&nbsp;&nbsp;<i class="fa fa-caret-down"></i></span>
+											<div class="dropdown-box">
+											  <div class="content-account-box">
+												<ul>
+												  <li><a class="cart" href="{{ checkout_cart }}">{{ text_shopping_cart }}</a></li>
+												  <li><a class="checkout" href="{{ checkout }}">{{ text_checkout }}</a></li>
+												  <li><a class="compare" href="{{ product_compare }}" id="compare-total-header">{{ compare }}</a></li>
+												  <li><a class="history" href="{{ order }}">{{ text_order }}</a></li>
+												  <li><a class="download" href="{{ download }}">{{ text_download }}</a></li>
+												  <li><a class="edit" href="{{ account_edit }}">{{ text_edit }}</a></li>
+												  <li><a class="logout" href="{{ logout }}">{{ text_logout }}</a></li>
+												 </ul>
+											  </div>
+											</div>
+										  </div>
+									{% endif %}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="menu"></div>
+  </div>
+  <div class="container">
+  <div class="col-sm-3">
+	<div class="row"></div>
+  </div>
+  </div>

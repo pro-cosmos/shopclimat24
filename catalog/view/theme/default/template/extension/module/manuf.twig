@@ -1,0 +1,10 @@
+<div class="manufacturer">
+	<a class="manuf-link">{{ text_manufacturers }}</a>
+	<div class="list-manuf">
+		{% for manufacturer in manufacturers %}
+			<a href="{{ manufacturer.href }}">{{ manufacturer.name }}</a>
+		{% endfor %}
+		<a href="{{ all_href }}">{{ all }}</a>
+	</div>
+</div>
+<div class="clear"></div>

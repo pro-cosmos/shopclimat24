@@ -1,0 +1,124 @@
+{{ header }}
+<div class="container">
+  <ul class="breadcrumb">
+    {% for breadcrumb in breadcrumbs %}
+    <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% endfor %}
+  </ul>
+  <div class="row">{{ column_left }}
+    {% if column_left and column_right %}
+    {% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+    {% set class = 'col-sm-9' %}
+    {% else %}
+    {% set class = 'col-sm-12' %}
+    {% endif %}
+    <div id="content" class="{{ class }} showcase-list">{{ content_top }}
+      <h1>{{ heading_title }}</h1>
+	   {% if thumb or description %}
+      <div class="row">
+        {% if thumb %}
+        <div class="col-sm-2"><img src="{{ thumb }}" alt="{{ heading_title }}" title="{{ heading_title }}" class="img-thumbnail" /></div>
+        {% endif %}
+        {% if description %}
+        <div class="col-sm-10">{{ description }}</div>
+		{% endif %}
+      </div>
+      <hr>
+	  {% endif %}
+      {% if articles %}
+      <div class="row sort">
+	    <div class="col-xs-7 col-md-5 col-sm-7 col-lg-5">
+			<a href="{{ compare }}" id="compare-total" class="line-height btn btn-border btn-padding text-center pull-right text-uppercase">{{ text_compare }}</a>
+			<div class="btn-group pull-left">
+				<button type="button" id="list-view" class="btn btn-white" data-toggle="tooltip" title="{{ button_list }}"><i class="fa fa-list"></i></button>
+				<button type="button" id="grid-view" class="btn btn-white" data-toggle="tooltip" title="{{ button_grid }}"><i class="fa fa-th"></i></button>
+				<button type="button" id="price-view" class="btn btn-white" data-toggle="tooltip" title="{{ button_price }}"><i class="fa fa-bars"></i></button>
+			</div>
+		</div>
+        <div class="col-xs-2 col-md-3 col-lg-3 col-sm-2 text-right pull-right">
+			<div class="pull-right">
+			  <div class="select-sort input-group-btn">
+				<button class="btn dropdown-toggle sorting" type="button" data-toggle="dropdown" aria-expanded="true"><span class="hidden-xs hidden-sm">{{ text_limit }}&nbsp;&nbsp;&nbsp;</span>
+					{% for lim in limits %}
+						{% if lim.value == limit %}
+							<span>{{ lim.text }}</span>
+						{% endif %}
+					{% endfor %}
+					<i class="fa fa-chevron-down"></i>
+				</button>
+				<ul class="dropdown-menu">
+					{% for limts in limits %}
+						{% if limts.value != limit %}
+							<li><a{% if gofilter or nofilter %} onClick="ajax_page_category_select('{{ limts.href }}');"{% else %} href="{{ limts.href }}"{% endif %}>{{ limts.text }}</a></li>
+						{% endif %}
+					{% endfor %}
+				</ul>
+			  </div>
+			  </div>
+			  <div class="pull-right">
+			  <label class="control-label"></label>
+			</div>
+		</div>
+        <div class="col-xs-3 col-md-4 col-lg-4 col-sm-3 text-right pull-right">
+		  <div class="select-sort input-group-btn pull-right">
+			<button class="btn dropdown-toggle sorting" type="button" data-toggle="dropdown" aria-expanded="true"><span class="hidden-xs hidden-sm">{{ text_sort }}&nbsp;&nbsp;&nbsp;</span>
+				{% for sor in sorts %}
+					{% if sor.value == sort ~ '-' ~ order %}
+						<span>{{ sor.text }}</span>
+					{% endif %}
+				{% endfor %}
+				<i class="fa fa-chevron-down"></i>
+			</button>
+			<ul class="dropdown-menu">
+				{% for srts in sorts %}
+					{% if srts.value != sort ~ '-' ~ order %}
+						<li><a{% if gofilter or nofilter %} onClick="ajax_page_category_select('{{ srts.href }}');"{% else %} href="{{ srts.href }}"{% endif %}>{{ srts.text }}</a></li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		  </div>
+		  <div class="pull-right">
+			  <label class="control-label"></label>
+		  </div>
+        </div>
+      </div>
+      <br />
+      <div class="row product-blog">  
+        {% for article in articles %} 
+        <div class="product-layout product-list col-xs-12">
+          <div class="product-thumb">
+            <div class="image"><a href="{{ article.href }}"><img src="{{ article.thumb }}" alt="{{ article.name }}" title="{{ article.name }}" class="img-responsive" /></a></div>
+            <div class="caption">
+              <h4><a href="{{ article.href }}">{{ article.name }}</a></h4>
+              <p class="description">{{ article['description'] }}</p>
+              {% if configblog_review_status %}
+              {% if article.rating %}
+                <div class="rating"> {% for i in 1..5 %}
+                  {% if article.rating < i %} <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> {% else %} <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>{% endif %}
+                  {% endfor %} </div>
+                {% endif %}
+			  {% endif %}
+            </div>
+            <div class="button-group">
+				<button type="button" onclick="location.href = ('{{ article.href }}');" class="btn btn-border" data-toggle="tooltip" title="{{ button_more }}"><i class="fa fa-share"></i> <span class="hidden-xs hidden-sm hidden-md">{{ button_more }}</span></button>
+				<button type="button" data-toggle="tooltip" title="{{ article.date_added }}" class="btn btn-border pull-right"><i class="fa fa-clock-o"></i></button>
+				<button type="button" data-toggle="tooltip" title="{{ text_views }} {{ article.viewed }}" class="btn btn-border pull-right"><i class="fa fa-eye"></i></button>
+			</div>
+          </div>
+        </div>
+       {% endfor %}
+      </div>
+      <div class="row">
+        <div class="col-sm-6 text-left">{{ pagination }}</div>
+      </div>
+      {% else %}
+      <p>{{ text_empty }}</p>
+      <div class="buttons">
+        <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
+      </div>
+      {% endif %}
+      {{ content_bottom }}</div>
+    {{ column_right }}</div>
+</div>
+{{ footer }}

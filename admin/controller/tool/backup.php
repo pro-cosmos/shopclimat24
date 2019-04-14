@@ -83,7 +83,7 @@ class ControllerToolBackup extends Controller {
 
 				$line = fgets($handle, 1000000);
 				
-				if (substr($line, 0, 14) == 'TRUNCATE TABLE' || substr($line, 0, 11) == 'INSERT INTO') {
+				if (substr($line, 0, 14) == 'TRUNCATE TABLE' || substr($line, 0, 11) == 'INSERT INTO' || substr($line, 0, 26) == 'CREATE TABLE IF NOT EXISTS') {
 					$sql = '';
 					
 					$start = true;

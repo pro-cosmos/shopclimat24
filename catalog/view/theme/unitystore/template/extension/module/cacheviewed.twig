@@ -1,0 +1,49 @@
+{% if result %}
+	<div class="footer_fixed">
+		<div class="container">
+			<div class="col-sm-12">
+				<div class="footer_viewed"><button onClick="ViewedFooter();" class="btn-button">{{ text_viewed }}&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-up"></i><i class="fa fa-chevron-down hidden_template"></i></button></div>
+			</div><div class="clearfix"></div>
+		</div>
+		<div class="col-sm-12 bg-gray hidden_template">
+			<div class="container">
+					<div id="carousel_viewed" class="owl-carousel">
+						{% for res in result %}
+						  <div class="item text-center">
+							<div class="btn-white">
+								<a href="{{ res.href }}">
+									<img src="{{ res.thumb }}" alt="" title="" class="img-responsive" />
+									{% if res.price %}
+									<span>
+									  {% if res.special == false %}
+									  {{ res.price }}
+									  {% else %}
+									  <span class="span-price-new">{{ res.special }}</span> <span class="span-price-old">{{ res.price }}</span>
+									  {% endif %}
+									  {% if res.tax %}
+									  <span class="span-price-tax">{{ text_tax }} {{ res.tax }}</span>
+									  {% endif %}
+									</span>
+									{% endif %}
+								</a>
+							</div>
+						  </div>
+					  {% endfor %}
+					</div>
+			</div>
+		</div>
+	</div>
+{% endif %}
+<script><!--
+$('#carousel_viewed').owlCarousel({
+	items: 6,
+	itemsDesktop : [1400, 5],
+	itemsDesktopSmall : [1014, 4],
+	itemsTablet : [767, 3],
+	itemsTabletSmall : [590, 2],
+	itemsMobile : [479, 1],
+	navigation: true,
+	navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>', '<i class="fa fa-chevron-right fa-5x"></i>'],
+	pagination: false
+});
+--></script>

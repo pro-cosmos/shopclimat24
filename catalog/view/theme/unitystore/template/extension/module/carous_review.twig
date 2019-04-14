@@ -1,0 +1,141 @@
+{% if reviews %}
+<div id="review_popup{{ product_id }}">
+{% if popup_all %}
+	<div class="col-sm-12">
+		<h3 class="text-center"><i></i>&nbsp;&nbsp;&nbsp;{{ text_reviews_popup }}&nbsp;&nbsp;&nbsp;<i></i></h3>
+		<div class="add_reviews"><div class="row"><a onClick="show_reviews_add('300');" class="btn btn-link hidden_template add_a"><i class="fa fa-newspaper-o"></i> {{ text_all_reviews }}</a><a onClick="show_reviews_add('300');" class="btn btn-link add_a2"><i class="fa fa-plus-square-o"></i> {{ text_add_reviews }}</a></div></div>
+	</div>
+{% endif %}<div class="clearfix"></div>
+	<div class="col-sm-12" id="review_popup">
+		<div>
+			{% for review in reviews %}
+			<div class="review-comment-str"></div>
+			<div class="review-list">
+			  <div class="author">
+			  <div class="avatar"><img src = "catalog/view/theme/unitystore/image/noavatar.png" /></div>
+			  </div>
+			  <div class="author_name">
+			  {{ napisal }}<b>{{ review.author }}</b> {{ ot }} {{ review.date_added }}
+			  </div><br />
+			  <div class="rating">
+				  {% for i in 1..5 %}
+					{% if review.rating < i %}
+							<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+						{% else %}
+							<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+					{% endif %}
+				  {% endfor %}
+			  </div><br />
+			  {{ review.text }}
+			</div>
+			{% endfor %}
+		<div class="row">
+			{% if popup_all == false %}<div class="col-sm-5">{% if add_reviews %}<a onClick="ajaxpopup('{{ add_reviews }}&limit=5&popup_all=1')"><i class="fa fa-newspaper-o"></i> {{ text_all_reviews }}</a>&nbsp;&nbsp;|&nbsp;&nbsp;{% endif %}<a onClick="ajaxpopup('{{ add_reviews }}&limit=5&popup_all=1&popup_add=1')"><i class="fa fa-plus-square-o"></i> {{ text_add_reviews }}</a></div>{% endif %}
+			<div class="col-sm-{% if popup_all == false %}7{% else %}12{% endif %}">
+				<div class="text-right">{{ pagination }}</div>
+			</div>
+		</div>
+		</div>
+	</div><div class="clearfix"></div>
+</div>
+{% else %}
+<p>{{ text_no_reviews }}</p>
+{% endif %}
+{% if popup_all %}
+	{% if review_status %}
+		<div class="col-sm-12">
+			<div class="tab-pane hidden_template" id="tab-review">
+			  <form class="form-horizontal" id="form-review">
+				<div id="review"></div>
+				<h2>{{ text_write }}</h2>
+				{% if review_guest %}
+				<div class="form-group required">
+				  <div class="col-sm-12">
+					<label class="control-label" for="input-name">{{ entry_name }}</label>
+					<input type="text" name="name" value="{{ customer_name }}" id="input-name" class="form-control" />
+				  </div>
+				</div>
+				<div class="form-group required">
+				  <div class="col-sm-12">
+					<label class="control-label" for="input-review">{{ entry_review }}</label>
+					<textarea name="text" rows="5" id="input-review" class="form-control"></textarea>
+					<div class="help-block">{{ text_note }}</div>
+				  </div>
+				</div>
+				<div class="form-group required">
+				  <div class="col-sm-12">
+					<label class="control-label">{{ entry_rating }}</label>
+					&nbsp;&nbsp;&nbsp; {{ entry_bad }}&nbsp;
+					<input type="radio" name="rating" value="1" />
+					&nbsp;
+					<input type="radio" name="rating" value="2" />
+					&nbsp;
+					<input type="radio" name="rating" value="3" />
+					&nbsp;
+					<input type="radio" name="rating" value="4" />
+					&nbsp;
+					<input type="radio" name="rating" value="5" />
+					&nbsp;{{ entry_good }}</div>
+				</div>
+				{{ captcha }}
+				<div class="buttons clearfix">
+				  <div class="pull-right">
+					<button type="button" id="button-review" data-loading-text="{{ text_loading }}" class="btn btn-primary">{{ button_continue }}</button>
+				  </div>
+				</div>
+				{% else %}
+					{{ text_login }}
+				{% endif %}
+			  </form>
+			</div>
+		</div><div class="clearfix"></div>
+	{% endif %}
+{% endif %}
+<script><!--
+{% if popup_add %}show_reviews_add(0);{% endif %}
+function show_reviews_add(speed) {
+	$('#tab-review').slideToggle(speed);
+	$('#review_popup').slideToggle(speed);
+	$('.add_reviews a.btn.btn-link.add_a').slideToggle(0);
+	$('.add_reviews a.btn.btn-link.add_a2').slideToggle(0);
+}
+function load_review_pagination(product_id, href) {
+	$('#review' + product_id).load(href);
+}
+$('body .divshadow .close').click(function() {
+	closedivshadow();
+});
+$('#button-review').on('click', function() {
+	$.ajax({
+		url: 'index.php?route=product/product/write&product_id={{ product_id }}',
+		type: 'post',
+		dataType: 'json',
+		data: $("#form-review").serialize(),
+		beforeSend: function() {
+			$('#button-review').button('loading');
+		},
+		complete: function() {
+			$('#button-review').button('reset');
+		},
+		success: function(json) {
+			$('.alert-success, .alert-danger').remove();
+
+			if (json['error']) {
+				$('#review').after('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + '</div>');
+			}
+
+			if (json['success']) {
+				$('#review').after('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + '</div>');
+
+				$('input[name=\'name\']').val('');
+				$('textarea[name=\'text\']').val('');
+				$('input[name=\'rating\']:checked').prop('checked', false);
+			}
+		}
+	});
+});
+$(document).ready(function() {
+	$('body .divshadow').addClass('reviews_popup').addClass('col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 col-xs-offset-1 col-xs-10');
+	centering('.divshadow');
+});	
+--></script>

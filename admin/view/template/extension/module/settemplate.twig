@@ -1,0 +1,1660 @@
+{{ header }}{{ column_left }}
+<div id="content">
+<script type="text/javascript" language="javascript" src="view/javascript/jscolor/jscolor.js"></script>
+<script type="text/javascript" language="javascript" src="view/javascript/tabs.js"></script>
+<script type="text/javascript" language="javascript" src="view/javascript/switch/bootstrap-switch.min.js"></script>
+<script type="text/javascript" language="javascript" src="view/javascript/switch/highlight.js"></script>
+<script type="text/javascript" language="javascript" src="view/javascript/switch/main.js"></script>
+<link href="view/javascript/switch/bootstrap-switch.min.css" type="text/css" rel="stylesheet" media="screen" />
+<link href="view/javascript/switch/highlight.css" type="text/css" rel="stylesheet" media="screen" />
+<link href="view/javascript/switch/main.css" type="text/css" rel="stylesheet" media="screen" />
+<link href="view/javascript/settemplate/settemplate.css" type="text/css" rel="stylesheet" media="screen" />
+	<div class="page-header">
+		<div class="container-fluid">
+		  <div class="pull-right">
+			<button type="submit" form="form" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+			<a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+		  <h1>{{ heading_title_title }}</h1>
+		  <ul class="breadcrumb">
+			{% for breadcrumb in breadcrumbs %}
+			<li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+			{% endfor %}
+		  </ul>
+		</div>
+	</div>
+    <div class="container-fluid">
+	{% if error_warning %}
+    <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+	{% if success %}
+		<div class="alert alert-success"><i class="fa fa-check-circle"></i>&nbsp;&nbsp;&nbsp;{{ success }}</div>
+	{% endif %}
+	<form action="{{ action }}" method="post" enctype="multipart/form-data" id="form" class="form-horizontal">
+	<input type="hidden" name="name" value="{{ name }}" />
+	<input type="hidden" name="module_settemplate_status" value="1" />
+	<style type="text/css">
+		span.shop_checked label {
+			border: 1px solid #969696;
+			border-radius: 3px;
+			cursor: pointer;
+			display: inline-block;
+			margin: 0 5px 10px 0;
+			padding: 4px 6px;
+		}
+		.RadioClass {
+			display: none;
+		}
+		.RadioSelected {
+			background: #2e85bc none repeat scroll 0 0;
+			border-color: #2e85bc;
+			box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2) inset;
+			color: #ffffff;
+		}
+	</style>
+	<br />
+	<input type="hidden" name="settemplate_protection_cod" value="{% if settemplate_protection_cod %}{{ settemplate_protection_cod }}{% endif %}" />
+	<ul class="nav nav-tabs block col-lg-2 col-sm-3">
+        <li class="active"><a href="#tab-general-style" class="tab-general-style" data-toggle="tab">{{ tab_general_style }}</a></li>
+        <li><a href="#tab-header" class="tab-header" data-toggle="tab">{{ tab_header }}</a></li>
+        <li><a href="#tab-footer" class="tab-footer" data-toggle="tab">{{ tab_footer }}</a></li>
+        <li><a href="#tab-module_f_b_l_s" class="tab-module_f_b_l_s" data-toggle="tab">{{ tab_module_f_b_l_s }}</a></li>
+        <li><a href="#tab-category_c_m_s_spe" class="tab-category_c_m_s_spe" data-toggle="tab">{{ tab_category_c_m_s_spe }}</a></li>
+        <li><a href="#tab-product" class="tab-product" data-toggle="tab">{{ settemplate_product_h1 }}</a></li>
+		<li><a href="#tab-stickers" class="tab-product" data-toggle="tab">{{ tab_stikers }}</a></li>
+		<div class="logotip"></div>
+    </ul>
+	<div class="tab-content col-lg-10 col-sm-9">
+    <div class="tab-pane active" id="tab-general-style">
+		<fieldset>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ bg_body }}</label>
+					<div class="col-sm-3">
+						<div class="image">
+							<a href="" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="{% if settemplate_bg_body %}{{ settemplate_bg_body }}{% else %}{{ no_image }}{% endif %}" alt="" title="" data-placeholder="{{ no_image }}" /></a>
+							<input type="hidden" name="settemplate_bg_body" value="{{ settemplate_bg }}" id="input-image" />
+						</div>{{ help_bg_button_module_search }}<br />
+					</div>
+					<div class="col-sm-3">
+						{{ bg_body_repeat }}<br />
+						  <select name="settemplate_bg_body_repeat">
+						  {% if settemplate_bg_body_repeat == 'repeat' %}
+								<option  value="repeat" selected="selected">repeat</option>
+						  {% else %}
+								<option value="repeat">repeat</option>
+						  {% endif %}
+						  {% if settemplate_bg_body_repeat == 'no-repeat' %}
+								<option value="no-repeat" selected="selected">no-repeat</option>
+						  {% else %}
+								<option value="no-repeat">no-repeat</option>
+						  {% endif %}
+						  {% if settemplate_bg_body_repeat == 'repeat-x' %}
+								<option value="repeat-x" selected="selected">repeat-x</option>
+						  {% else %}
+								<option value="repeat-x">repeat-x</option>
+						 {% endif %}
+						  {% if settemplate_bg_body_repeat == 'repeat-y' %}
+								<option value="repeat-y" selected="selected">repeat-y</option>
+						  {% else %}
+								<option value="repeat-y">repeat-y</option>
+						  {% endif %}
+						  </select>
+						  <br /><br />
+						  {{ bg_body_horiz }}<br />
+						  <select name="settemplate_bg_body_horiz">
+						  {% if settemplate_bg_body_horiz == 'center' %}
+								<option  value="center" selected="selected">center</option>
+						  {% else %}
+								<option value="center">center</option>
+						  {% endif %}
+						  {% if settemplate_bg_body_horiz == 'left' %}
+								<option value="left" selected="selected">left</option>
+						  {% else %}
+								<option value="left">left</option>
+						  {% endif %}
+						  {% if settemplate_bg_body_horiz == 'right' %}
+								<option value="right" selected="selected">right</option>
+						  {% else %}
+								<option value="right">right</option>
+						  {% endif %}
+						  </select>
+						  <br />
+					</div>
+					<div class="col-sm-4">
+						  {{ bg_body_vertic }}<br />
+						  <select name="settemplate_bg_body_vertic">
+						  {% if settemplate_bg_body_vertic == 'top' %}
+								<option  value="top" selected="selected">top</option>
+						  {% else %}
+								<option value="top">top</option>
+						  {% endif %}
+						  {% if settemplate_bg_body_vertic == 'center' %}
+								<option value="center" selected="selected">center</option>
+						  {% else %}
+								<option value="center">center</option>
+						  {% endif %}
+						  {% if settemplate_bg_body_vertic == 'bottom' %}
+								<option value="bottom" selected="selected">bottom</option>
+						  {% else %}
+								<option value="bottom">bottom</option>
+						  {% endif %}
+						  </select>
+						  <br /><br />
+						  {{ bg_body_fixed }}<br />
+						  <select name="settemplate_bg_body_fixed">
+						  {% if settemplate_bg_body_fixed == 'scroll' %}
+								<option  value="scroll" selected="selected">scroll</option>
+						  {% else %}
+								<option value="scroll">scroll</option>
+						  {% endif %}
+						  {% if settemplate_bg_body_fixed == 'fixed' %}
+								<option value="fixed" selected="selected">fixed</option>
+						  {% else %}
+								<option value="fixed">fixed</option>
+						  {% endif %}
+						  </select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ h1_style }}</label>
+					<div class="col-sm-3">
+						{{ color_h1_style }}<br />
+						<input type="text" class="color {hash:true}" style="height: 29px; width: 90px;"  style="height: 29px; width: 90px;" name="settemplate_color_h1_style" value="{% if settemplate_color_h1_style %}{{ settemplate_color_h1_style }}{% endif %}" size="8" />&nbsp;&nbsp;<img src="/admin/view/javascript/jscolor/color-picker.png" style="margin-bottom: 3px;" /><br />
+					</div>
+					<div class="col-sm-3">
+						{{ font_size_h1_style }}<br />
+						<input type="text" name="settemplate_font_size_h1_style" value="{% if settemplate_font_size_h1_style %}{{ settemplate_font_size_h1_style }}{% endif %}" size="1" /> px<br />
+					</div>
+					<div class="col-sm-4"></div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ h2_style }}</label>
+					<div class="col-sm-3">
+						{{ color_h2_style }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;"  type="text" name="settemplate_color_h2_style" value="{% if settemplate_color_h2_style %}{{ settemplate_color_h2_style }}{% endif %}" size="8" />&nbsp;&nbsp;<img src="/admin/view/javascript/jscolor/color-picker.png" style="margin-bottom: 3px;" /><br />
+					</div>
+					<div class="col-sm-3">
+						{{ font_size_h2_style }}<br />
+						<input type="text" name="settemplate_font_size_h2_style" value="{% if settemplate_font_size_h2_style %}{{ settemplate_font_size_h2_style }}{% endif %}" size="1" /> px<br />
+					</div>
+					<div class="col-sm-4"></div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ h3_style }}</label>
+					<div class="col-sm-3">
+						{{ color_h3_style }}<br />
+						<input  type="text" class="color {hash:true}" style="height: 29px; width: 90px;"  style="height: 29px; width: 90px;" name="settemplate_color_h3_style" value="{% if settemplate_color_h3_style %}{{ settemplate_color_h3_style }}{% endif %}" size="8" />&nbsp;&nbsp;<img src="/admin/view/javascript/jscolor/color-picker.png" style="margin-bottom: 3px;" /><br />
+					</div>
+					<div class="col-sm-3">
+						{{ font_size_h3_style }}<br />
+						<input type="text" name="settemplate_font_size_h3_style" value="{% if settemplate_font_size_h3_style%}{{ settemplate_font_size_h3_style }}{% endif %}" size="1" /> px<br />
+					</div>
+					<div class="col-sm-4"></div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ h4_style }}</label>
+					<div class="col-sm-3">
+						{{ color_h4_style }}<br />
+						<input  type="text" class="color {hash:true}" style="height: 29px; width: 90px;"  style="height: 29px; width: 90px;" name="settemplate_color_h4_style" value="{% if settemplate_color_h4_style %}{{ settemplate_color_h4_style }}{% endif %}" size="8" />&nbsp;&nbsp;<img src="/admin/view/javascript/jscolor/color-picker.png" style="margin-bottom: 3px;" /><br />
+					</div>
+					<div class="col-sm-3">
+						{{ font_size_h4_style }}<br />
+						<input type="text" name="settemplate_font_size_h4_style" value="{% if settemplate_font_size_h4_style %}{{ settemplate_font_size_h4_style }}{% endif %}" size="1" /> px<br />
+					</div>
+					<div class="col-sm-4"></div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ a_style }}</label>
+					<div class="col-sm-3">
+						{{ color_a_style }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;"  type="text" name="settemplate_color_a_style" value="{% if settemplate_color_a_style %}{{ settemplate_color_a_style }}{% endif %}" size="8" />&nbsp;&nbsp;<img src="/admin/view/javascript/jscolor/color-picker.png" style="margin-bottom: 3px;" /><br />
+					</div>
+					<div class="col-sm-3">
+						{{ color_a_hover_style }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;"  type="text" name="settemplate_color_a_hover_style" value="{% if settemplate_color_a_hover_style %}{{ settemplate_color_a_hover_style }}{% endif %}" size="8" />&nbsp;&nbsp;<img src="/admin/view/javascript/jscolor/color-picker.png" style="margin-bottom: 3px;" /><br />
+					</div>
+					<div class="col-sm-4"></div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ button_style }}</label>
+					<div class="col-sm-3">
+						{{ bg_button_style }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_bg_button_style" value="{% if settemplate_bg_button_style %}{{ settemplate_bg_button_style }}{% endif %}" size="8" />&nbsp;&nbsp;<img src="/admin/view/javascript/jscolor/color-picker.png" style="margin-bottom: 3px;" />
+						<br /><br />{{ bg_hover_button_style }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_bg_hover_button_style" value="{% if settemplate_bg_hover_button_style %}{{ settemplate_bg_hover_button_style }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br /><br />
+					</div>
+					<div class="col-sm-3">
+						{{ color_button_style }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_button_style" value="{% if settemplate_color_button_style %}{{ settemplate_color_button_style }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+						{{ font_size_button_style }}<br />
+						<input type="text" name="settemplate_font_size_button_style" value="{% if settemplate_font_size_button_style %}{{ settemplate_font_size_button_style }}{% endif %}" size="1" /> px
+					</div>
+					<div class="col-sm-4"></div>
+				</div>
+		</fieldset>
+    </div>
+	<div class="tab-pane" id="tab-header">
+		<ul class="nav nav-tabs inline">
+			<li class="active"><a href="#vnutrtab-style" data-toggle="tab">{{ settemplate_header }}</a></li>
+			<li><a href="#vnutrtab-category" data-toggle="tab">{{ menu_header }}</a></li>
+			<li><a href="#vnutrtab-block-contacts" data-toggle="tab">{{ header_contacts }}</a></li>
+		</ul>
+		<div class="tab-content">
+		<div class="tab-pane active" id="vnutrtab-style">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ text_top_menu_href }}</label>
+					<div class="col-sm-2">
+						{{ text_bg }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_bg_top_menu_href" value="{% if settemplate_bg_top_menu_href %}{{ settemplate_bg_top_menu_href }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+						{{ border_bottom_color }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_border_bottom_top_menu_href" value="{% if settemplate_border_bottom_top_menu_href %}{{ settemplate_border_bottom_top_menu_href }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+					</div>
+					<div class="col-sm-2">
+						{{ href_color }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_top_menu_href" value="{% if settemplate_color_top_menu_href %}{{ settemplate_color_top_menu_href }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+					</div>
+					<div class="col-sm-2">
+						{{ fa_color }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_fa_top_menu_href" value="{% if settemplate_fa_top_menu_href %}{{ settemplate_fa_top_menu_href }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+					</div>
+					<div class="col-sm-4"><br /><br />
+						<img src="/catalog/view/theme/unitystore/image/settemplate/top_menu_href.png" class="img-responsive" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ text_top_button_welcome }}</label>
+					<div class="col-sm-2">
+						{{ text_bg }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_ot_gradient_button_welcome" value="{% if settemplate_ot_gradient_button_welcome %}{{ settemplate_ot_gradient_button_welcome }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+					</div>
+					<div class="col-sm-2">
+						{{ text_color }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_button_welcome" value="{% if settemplate_color_button_welcome %}{{ settemplate_color_button_welcome }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+					</div>
+					<div class="col-sm-2"></div>
+					<div class="col-sm-4">
+						<img src="/catalog/view/theme/unitystore/image/settemplate/top_button_welcome.png" class="img-responsive" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ text_top_phone }}</label>
+					<div class="col-sm-2">
+						{{ color_phone }}<br /><br />
+						<input class="color {hash:true}" type="text" name="settemplate_color_top_iconphone" value="{% if settemplate_color_top_iconphone %}{{ settemplate_color_top_iconphone }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+					</div>
+					<div class="col-sm-2">
+						{{ color_iconphone }}<br /><br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_top_phone" value="{% if settemplate_color_top_phone %}{{ settemplate_color_top_phone }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+					</div>
+					<div class="col-sm-2">
+						{{ color_callback }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_callback" value="{% if settemplate_color_callback %}{{ settemplate_color_callback }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+					</div>
+					<div class="col-sm-4"><br />
+						<img src="/catalog/view/theme/unitystore/image/settemplate/top_phone.png" class="img-responsive" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ text_top_contacts }}</label>
+					<div class="col-sm-2">
+						{{ text_top_cart_icons }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_text_top_contacts" value="{% if settemplate_color_text_top_contacts %}{{ settemplate_color_text_top_contacts }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+					</div>
+					<div class="col-sm-2">
+						{{ text_top_cart_bg }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_cart_bg" value="{% if settemplate_color_cart_bg %}{{ settemplate_color_cart_bg }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+					</div>
+					<div class="col-sm-2">
+						{{ text_top_cart_color }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_cart_color" value="{% if settemplate_cart_color %}{{ settemplate_cart_color }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+					</div>
+					<div class="col-sm-4">
+						<img src="/catalog/view/theme/unitystore/image/settemplate/top_contacts.png" class="img-responsive" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ text_adress_time }}</label>
+					<div class="col-sm-2">
+						{{ text_color }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_text_adress_time" value="{% if settemplate_color_text_adress_time %}{{ settemplate_color_text_adress_time }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+					</div>
+					<div class="col-sm-2">
+						{{ text_fontsize }}<br />
+						<input type="text" name="settemplate_fontsize_text_adress_time" value="{% if settemplate_fontsize_text_adress_time %}{{ settemplate_fontsize_text_adress_time }}{% endif %}" size="3" />&nbsp;px<br /><br />
+					</div>
+					<div class="col-sm-2"></div>
+					<div class="col-sm-4"><br />
+						<img src="/catalog/view/theme/unitystore/image/settemplate/top_address_time.png" class="img-responsive" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ block_search }}</label>
+					<div class="col-sm-3">
+						{{ bg_button_block_search }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_bg_button_block_search" value="{% if settemplate_bg_button_block_search %}{{ settemplate_bg_button_block_search }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+						{{ color_button_block_search }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_button_block_search" value="{% if settemplate_color_button_block_search %}{{ settemplate_color_button_block_search }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+					</div>
+					<div class="col-sm-3">
+						{{ border_button_block_search }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_border_button_block_search" value="{% if settemplate_border_button_block_search %}{{ settemplate_border_button_block_search }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+						{{ text_placeholder }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_placeholder_block_search" value="{% if settemplate_color_placeholder_block_search %}{{ settemplate_color_placeholder_block_search }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+					</div>
+					<div class="col-sm-4">
+						<img src="/catalog/view/theme/unitystore/image/settemplate/top_search.png" class="img-responsive" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ text_color_button_category }}</label>
+					<div class="col-sm-3">
+						{{ text_bg }}{{ text_gradient }}
+						{{ ot_gradient_menu_header }} <input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_ot_gradient_button_category" value="{% if settemplate_ot_gradient_button_category %}{{ settemplate_ot_gradient_button_category }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png">&nbsp;&nbsp;&nbsp;
+						{{ do_gradient_menu_header }} <input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_do_gradient_button_category" value="{% if settemplate_do_gradient_button_category %}{{ settemplate_do_gradient_button_category }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+					</div>
+					<div class="col-sm-3">
+						{{ text_color }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_button_category" value="{% if settemplate_color_button_category %}{{ settemplate_color_button_category }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+						{{ text_fontsize }}<br /><input type="text" name="settemplate_font_size_button_category" value="{% if settemplate_font_size_button_category %}{{ settemplate_font_size_button_category }}{% endif %}" size="3" />&nbsp;px<br /><br />
+					</div>
+					<div class="col-sm-4">
+						<img src="/catalog/view/theme/unitystore/image/settemplate/top_category_button.png" class="img-responsive" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label"><br /><br /><br /><br /><br /><br />{{ bg_menu_header }}</label>
+					<div class="col-sm-6">
+						<div class="row">
+							<div class="col-sm-6">
+								{{ text_bg_category_one }}<br /><input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_bg_a_menu_header" value="{% if settemplate_bg_a_menu_header %}{{ settemplate_bg_a_menu_header }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+								{{ color_a_menu_header }}<br /><input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_a_menu_header" value="{% if settemplate_color_a_menu_header %}{{ settemplate_color_a_menu_header }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+								{{ fontsize_a_menu_header }}<br />
+								<input type="text" name="settemplate_fontsize_a_menu_header" value="{% if settemplate_fontsize_a_menu_header %}{{ settemplate_fontsize_a_menu_header }}{% endif %}" size="3" /> px<br /><br /><br />
+							</div>
+							<div class="col-sm-6">
+								{{ text_bg_hover_category_one }}<br /><input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_bg_a_hover_menu_header" value="{% if settemplate_bg_a_hover_menu_header %}{{ settemplate_bg_a_hover_menu_header }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br />
+								{{ color_a_hover_menu_header }}<br /><input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_a_hover_menu_header" value="{% if settemplate_color_a_hover_menu_header %}{{ settemplate_color_a_hover_menu_header }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br />
+							</div>
+							<div class="clearfix"></div>
+							<div class="col-sm-6">
+								{{ color_a_2_menu_header }}<br /><input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_a_2_menu_header" value="{% if settemplate_color_a_2_menu_header %}{{ settemplate_color_a_2_menu_header }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br /><br />
+							</div>
+							<div class="col-sm-6">
+								{{ font_size_a_2_menu_header }}<br />
+								<input type="text" name="settemplate_font_size_a_2_menu_header" value="{% if settemplate_font_size_a_2_menu_header %}{{ settemplate_font_size_a_2_menu_header }}{% endif %}" size="3" /> px
+							</div>
+							<div class="clearfix"></div>
+							<div class="col-sm-6">
+								{{ color_a_3_menu_header }}<br /><input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_a_3_menu_header" value="{% if settemplate_color_a_3_menu_header %}{{ settemplate_color_a_3_menu_header }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png">
+							</div>
+							<div class="col-sm-6">
+								{{ font_size_a_3_menu_header }}<br />
+								<input type="text" name="settemplate_font_size_a_3_menu_header" value="{% if settemplate_font_size_a_3_menu_header %}{{ settemplate_font_size_a_3_menu_header }}{% endif %}" size="3" /> px
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<img src="/catalog/view/theme/unitystore/image/settemplate/category_header.png" class="img-responsive" /><br /><br /><br /><img src="/catalog/view/theme/unitystore/image/settemplate/category_header_a2.png" class="img-responsive" />
+					</div>
+				</div>
+		</div>
+		<div class="tab-pane" id="vnutrtab-category">
+			<fieldset>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ add_button_statii_horizontal_menu_header }}</label>
+					<div class="col-sm-8">
+						<a href="{{ add_article }}" target="_blank" class="btn btn-primary" style="margin: 0 0 10px 10px;">{{ button_add }}</a><br /><br />
+						<div class="table table-striped">
+							{% if informations %}
+								<div class="row inf">
+									<div class="col-sm-2 text-center">{{ text_show_articles }}</div>
+									<div class="col-sm-7 text-left">{{ text_zagol_articles }}</div>
+									<div class="col-sm-1 text-right">{{ text_sort_articles }}</div>
+									<div class="col-sm-2 text-right">{{ text_edit_articles }}</div>
+								</div>
+								{% for information in informations %}
+								<div class="row inf">
+								  <div class="col-sm-2 text-center">
+								  {% if settemplate_statii_horizontal_menu_header and information.required_information %}
+									<input type="checkbox" name="settemplate_statii_horizontal_menu_header[]" value="{{ information.information_id }}" checked="checked" />
+									{% else %}
+									<input type="checkbox" name="settemplate_statii_horizontal_menu_header[]" value="{{ information.information_id }}" />
+									{% endif %}
+								  </div>
+								  <div class="col-sm-7 text-left">{{ information.title }}</div>
+								  <div class="col-sm-1 text-right">{{ information.sort_order }}</div>
+								  <div class="col-sm-2 text-right"><a href="{{ information.edit}}" target="_blank" data-toggle="tooltip" title="{{ button_edit }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a><br /></div>
+								</div>
+								{% endfor %}
+							{% else %}
+								<tr>
+								  <td class="text-center" colspan="4">{{ text_no_results }}</td>
+								</tr>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+		<div class="tab-pane" id="vnutrtab-block-contacts">
+			<fieldset>
+				<div class="form-group white">
+					<label class="col-sm-2 control-label">{{ header_contacts }}</label>
+					<div class="col-sm-6">
+						<div>{{ header_click_contacts }}<br /><br /><span style="font-size: 10px;">{{ help_image_contacts_banner_header }} {{ empty_help_image_contacts_banner_header }}</span><br /><br /></div>
+						<div class="col-sm-12">
+						<ul class="nav nav-tabs" id="content-language">
+							{% set k = 0 %}
+							{% for language in languages %}
+								<li{% if k == 0 %} class="active"{% endif %}><a href=".text-language1{{ language.language_id }}" data-toggle="tab"><img src="{{ language.img }}" title="{{ language.name }}" /> {{ language.name }}</a></li>
+									{% set k = k + 1 %}
+							{% endfor %}
+						</ul>
+						</div>
+						<div class="tab-content col-sm-12">
+							{% set k = 0 %}
+							{% for language in languages %}
+								<div class="tab-pane{% if k == 0 %} active{% endif %} text-language1{{ language.language_id }}">
+									<textarea type="text" id="settemplate_header_contacts{{ language.language_id }}" name="settemplate_header_contacts[{{ language.code }}]" value="" maxlength="7000" size="50" style="height: 30px; width: 500px;" class="form-control summernote" data-toggle="summernote" />{% if settemplate_header_contacts[language.code] %}{{ settemplate_header_contacts[language.code] }}{% endif %}</textarea>
+								</div>
+								{% set k = k + 1 %}
+							{% endfor %}
+						</div>
+					</div>
+					<div class="col-sm-4" style="text-align: center;">
+						<img src="/catalog/view/theme/unitystore/image/settemplate/header_contacts.png" class="img-responsive" />
+					</div>
+			</fieldset>
+		</div>
+		</div>
+    </div>
+    <div class="tab-pane" id="tab-module_f_b_l_s">
+		<ul class="nav nav-tabs inline">
+			<li class="active"><a href="#module-style" data-toggle="tab">{{ settemplate_module_h1 }}</a></li>
+			<li><a href="#module-setting" data-toggle="tab">{{ module_setting }}</a></li>
+		</ul>
+		<div class="tab-content">
+		<div id="module-style" class="tab-pane active">
+		<fieldset>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">{{ price_style_module }}</label>
+				<div class="col-sm-3">
+					{{ color_price_style_module }}<br />
+					<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_price_style_module" value="{{ settemplate_color_price_style_module }}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+					{{ color_price_special_style_module }}<br />
+					<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_price_special_style_module" value="{{ settemplate_color_price_special_style_module }}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+					{{ font_size_special_style_module }}<br />
+					<input type="text" name="settemplate_font_size_special_style_module" value="{{ settemplate_font_size_special_style_module }}" size="1" /> px<br /><br /><br />
+				</div>
+				<div class="col-sm-3">
+					{{ font_size_price_style_module }}<br />
+				  <input type="text" name="settemplate_font_size_price_style_module" value="{{ settemplate_font_size_price_style_module }}" size="1" /> px<br /><br />
+				  {{ color_price_old_style_module }}<br />
+				  <input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_price_old_style_module" value="{{ settemplate_color_price_old_style_module }}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png">
+				  <br /><br />{{ font_size_price_old_style_module }}<br />
+				  <input type="text" name="settemplate_font_size_price_old_style_module" value="{{ settemplate_font_size_price_old_style_module }}" size="1" /> px
+				</div>
+				<div class="col-sm-4">
+					<img src="/catalog/view/theme/unitystore/image/settemplate/price.png" class="img-responsive" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">{{ name_style_module }}</label>
+				<div class="col-sm-3">
+					{{ color_name_style_module }}<br />
+					<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_name_style_module" value="{{ settemplate_color_name_style_module }}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br /><br />
+				</div>
+				<div class="col-sm-3">
+					{{ font_size_name_style_module }}<br />
+					<input type="text" name="settemplate_font_size_name_style_module" value="{{ settemplate_font_size_name_style_module }}" size="1" /> px
+				</div>
+				<div class="col-sm-4">
+					<img src="/catalog/view/theme/unitystore/image/settemplate/name.png" class="img-responsive" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">{{ description_style_module }}</label>
+				<div class="col-sm-3">
+					{{ color_description_style_module }}<br />
+					<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_description_style_module" value="{% if settemplate_color_description_style_module %}{{ settemplate_color_description_style_module }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br /><br />
+				</div>
+				<div class="col-sm-3">
+					{{ font_size_description_style_module }}<br />
+					<input type="text" name="settemplate_font_size_description_style_module" value="{% if settemplate_font_size_description_style_module %}{{ settemplate_font_size_description_style_module }}{% endif %}" size="1" /> px
+				</div>
+				<div class="col-sm-4">
+					<img src="/catalog/view/theme/unitystore/image/settemplate/description.png" class="img-responsive" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">{{ cart_button_style_module }}</label>
+				<div class="col-sm-3">
+					{{ bg_cart_button_style_module }}<br />
+					<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_bg_cart_button_style_module" value="{% if settemplate_bg_cart_button_style_module %}{{ settemplate_bg_cart_button_style_module }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+					{{ bg_hover_cart_button_style_module }}<br />
+					<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_bg_hover_cart_button_style_module" value="{% if settemplate_bg_hover_cart_button_style_module %}{{ settemplate_bg_hover_cart_button_style_module }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png">
+				</div>
+				<div class="col-sm-3">
+					{{ color_cart_button_style_module }}<br />
+					<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_cart_button_style_module" value="{% if settemplate_color_cart_button_style_module %}{{ settemplate_color_cart_button_style_module }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+					{{ color_hover_cart_button_style_module }}<br />
+					<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_hover_cart_button_style_module" value="{% if settemplate_color_hover_cart_button_style_module %}{{ settemplate_color_hover_cart_button_style_module }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png">
+				</div>
+				<div class="col-sm-3">
+					<img src="/catalog/view/theme/unitystore/image/settemplate/button_cart.png" class="img-responsive" />
+				</div>
+			</div>
+		</fieldset>
+    </div>
+	<div id="module-setting" class="tab-pane">
+		<fieldset>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">{{ module_featured_h1 }}</label>
+				<div class="col-sm-10">
+					<div class="row">
+						<div class="col-sm-8">
+							<div class="row">
+								<div class="col-sm-6">
+									{{ module_status }}<br />
+									<input type="checkbox" name="settemplate_module_f_status"{% if settemplate_module_f_status %} checked="checked"{% endif %} value="1"  data-off-text="Normal" data-on-text="Carousel" />
+								</div>
+								<div class="col-sm-6">
+									  {{ description_prioritet_module_setting }}<br />
+									  <input type="hidden" name="settemplate_description_module_f_setting" value="0" />
+									  <input type="checkbox" name="settemplate_description_module_f_setting"{% if settemplate_description_module_f_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+								<div class="col-sm-6">
+									  <br /><br />{{ hover_module_setting }}<br />
+									  <input type="hidden" name="settemplate_hover_module_f_setting" value="0" />
+									  <input type="checkbox" name="settemplate_hover_module_f_setting"{% if settemplate_hover_module_f_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+								<div class="col-sm-6">
+									<br /><br />{{ quickpay_module_setting }}<br />
+									<input type="hidden" name="settemplate_quickpay_module_f_setting" value="0" />
+									<input type="checkbox" name="settemplate_quickpay_module_f_setting"{% if settemplate_quickpay_module_f_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+								<div class="col-sm-12">
+									<br /><br />{{ cheaper_module_setting }}<br />
+									<input type="hidden" name="settemplate_cheaper_module_f_setting" value="0" />
+									<input type="checkbox" name="settemplate_cheaper_module_f_setting"{% if settemplate_cheaper_module_f_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							{{ on_off_rating }}<br />
+								{% if settemplate_on_off_rating_f == '2' %}
+									<input type="radio" name="settemplate_on_off_rating_f" value="2" checked="checked">
+								{% else %}
+									<input type="radio" name="settemplate_on_off_rating_f" value="2">
+								{% endif %}
+								&nbsp;&nbsp;{{ on_rating }}<br /><br />
+								{% if settemplate_on_off_rating_f == '1' %}
+									<input type="radio" name="settemplate_on_off_rating_f" value="1" checked="checked">
+								{% else %}
+									<input type="radio" name="settemplate_on_off_rating_f" value="1">
+								{% endif %}
+								&nbsp;&nbsp;{{ off_rating }}<br /><br />
+								{% if settemplate_on_off_rating_f == '0' %}
+									<input type="radio" name="settemplate_on_off_rating_f" value="0" checked="checked">
+								{% else %}
+									<input type="radio" name="settemplate_on_off_rating_f" value="0">
+								{% endif %}
+								&nbsp;&nbsp;{{ on_off_isset_rating }}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">{{ module_bestseller_h1 }}</label>
+				<div class="col-sm-10">
+					<div class="row">
+						<div class="col-sm-8">
+							<div class="row">
+								<div class="col-sm-6">
+									{{ module_status }}<br />
+									<input type="checkbox" name="settemplate_module_b_status"{% if settemplate_module_b_status %} checked="checked"{% endif %} value="1"  data-off-text="Normal" data-on-text="Carousel" />
+								</div>
+								<div class="col-sm-6">
+									  {{ description_prioritet_module_setting }}<br />
+									  <input type="hidden" name="settemplate_description_module_b_setting" value="0" />
+									  <input type="checkbox" name="settemplate_description_module_b_setting"{% if settemplate_description_module_b_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+								<div class="col-sm-6">
+									  <br /><br />{{ hover_module_setting }}<br />
+									  <input type="hidden" name="settemplate_hover_module_b_setting" value="0" />
+									  <input type="checkbox" name="settemplate_hover_module_b_setting"{% if settemplate_hover_module_b_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+								<div class="col-sm-6">
+									<br /><br />{{ quickpay_module_setting }}<br />
+									<input type="hidden" name="settemplate_quickpay_module_b_setting" value="0" />
+									<input type="checkbox" name="settemplate_quickpay_module_b_setting"{% if settemplate_quickpay_module_b_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+								<div class="col-sm-12">
+									<br /><br />{{ cheaper_module_setting }}<br />
+									<input type="hidden" name="settemplate_cheaper_module_b_setting" value="0" />
+									<input type="checkbox" name="settemplate_cheaper_module_b_setting"{% if settemplate_cheaper_module_b_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							{{ on_off_rating }}<br />
+								{% if settemplate_on_off_rating_b == '2' %}
+									<input type="radio" name="settemplate_on_off_rating_b" value="2" checked="checked">
+								{% else %}
+									<input type="radio" name="settemplate_on_off_rating_b" value="2">
+								{% endif %}
+								&nbsp;&nbsp;{{ on_rating }}<br /><br />
+								{% if settemplate_on_off_rating_b == '1' %}
+									<input type="radio" name="settemplate_on_off_rating_b" value="1" checked="checked">
+								{% else %}
+									<input type="radio" name="settemplate_on_off_rating_b" value="1">
+								{% endif %}
+								&nbsp;&nbsp;{{ off_rating }}<br /><br />
+								{% if settemplate_on_off_rating_b == '0' %}
+									<input type="radio" name="settemplate_on_off_rating_b" value="0" checked="checked">
+								{% else %}
+									<input type="radio" name="settemplate_on_off_rating_b" value="0">
+								{% endif %}
+								&nbsp;&nbsp;{{ on_off_isset_rating }}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">{{ module_special_h1 }}</label>
+				<div class="col-sm-10">
+					<div class="row">
+						<div class="col-sm-8">
+							<div class="row">
+								<div class="col-sm-6">
+									{{ module_status }}<br />
+									<input type="checkbox" name="settemplate_module_s_status"{% if settemplate_module_s_status %} checked="checked"{% endif %} value="1"  data-off-text="Normal" data-on-text="Carousel" />
+								</div>
+								<div class="col-sm-6">
+									  {{ description_prioritet_module_setting }}<br />
+									  <input type="hidden" name="settemplate_description_module_s_setting" value="0" />
+									  <input type="checkbox" name="settemplate_description_module_s_setting"{% if settemplate_description_module_s_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+								<div class="col-sm-6">
+									  <br /><br />{{ hover_module_setting }}<br />
+									  <input type="hidden" name="settemplate_hover_module_s_setting" value="0" />
+									  <input type="checkbox" name="settemplate_hover_module_s_setting"{% if settemplate_hover_module_s_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+								<div class="col-sm-6">
+									<br /><br />{{ quickpay_module_setting }}<br />
+									<input type="hidden" name="settemplate_quickpay_module_s_setting" value="0" />
+									<input type="checkbox" name="settemplate_quickpay_module_s_setting"{% if settemplate_quickpay_module_s_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+								<div class="col-sm-12">
+									<br /><br />{{ cheaper_module_setting }}<br />
+									<input type="hidden" name="settemplate_cheaper_module_s_setting" value="0" />
+									<input type="checkbox" name="settemplate_cheaper_module_s_setting"{% if settemplate_cheaper_module_s_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							{{ on_off_rating }}<br />
+								{% if settemplate_on_off_rating_s == '2' %}
+									<input type="radio" name="settemplate_on_off_rating_s" value="2" checked="checked">
+								{% else %}
+									<input type="radio" name="settemplate_on_off_rating_s" value="2">
+								{% endif %}
+								&nbsp;&nbsp;{{ on_rating }}<br /><br />
+								{% if settemplate_on_off_rating_s == '1' %}
+									<input type="radio" name="settemplate_on_off_rating_s" value="1" checked="checked">
+								{% else %}
+									<input type="radio" name="settemplate_on_off_rating_s" value="1">
+								{% endif %}
+								&nbsp;&nbsp;{{ off_rating }}<br /><br />
+								{% if settemplate_on_off_rating_s == '0' %}
+									<input type="radio" name="settemplate_on_off_rating_s" value="0" checked="checked">
+								{% else %}
+									<input type="radio" name="settemplate_on_off_rating_s" value="0">
+								{% endif %}
+								&nbsp;&nbsp;{{ on_off_isset_rating }}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">{{ module_latest_h1 }}</label>
+				<div class="col-sm-10">
+					<div class="row">
+						<div class="col-sm-8">
+							<div class="row">
+								<div class="col-sm-6">
+									{{ module_status }}<br />
+									<input type="checkbox" name="settemplate_module_l_status"{% if settemplate_module_l_status %} checked="checked"{% endif %} value="1"  data-off-text="Normal" data-on-text="Carousel" />
+								</div>
+								<div class="col-sm-6">
+									  {{ description_prioritet_module_setting }}<br />
+									  <input type="hidden" name="settemplate_description_module_l_setting" value="0" />
+									  <input type="checkbox" name="settemplate_description_module_l_setting"{% if settemplate_description_module_l_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+								<div class="col-sm-6">
+									  <br /><br />{{ hover_module_setting }}<br />
+									  <input type="hidden" name="settemplate_hover_module_l_setting" value="0" />
+									  <input type="checkbox" name="settemplate_hover_module_l_setting"{% if settemplate_hover_module_l_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+								<div class="col-sm-6">
+									<br /><br />{{ quickpay_module_setting }}<br />
+									<input type="hidden" name="settemplate_quickpay_module_l_setting" value="0" />
+									<input type="checkbox" name="settemplate_quickpay_module_l_setting"{% if settemplate_quickpay_module_l_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+								<div class="col-sm-12">
+									<br /><br />{{ cheaper_module_setting }}<br />
+									<input type="hidden" name="settemplate_cheaper_module_l_setting" value="0" />
+									<input type="checkbox" name="settemplate_cheaper_module_l_setting"{% if settemplate_cheaper_module_l_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							{{ on_off_rating }}<br />
+								{% if settemplate_on_off_rating_l == '2' %}
+									<input type="radio" name="settemplate_on_off_rating_l" value="2" checked="checked">
+								{% else %}
+									<input type="radio" name="settemplate_on_off_rating_l" value="2">
+								{% endif %}
+								&nbsp;&nbsp;{{ on_rating }}<br /><br />
+								{% if settemplate_on_off_rating_l == '1' %}
+									<input type="radio" name="settemplate_on_off_rating_l" value="1" checked="checked">
+								{% else %}
+									<input type="radio" name="settemplate_on_off_rating_l" value="1">
+								{% endif %}
+								&nbsp;&nbsp;{{ off_rating }}<br /><br />
+								{% if settemplate_on_off_rating_l == '0' %}
+									<input type="radio" name="settemplate_on_off_rating_l" value="0" checked="checked">
+								{% else %}
+									<input type="radio" name="settemplate_on_off_rating_l" value="0">
+								{% endif %}
+								&nbsp;&nbsp;{{ on_off_isset_rating }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</fieldset>
+	</div>
+	</div>
+	</div>
+    <div class="tab-pane" id="tab-footer">
+		<ul class="nav nav-tabs inline">
+			<li class="active"><a href="#footer-style" data-toggle="tab">{{ settemplate_footer }}</a></li>
+			<li><a href="#footer-block" data-toggle="tab">{{ footer_block }}</a></li>
+			<li><a href="#footer-text" data-toggle="tab">{{ footer_text1 }}</a></li>
+			<li><a href="#footer-pay" data-toggle="tab">{{ pay_header }}</a></li>
+			<li><a href="#footer-social" data-toggle="tab">{{ social_header }}</a></li>
+			<li><a href="#footer-statii" data-toggle="tab">{{ menu_header }}</a></li>
+		</ul>
+	<div class="tab-content">
+        <div id="footer-style" class="tab-pane active">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">{{ footer_subscribe }}</label>
+				<div class="col-sm-3">
+					{{ footer_bg_subscribe }}<br /><input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_footer_bg_subscribe" value="{% if settemplate_footer_bg_subscribe %}{{ settemplate_footer_bg_subscribe }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br /><br />
+					{{ footer_bg_button_subscribe }}<br /><input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_footer_bg_button_subscribe" value="{% if settemplate_footer_bg_button_subscribe %}{{ settemplate_footer_bg_button_subscribe }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+					
+				</div>
+				<div class="col-sm-3">
+					{{ footer_color_subscribe }}<br /><input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_footer_color_subscribe" value="{% if settemplate_footer_color_subscribe %}{{ settemplate_footer_color_subscribe }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br /><br />
+					{{ footer_color_button_subscribe }}<br /><input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_footer_color_button_subscribe" value="{% if settemplate_footer_color_button_subscribe %}{{ settemplate_footer_color_button_subscribe }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+				</div>
+				<div class="col-sm-3">
+					<img src="/catalog/view/theme/unitystore/image/settemplate/subscribe.png" class="img-responsive" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">{{ settemplate_block_footer }}</label>
+				<div class="col-sm-3">
+					{{ h3_header_block_footer }}<br /><br />{{ h3_color_header_block_footer }}<br /><input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_h3_color_header_block_footer" value="{% if settemplate_h3_color_header_block_footer %}{{ settemplate_h3_color_header_block_footer }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+					{{ h3_font_size_block_footer }}<br /><input type="text" name="settemplate_h3_font_size_block_footer" value="{% if settemplate_h3_font_size_block_footer %}{{ settemplate_h3_font_size_block_footer }}{% endif %}" size="1" /> px<br />
+				</div>
+				<div class="col-sm-3">
+					{{ a_column_block_footer }}<br /><br />{{ a_color_column_block_footer }}<br /><input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_a_color_column_block_footer" value="{% if settemplate_a_color_column_block_footer %}{{ settemplate_a_color_column_block_footer }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+					{{ a_font_size_column_block_footer }}<br /><input type="text" name="settemplate_a_font_size_column_block_footer" value="{% if settemplate_a_font_size_column_block_footer %}{{ settemplate_a_font_size_column_block_footer }}{% endif %}" size="1" /> px
+					<br /><br /><br />
+				</div>
+				<div class="col-sm-3">
+					<img src="/catalog/view/theme/unitystore/image/settemplate/column.png" class="img-responsive" />
+				</div>
+			</div>
+		</div>
+		<div id="footer-block" class="tab-pane">
+			<fieldset>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ on_off_block_footer }}</label>
+					<div class="col-sm-3">
+						{{ information_block_footer }}<br /><br />
+						<input type="hidden" name="settemplate_information_block_footer" value="0" />
+						<input type="checkbox" name="settemplate_information_block_footer"{% if settemplate_information_block_footer %} checked="checked"{% endif %} value="1" /><br /><br /><br />
+						{{ more_block_footer }}<br /><br />
+						<input type="hidden" name="settemplate_more_block_footer" value="0" />
+						<input type="checkbox" name="settemplate_more_block_footer"{% if settemplate_more_block_footer %} checked="checked"{% endif %} value="1" />
+					</div>
+					<div class="col-sm-3">
+						{{ support_block_footer }}<br /><br />
+						<input type="hidden" name="settemplate_support_block_footer" value="0" />
+						<input type="checkbox" name="settemplate_support_block_footer"{% if settemplate_support_block_footer %} checked="checked"{% endif %} value="1" /><br /><br /><br />
+						{{ sign_block_footer }}<br /><br />
+						<input type="hidden" name="settemplate_sign_block_footer" value="0" />
+						<input type="checkbox" name="settemplate_sign_block_footer"{% if settemplate_sign_block_footer %} checked="checked"{% endif %} value="1" />
+					</div>
+					<div class="col-sm-3">
+						<img src="/catalog/view/theme/unitystore/image/settemplate/footer_block_disabled.png" class="img-responsive" />
+					</div>
+				</div>
+			</fieldset>
+		</div>
+		<div id="footer-text" class="tab-pane">
+				<div class="form-group white">
+					<label class="col-sm-2 control-label">{{ text_block_footer }}</label>
+					<div class="col-sm-5">
+						<div><{{ text_one_block_footer }}<br /><span style="font-size: 10px;">{{ help_image_contacts_banner_header }} {{ empty_help_image_contacts_banner_header }}</span><br /><br /></div>
+						<div class="col-sm-12">
+						<ul class="nav nav-tabs" id="content-language">
+							{% set k = 0 %}
+							{% for language in languages %}
+								<li{% if k == 0 %} class="active"{% endif %}><a href=".text-language2{{ language.language_id }}" data-toggle="tab"><img src="{{ language.img }}" title="{{ language.name }}" /> {{ language.name }}</a></li>
+								{% set k = k + 1 %}
+							{% endfor %}
+						</ul>
+						</div>
+						<div class="tab-content col-sm-12">
+							{% set k = 0 %}
+							{% for language in languages %}
+								<div class="tab-pane{% if k == 0 %} active{% endif %} text-language2{{ language.language_id }}">
+									<textarea type="text" id="text1_one_block_footer{{ language.language_id }}" name="settemplate_text1_one_block_footer[{{ language.code }}]" value="" maxlength="7000" size="50" style="height: 70px; width: 500px;" class="form-control summernote" data-toggle="summernote" />{% if settemplate_text1_one_block_footer[language.code] %}{{ settemplate_text1_one_block_footer[language.code] }}{% endif %}</textarea>
+								</div>
+								{% set k = k + 1 %}
+							{% endfor %}
+						</div>
+					</div>
+					<div class="col-sm-5">
+						<img src="/catalog/view/theme/unitystore/image/settemplate/footer_niz.png" class="img-responsive" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ text2_block_footer }}</label>
+					<div class="col-sm-5">
+						<div>{{ text_one_block_footer }}<br /><span style="font-size: 10px;">{{ help_image_contacts_banner_header }}</span><br /><br /></div>
+						<div class="col-sm-12">
+						<ul class="nav nav-tabs" id="content-language">
+							{% set k = 0 %}
+							{% for language in languages %}
+								<li{% if k == 0 %} class="active"{% endif %}><a href=".text-language3{{ language.language_id }}" data-toggle="tab"><img src="{{ language.img }}" title="{{ language.name }}" /> {{ language.name }}</a></li>
+								{% set k = k + 1 %}
+							{% endfor %}
+						</ul>
+						</div>
+						<div class="tab-content col-sm-12">
+							{% set k = 0 %}
+							{% for language in languages %}
+								<div class="tab-pane{% if k == 0 %} active{% endif %} text-language3{{ language.language_id }}">
+									<textarea type="text" id="text2_one_block_footer{{ language.language_id }}" name="settemplate_text2_one_block_footer[{{ language.code }}]" value="" maxlength="7000" size="50" style="height: 70px; width: 500px;" class="form-control summernote" data-toggle="summernote" />{% if settemplate_text2_one_block_footer[language.code] %}{{ settemplate_text2_one_block_footer[language.code] }}{% endif %}</textarea>
+								</div>
+								{% set k = k + 1 %}
+							{% endfor %}
+						</div>
+					</div>
+					<div class="col-sm-5">
+						<img src="/catalog/view/theme/unitystore/image/settemplate/footer_niz_text.png" class="img-responsive" />
+					</div>
+				</div>
+		</div>
+		<div class="tab-pane" id="footer-social">
+			<fieldset class="col-sm-12 col-xs-12">
+				<div class="form-group white">
+					<div class="row">
+						<label class="col-sm-2 control-label text-center"><b onclick="add_social();" class="btn btn-primary" style="margin: 0 0 10px 10px;">{{ button_add }}</b><br /><br /></label>
+						<div class="col-sm-10">
+							<div class="col-sm-12">
+							<ul class="nav nav-tabs" id="content-language">
+							{% set k = 0 %}
+							{% for language in languages %}
+									<li{% if k == 0 %} class="active"{% endif %}><a href=".text-language4{{ language.language_id }}" data-toggle="tab"><img src="{{ language.img }}" title="{{ language.name }}" /> {{ language.name }}</a></li>
+									{% set k = k + 1 %}
+							{% endfor %}
+							</ul>
+							</div>
+							<div class="tab-content col-sm-6">
+								{% set k = 0 %}
+								{% for language in languages %}
+									<div class="tab-pane{% if k == 0 %} active{% endif %} text-language4{{ language.language_id }} text-left">
+										<input type="text" name="settemplate_social_block_footer[{{ language.code }}]" value="{% if settemplate_social_block_footer[language.code] %}{{ settemplate_social_block_footer[language.code] }}{% endif %}" size="30" class="form-control text-left summernote" /><br /><br /><br />
+									</div>
+									{% set k = k + 1 %}
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-12 text-center">
+						<div class="col-sm-1"></div>
+						<div class="col-sm-2">{{ show }}</div>
+						<div class="col-sm-3 text-left">{{ href_social_block_footer }}</div>
+						<div class="col-sm-2">{{ sort }}</div>
+						<div class="col-sm-2"></div>
+						<div id="end_social"></div>
+						{% set new_row_social = 1 %}
+						{% if settemplate_social %}
+							{% for module_social in settemplate_social %}
+									<div id="social-{{ new_row_social }}" class="col-sm-12">
+										<div class="col-sm-1">
+											<div class="image{{ new_row_social }}" style="border: 0 none; display: inline-table; margin-right: 40px; padding: 10px; vertical-align: middle; margin-bottom: 25px;">
+												<a href="" id="thumb-image-social{{ new_row_social }}" data-toggle="image" class="img-thumbnail"  style="float: left; margin-right: 10px;"><img src="{% if module_social.social_image_system %}{{ module_social.social_image_system }}{% else %}{{ no_image }}{% endif %}" alt="" title="" data-placeholder="{{ no_image }}" /></a>
+												<input type="hidden" name="settemplate_social[{{ new_row_social }}][social_image]" value="{% if module_social.social_image %}{{ module_social.social_image }}{% else %}{{ no_image }}{% endif %}" id="input-image-social{{ new_row_social }}" /><br /><br />
+											</div>
+										</div>
+										<div class="col-sm-2"><br />
+											{% if module_social.social_on %}
+												{% if module_social.social_on == 1 %}
+													<input type="checkbox" name="settemplate_social[{{ new_row_social }}][social_on]" value="1" checked="checked" />
+												{% else %}
+													<input type="checkbox" name="settemplate_social[{{ new_row_social }}][social_on]" value="1" />
+												{% endif %}
+											{% else %}
+												<input type="checkbox" name="settemplate_social[{{ new_row_social }}][social_on]" value="1" />
+											{% endif %}
+											
+										</div>
+										<div class="col-sm-3 text-left"><br />
+											<input type="text" name="settemplate_social[{{ new_row_social }}][social_href]" value="{% if module_social.social_href %}{{ module_social.social_href }}{% endif %}" size="30" style="margin-bottom: 10px; text-align: left; padding-left: 10px;" /><br />
+										</div>
+										<div class="col-sm-2"><br />
+											<input type="text" name="settemplate_social[{{ new_row_social }}][social_sort]" value="{% if module_social.social_sort %}{{ module_social.social_sort }}{% endif %}" size="5" style="margin-bottom: 10px;" />
+										</div>
+										<div class="col-sm-2"><br />
+											<a onclick="remove_social({{ new_row_social }});" class="btn btn-primary">{{ button_remove }}</a>
+										</div>
+									</div>
+								{% set new_row_social=new_row_social+1 %}
+							{% endfor %}
+						{% endif %}
+					</div>
+				</div>
+			</fieldset>
+		</div>
+		<div class="tab-pane" id="footer-pay">
+			<fieldset class="col-sm-12 col-xs-12">
+				<div class="form-group white">
+					<label class="col-sm-2 control-label">{{ pay_block_footer }}<br /><br /><b onclick="add_pay();" class="btn btn-primary" style="margin: 0 0 10px 10px;">{{ button_add }}</b></label>
+					<div class="col-sm-8">
+						{{ vibor_social_block_footer }}<br /><br />
+						<div id="end_pay"></div>
+						{% set new_row_pay = 1 %}
+						{% if settemplate_pay %}
+							{% for module_pay in settemplate_pay %}
+									<div id="pay-{{ new_row_pay }}" class="col-sm-12">
+										<div class="col-sm-3">
+											<div class="image{{ new_row_pay }}" style="border: 0 none; display: inline-table; margin-right: 40px; padding: 10px; vertical-align: middle; margin-bottom: 25px;">
+												<a href="" id="thumb-image-pay{{ new_row_pay }}" data-toggle="image" class="img-thumbnail"  style="float: left; margin-right: 10px;"><img src="{% if module_pay.pay_image_system %}{{ module_pay.pay_image_system }}{% else %}{{ no_image }}{% endif %}" alt="" title="" data-placeholder="{{ no_image }}" /></a>
+												<input type="hidden" name="settemplate_pay[{{ new_row_pay }}][pay_image]" value="{% if module_pay.pay_image %}{{ module_pay.pay_image }}{% else %}{{ no_image_system }}{% endif %}" id="input-image-pay{{ new_row_pay }}" /><br /><br />
+											</div>
+										</div>
+										<div class="col-sm-3">
+											<br />{% if module_pay.pay_on %}
+												{% if module_pay.pay_on == 1 %}
+													<input type="checkbox" name="settemplate_pay[{{ new_row_pay }}][pay_on]" value="1" checked="checked" />
+												{% else %}
+													<input type="checkbox" name="settemplate_pay[{{ new_row_pay }}][pay_on]" value="1" />
+												{% endif %}
+											{% else %}
+												<input type="checkbox" name="settemplate_pay[{{ new_row_pay }}][pay_on]" value="1" />
+											{% endif %}&nbsp;{{ show }}<br />
+										</div>
+										<div class="col-sm-3">
+											<br /><input type="text" name="settemplate_pay[{{ new_row_pay }}][pay_sort]" value="{% if module_pay.pay_sort %}{{ module_pay.pay_sort }}{% endif %}" size="5" style="margin-bottom: 10px;" />&nbsp;&nbsp;{{ sort }}
+										</div>
+										<div class="col-sm-3">
+											<br /><a onclick="remove_pay({{ new_row_pay }});" class="btn btn-primary">{{ button_remove }}</a>
+										</div>
+									</div>
+								{% set new_row_pay = new_row_pay + 1 %}
+							{% endfor %}
+						{% endif %}
+					</div>
+				</div>
+			</fieldset>
+		</div>
+		<div class="tab-pane" id="footer-statii">
+			<fieldset>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ menu_header }}</label>
+					<div class="col-sm-8">
+						<a href="{{ add_article }}" target="_blank" class="btn btn-primary" style="margin: 0 0 10px 10px;">{{ button_add }}</a><br /><br />
+						<div class="table table-striped">
+							{% if informations %}
+								<div class="row inf">
+									<div class="col-sm-2 text-center">{{ text_show_articles }}</div>
+									<div class="col-sm-7 text-left">{{ text_zagol_articles }}</div>
+									<div class="col-sm-1 text-right">{{ text_sort_articles }}</div>
+									<div class="col-sm-2 text-right">{{ text_edit_articles }}</div>
+								</div>
+								{% for information in informations %}
+								<div class="row inf">
+								  <div class="col-sm-2 text-center">
+								  {% if settemplate_statii_horizontal_menu_footer and information.required_information_footer %}
+									<input type="checkbox" name="settemplate_statii_horizontal_menu_footer[]" value="{{ information.information_id }}" checked="checked" />
+									{% else %}
+									<input type="checkbox" name="settemplate_statii_horizontal_menu_footer[]" value="{{ information.information_id }}" />
+									{% endif %}</div>
+									<div class="col-sm-7 text-left">{{ information.title }}</div>
+									<div class="col-sm-1 text-right">{{ information.sort_order }}</div>
+									<div class="col-sm-2 text-right"><a href="{{ information.edit }}" target="_blank" data-toggle="tooltip" title="{{ button_edit }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a><br /></div>
+								</div>
+								{% endfor %}
+							{% else %}
+								<tr>
+								  <td class="text-center" colspan="4">{{ text_no_results }}</td>
+								</tr>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+	</div>
+	</div>
+    <div class="tab-pane" id="tab-category_c_m_s_spe">
+		<ul class="nav nav-tabs inline">
+			<li class="active"><a href="#category-style" data-toggle="tab">{{ settemplate_page_h1 }}</a></li>
+			<li><a href="#category-setting" data-toggle="tab">{{ module_setting }}</a></li>
+		</ul>
+		<div class="tab-content">
+        <div id="category-style" class="tab-pane active">
+			<fieldset>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ price_style_module }}</label>
+					<div class="col-sm-3">
+						{{ color_price_style_module }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_price_style_list" value="{% if settemplate_color_price_style_list %}{{ settemplate_color_price_style_list }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br /><br /><br />
+						{{ color_price_special_style_module }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_price_special_style_list" value="{{ settemplate_color_price_special_style_list }}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+						{{ font_size_special_style_module }}<br />
+						<input type="text" name="settemplate_font_size_special_style_list" value="{% if settemplate_font_size_special_style_list %}{{ settemplate_font_size_special_style_list }}{% endif %}" size="1" /> px
+					</div>
+					<div class="col-sm-3">
+						{{ font_size_price_style_module }}<br />
+						<input type="text" name="settemplate_font_size_price_style_list" value="{% if settemplate_font_size_price_style_list %}{{ settemplate_font_size_price_style_list }}{% endif %}" size="1" /> px<br /><br /><br /><br />
+						{{ color_price_old_style_module }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_price_old_style_list" value="{% if settemplate_color_price_old_style_list %}{{ settemplate_color_price_old_style_list }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+						{{ font_size_price_old_style_module }}<br />
+						<input type="text" name="settemplate_font_size_price_old_style_list" value="{% if settemplate_font_size_price_old_style_list %}{{ settemplate_font_size_price_old_style_list }}{% endif %}" size="1" /> px
+					</div>
+					<div class="col-sm-3">
+						<img src="/catalog/view/theme/unitystore/image/settemplate/price.png" class="img-responsive" /><br /><br /><br /><br />
+						<img src="/catalog/view/theme/unitystore/image/settemplate/price-old-new.png" class="img-responsive" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ name_style_module }}</label>
+					<div class="col-sm-3">
+						{{ color_name_style_module }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_name_style_list" value="{% if settemplate_color_name_style_list %}{{ settemplate_color_name_style_list }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png">
+					</div>
+					<div class="col-sm-3">
+						{{ font_size_name_style_module }}<br />
+						<input type="text" name="settemplate_font_size_name_style_list" value="{% if settemplate_font_size_name_style_list %}{{ settemplate_font_size_name_style_list }}{% endif %}" size="1" /> px
+					</div>
+					<div class="col-sm-3">
+						<img src="/catalog/view/theme/unitystore/image/settemplate/name.png" class="img-responsive" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ description_style_module }}</label>
+					<div class="col-sm-3">
+						{{ color_description_style_module }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_description_style_list" value="{% if settemplate_color_description_style_list %}{{ settemplate_color_description_style_list }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png">
+					</div>
+					<div class="col-sm-3">
+						{{ font_size_description_style_module }}<br />
+						<input type="text" name="settemplate_font_size_description_style_list" value="{% if settemplate_font_size_description_style_list %}{{ settemplate_font_size_description_style_list }}{% endif %}" size="1" /> px
+					</div>
+					<div class="col-sm-3">
+						<img src="/catalog/view/theme/unitystore/image/settemplate/description.png" class="img-responsive" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ cart_button_style_module }}</label>
+					<div class="col-sm-3">
+						{{ bg_cart_button_style_module }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_bg_cart_button_style_list" value="{% if settemplate_bg_cart_button_style_list %}{{ settemplate_bg_cart_button_style_list }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+						{{ bg_hover_cart_button_style_module }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_bg_hover_cart_button_style_list" value="{% if settemplate_bg_hover_cart_button_style_list %}{{ settemplate_bg_hover_cart_button_style_list }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br /><br />
+					</div>
+					<div class="col-sm-3">
+						{{ color_cart_button_style_module }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_cart_button_style_list" value="{% if settemplate_color_cart_button_style_list %}{{ settemplate_color_cart_button_style_list }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+						{{ color_hover_cart_button_style_module }}<br />
+						<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_hover_cart_button_style_list" value="{% if settemplate_color_hover_cart_button_style_list %}{{ settemplate_color_hover_cart_button_style_list }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png">
+					</div>
+					<div class="col-sm-3"><br /><br /><br />
+						<img src="/catalog/view/theme/unitystore/image/settemplate/button_cart.png" class="img-responsive" />
+					</div>
+				</div>
+			</fieldset>
+		</div>
+		<div id="category-setting" class="tab-pane">
+		<fieldset>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">{{ settemplate_category_h1 }}</label>
+				<div class="col-sm-10">
+					<div class="row">
+						<div class="col-sm-8">
+							<div class="row">
+								<div class="col-sm-6">{{ description_prioritet_module_setting }}<br />
+									 <input type="hidden" name="settemplate_description_categ_setting" value="0" />
+									 <input type="checkbox" name="settemplate_description_categ_setting"{% if settemplate_description_categ_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+								<div class="col-sm-6">{{ hover_module_setting }}<br />
+									<input type="hidden" name="settemplate_hover_categ_setting" value="0" />
+									<input type="checkbox" name="settemplate_hover_categ_setting"{% if settemplate_hover_categ_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+								<div class="col-sm-6"><br /><br />{{ quickpay_module_setting }}<br />
+									<input type="hidden" name="settemplate_quickpay_categ_setting" value="0" />
+									<input type="checkbox" name="settemplate_quickpay_categ_setting"{% if settemplate_quickpay_categ_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+								<div class="col-sm-6"><br /><br />{{ cheaper_module_setting }}<br />
+									<input type="hidden" name="settemplate_cheaper_categ_setting" value="0" />
+									<input type="checkbox" name="settemplate_cheaper_categ_setting"{% if settemplate_cheaper_categ_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							{{ on_off_rating }}<br />
+							{% if settemplate_on_off_rating_categ == '2' %}
+								<input type="radio" name="settemplate_on_off_rating_categ" value="2" checked="checked">
+							{% else %}
+								<input type="radio" name="settemplate_on_off_rating_categ" value="2">
+							{% endif %}
+							&nbsp;&nbsp;{{ on_rating }}<br /><br />
+							{% if settemplate_on_off_rating_categ == '1' %}
+								<input type="radio" name="settemplate_on_off_rating_categ" value="1" checked="checked">
+							{% else %}
+								<input type="radio" name="settemplate_on_off_rating_categ" value="1">
+							{% endif %}
+							&nbsp;&nbsp;{{ off_rating }}<br /><br />
+							{% if settemplate_on_off_rating_categ == '0' %}
+								<input type="radio" name="settemplate_on_off_rating_categ" value="0" checked="checked">
+							{% else %}
+								<input type="radio" name="settemplate_on_off_rating_categ" value="0">
+							{% endif %}
+							{{ on_off_isset_rating }}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">{{ settemplate_manufacturers_h1 }}</label>
+				<div class="col-sm-10">
+					<div class="row">
+						<div class="col-sm-8">
+							<div class="row">
+								<div class="col-sm-6">{{ description_prioritet_module_setting }}<br />
+									 <input type="hidden" name="settemplate_description_manuf_setting" value="0" />
+									 <input type="checkbox" name="settemplate_description_manuf_setting"{% if settemplate_description_manuf_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+								<div class="col-sm-6">{{ hover_module_setting }}<br />
+									<input type="hidden" name="settemplate_hover_manuf_setting" value="0" />
+									<input type="checkbox" name="settemplate_hover_manuf_setting"{% if settemplate_hover_manuf_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+								<div class="col-sm-6"><br /><br />{{ quickpay_module_setting }}<br />
+									<input type="hidden" name="settemplate_quickpay_manuf_setting" value="0" />
+									<input type="checkbox" name="settemplate_quickpay_manuf_setting"{% if settemplate_quickpay_manuf_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+								<div class="col-sm-6"><br /><br />{{ cheaper_module_setting }}<br />
+									<input type="hidden" name="settemplate_cheaper_manuf_setting" value="0" />
+									<input type="checkbox" name="settemplate_cheaper_manuf_setting"{% if settemplate_cheaper_manuf_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							{{ on_off_rating }}<br />
+							{% if settemplate_on_off_rating_manuf == '2' %}
+								<input type="radio" name="settemplate_on_off_rating_manuf" value="2" checked="checked">
+							{% else %}
+								<input type="radio" name="settemplate_on_off_rating_manuf" value="2">
+							{% endif %}
+							&nbsp;&nbsp;{{ on_rating }}<br /><br />
+							{% if settemplate_on_off_rating_manuf == '1' %}
+								<input type="radio" name="settemplate_on_off_rating_manuf" value="1" checked="checked">
+							{% else %}
+								<input type="radio" name="settemplate_on_off_rating_manuf" value="1">
+							{% endif %}
+							&nbsp;&nbsp;{{ off_rating }}<br /><br />
+							{% if settemplate_on_off_rating_manuf == '0' %}
+								<input type="radio" name="settemplate_on_off_rating_manuf" value="0" checked="checked">
+							{% else %}
+								<input type="radio" name="settemplate_on_off_rating_manuf" value="0">
+							{% endif %}
+							{{ on_off_isset_rating }}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">{{ settemplate_search_h1 }}</label>
+				<div class="col-sm-10">
+					<div class="row">
+						<div class="col-sm-8">
+							<div class="row">
+								<div class="col-sm-6">{{ description_prioritet_module_setting }}<br />
+									 <input type="hidden" name="settemplate_description_search_setting" value="0" />
+									 <input type="checkbox" name="settemplate_description_search_setting"{% if settemplate_description_search_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+								<div class="col-sm-6">{{ hover_module_setting }}<br />
+									<input type="hidden" name="settemplate_hover_search_setting" value="0" />
+									<input type="checkbox" name="settemplate_hover_search_setting"{% if settemplate_hover_search_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+								<div class="col-sm-6"><br /><br />{{ quickpay_module_setting }}<br />
+									<input type="hidden" name="settemplate_quickpay_search_setting" value="0" />
+									<input type="checkbox" name="settemplate_quickpay_search_setting"{% if settemplate_quickpay_search_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+								<div class="col-sm-6"><br /><br />{{ cheaper_module_setting }}<br />
+									<input type="hidden" name="settemplate_cheaper_search_setting" value="0" />
+									<input type="checkbox" name="settemplate_cheaper_search_setting"{% if settemplate_cheaper_search_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							{{ on_off_rating }}<br />
+							{% if settemplate_on_off_rating_search == '2' %}
+								<input type="radio" name="settemplate_on_off_rating_search" value="2" checked="checked">
+							{% else %}
+								<input type="radio" name="settemplate_on_off_rating_search" value="2">
+							{% endif %}
+							&nbsp;&nbsp;{{ on_rating }}<br /><br />
+							{% if settemplate_on_off_rating_search == '1' %}
+								<input type="radio" name="settemplate_on_off_rating_search" value="1" checked="checked">
+							{% else %}
+								<input type="radio" name="settemplate_on_off_rating_search" value="1">
+							{% endif %}
+							&nbsp;&nbsp;{{ off_rating }}<br /><br />
+							{% if settemplate_on_off_rating_search == '0' %}
+								<input type="radio" name="settemplate_on_off_rating_search" value="0" checked="checked">
+							{% else %}
+								<input type="radio" name="settemplate_on_off_rating_search" value="0">
+							{% endif %}
+							{{ on_off_isset_rating }}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">{{ settemplate_special_h1 }}</label>
+				<div class="col-sm-10">
+					<div class="row">
+						<div class="col-sm-8">
+							<div class="row">
+								<div class="col-sm-6">{{ description_prioritet_module_setting }}<br />
+									 <input type="hidden" name="settemplate_description_special_setting" value="0" />
+									 <input type="checkbox" name="settemplate_description_special_setting"{% if settemplate_description_special_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+								<div class="col-sm-6">{{ hover_module_setting }}<br />
+									<input type="hidden" name="settemplate_hover_special_setting" value="0" />
+									<input type="checkbox" name="settemplate_hover_special_setting"{% if settemplate_hover_special_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+								<div class="col-sm-6"><br /><br />{{ quickpay_module_setting }}<br />
+									<input type="hidden" name="settemplate_quickpay_special_setting" value="0" />
+									<input type="checkbox" name="settemplate_quickpay_special_setting"{% if settemplate_quickpay_special_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+								<div class="col-sm-6"><br /><br />{{ cheaper_module_setting }}<br />
+									<input type="hidden" name="settemplate_cheaper_special_setting" value="0" />
+									<input type="checkbox" name="settemplate_cheaper_special_setting"{% if settemplate_cheaper_special_setting %} checked="checked"{% endif %} value="1" />
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							{{ on_off_rating }}<br />
+							{% if settemplate_on_off_rating_special == '2' %}
+								<input type="radio" name="settemplate_on_off_rating_special" value="2" checked="checked">
+							{% else %}
+								<input type="radio" name="settemplate_on_off_rating_special" value="2">
+							{% endif %}
+							&nbsp;&nbsp;{{ on_rating }}<br /><br />
+							{% if settemplate_on_off_rating_special == '1' %}
+								<input type="radio" name="settemplate_on_off_rating_special" value="1" checked="checked">
+							{% else %}
+								<input type="radio" name="settemplate_on_off_rating_special" value="1">
+							{% endif %}
+							&nbsp;&nbsp;{{ off_rating }}<br /><br />
+							{% if settemplate_on_off_rating_special == '0' %}
+								<input type="radio" name="settemplate_on_off_rating_special" value="0" checked="checked">
+							{% else %}
+								<input type="radio" name="settemplate_on_off_rating_special" value="0">
+							{% endif %}
+							{{ on_off_isset_rating }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</fieldset>
+		</div>
+	</div>
+    </div>
+    <div class="tab-pane" id="tab-product">
+		<fieldset>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">{{ zoom_setting_product }}</label>
+				<div class="col-sm-10">
+					{{ zoom_setting_product }}<br /><br />
+					<input type="hidden" name="settemplate_zoom_setting_product" value="0" />
+					<input type="checkbox" name="settemplate_zoom_setting_product"{% if settemplate_zoom_setting_product %} checked="checked"{% endif %} value="1" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">{{ price_style_product }}</label>
+				<div class="col-sm-3">
+					{{ color_price_style_product }}<br />
+					<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_price_style_product" value="{% if settemplate_color_price_style_product %}{{ settemplate_color_price_style_product }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+					{{ color_price_special_style_module }}<br />
+					<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_price_special_style_product" value="{% if settemplate_color_price_special_style_product %}{{ settemplate_color_price_special_style_product }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+					{{ color_priceold_style_product }}<br />
+					<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_priceold_style_product" value="{% if settemplate_color_priceold_style_product %}{{ settemplate_color_priceold_style_product }}{% endif %}" size="8" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png"><br /><br />
+				</div>
+				<div class="col-sm-3">
+					{{ font_size_price_style_product }}<br />
+					<input type="text" name="settemplate_font_size_price_style_product" value="{% if settemplate_font_size_price_style_product %}{{ settemplate_font_size_price_style_product }}{% endif %}" size="1" /> px<br /><br />
+					{{ font_size_price_style_product }}<br />
+					<input type="text" name="settemplate_font_size_price_special_style_product" value="{% if settemplate_font_size_price_special_style_product %}{{ settemplate_font_size_price_special_style_product }}{% endif %}" size="1" /> px<br /><br />
+					{{ font_size_priceold_style_product }}<br />
+					<input type="text" name="settemplate_font_size_priceold_style_product" value="{% if settemplate_font_size_priceold_style_product %}{{ settemplate_font_size_priceold_style_product }}{% endif %}" size="1" /> px
+				</div>
+				<div class="col-sm-3">
+					<img src="/catalog/view/theme/unitystore/image/settemplate/price_old_new_product.png" class="img-responsive" />
+				</div>
+			</div>
+		</fieldset>
+    </div>
+	<div id="tab-stickers" class="tab-pane">
+		<fieldset>
+			<div class="form-group center">
+				<label class="col-sm-2 control-label">{{ settemplate_tab_stikers }}</label>
+				<div class="col-sm-3">
+					{{ color_new_stikers }}<br />
+					<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_new_stikers" value="{% if settemplate_color_new_stikers %}{{ settemplate_color_new_stikers }}{% endif %}" size="6" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png">
+				</div>
+				<div class="col-sm-3">
+					{{ color_special_stikers }}<br />
+					<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_special_stikers" value="{% if settemplate_color_special_stikers %}{{ settemplate_color_special_stikers }}{% endif %}" size="6" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png">
+				</div>
+				<div class="col-sm-3">
+					{{ color_popular_stikers }}<br />
+					<input class="color {hash:true}" style="height: 29px; width: 90px;" type="text" name="settemplate_color_popular_stikers" value="{% if settemplate_color_popular_stikers %}{{ settemplate_color_popular_stikers }}{% endif %}" size="6" />&nbsp;&nbsp;<img style="margin-bottom: 3px;" src="/admin/view/javascript/jscolor/color-picker.png">
+				</div>
+			</div>
+			<div class="form-group center">
+				<label class="col-sm-2 control-label"></label>
+				<div class="col-sm-3">
+					{{ new_stikers }}
+				</div>
+				<div class="col-sm-3">
+					{{ special_stikers }}
+				</div>
+				<div class="col-sm-3">
+					{{ popular_stikers }}
+				</div>
+			</div>
+			<div class="form-group center">
+				<label class="col-sm-2 control-label">{{ tab_stikers_f_module }}</label>
+				<div class="col-sm-3">
+					<input type="hidden" name="settemplate_new_stikers_f_module" value="0" />
+					<input type="checkbox" name="settemplate_new_stikers_f_module"{% if settemplate_new_stikers_f_module %} checked="checked"{% endif %} value="1" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" name="settemplate_kolvo_dney_f_module_new_stikers" value="{% if settemplate_kolvo_dney_f_module_new_stikers %}{{ settemplate_kolvo_dney_f_module_new_stikers }}{% endif %}" size="1" />&nbsp;&nbsp;{{ kolvo_dney_new_stikers }} 
+				</div>
+				<div class="col-sm-3">
+					<input type="hidden" name="settemplate_special_stikers_f_module" value="0" />
+					<input type="checkbox" name="settemplate_special_stikers_f_module"{% if settemplate_special_stikers_f_module %} checked="checked"{% endif %} value="1" />
+				</div>
+				<div class="col-sm-3">
+					<input type="hidden" name="settemplate_popular_stikers_f_module" value="0" />
+					<input type="checkbox" name="settemplate_popular_stikers_f_module"{% if settemplate_popular_stikers_f_module %} checked="checked"{% endif %} value="1" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                     <input type="text" name="settemplate_kolvo_prosmotr_f_module_popular_stikers" value="{% if settemplate_kolvo_prosmotr_f_module_popular_stikers %}{{ settemplate_kolvo_prosmotr_f_module_popular_stikers }}{% endif %}" size="1" />&nbsp;&nbsp;{{ kolvo_prosmotr_popular_stikers }}
+				</div>
+			</div>
+			<div class="form-group center">
+				<label class="col-sm-2 control-label">{{ tab_stikers_b_module }}</label>
+				<div class="col-sm-3">
+					<input type="hidden" name="settemplate_new_stikers_b_module" value="0" />
+					  <input type="checkbox" name="settemplate_new_stikers_b_module"{% if settemplate_new_stikers_b_module %} checked="checked"{% endif %} value="1" />
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                       <input type="text" name="settemplate_kolvo_dney_b_module_new_stikers" value="{% if settemplate_kolvo_dney_b_module_new_stikers %}{{ settemplate_kolvo_dney_b_module_new_stikers }}{% endif %}" size="1" />&nbsp;&nbsp;{{ kolvo_dney_new_stikers }}
+				</div>
+				<div class="col-sm-3">
+					<input type="hidden" name="settemplate_special_stikers_b_module" value="0" />
+					  <input type="checkbox" name="settemplate_special_stikers_b_module"{% if settemplate_special_stikers_b_module %} checked="checked"{% endif %} value="1" />
+				</div>
+				<div class="col-sm-3">
+					<input type="hidden" name="settemplate_popular_stikers_b_module" value="0" />
+					  <input type="checkbox" name="settemplate_popular_stikers_b_module"{% if settemplate_popular_stikers_b_module %} checked="checked"{% endif %} value="1" />
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                       <input type="text" name="settemplate_kolvo_prosmotr_b_module_popular_stikers" value="{% if settemplate_kolvo_prosmotr_b_module_popular_stikers %}{{ settemplate_kolvo_prosmotr_b_module_popular_stikers }}{% endif %}" size="1" />&nbsp;&nbsp;{{ kolvo_prosmotr_popular_stikers }}
+				</div>
+			</div>
+			<div class="form-group center">
+				<label class="col-sm-2 control-label">{{ tab_stikers_l_module }}</label>
+				<div class="col-sm-3">
+					<input type="hidden" name="settemplate_new_stikers_l_module" value="0" />
+					  <input type="checkbox" name="settemplate_new_stikers_l_module"{% if settemplate_new_stikers_l_module %} checked="checked"{% endif %} value="1" />
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                       <input type="text" name="settemplate_kolvo_dney_l_module_new_stikers" value="{% if settemplate_kolvo_dney_l_module_new_stikers %}{{ settemplate_kolvo_dney_l_module_new_stikers }}{% endif %}" size="1" />&nbsp;&nbsp;{{ kolvo_dney_new_stikers }}
+				</div>
+				<div class="col-sm-3">
+					<input type="hidden" name="settemplate_special_stikers_l_module" value="0" />
+					  <input type="checkbox" name="settemplate_special_stikers_l_module"{% if settemplate_special_stikers_l_module %} checked="checked"{% endif %} value="1" />
+				</div>
+				<div class="col-sm-3">
+					<input type="hidden" name="settemplate_popular_stikers_l_module" value="0" />
+					  <input type="checkbox" name="settemplate_popular_stikers_l_module"{% if settemplate_popular_stikers_l_module %} checked="checked"{% endif %} value="1" />
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                       <input type="text" name="settemplate_kolvo_prosmotr_l_module_popular_stikers" value="{% if settemplate_kolvo_prosmotr_l_module_popular_stikers %}{{ settemplate_kolvo_prosmotr_l_module_popular_stikers }}{% endif %}" size="1" />&nbsp;&nbsp;{{ kolvo_prosmotr_popular_stikers }}
+				</div>
+			</div>
+			<div class="form-group center">
+				<label class="col-sm-2 control-label">{{ tab_stikers_s_module }}</label>
+				<div class="col-sm-3">
+					<input type="hidden" name="settemplate_new_stikers_s_module" value="0" />
+					  <input type="checkbox" name="settemplate_new_stikers_s_module"{% if settemplate_new_stikers_s_module %} checked="checked"{% endif %} value="1" />
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                       <input type="text" name="settemplate_kolvo_dney_s_module_new_stikers" value="{% if settemplate_kolvo_dney_s_module_new_stikers %}{{ settemplate_kolvo_dney_s_module_new_stikers }}{% endif %}" size="1" />&nbsp;&nbsp;{{ kolvo_dney_new_stikers }}
+				</div>
+				<div class="col-sm-3">
+					<input type="hidden" name="settemplate_special_stikers_s_module" value="0" />
+					  <input type="checkbox" name="settemplate_special_stikers_s_module"{% if settemplate_special_stikers_s_module %} checked="checked"{% endif %} value="1" />
+				</div>
+				<div class="col-sm-3">
+					<input type="hidden" name="settemplate_popular_stikers_s_module" value="0" />
+					  <input type="checkbox" name="settemplate_popular_stikers_s_module"{% if settemplate_popular_stikers_s_module %} checked="checked"{% endif %} value="1" />
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                       <input type="text" name="settemplate_kolvo_prosmotr_s_module_popular_stikers" value="{% if settemplate_kolvo_prosmotr_s_module_popular_stikers %}{{ settemplate_kolvo_prosmotr_s_module_popular_stikers }}{% endif %}" size="1" />&nbsp;&nbsp;{{ kolvo_prosmotr_popular_stikers }}
+				</div>
+			</div>
+			<div class="form-group center">
+				<label class="col-sm-2 control-label">{{ tab_stikers_categ_module }}</label>
+				<div class="col-sm-3">
+					<input type="hidden" name="settemplate_new_stikers_categ_module" value="0" />
+					  <input type="checkbox" name="settemplate_new_stikers_categ_module"{% if settemplate_new_stikers_categ_module %} checked="checked"{% endif %} value="1" />
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                       <input type="text" name="settemplate_kolvo_dney_categ_new_stikers" value="{% if settemplate_kolvo_dney_categ_new_stikers %}{{ settemplate_kolvo_dney_categ_new_stikers }}{% endif %}" size="1" />&nbsp;&nbsp;{{ kolvo_dney_new_stikers }}
+				</div>
+				<div class="col-sm-3">
+					<input type="hidden" name="settemplate_special_stikers_categ_module" value="0" />
+					  <input type="checkbox" name="settemplate_special_stikers_categ_module"{% if settemplate_special_stikers_categ_module %} checked="checked"{% endif %} value="1" />
+				</div>
+				<div class="col-sm-3">
+					<input type="hidden" name="settemplate_popular_stikers_categ_module" value="0" />
+					  <input type="checkbox" name="settemplate_popular_stikers_categ_module"{% if settemplate_popular_stikers_categ_module %} checked="checked"{% endif %} value="1" />
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                       <input type="text" name="settemplate_kolvo_prosmotr_categ_popular_stikers" value="{% if settemplate_kolvo_prosmotr_categ_popular_stikers %}{{ settemplate_kolvo_prosmotr_categ_popular_stikers }}{% endif %}" size="1" />&nbsp;&nbsp;{{ kolvo_prosmotr_popular_stikers }}
+				</div>
+			</div>
+			<div class="form-group center">
+				<label class="col-sm-2 control-label">{{ tab_stikers_manuf_module }}</label>
+				<div class="col-sm-3">
+					<input type="hidden" name="settemplate_new_stikers_manuf_module" value="0" />
+					  <input type="checkbox" name="settemplate_new_stikers_manuf_module"{% if settemplate_new_stikers_manuf_module %} checked="checked"{% endif %} value="1" />
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                       <input type="text" name="settemplate_kolvo_dney_manuf_new_stikers" value="{% if settemplate_kolvo_dney_manuf_new_stikers %}{{ settemplate_kolvo_dney_manuf_new_stikers }}{% endif %}" size="1" />&nbsp;&nbsp;{{ kolvo_dney_new_stikers }}
+				</div>
+				<div class="col-sm-3">
+					<input type="hidden" name="settemplate_special_stikers_manuf_module" value="0" />
+					  <input type="checkbox" name="settemplate_special_stikers_manuf_module"{% if settemplate_special_stikers_manuf_module %} checked="checked"{% endif %} value="1" />
+				</div>
+				<div class="col-sm-3">
+					<input type="hidden" name="settemplate_popular_stikers_manuf_module" value="0" />
+					  <input type="checkbox" name="settemplate_popular_stikers_manuf_module"{% if settemplate_popular_stikers_manuf_module %} checked="checked"{% endif %} value="1" />
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                       <input type="text" name="settemplate_kolvo_prosmotr_manuf_popular_stikers" value="{% if settemplate_kolvo_prosmotr_manuf_popular_stikers %}{{ settemplate_kolvo_prosmotr_manuf_popular_stikers }}{% endif %}" size="1" />&nbsp;&nbsp;{{ kolvo_prosmotr_popular_stikers }}
+				</div>
+			</div>
+			<div class="form-group center">
+				<label class="col-sm-2 control-label">{{ tab_stikers_search_module }}</label>
+				<div class="col-sm-3">
+					<input type="hidden" name="settemplate_new_stikers_search_module" value="0" />
+					  <input type="checkbox" name="settemplate_new_stikers_search_module"{% if settemplate_new_stikers_search_module %} checked="checked"{% endif %} value="1" />
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                       <input type="text" name="settemplate_kolvo_dney_search_new_stikers" value="{% if settemplate_kolvo_dney_search_new_stikers %}{{ settemplate_kolvo_dney_search_new_stikers }}{% endif %}" size="1" />&nbsp;&nbsp;{{ kolvo_dney_new_stikers }}
+				</div>
+				<div class="col-sm-3">
+					<input type="hidden" name="settemplate_special_stikers_search_module" value="0" />
+					  <input type="checkbox" name="settemplate_special_stikers_search_module"{% if settemplate_special_stikers_search_module %} checked="checked"{% endif %} value="1" />
+				</div>
+				<div class="col-sm-3">
+					<input type="hidden" name="settemplate_popular_stikers_search_module" value="0" />
+					  <input type="checkbox" name="settemplate_popular_stikers_search_module"{% if settemplate_popular_stikers_search_module %} checked="checked"{% endif %} value="1" />
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                       <input type="text" name="settemplate_kolvo_prosmotr_search_popular_stikers" value="{% if settemplate_kolvo_prosmotr_search_popular_stikers %}{{ settemplate_kolvo_prosmotr_search_popular_stikers }}{% endif %}" size="1" />&nbsp;&nbsp;{{ kolvo_prosmotr_popular_stikers }}
+				</div>
+			</div>
+			<div class="form-group center">
+				<label class="col-sm-2 control-label">{{ tab_stikers_special_module }}</label>
+				<div class="col-sm-3">
+					<input type="hidden" name="settemplate_new_stikers_special_module" value="0" />
+					  <input type="checkbox" name="settemplate_new_stikers_special_module"{% if settemplate_new_stikers_special_module %} checked="checked"{% endif %} value="1" />
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                       <input type="text" name="settemplate_kolvo_dney_special_new_stikers" value="{% if settemplate_kolvo_dney_special_new_stikers %}{{ settemplate_kolvo_dney_special_new_stikers }}{% endif %}" size="1" />&nbsp;&nbsp;{{ kolvo_dney_new_stikers }}
+				</div>
+				<div class="col-sm-3">
+					<input type="hidden" name="settemplate_special_stikers_special_module" value="0" />
+					  <input type="checkbox" name="settemplate_special_stikers_special_module"{% if settemplate_special_stikers_special_module %} checked="checked"{% endif %} value="1" />
+				</div>
+				<div class="col-sm-3">
+					<input type="hidden" name="settemplate_popular_stikers_special_module" value="0" />
+					  <input type="checkbox" name="settemplate_popular_stikers_special_module"{% if settemplate_popular_stikers_special_module %} checked="checked"{% endif %} value="1" />
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                       <input type="text" name="settemplate_kolvo_prosmotr_special_popular_stikers" value="{% if settemplate_kolvo_prosmotr_special_popular_stikers %}{{ settemplate_kolvo_prosmotr_special_popular_stikers }}{% endif %}" size="1" />&nbsp;&nbsp;{{ kolvo_prosmotr_popular_stikers }}
+				</div>
+			</div>
+			<div class="form-group center">
+				<label class="col-sm-2 control-label">{{ tab_stikers_product }}</label>
+				<div class="col-sm-3">
+					<input type="hidden" name="settemplate_new_stikers_product" value="0" />
+					  <input type="checkbox" name="settemplate_new_stikers_product"{% if settemplate_new_stikers_product %} checked="checked"{% endif %} value="1" />
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                       <input type="text" name="settemplate_kolvo_dney_product_new_stikers" value="{% if settemplate_kolvo_dney_product_new_stikers %}{{ settemplate_kolvo_dney_product_new_stikers }}{% endif %}" size="1" />&nbsp;&nbsp;{{ kolvo_dney_new_stikers }}
+				</div>
+				<div class="col-sm-3">
+					<input type="hidden" name="settemplate_special_stikers_product" value="0" />
+					  <input type="checkbox" name="settemplate_special_stikers_product"{% if settemplate_special_stikers_product %} checked="checked"{% endif %} value="1" />
+				</div>
+				<div class="col-sm-3">
+					<input type="hidden" name="settemplate_popular_stikers_product" value="0" />
+					  <input type="checkbox" name="settemplate_popular_stikers_product"{% if settemplate_popular_stikers_product %} checked="checked"{% endif %} value="1" />
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                       <input type="text" name="settemplate_kolvo_prosmotr_product_popular_stikers" value="{% if settemplate_kolvo_prosmotr_product_popular_stikers %}{{ settemplate_kolvo_prosmotr_product_popular_stikers }}{% endif %}" size="1" />&nbsp;&nbsp;{{ kolvo_prosmotr_popular_stikers }}
+				</div>
+			</div>
+		</fieldset>
+    </div>
+	</div>
+	</form>
+	</div>
+  </div>
+</div>
+<script type="text/javascript"><!--
+	function remove_social(id_statii_social) {
+		$('#social-' + id_statii_social).remove();
+	};
+	var new_row_social = {{ new_row_social }};
+	function add_social() {
+		html  = '<div id="social-' + new_row_social + '" class="col-sm-12">';
+			html += '<div class="col-sm-1">';
+				html += '<div class="image' + new_row_social + '" style="border: 0 none; display: inline-table; margin-right: 40px; padding: 10px; vertical-align: middle; margin-bottom: 25px;"><a href="" id="thumb-image-social' + new_row_social + '" data-toggle="image" class="img-thumbnail"  style="float: left; margin-right: 10px;"><img src="{{ no_image }}" alt="" title="" data-placeholder="{{ no_image }}" /></a><input type="hidden" name="settemplate_social[' + new_row_social + '][social_image]" value="{{ no_image }}" id="input-image-social' + new_row_social + '" /><br /><br /></div>';
+			html += '</div>';
+			html += '<div class="col-sm-2"><br />';
+				html += '<input type="checkbox" name="settemplate_social[' + new_row_social + '][social_on]" value="1" checked="checked" size="40" style="margin-bottom: 10px;" />';
+			html += '</div>';
+			html += '<div class="col-sm-3 text-left"><br />';
+				html += '<input type="text" name="settemplate_social[' + new_row_social + '][social_href]" value="" size="30" style="margin-bottom: 10px; text-align: left; padding-left: 10px;" />';
+			html += '</div>';
+			html += '<div class="col-sm-2"><br />';
+				html += '<input type="text" name="settemplate_social[' + new_row_social + '][social_sort]" value="' + new_row_social + '" size="5" style="margin-bottom: 10px;" />';
+			html += '</div>';
+			html += '<div class="col-sm-2"><br /><a onclick="remove_social(' + new_row_social + ');" class="btn btn-primary">{{ button_remove }}</a></div>';
+		html += '</div>';
+		$('#end_social').after(html);
+		new_row_social++;
+		$('input[type="checkbox"]').bootstrapSwitch();
+	}
+	function remove_pay(id_statii_pay) {
+		$('#pay-' + id_statii_pay).remove();
+	};
+	var new_row_pay = {{ new_row_pay }};
+	function add_pay() {
+		html  = '<div id="pay-' + new_row_pay + '" class="col-sm-12">';
+			html += '<div class="col-sm-3">';
+				html += '<div class="image' + new_row_pay + '" style="border: 0 none; display: inline-table; margin-right: 40px; padding: 10px; vertical-align: middle; margin-bottom: 25px;"><a href="" id="thumb-image-pay' + new_row_pay + '" data-toggle="image" class="img-thumbnail"  style="float: left; margin-right: 10px;"><img src="{{ no_image }}" alt="" title="" data-placeholder="{{ no_image }}" /></a><input type="hidden" name="settemplate_pay[' + new_row_pay + '][pay_image]" value="{{ no_image }}" id="input-image-pay' + new_row_pay + '" /></div>';
+			html += '</div>';
+			html += '<div class="col-sm-3"><br />';
+				html += '<input type="checkbox" name="settemplate_pay[' + new_row_pay + '][pay_on]" value="1" checked="checked" size="40" style="margin-bottom: 10px;" />&nbsp;{{ show }}<br />';
+			html += '</div>';
+			html += '<div class="col-sm-3"><br />';
+				html += '<input type="text" name="settemplate_pay[' + new_row_pay + '][pay_sort]" value="' + new_row_pay + '" size="5" style="margin-bottom: 10px;" />';
+				html += '&nbsp;&nbsp;{{ sort }}';
+			html += '</div>';
+			html += '<div class="col-sm-3"><br /><a onclick="remove_pay(' + new_row_pay + ');" class="btn btn-primary">{{ button_remove }}</a></div>';
+		html += '</div>';
+		$('#end_pay').after(html);
+		new_row_pay++;
+		$('input[type="checkbox"]').bootstrapSwitch();
+	}
+//--></script>
+<script type="text/javascript"><!--
+	$('.date').datetimepicker({
+		pickTime: false,
+		locale: 'ru'
+	});
+//--></script>
+<script type="text/javascript">
+        $(".modcoder_excolor_clrbox").css("height", "20px");
+        $(".modcoder_excolor_clrbox").css("width", "20px");
+</script>
+<script type="text/javascript"><!--
+function image_upload(field, thumb) {
+	$('#dialog').remove();
+	
+	$('#content').prepend('<div id="dialog" style="padding: 3px 0px 0px 0px;"><iframe src="index.php?route=common/filemanager&user_token={{ user_token }}&field=' + encodeURIComponent(field) + '" style="padding:0; margin: 0; display: block; width: 100%; height: 100%;" frameborder="no" scrolling="auto"></iframe></div>');
+	
+	$('#dialog').dialog({
+		title: '',
+		close: function (event, ui) {
+			if ($('#' + field).attr('value')) {
+				$.ajax({
+					url: 'index.php?route=common/filemanager/image&user_token={{ user_token }}&image=' + encodeURIComponent($('#' + field).attr('value')),
+					dataType: 'text',
+					success: function(text) {
+						$('#' + thumb).replaceWith('<img src="' + text + '" alt="" id="' + thumb + '" />');
+					}
+				});
+			}
+		},	
+		bgiframe: false,
+		width: 800,
+		height: 400,
+		resizable: false,
+		modal: false
+	});
+};
+//--></script> 
+{{ footer }}

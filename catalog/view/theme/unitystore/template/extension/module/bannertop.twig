@@ -1,0 +1,10 @@
+{% if top_banner and bannertop_image != "" %}
+	<div id="top_banner">
+		<div class="container">
+			<div class="marquee text-right">
+				{% if bannertop_image %}<span>{{ bannertop_image }}</span>{% endif %}
+			</div>
+			<div class="close_banner"><span>×</span> <span>{{ text_close }}</span></div>
+		</div>
+	</div>
+{% endif %}

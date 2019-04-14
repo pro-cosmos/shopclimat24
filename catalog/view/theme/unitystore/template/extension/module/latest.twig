@@ -1,0 +1,181 @@
+<div class="col-sm-12 input-group margin-bottom latest-header_{{ module.position }}"><h3 class="pull-left"><span>{{ heading_title }}</span></h3><div class="line-border"></div></div>
+<div class="row">
+	{% for product in products %}
+		<div class="product-layout {% if module.position == 'content_top' %}col-lg-4{% else %}col-lg-3{% endif %} col-md-4 col-sm-6 col-xs-12 latest_{{ module.position }}{% if image_additional_hover_module_setting!="1" or product.images == false %} no_image{% endif %}">
+			<div class="product-thumb product-thumb{{ product.product_id }} transition">
+				<div class="image relative">
+					<a href="{{ product.href }}">
+					{% if product.thumb %}
+						<div class="img"><img src="{{ product.thumb }}" alt="" title="" class="img-responsive imagess" /></div>
+					{% endif %}
+					{% set m = 1000 %}
+					{% if image_additional_hover_module_setting=="1" %}
+						{% if product.images %}
+							<div class="images-add">
+								{% for image in product.images %}
+									{% set m = m + 1 %}
+									{% if m <=1001 %}
+										<img src="{% if image.thumb %}{{ image.thumb }}{% endif %}" title="" alt="" />
+									{% endif %}
+								{% endfor %}
+							</div>
+						{% endif %}
+					{% endif %}
+					</a>
+					<div class="sticker-thumb">{% if display_popular_stickers=="1" %}{{product.popular }}{% endif %}{% if display_special_stickers=="1" %}{{ product.sale }}{% endif %}{% if display_new_stickers=="1" %}{{ product.new }}{% endif %}</div>
+					<div class="chevron{% if quickpay_module_setting=='0' and quickview_module_setting=='0' %} hide{% endif %}{% if (quickpay_module_setting + quickview_module_setting) == "1" %} one{% endif %} animated bounceOut">
+					{% if module_quickpay_status %}
+						{% if quickpay_module_setting=='1' %}
+							<a onclick="ajaxmoremodule('route=extension/module/quickpay&prod_id={{ product.product_id }}', '{{ product.product_id }}');"><i class="fa fa-clock-o"></i><span>&nbsp;&nbsp;&nbsp;{{ quick_pay }}</span></a>
+						{% endif %}
+					{% endif %}
+					</div>
+				</div>
+				<div class="caption">
+					<h4><a href="{{ product.href }}">{{ product.name }}</a></h4>
+					{% if description_module_setting == "1" %}
+						{% if product.description %}
+							<p>{{ product.description }}</p>
+						{% endif %}
+					{% endif %}
+					{% if on_off_rating == "2" %}
+						<div class="rating">
+							{% if product.review_tot %}<a onclick="ajaxpopup('index.php?route=extension/module/carous/review&prod_id={{ product.product_id }}&limit=5&popup_all=1')">{% endif %}
+							{% for i in 1..5 %}
+								{% if product.rating < i %}
+									<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+								{% else %}
+									<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+								{% endif %}
+							{% endfor %}
+							<div class="reviews_icon">({{ product.review_tot }})</div>
+							{% if product.review_tot %}</a>{% endif %}
+							<div class="wishlist"><button type="button" data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');"><i class="icon-wishlist icon"></i></button></div>
+							<div class="compare"><button type="button" data-toggle="tooltip" title="{{ button_compare }}" onclick="compare.add('{{ product.product_id }}');"><i class="icon-compare icon"></i></button></div>
+						</div>
+					{% endif %}
+					{% if on_off_rating == "0" %}
+						{% if product.rating %}
+							<div class="rating">
+								{% for i in 1..5 %}
+									{% if product.rating < i %}
+										<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+									{% else %}
+										<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+									{% endif %}
+								{% endfor %}
+								<div class="reviews_icon">({{ product.review_tot }})</div>
+								<div class="wishlist"><button type="button" data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');"><i class="icon-wishlist icon"></i></button></div>
+								<div class="compare"><button type="button" data-toggle="tooltip" title="{{ button_compare }}" onclick="compare.add('{{ product.product_id }}');"><i class="icon-compare icon"></i></button></div>
+							</div>
+						{% endif %}
+					{% endif %}
+					{% if module_cheapering_status %}
+					{% if cheaper_module_setting=='1' %}
+						<a onclick="ajaxmoremodule('route=extension/module/cheapering&prod_id={{ product.product_id }}', '{{ product.product_id }}');" class="cheapering btn btn-border"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i><span>{{ text_cheaper }}</span></a>
+					{% endif %}
+					{% endif %}
+					<div class="price-cart">
+						{% if product.price %}
+							<p class="price{% if product.special %} spec{% endif %}">
+								{% if product.special == false %}
+									{{ product.price }}
+								{% else %}
+									<span class="price-new">{{ product.special }}</span> <span class="price-old">{{ product.price }}</span>
+							    {% endif %}
+							</p>
+						{% endif %}
+						<div class="button-group">
+							<button type="button" class="btn-button{% if product.special %} reding{% endif %}" onclick="cart.add('{{ product.product_id }}');"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">{{ button_cart }}</span></button>
+						</div>
+					</div>
+				</div>
+			  </div>
+		</div>
+	{% endfor %}
+</div>
+{% if showcarousel=="1" and (module.position == 'content_top' or module.position == 'content_bottom') %}
+	<script>
+		$(document).ready(function() {
+			$('.product-layout.latest_{{ module.position }}').wrapAll('<div id="owl-example3" class="owl-carousel"></div>');
+			$('.product-layout.latest_{{ module.position }} .product-thumb').unwrap();
+			$('#owl-example3 .product-thumb').wrap('<div class="product-layout{% if image_additional_hover_module_setting!="1" or product.thumb == false %} no_image{% endif %}"></div>');
+		});
+	</script>
+	{% if module.position == 'content_top' %}
+	<script>
+	$(document).ready(function() {
+		cols = $('#column-right, #column-left').length;
+		if (cols == 2) {
+			$("#owl-example3").owlCarousel({
+			navigation: true,
+			slideSpeed: 200,
+			paginationSpeed: 400,
+			navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>','<i class="fa fa-chevron-right fa-5x"></i>'],
+			items: 2,
+			itemsDesktop: [1400, 1],
+			itemsDesktopSmall: [979, 1],
+			itemsTablet: [768, 2],
+			itemsTabletSmall: [590, 1],
+			itemsMobile: [479, 1],
+			pagination: true
+			});
+		} else if (cols == 1) {
+			$("#owl-example3").owlCarousel({
+			navigation: true,
+			slideSpeed: 200,
+			paginationSpeed: 400,
+			navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>','<i class="fa fa-chevron-right fa-5x"></i>'],
+			items: 3,
+			itemsDesktop: [1400, 2],
+			itemsDesktopSmall: [997, 1],
+			itemsTablet: [767, 2],
+			itemsTabletSmall: [590, 1],
+			itemsMobile: [479, 1],
+			pagination: true
+			});
+		} else {
+			$("#owl-example3").owlCarousel({
+			navigation: true,
+			slideSpeed: 200,
+			paginationSpeed: 400,
+			navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>','<i class="fa fa-chevron-right fa-5x"></i>'],
+			items: 4,
+			itemsDesktop: [1400, 3],
+			itemsDesktopSmall: [1014, 2],
+			itemsTablet: [767, 2],
+			itemsTabletSmall: [590, 1],
+			itemsMobile: [479, 1],
+			pagination: true
+			});
+		}
+	});
+	</script>
+	{% endif %}
+	{% if module.position == 'content_bottom' %}
+	<script>
+	$(document).ready(function() {
+		$("#owl-example3").owlCarousel({
+		pagination: true,
+		navigation: true,
+		slideSpeed: 200,
+		paginationSpeed: 400,
+		navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>','<i class="fa fa-chevron-right fa-5x"></i>'],
+		items: 4,
+		itemsDesktop: [1400, 3],
+		itemsDesktopSmall: [1014, 2],
+		itemsTablet: [767, 2],
+		itemsTabletSmall: [590, 1],
+		itemsMobile: [479, 1]
+		
+		});
+	});
+	</script>
+	{% endif %}
+	<script>
+		$(document).ready(function() {
+			$('#owl-example3').prepend($('.latest-header_{{ module.position }}'));
+			$('#owl-example3').prepend($('.latest-header_{{ module.position }}'));
+		});
+	</script>
+{% endif %}

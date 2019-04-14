@@ -1,0 +1,35 @@
+{{ header }}
+<div class="container">
+	{% set new_row_footer = 0 %}
+	{% if modules_news %}
+		{% for module_news in modules_news %}
+			{% if module_news.news_h1!="" %}
+				<div class="newspage">
+					<a href="index.php?route=product/newspage&news_id={{ module_news.news_id }}" class="image"><span><img src="{{ module_news.news_image }}" alt="" title="" /></span></a>
+					<a href="index.php?route=product/newspage&news_id={{ module_news.news_id }}"><span class="name bold">{{ module_news.news_h1 }}</span></a>
+					<span class="dating">{{ module_news.news_date }}</span>
+					<div class="text_news text_news{{ new_row_footer }}" style="display: block;">{{ module_news.news_text }}</div><span class="more_news more_news{{ new_row_footer }}">{{ more_news }}</span>
+					<div class="text_news_all text_news_all{{ new_row_footer }}">{{ module_news.news_text_all }}</div>
+				</div>
+			{% endif %}
+			{% set new_row_footer=new_row_footer+1 %}
+		{% endfor %}
+	{% endif %}
+	{% set new_row_footer = 0 %}
+	{% if modules_news %}
+		{% for module_news in modules_news %}
+			<script><!--
+			$(document).ready(function() {
+				$('.text_news_all{{ new_row_footer }}').slideToggle(200);
+
+				$('span.more_news{{ new_row_footer }}').click(function() {
+					$('.text_news{{ new_row_footer }}').slideToggle(200);
+					$('.text_news_all{{ new_row_footer }}').slideToggle(200);
+				});
+			});
+			//--></script>
+			{% set new_row_footer=new_row_footer+1 %}
+		{% endfor %}
+	{% endif %}
+</div>
+{{ footer }}

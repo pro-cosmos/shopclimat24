@@ -1,0 +1,439 @@
+{{ header }}{{ column_left }}
+ <div id="content">
+   <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+		<button type="submit" form="form-module" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1>{{ heading_title_title }}</h1>
+      <ul class="breadcrumb">
+		{% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if error_warning %}
+    <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+	{% if success %}
+    <div class="alert alert-success"><i class="fa fa-check-circle"></i> {{ success }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#tab-guest" data-toggle="tab"><i class="fa fa-list"></i> {{ callbacking }}</a></li>
+		<li><a href="#tab-settings" data-toggle="tab"><i class="fa fa-wrench"></i> {{ text_settings }}</a></li>
+	</ul>
+    <div class="panel panel-default tab-content">
+		<div class="tab-pane" id="tab-settings">
+			<fieldset>
+			<form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-module" class="form-horizontal">
+				<div class="form-group">
+				<label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
+					<div class="col-sm-10">
+					  <select name="module_callbacking_status" id="input-status" class="form-control">
+						{% if module_callbacking_status %}
+						<option value="1" selected="selected">{{ text_enabled }}</option>
+						<option value="0">{{ text_disabled }}</option>
+						{% else %}
+						<option value="1">{{ text_enabled }}</option>
+						<option value="0" selected="selected">{{ text_disabled }}</option>
+						{% endif %}
+					  </select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ text_required }}</label>
+					<div class="col-sm-8">
+						<div class="row">
+							<div class="col-sm-4"><br /><input type="checkbox" name="callbacking_status_your_name"{% if callbacking_status_your_name == 1 %} checked="checked"{% endif %} value="1" id="your_name" /><label for="your_name">&nbsp;&nbsp;{{ text_required_name }}</label><br /><br /></div>
+							<div class="col-sm-4"><br /><input type="checkbox" name="callbacking_status_phone"{% if callbacking_status_phone %} checked="checked"{% endif %} value="1" id="phone" /><label for="phone">&nbsp;&nbsp;{{ text_required_phone }}</label><br /><br /></div>
+							<div class="col-sm-4"><br /><input type="checkbox" name="callbacking_status_email"{% if callbacking_status_email %} checked="checked"{% endif %} value="1" id="email" /><label for="email">&nbsp;&nbsp;{{ text_required_email }}</label><br /><br /></div>
+						</div>
+					</div><div class="clearfix"></div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label"> {{ text_help_text }}</label>
+					<div class="col-sm-6">
+						<div>{{ text_format }}</div>
+						<div>
+							<select name="callbacking_format" class="form-control">
+								<option value="text"{% if callbacking_format == 'text' %} selected{% endif %}>{{ text_text }}</option>
+								<option value="checkbox"{% if callbacking_format == 'checkbox' %} selected{% endif %}>{{ text_checkbox_text }}</option>
+							</select>
+						</div><br /><br />
+						<ul class="nav nav-tabs" id="language">
+							{% for language in languages %}
+							<li><a href="#language{{ language.language_id }}" data-toggle="tab" aria-expanded="true"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}"> {{ language.name }}</a></li>
+							{% endfor %}
+						</ul>
+						<div class="tab-content">
+							{% for language in languages %}
+								<div id="language{{ language.language_id }}" class="tab-pane">
+									<textarea type="text" id="callbacking_text{{ language.language_id }}" name="callbacking_text[{{ language.code }}]" value="" maxlength="10000" size="50" style="height: 100px; width: 500px;" data-toggle="summernote" data-lang="{{ summernote }}" class="form-control summernote" />{% if callbacking_text.language['code'] %}{{ callbacking_text.language['code'] }}{% endif %}</textarea>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</form>
+			</fieldset>
+		</div>
+		<div id="tab-guest" class="tab-pane active">
+		  <div class="panel-body">
+			  <div class="table-responsive">
+				<table class="table table-bordered table-hover">
+				  <thead>
+					<tr>
+					  <td style="width: 1px;" class="text-left">№</td>
+					  <td class="text-left">{{ text_date }}</td>
+					  <td class="text-left">{{ text_name }}</td>
+					  <td class="text-left">{{ text_phone }}</td>
+					  <td class="text-left">{{ text_email }}</td>
+					  <td class="text-left">{{ text_comment }}</td>
+					  <td class="text-center">{{ text_status }}</td>
+					</tr>
+				  </thead>
+				  <tbody>
+				    {% set a=0 %}
+					{% for n in callbackings %}
+						{% set a=a+1 %}
+					{% endfor %}
+					{% for n in callbackings %}
+					{% if n.status==0 %}{% set status = status_off %}{% set class=" class='bg_status bg_status" ~ n.id ~ " on'" %}{% else %}{% set status=status_on %}{% set class=" class='bg_status bg_status" ~ n.id ~ "'" %}{% endif %}
+					<tr{{ class }}>
+					   <td class="text-left">{{ a }}</td>
+					   <td class="text-left">{{ n.date }}</td>
+					   <td class="text-left">{{ n.name }}</td>
+					   <td class="text-left">{{ n.phone }}</td>
+					   <td class="text-left">{{ n.email }}</td>
+					   <td class="text-left">{{ n.comment }}</td>
+					   <td class="text-left" style="position: relative; padding-left: 45px; width: 210px;">
+							<button type="button" onclick="ajaxsavestatus('{{ n.id }}');" form="form-featured" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary pull-left" style="position: absolute; left: 3px; data-original-title="{{ button_save }}"><i class="fa fa-save"></i></button>
+							<select name="status" id="input-store{{ n.id }}" class="form-control pull-right" style="display: inline-block; padding-top: 5px; width: 146px;">
+								{% if n.status==0 %}
+									<option value="0" selected="selected">{{ status_off }}</option>
+									<option value="1">{{ status_on }}</option>
+								{% else %}
+									<option value="0">{{ status_off }}</option>
+									<option value="1" selected="selected">{{ status_on }}</option>
+								{% endif %}
+							</select>
+							<span class="saving">{{ text_save }}</span>
+					   </td>
+					   {% set namesend = n.name %}
+					   {% set emailsend = n.email %}
+					   <td class="text-right" width="140">
+							{% if n.email and n.email != false %}
+								<button id="button-send" data-loading-text="{{ text_loading }}" data-toggle="tooltip" title="{{ button_send }}" class="btn btn-primary" onclick="getajaxpage('{{ namesend }}','{{ emailsend }}');"><i class="fa fa-envelope"></i></button>
+							{% endif %}
+							<a onclick="confirm('{{ text_confirm }}') ? location.href='{{ n.delete }}' : false;" data-toggle="tooltip" title="{{ button_delete }}" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
+					   </td>
+					</tr>
+					{% set a=a-1 %}
+					{% endfor %}
+				  </tbody>
+				</table>
+			  </div>
+		  </div>
+		</div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript"><!--
+$('body').prepend('<div class="divsend"></div>');
+function bluring() {
+	if ($("body").hasClass("bluring")) {
+		$('body').removeClass('bluring');
+		$('.modal-bg').removeClass('show');
+	} else {
+		$('body').addClass('bluring');
+		$('.modal-bg').addClass('show');
+	}
+}
+function getajaxpage(namesend, emailsend) {
+    $.ajax({
+        url: 'index.php?route=extension/module/callbacking/sendform',
+		type:'get',
+		data: 'namesend=' + namesend + '&emailsend=' + emailsend + '&user_token={{ user_token }}',
+		success: function(msg){
+			$('.divsend').empty();
+			$('.divsend').append(msg);
+			if ($('body .divsend').hasClass("show")) {
+				$('body .divsend').removeClass('show');
+			} else {
+				$('body .divsend').addClass('show');
+				$('.modal-bg').addClass('show');
+			}
+			bluring();
+		}
+    });
+}
+function ajaxsavestatus(idquick) {
+	data = $('select#input-store' + idquick);
+    $.ajax({
+        url: 'index.php?route=extension/module/callbacking/updating',
+		type: 'get',
+		data: data.serialize() + '&id=' + idquick + '&user_token={{ user_token }}',
+		success: function(){
+			$('#input-store' + idquick +' + .saving').addClass('show');
+			
+			if ($('#input-store' + idquick).val() == '0') {
+				$('.bg_status' + idquick).addClass('on');
+			} else {
+				$('.bg_status' + idquick).removeClass('on');
+			}
+			setTimeout(function () {
+				$('#input-store' + idquick +' + .saving').removeClass('show');
+			}, 3000);
+			
+		}
+    });
+}
+
+function centering(diving) {
+	var wsize = windowWorkSize(),
+	testElem = $(diving),
+	testElemWid =  testElem.outerWidth(),
+	testElemHei =  testElem.outerHeight();
+	testElem.css('top', wsize[1]/2 - testElemHei/2 + (document.body.scrollTop || document.documentElement.scrollTop) + 'px');
+	
+	function windowWorkSize(){
+	var wwSize = new Array();
+		if (window.innerHeight !== undefined) {wwSize= [window.innerWidth,window.innerHeight]} else {
+			wwSizeIE = (document.body.clientWidth) ? document.body : document.documentElement; 
+			wwSize= [wwSizeIE.clientWidth, wwSizeIE.clientHeight];
+		};
+		return wwSize;
+	};
+	
+}
+{% if ckeditor %}
+ckeditorInit('input-message', '{{ user_token }}');
+{% else %}
+$('#input-message').summernote({
+	height: 200,
+	lang:'{{ lang }}'
+});
+{% endif %}
+//--></script>
+  <script type="text/javascript"><!--
+$('select[name=\'to\']').on('change', function() {
+	$('.to').hide();
+
+	$('#to-' + this.value.replace('_', '-')).show();
+});
+
+$('select[name=\'to\']').trigger('change');
+//--></script>
+  <script type="text/javascript"><!--
+// Customers
+$('input[name=\'customers\']').autocomplete({
+	'source': function(request, response) {
+		$.ajax({
+			url: 'index.php?route=customer/customer/autocomplete&user_token={{ user_token }}&filter_name=' +  encodeURIComponent(request),
+			dataType: 'json',
+			success: function(json) {
+				response($.map(json, function(item) {
+					return {
+						label: item['name'],
+						value: item['customer_id']
+					}
+				}));
+			}
+		});
+	},
+	'select': function(item) {
+		$('input[name=\'customers\']').val('');
+
+		$('#input-customer' + item['value']).remove();
+
+		$('#input-customer').parent().find('.well').append('<div id="customer' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="customer[]" value="' + item['value'] + '" /></div>');
+	}
+});
+
+$('#input-customer').parent().find('.well').delegate('.fa-minus-circle', 'click', function() {
+	$(this).parent().remove();
+});
+
+// Affiliates
+$('input[name=\'affiliates\']').autocomplete({
+	'source': function(request, response) {
+		$.ajax({
+			url: 'index.php?route=customer/customer/autocomplete&user_token={{ user_token }}&filter_name=' +  encodeURIComponent(request),
+			dataType: 'json',
+			success: function(json) {
+				response($.map(json, function(item) {
+					return {
+						label: item['name'],
+						value: item['customer_id']
+					}
+				}));
+			}
+		});
+	},
+	'select': function(item) {
+		$('input[name=\'affiliates\']').val('');
+
+		$('#input-affiliate' + item['value']).remove();
+
+		$('#input-affiliate').parent().find('.well').append('<div id="affiliate' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="affiliate[]" value="' + item['value'] + '" /></div>');
+	}
+});
+
+$('#input-affiliate').parent().find('.well').delegate('.fa-minus-circle', 'click', function() {
+	$(this).parent().remove();
+});
+
+// Products
+$('input[name=\'products\']').autocomplete({
+	'source': function(request, response) {
+		$.ajax({
+			url: 'index.php?route=catalog/product/autocomplete&user_token={{ user_token }}&filter_name=' +  encodeURIComponent(request),
+			dataType: 'json',
+			success: function(json) {
+				response($.map(json, function(item) {
+					return {
+						label: item['name'],
+						value: item['product_id']
+					}
+				}));
+			}
+		});
+	},
+	'select': function(item) {
+		$('input[name=\'products\']').val('');
+
+		$('#input-product' + item['value']).remove();
+
+		$('#input-product').parent().find('.well').append('<div id="product' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="product[]" value="' + item['value'] + '" /></div>');
+	}
+});
+
+$('#input-product').parent().find('.well').delegate('.fa-minus-circle', 'click', function() {
+	$(this).parent().remove();
+});
+
+function send(url) {
+	{% if ckeditor %}
+	$('textarea[name=\'message\']').val(CKEDITOR.instances['input-message'].getData());
+	{% else %}
+	// Summer not fix
+	$('textarea[name=\'message\']').val($('#input-message').code());
+	{% endif %}
+	$.ajax({
+		url: url,
+		type: 'post',
+		data: $('#content select, #content input, #content textarea'),
+		dataType: 'json',
+		beforeSend: function() {
+			$('#button-send').button('loading');
+		},
+		complete: function() {
+			$('#button-send').button('reset');
+		},
+		success: function(json) {
+			$('.alert, .text-danger').remove();
+
+			if (json['error']) {
+				if (json['error']['warning']) {
+					$('#content > .container-fluid').prepend('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + json['error']['warning'] + '</div>');
+				}
+
+				if (json['error']['subject']) {
+					$('input[name=\'subject\']').after('<div class="text-danger">' + json['error']['subject'] + '</div>');
+				}
+
+				if (json['error']['message']) {
+					$('textarea[name=\'message\']').parent().append('<div class="text-danger">' + json['error']['message'] + '</div>');
+				}
+			}
+
+			if (json['next']) {
+				if (json['success']) {
+					$('#content > .container-fluid').prepend('<div class="alert alert-success"><i class="fa fa-check-circle"></i>  ' + json['success'] + '</div>');
+
+					send(json['next']);
+				}
+			} else {
+				if (json['success']) {
+					$('#content > .container-fluid').prepend('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + '</div>');
+				}
+			}
+		}
+	});
+}
+$('#language a:first').tab('show');
+//--></script>
+<style type="text/css">
+	.divsend {
+		background: #ffffff;
+		color: #4f4f4f;
+		margin-left: -25%;
+		left: 50%;
+		position: absolute;
+		text-align: left;
+		top: 25%;
+		width: 50%;
+		z-index: 99;
+		display: none;
+	}
+	.divsend .panel-title {
+		margin-top: 10px;
+	}
+	.divsend {
+		left: 50%;
+		margin-left: -22%;
+		position: absolute;
+		width: 44%;
+	}
+	.divsend.show {
+		z-index: 99;
+	}
+	.modal-bg {
+		background: #000000;
+		opacity: 0.40;
+		display: none;
+		position: fixed;
+		right: 0;
+		left: 0;
+		top: 0;
+		bottom: 0;
+	}
+	.modal-bg.opacity {
+		opacity: 0.1;
+	}
+	.saving {
+		clear: both;
+		color: green;
+		display: none;
+		padding-top: 5px;
+		text-align: right;
+	}
+	.bg_status.on > td {
+		background-color: #f5f5f5;
+		font-weight: bold;
+	}
+	.bg_status.on > td .form-control {
+		font-weight: normal;
+	}
+	.panel-default {
+		border-color: #e8e8e8;
+		border-width: 1px;
+	}
+	.container-fluid > .nav-tabs {
+		margin-bottom: 0;
+	}
+	.nav-tabs > li {
+		margin-bottom: -2px;
+	}
+	.panel label {
+		font-weight: normal;
+	}
+</style>
+<div class="modal-bg"></div>
+{{ footer }}

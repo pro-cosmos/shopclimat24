@@ -1,0 +1,25 @@
+<div id="carousel{{ module }}" class="owl-carousel">
+  {% for banner in banners %}
+  <div class="item text-center">
+    {% if banner.link %}
+    <a href="{{ banner.link }}"><img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" /></a>
+    {% else %}
+    <img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />
+	{% endif %}
+  </div>
+  {% endfor %}
+</div>
+<script><!--
+$('#carousel{{ module }}').owlCarousel({
+	items: 6,
+	itemsDesktop : [1400, 5],
+	itemsDesktopSmall : [1014, 5],
+	itemsTablet : [767, 4],
+	itemsTabletSmall : [590, 4],
+	itemsMobile : [479, 3],
+	autoPlay: 3000,
+	navigation: true,
+	navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>', '<i class="fa fa-chevron-right fa-5x"></i>'],
+	pagination: true
+});
+--></script>

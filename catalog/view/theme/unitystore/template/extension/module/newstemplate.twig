@@ -1,0 +1,94 @@
+{% if modules_news %}
+<h3>{{ newss }}<span class="all_news"><a href="index.php?route=product/newsall">{{ all_news }}</a></span></h3>
+<div id="owl-example3{{ modul }}" class="owl-carousel news">
+  {% for module_news in modules_news %}
+  <div class="item">
+    <a href="index.php?route=product/newspage&news_id={{ module_news.news_id }}"><span class="image"><img src="{{ module_news.news_image }}" alt="" title="" /></span></a>
+	<a href="index.php?route=product/newspage&news_id={{ module_news.news_id }}"><span class="name">{{ module_news.news_h1 }}</span></a>
+	<span class="dating">{{ module_news.news_date }}</span>
+	<span class="descrip">{{ module_news.news_text }}</span>
+  </div>
+  {% endfor %}
+</div>
+{% if setting.position == 'content_top' %}
+<script>
+$(document).ready(function() {
+	cols = $('#column-right, #column-left').length;
+	if (cols == 2) {
+		$("#owl-example3{{ modul }}").owlCarousel({
+			navigation : true,
+			slideSpeed : 200,
+			paginationSpeed : 400,
+			navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>','<i class="fa fa-chevron-right fa-5x"></i>'],
+			items : 2,
+			itemsDesktop : [1400, 1],
+			itemsDesktopSmall : [979, 1],
+			itemsTablet : [768, 2],
+			itemsTabletSmall : [590, 1],
+			itemsMobile : [479, 1]
+		});
+	} else if (cols == 1) {
+		$("#owl-example3{{ modul }}").owlCarousel({
+			navigation : true,
+			slideSpeed : 200,
+			paginationSpeed : 400,
+			navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>','<i class="fa fa-chevron-right fa-5x"></i>'],
+			items : 3,
+			itemsDesktop : [1400, 2],
+			itemsDesktopSmall : [997, 1],
+			itemsTablet : [767, 2],
+			itemsTabletSmall : [590, 1],
+			itemsMobile : [479, 1]
+		});
+	} else {
+		$("#owl-example3{{ modul }}").owlCarousel({
+			navigation : true,
+			slideSpeed : 200,
+			paginationSpeed : 400,
+			navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>','<i class="fa fa-chevron-right fa-5x"></i>'],
+			items : 4,
+			itemsDesktop : [1400, 3],
+			itemsDesktopSmall : [1014, 2],
+			itemsTablet : [767, 2],
+			itemsTabletSmall : [590, 1],
+			itemsMobile : [479, 1]
+		});
+	}
+});
+</script>
+{% elseif setting.position == 'content_bottom' %}
+	<script>
+$(document).ready(function() {
+	$("#owl-example3{{ modul }}").owlCarousel({
+		navigation : true,
+		slideSpeed : 200,
+		paginationSpeed : 400,
+		navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>','<i class="fa fa-chevron-right fa-5x"></i>'],
+		items : 4,
+		itemsDesktop : [1400, 3],
+		itemsDesktopSmall : [1014, 2],
+		itemsTablet : [767, 2],
+		itemsTabletSmall : [590, 1],
+		itemsMobile : [479, 1]
+	});
+});
+</script>
+{% elseif setting.position == 'column_left' or setting.position == 'column_right' %}
+<script>
+	$(document).ready(function() {
+		$("#owl-example3{{ modul }}").owlCarousel({
+			navigation : true,
+			slideSpeed : 200,
+			paginationSpeed : 400,
+			navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>','<i class="fa fa-chevron-right fa-5x"></i>'],
+			items : 1,
+			itemsDesktop : [1400, 1],
+			itemsDesktopSmall : [1014, 1],
+			itemsTablet : [767, 1],
+			itemsTabletSmall : [590, 1],
+			itemsMobile : [479, 1]
+		});
+});
+</script>
+{% endif %}
+{% endif %}

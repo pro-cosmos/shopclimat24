@@ -1,0 +1,221 @@
+<div class="margin-bottom">
+<div class="col-sm-12">
+<div class="row">
+<div class="border">
+  {% if status_left %}
+	<div class="{% if status_left and status_center %}{% if status_special %}col-lg-4 col-md-4 col-sm-6 col-xs-6 col-xm-12 {% else %}col-lg-6 col-md-6 col-sm-6 col-xs-12 col-xm-12 {% endif %}{% elseif status_center == false %} col-lg-4 col-md-4 col-sm-6 col-xs-12 col-xm-12 {% else %}{% endif %}padding0 height-left-block">
+		<div id="banners_left{{ module }}" class="owl-carousel openstoremodule">
+		  {% for banner in banners_left %}
+		  <div class="item">
+		    {% if banner.link %}
+			<a href="{{ banner.link }}"><img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive img-width" /></a>
+			{% else %}
+			<img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive img-width" />
+			{% endif %}
+			{% if banner.title %}<div class="title-banner">{{ banner.title }}</div>{% endif %}
+		  </div>
+		  {% endfor %}
+		</div>
+	</div>
+  {% endif %}
+  {% if status_special %}
+	  <div class="{% if status_left and status_center %}col-lg-3 col-md-3 col-sm-6 col-xs-6 {% elseif status_left == false and status_center %}col-lg-7 col-md-7 col-sm-6 col-xs-12 {% elseif status_left and status_center == false %}col-lg-8 col-md-8 col-sm-6 col-xs-12 {% else %}{% endif %} col-xs-12 col-sm-12 col-xm-12 pull-right box-shadow height-special-product">
+		<div id="owl-example-special{{ module }}" class="owl-carousel openstoremodule">
+			{% for product in products_special %}
+				<div class="product-thumb transition">
+				  <div class="image"><a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="" title="" class="img-responsive" /></a></div>
+				  <div class="clearfix margin-bottom text-center">
+				     {% if product.date_end and product.date_end != "0000-00-00" %}{{ text_end }} <span class="redcolor">{{ product.date_end }}</span>{% else %}{{ text_empty_end }}{% endif %}
+				  </div>
+				  <div class="caption">
+				    {% if product.price %}
+					<p class="price text-center">
+					  {% if product.special == false %}
+						  {{ product.price }}
+					  {% else %}
+					  <span class="price-new">{{ product.special }}</span> <span class="price-old">{{ product.price }}</span>
+					  {% endif %}
+					  {% if product.tax %}
+					  <span class="price-tax">{{ text_tax }} {{ product.tax }}</span>
+					  {% endif %}
+					</p>
+					{% endif %}
+				  </div>
+				</div>
+		  {% endfor %}
+		</div>
+	  </div>
+  {% endif %}
+  {% if status_center %}
+	<div class="{% if status_special %}col-lg-5 col-md-5 col-sm-6 col-xs-12 col-xm-12{% else %}col-lg-6 col-md-6 col-sm-6 col-xs-12 col-xm-12{% endif %}">
+		<div class="row">
+			<div id="banners_center{{ module }}" class="owl-carousel openstoremodule2">
+			  {% for banner in banners_center %}
+			  <div class="item">
+			    {% if banner.link %}
+				<a href="{{ banner.link }}"><img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive img-width" /></a>
+				{% else %}
+				<img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive img-width" />
+				{% endif %}
+				{% if banner.title %}<div class="title-banner">{{ banner.title }}</div>{% endif %}
+			  </div>
+			  {% endfor %}
+			</div>
+		</div>
+	</div>
+  {% endif %}
+  {% if status_featured %}
+	  <div class="{% if status_left and status_center %}{% if status_special %}col-lg-8 col-md-8 col-sm-6{% else %}col-lg-12 col-md-12 col-sm-12{% endif %} {% elseif status_left == false and status_center %}{% elseif  status_left and status_center == false %} col-lg-8 col-md-8 col-sm-12{% else %}{% endif %} col-xs-12 col-xm-12 height-bottom-product">
+		<div class="row">
+			<div id="owl-example-featured{{ module }}" class="owl-carousel openstoremodule2 border-top">
+			  {% for product in products_featured %}
+					<div class="product-thumb transition">
+					  <div class="image"><a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="" title="" class="img-responsive" /></a></div>
+					  <div class="caption text-center">
+						<span class="gray"><a href="{{ product.href }}">{{ product.name }}</a></span>
+					  </div>
+					</div>
+			  {% endfor %}
+			</div>
+		</div>
+	  </div>
+  {% endif %}
+  <div class="clearfix"></div>
+  </div>
+  </div>
+  </div><div class="clearfix"></div>
+</div>
+<script><!--
+	$('#banners_left{{ module }}').owlCarousel({
+		items: 1,
+		autoPlay: 300000,
+		singleItem: true,
+		navigation: false,
+		pagination: false,
+		transitionStyle: 'fade'
+	});
+	$('#banners_center{{ module }}').owlCarousel({
+		items: 1,
+		autoPlay: 300000,
+		singleItem: true,
+		navigation: false,
+		pagination: false,
+		transitionStyle: 'fade'
+	});
+	$('#owl-example-special{{ module }}').owlCarousel({
+		{% if status_left and status_center %}
+			items: 1,
+			singleItem: true,
+		{% elseif status_left == false and status_center %}
+			items : 3,
+			itemsDesktop : [1400, 2],
+			itemsDesktopSmall : [997, 1],
+			itemsTablet : [767, 2],
+			itemsTabletSmall : [590, 1],
+			itemsMobile : [479, 1],
+		{% elseif status_left and status_center == false %}
+			items : 3,
+			itemsDesktop : [1400, 2],
+			itemsDesktopSmall : [997, 1],
+			itemsTablet : [767, 2],
+			itemsTabletSmall : [590, 1],
+			itemsMobile : [479, 1],
+		{% else %}
+			items : 5,
+			itemsDesktop : [1400, 3],
+			itemsDesktopSmall : [997, 2],
+			itemsTablet : [767, 2],
+			itemsTabletSmall : [590, 1],
+			itemsMobile : [479, 1],
+		{% endif %}
+			autoPlay: 300000,
+			navigation: true,
+			pagination: false,
+			navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>', '<i class="fa fa-chevron-right fa-5x"></i>'],
+			transitionStyle: 'fade'
+	});
+	$('#owl-example-featured{{ module }}').owlCarousel({
+		items: 5,
+		autoPlay: 300000,
+		singleItem: false,
+		navigation: true,
+		pagination: false,
+		navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>', '<i class="fa fa-chevron-right fa-5x"></i>'],
+		transitionStyle: 'fade'
+	});
+	function heightResizeafter991() {
+		setTimeout(function(){
+			var height1 = $('.height-special-product').height();
+			$('.openstoremodule2 .item img').height(height1);
+		}, 500);
+		{% if status_special %}
+			setTimeout(function(){
+				var height2 = $('.height-special-product').height() + $('.height-bottom-product').height();
+				$('.height-left-block .item img').height(height2);
+			}, 500);
+		{% else %}
+			setTimeout(function(){
+				var height2 = $('.openstoremodule2 .item img').height();
+				$('.height-left-block .item img').height(height2);
+			}, 500);
+		{% endif %}
+	}
+	if ($(window).width() >= 991) {
+		heightResizeafter991();
+	}
+	$(window).resize(function() {
+		if ($(window).width() >= 991) {
+			heightResizeafter991();
+		}
+	});
+
+	function heightResizeafter767() {
+		{% if status_left %}
+			{% if status_special %}
+				setTimeout(function(){
+					var height1 = $('.height-special-product').height();
+					$('.height-left-block .item img').height(height1);
+				}, 500);
+			{% endif %}
+			{% if status_special %}
+				setTimeout(function(){
+					var height1 = $('.height-bottom-product').height();
+					$('.openstoremodule2 .item img').height(height1);
+				}, 500);
+			{% else %}
+				setTimeout(function(){
+					var height2 = $('.openstoremodule2 .item img').height();
+					$('.height-left-block .item img').height(height2);
+				}, 500);
+			{% endif %}
+		{% else %}
+			setTimeout(function(){
+				var height1 = $('.height-special-product').height();
+				$('.openstoremodule2 .item img').height(height1);
+			}, 500);
+		{% endif %}
+	}
+	if ($(window).width() >= 767 && $(window).width() < 991) {
+		heightResizeafter767();
+	}
+	$(window).resize(function() {
+		if ($(window).width() >= 767 && $(window).width() < 991) {
+			heightResizeafter767();
+		}
+	});
+	function heightResizebefore767() {
+		setTimeout(function(){
+			$('.openstoremodule2 .item img').height('auto');
+		}, 500);
+	}
+	if ($(window).width() <= 767) {
+		heightResizebefore767();
+	}
+	$(window).resize(function() {
+		if ($(window).width() <= 767) {
+			heightResizebefore767();
+		}
+	});
+	
+	
+--></script>

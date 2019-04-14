@@ -1,0 +1,245 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" form="form-featured" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+		{% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+		{% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if error_warning %}
+    <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+      </div>
+      <div class="panel-body">
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-featured" class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-name">{{ entry_name }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="name" value="{{ name }}" placeholder="{{ entry_name }}" id="input-name" class="form-control" />
+			  {% if error_name %}
+              <div class="text-danger">{{ error_name }}</div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
+            <div class="col-sm-10">
+              <select name="status" id="input-status" class="form-control">
+			    {% if status %}
+                <option value="1" selected="selected">{{ text_enabled }}</option>
+                <option value="0">{{ text_disabled }}</option>
+                {% else %}
+                <option value="1">{{ text_enabled }}</option>
+                <option value="0" selected="selected">{{ text_disabled }}</option>
+                {% endif %}
+              </select>
+            </div>
+          </div>
+		  <div class="form-group">
+            <div class="col-sm-4">
+				<div class="border" style="height: 590px;">
+					<div class="col-sm-12">
+						<label><span>{{ entry_banner_left }}</span></label><br /><br />
+						<select name="banner_id_left" id="input-banner-left" class="form-control">
+							{% for banner in banners %}
+							{% if banner.banner_id == banner_id_left %}
+							<option value="{{ banner.banner_id }}" selected="selected">{{ banner.name }}</option>
+							{% else %}
+							<option value="{{ banner.banner_id }}">{{ banner.name }}</option>
+							{% endif %}
+							{% endfor %}
+						</select>
+					</div>
+					<label class="col-sm-2 control-label" for="input-status-left"><br /><br />{{ entry_status }}</label>
+					<div class="col-sm-10"><br /><br />
+					  <select name="status_left" id="input-status-left" class="form-control">
+					    {% if status_left %}
+						<option value="1" selected="selected">{{ text_enabled }}</option>
+						<option value="0">{{ text_disabled }}</option>
+						{% else %}
+						<option value="1">{{ text_enabled }}</option>
+						<option value="0" selected="selected">{{ text_disabled }}</option>
+						{% endif %}
+					  </select>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<div class="col-sm-8">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="border" style="height: 298px;">
+							<div class="col-sm-12">
+								<label><span>{{ entry_banner_center }}</span></label><br /><br />
+								<select name="banner_id_center" id="input-banner-center" class="form-control">
+								    {% for banner in banners %}
+									{% if banner.banner_id == banner_id_center %}
+									<option value="{{ banner.banner_id }}" selected="selected">{{ banner.name }}</option>
+									{% else %}
+									<option value="{{ banner.banner_id }}">{{ banner.name }}</option>
+									{% endif %}
+									{% endfor %}
+								</select>
+							</div>
+							<label class="col-sm-2 control-label" for="input-status-center"><br /><br />{{ entry_status }}</label>
+							<div class="col-sm-10"><br /><br />
+							  <select name="status_center" id="input-status-center" class="form-control">
+							    {% if status_center %}
+								<option value="1" selected="selected">{{ text_enabled }}</option>
+								<option value="0">{{ text_disabled }}</option>
+								{% else %}
+								<option value="1">{{ text_enabled }}</option>
+								<option value="0" selected="selected">{{ text_disabled }}</option>
+								{% endif %}
+							  </select>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="border">
+							<div class="col-sm-12">
+								<label class="control-label"><span data-toggle="tooltip" title="{{ help_product_right }}">{{ entry_product_right }}</span></label><br /><br />
+								<input type="text" name="product_name_special" value="" placeholder="{{ entry_product_date_end }}" id="input-product-special" class="form-control" />
+								<div id="featured-product-special" class="well well-sm" style="height: 100px; overflow: auto;">
+									{% for product in product_special %}
+										<div id="featured-product-special{{ product.product_id }}"><i class="fa fa-minus-circle"></i> {{ product.name }}
+											<input type="hidden" name="product_special[]" value="{{ product.product_id }}" />
+										</div>
+									{% endfor %}
+								</div>
+							</div>
+							<label class="col-sm-2 control-label" for="input-status-center"><br /><br />{{ entry_status }}</label>
+							<div class="col-sm-10"><br /><br />
+							  <select name="status_special" id="input-status-center" class="form-control">
+								{% if status_special %}
+								<option value="1" selected="selected">{{ text_enabled }}</option>
+								<option value="0">{{ text_disabled }}</option>
+								{% else %}
+								<option value="1">{{ text_enabled }}</option>
+								<option value="0" selected="selected">{{ text_disabled }}</option>
+								{% endif %}
+							  </select>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<div class="border">
+							<div class="col-sm-12">
+								<label><span>{{ entry_product_bottom }}</span></label><br /><br />
+								<input type="text" name="product_name_featured" value="" placeholder="{{ entry_product }}" id="input-product-featured" class="form-control" />
+								<div id="featured-product-featured" class="well well-sm" style="height: 100px; overflow: auto;">
+									{% for product in product_featured %}
+										<div id="featured-product-featured{{ product.product_id }}"><i class="fa fa-minus-circle"></i> {{ product.name }}
+											<input type="hidden" name="product_featured[]" value="{{ product.product_id }}" />
+										</div>
+									{% endfor %}
+								</div>
+							</div>
+							<label class="col-sm-2 control-label" for="input-status-center"><br /><br />{{ entry_status }}</label>
+							<div class="col-sm-10"><br /><br />
+							  <select name="status_featured" id="input-status-center" class="form-control">
+								{% if status_featured %}
+								<option value="1" selected="selected">{{ text_enabled }}</option>
+								<option value="0">{{ text_disabled }}</option>
+								{% else %}
+								<option value="1">{{ text_enabled }}</option>
+								<option value="0" selected="selected">{{ text_disabled }}</option>
+								{% endif %}
+							  </select>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		  </div> 
+        </form>
+      </div>
+    </div>
+  </div>
+  <style type="text/css">
+	.border {
+		border: 1px solid #aaa;
+		padding-top: 15px;
+		padding-bottom: 15px;
+		margin-bottom: 15px;
+	}
+	.well-sm {
+		margin-bottom: 0;
+	}
+	.form-horizontal .control-label {
+		text-align: left;
+	}
+  </style>
+  <script type="text/javascript"><!--
+$('input[name=\'product_name_special\']').autocomplete({
+	source: function(request, response) {
+		$.ajax({
+			url: 'index.php?route=catalog/product/autocompletespecial&user_token={{ user_token }}&limit=10&filter_name=' +  encodeURIComponent(request),
+			dataType: 'json',
+			success: function(json) {
+				response($.map(json, function(item) {
+					return {
+						label: item['name'] + ' - ' + item['date_end'],
+						value: item['product_id']
+					}
+				}));
+			}
+		});
+	},
+	select: function(item) {
+		$('input[name=\'product_name_special\']').val('');
+		
+		$('#featured-product-special' + item['value']).remove();
+		
+		$('#featured-product-special').append('<div id="featured-product-special' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="product_special[]" value="' + item['value'] + '" /></div>');	
+	}
+});
+	
+$('#featured-product-featured').delegate('.fa-minus-circle', 'click', function() {
+	$(this).parent().remove();
+});
+$('input[name=\'product_name_featured\']').autocomplete({
+	source: function(request, response) {
+		$.ajax({
+			url: 'index.php?route=catalog/product/autocomplete&user_token={{ user_token }}&limit=10&filter_name=' +  encodeURIComponent(request),
+			dataType: 'json',
+			success: function(json) {
+				response($.map(json, function(item) {
+					return {
+						label: item['name'],
+						value: item['product_id']
+					}
+				}));
+			}
+		});
+	},
+	select: function(item) {
+		$('input[name=\'product_name_featured\']').val('');
+		
+		$('#featured-product-featured' + item['value']).remove();
+		
+		$('#featured-product-featured').append('<div id="featured-product-featured' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="product_featured[]" value="' + item['value'] + '" /></div>');	
+	}
+});
+	
+$('#featured-product-featured').delegate('.fa-minus-circle', 'click', function() {
+	$(this).parent().remove();
+});
+//--></script></div>
+{{ footer }}

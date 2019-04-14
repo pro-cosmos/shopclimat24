@@ -1,0 +1,10 @@
+{{ header }}
+<div class="container" class="none">
+	<div class="newspage">
+		{% if news_image %}<span class="image"><img src="{{ news_image }}" alt="" title="" /></span>{% endif %}
+		<span class="name bold">{{ news_name }}</span>
+		<div class="date_footer">{% if news_date %}{{ news_date }}{% endif %}</div>
+		<div class="text_news">{{ news_text }}</div>
+	</div>
+</div>
+{{ footer }}

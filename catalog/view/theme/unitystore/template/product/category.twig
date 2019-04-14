@@ -1,0 +1,217 @@
+{{ header }}
+<div class="container">
+  <div class="row">{{ column_left }}
+	{% if column_left and column_right %}
+		{% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+		{% set class = 'col-sm-9' %}
+    {% else %}
+		{% set class = 'col-sm-12' %}
+    {% endif %}
+    <div id="content" class="{{ class }}">
+	  <ul class="breadcrumb">
+	    {% for breadcrumb in breadcrumbs %}
+		<li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+		{% endfor %}
+	  </ul>
+      {% if thumb or description %}
+      <div class="row category_description">
+		<div class="col-sm-{% if thumb %}10{% else %}12{% endif %} text-justify">
+			<h1>{{ heading_title }}</h1>
+			{% if description_before %}<div class="show_description">{{ description_before }}</div>{% endif %}
+			{% if description %}<div class="hide_description">{{ description }}</div>{% endif %}
+		</div>
+        {% if thumb %}
+        <div class="col-sm-2 text-right"><img src="{{ thumb }}" alt="{{ heading_title }}" title="{{ heading_title }}" class="img-thumbnail" /></div>
+        {% endif %}
+		{% if show_more_description %}<div class="col-sm-12"><div class="more_description text-center"><span class="razver">{{ razver }}</span><span class="svernut">{{ svernut }}</span></div></div>{% endif %}
+      </div>
+      <hr>
+      {% endif %}
+      {% if categories %}
+		<h3>{{ text_refine }}</h3>
+		  <div class="row list-category">
+			{% for category in categories %}
+				<div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 margin-bottom">
+					<ul>
+						<li><a href="{{ category.href }}">{% if category.image %}<img class="img-responsive" src="{{ category.image }}" alt="" title="" />{% endif %}<span>{{ category.name }}</span></a></li>
+					</ul>
+				</div>
+			{% endfor %}
+		  </div>
+      {% endif %}
+	  <hr>
+	  {{ content_top }}
+      {% if products %}
+      <div class="row sort">
+	    <div class="col-xs-7 col-md-5 col-sm-7 col-lg-5">
+			<a href="{{ compare }}" id="compare-total" class="line-height btn btn-border btn-padding text-center pull-right text-uppercase">{{ text_compare }}</a>
+			<div class="btn-group pull-left">
+				<button type="button" id="list-view" class="btn btn-white" data-toggle="tooltip" title="{{ button_list }}"><i class="fa fa-list"></i></button>
+				<button type="button" id="grid-view" class="btn btn-white" data-toggle="tooltip" title="{{ button_grid }}"><i class="fa fa-th"></i></button>
+				<button type="button" id="price-view" class="btn btn-white" data-toggle="tooltip" title="{{ button_price }}"><i class="fa fa-bars"></i></button>
+			</div>
+		</div>
+        <div class="col-xs-2 col-md-3 col-lg-3 col-sm-2 text-right pull-right">
+			<div class="pull-right">
+			  <div class="select-sort input-group-btn">
+				<button class="btn dropdown-toggle sorting" type="button" data-toggle="dropdown" aria-expanded="true"><span class="hidden-xs hidden-sm">{{ text_limit }}&nbsp;&nbsp;&nbsp;</span>
+					{% for lim in limits %}
+						{% if lim.value == limit %}
+							<span>{{ lim.text }}</span>
+						{% endif %}
+					{% endfor %}
+					<i class="fa fa-chevron-down"></i>
+				</button>
+				<ul class="dropdown-menu">
+					{% for limts in limits %}
+						{% if limts.value != limit %}
+							<li><a{% if gofilter or nofilter %} onClick="ajax_page_category_select('{{ limts.href }}');"{% else %} href="{{ limts.href }}"{% endif %}>{{ limts.text }}</a></li>
+						{% endif %}
+					{% endfor %}
+				</ul>
+			  </div>
+			  </div>
+			  <div class="pull-right">
+			  <label class="control-label"></label>
+			</div>
+		</div>
+        <div class="col-xs-3 col-md-4 col-lg-4 col-sm-3 text-right pull-right">
+		  <div class="select-sort input-group-btn pull-right">
+			<button class="btn dropdown-toggle sorting" type="button" data-toggle="dropdown" aria-expanded="true"><span class="hidden-xs hidden-sm">{{ text_sort }}&nbsp;&nbsp;&nbsp;</span>
+				{% for sor in sorts %}
+					{% if sor.value == sort ~ '-' ~ order %}
+						<span>{{ sor.text }}</span>
+					{% endif %}
+				{% endfor %}
+				<i class="fa fa-chevron-down"></i>
+			</button>
+			<ul class="dropdown-menu">
+				{% for srts in sorts %}
+					{% if srts.value != sort ~ '-' ~ order %}
+						<li><a{% if gofilter or nofilter %} onClick="ajax_page_category_select('{{ srts.href }}');"{% else %} href="{{ srts.href }}"{% endif %}>{{ srts.text }}</a></li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		  </div>
+		  <div class="pull-right">
+			  <label class="control-label"></label>
+		  </div>
+        </div>
+      </div>
+      <br />
+      <div class="list-product col-xs-12">
+	  <div class="row">
+		{% for product in products %}
+		<div class="product-layout col-lg-4 col-md-4 col-sm-6 col-xs-12{% if image_additional_hover_module_setting!='1' or product.images == false %} no_image{% endif %}">
+			<div class="product-thumb product-thumb{{ product.product_id }}">
+				<div class="image relative">
+					<a href="{{ product.href }}">
+					{% if product.thumb %}
+						<div class="img"><img src="{{ product.thumb }}" alt="" title="" class="img-responsive imagess" /></div>
+					{% endif %}
+					{% set m = 1000 %}
+					{% if image_additional_hover_module_setting=="1" %}
+						{% if product.images %}
+							<div class="images-add">
+								{% for image in product.images %}
+									{% set m = m + 1 %}
+									{% if m <=1001  %}
+										<img src="{% if image.thumb %}{{ image.thumb }}{% endif %}" title="" alt="" class="img-responsive" />
+									{% endif %}
+								{% endfor %}
+							</div>
+						{% endif %}
+					{% endif %}
+					</a>
+					<div class="sticker-thumb">{% if display_popular_stickers=="1" %}{{ product.popular }}{% endif %}{% if display_special_stickers=="1" %}{{ product.sale }}{% endif %}{% if display_new_stickers=="1" %}{{ product.new }}{% endif %}</div>
+					<div class="chevron{% if quickpay_module_setting=='0' and quickview_module_setting=='0' %} hide{% endif %}{% if (quickpay_module_setting + quickview_module_setting) == "1" %} one{% endif %} animated bounceOut">
+					{% if module_quickpay_status %}
+						{% if quickpay_module_setting=='1' %}
+							<a data-toggle="tooltip" title="{{ quick_pay }}" onclick="ajaxmoremodule('route=extension/module/quickpay&prod_id={{ product.product_id }}', '{{ product.product_id }}');"><i class="fa fa-cart-arrow-down"></i><span class="hidden-xs hidden-sm hidden-md">&nbsp;&nbsp;&nbsp;{{ quick_pay }}</span></a>
+						{% endif %}
+					{% endif %}
+					</div>
+				</div>
+				<div class="caption">
+					<h4>
+						<a href="{{ product.href }}">{{ product.name }}</a>
+						<span class="price_block"><span class="stock_price btn-black">{{ text_stock_price }} {{ product.quantity }} {{ text_quantity_price }}</span>{% if product.sku %}<span class="artikul_price">{{ text_artikul_price }} {{ product.sku }}</span>{% endif %}</span>
+					</h4>
+					{% if description_module_setting == "1" %}
+						{% if product.description %}
+							<p>{{ product.description }}</p>
+						{% endif %}
+					{% endif %}
+					{% if on_off_rating == "2" %}
+						<div class="rating">
+							{% if product.review_tot %}<a onclick="ajaxpopup('index.php?route=extension/module/carous/review&prod_id={{ product.product_id }}&limit=5&popup_all=1')">{% endif %}
+							{% for i in 1..5 %}
+								{% if product.rating < i %}
+									<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+								{% else %}
+									<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+								{% endif %}
+							{% endfor %}
+							<div class="reviews_icon">({{ product.review_tot }})</div>
+							{% if product.review_tot %}</a>{% endif %}
+							<div class="wishlist"><button type="button" data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');"><i class="icon-wishlist icon"></i></button></div>
+							<div class="compare"><button type="button" data-toggle="tooltip" title="{{ button_compare }}" onclick="compare.add('{{ product.product_id }}');"><i class="icon-compare icon"></i></button></div>
+						</div>
+					{% endif %}
+					{% if on_off_rating == "0" %}
+						{% if product.rating %}
+							<div class="rating">
+								<div class="reviews_icon">{{ product.review_tot }}</div>
+								{% for i in 1..5 %}
+									{% if product.rating < i %}
+										<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+									{% else %}
+										<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+									{% endif %}
+								{% endfor %}
+								<div class="wishlist"><button type="button" data-toggle="tooltip" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');"><i class="icon-wishlist icon"></i></button></div>
+								<div class="compare"><button type="button" data-toggle="tooltip" title="{{ button_compare }}" onclick="compare.add('{{ product.product_id }}');"><i class="icon-compare icon"></i></button></div>
+							</div>
+						{% endif %}
+					{% endif %}
+					{% if module_cheapering_status %}
+					{% if cheaper_module_setting=='1' %}
+						<a  data-toggle="tooltip" title="{{ text_cheaper }}" onclick="ajaxmoremodule('route=extension/module/cheapering&prod_id={{ product.product_id }}', '{{ product.product_id }}');" class="cheapering btn btn-border"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i><span>{{ text_cheaper }}</span></a>
+					{% endif %}
+					{% endif %}
+					<div class="price-cart width">
+						{% if product.price %}
+							<p class="price{% if product.special %} spec{% endif %}">
+								{% if product.special == false %}
+									{{ product.price }}
+								{% else %}
+									<span class="price-new">{{ product.special }}</span> <span class="price-old">{{ product.price }}</span>
+							    {% endif %}
+							</p>
+						{% endif %}
+						<div class="button-group">
+							<button type="button" data-toggle="tooltip" title="{{ button_cart }}" class="btn-button{% if product.special %} reding{% endif %}" onclick="cart.add('{{ product.product_id }}');"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">{{ button_cart }}</span></button>
+						</div>
+					</div>
+				</div>
+			</div>
+	  </div>
+	  {% endfor %}
+	  </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 text-left">{{ pagination }}</div>
+        <div class="col-sm-6 text-right">{{ results }}</div>
+      </div>
+      {% endif %}
+	  {% if categories == false and products == false %}
+      <p>{{ text_empty }}</p>
+      <div class="buttons">
+        <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
+      </div>
+      {% endif %}
+      </div>{{ column_right }}{{ gofilter_cloud }}{{ content_bottom }}
+    </div>
+</div>
+{{ footer }}
