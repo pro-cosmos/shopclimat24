@@ -5993,7 +5993,7 @@ header .phone-header .fa {
 	display: none;
 }
 body:not([class*="product-category-"]):not([class*="product-product-"]) .breadcrumb {
-	display: none;
+	display: block;
 }
 .breadcrumb + .breadcrumb {
 	display: none;
