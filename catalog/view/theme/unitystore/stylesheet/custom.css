@@ -1,7 +1,14 @@
+/* Hide Favorits button and categories in search input field. */
 .col-sm-9 .col-sm-12 .col-sm-2 {
 	display: none;
 }
 #search .select-wrap.input-group-btn {
 	display: none;
+}
+/* Show in dimension of filters */
+.filter .checkbox-group .filter-attr-15 label:after,
+.filter .checkbox-group .filter-attr-16 label:after
+{
+	content: "кВт"
 }
 

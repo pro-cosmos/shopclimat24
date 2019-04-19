@@ -607,7 +607,7 @@
 										{% set test_checked = 0 %}{% if attribute.attribute %}{% for attribute_text in attribute.attribute %}{% if attribute_text.attribute_value_required %}{% set test_checked = test_checked + 1 %}{% endif %}{% endfor %}{% endif %}
 										{% for attribute_text in attribute.attribute %}
 											{% set count = count + 1 %}
-											<div class="checkbox{% if test_checked == 0 %}{% if count > count_show %} none none{{ count_group }}{% endif %}{% endif %}">
+											<div class="checkbox{% if test_checked == 0 %}{% if count > count_show %} none none{{ count_group }}{% endif %}{% endif %} filter-attr-{{ attribute.attribute_id }}">
 												{% if attribute_text.attribute_value_required and attribute_text.attribute_stock_required == false %}<input type="checkbox" name="attributes_filter[{{ attribute_text.attribute_id }}][]" value="{{ attribute_text.text }}" checked />{% endif %}
 												<input type="checkbox"{% if attribute_text.attribute_value_required %} checked{% endif %} name="attributes_filter[{{ attribute_text.attribute_id }}][]" value="{{ attribute_text.text }}" id="attribute-value-attribute-{{ m }}{{ attribute.attribute_id }}" data-attribute="{{ attribute.attribute_id }}" {% if attribute_text.attribute_stock_required == false  and attribute_text.attribute_value_required == false %} disabled{% endif %} />
 												<label for="attribute-value-attribute-{{ m }}{{ attribute.attribute_id }}">{{ attribute_text.text }}
