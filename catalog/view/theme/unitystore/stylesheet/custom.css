@@ -11,4 +11,8 @@
 {
 	content: "кВт"
 }
+.filter .checkbox-group .filter-attr-13 label:after
+{
+	content: "м2"
+}
 
