@@ -814,6 +814,7 @@ class ModelToolExportImport extends Model {
 			if (isset($keywords[$language_code])) {
 				$keyword = $keywords[$language_code];
 				if ($keyword != '') {
+          $keyword = custom_translit($keyword);
 					if (isset($old_seo_url_ids[$category_id][$store_id][$language_id])) {
 						$seo_url_id = $old_seo_url_ids[$category_id][$store_id][$language_id];
 						$sql  = "INSERT INTO `".DB_PREFIX."seo_url` (`seo_url_id`, `store_id`, `language_id`, `query`, `keyword`) VALUES ";

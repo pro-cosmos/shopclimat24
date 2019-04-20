@@ -3297,8 +3297,8 @@ class ModelCatalogSuppler extends Model {
 		$text = str_replace('#' , '' , $text);
 		$text = str_replace(',' , '-' , $text);		
 		$text = str_replace('\\' , '-' , $text);
-		$text = str_replace('\/' , '-' , $text);	
-		$text = str_replace("/" , '-' , $text);		
+		$text = str_replace('\/' , '-' , $text);
+		$text = str_replace("/" , '-' , $text);
 		$text = str_replace("(" , '' , $text);
 		$text = str_replace(")" , '' , $text);
 		$text = str_replace("[" , '' , $text);
@@ -5973,14 +5973,14 @@ class ModelCatalogSuppler extends Model {
 			$seo['prod_desc'] = str_replace('[n]', $name, $seo['prod_desc']);
 			$seo['prod_keyword'] = str_replace('[n]', $name, $seo['prod_keyword']);
 			$seo['prod_url'] = str_replace('[n]', $name, $seo['prod_url']);
-		
+			$seo['prod_url'] = str_replace('[n_clean]', custom_translit($name), $seo['prod_url']);
 			$seo['prod_h1'] = str_replace('[p]', $price, $seo['prod_h1']);
 			$seo['prod_title'] = str_replace('[p]', $price, $seo['prod_title']);
 			$seo['prod_meta_desc'] = str_replace('[p]', $price, $seo['prod_meta_desc']);
 			$seo['prod_desc'] = str_replace('[p]', $price, $seo['prod_desc']);
 			$seo['prod_keyword'] = str_replace('[p]', $price, $seo['prod_keyword']);
 			$seo['prod_url'] = str_replace('[p]', $price, $seo['prod_url']);
-			
+
 			$seo['prod_h1'] = str_replace('[sp]', $sprice, $seo['prod_h1']);
 			$seo['prod_title'] = str_replace('[sp]', $sprice, $seo['prod_title']);
 			$seo['prod_meta_desc'] = str_replace('[sp]', $sprice, $seo['prod_meta_desc']);
@@ -5994,14 +5994,14 @@ class ModelCatalogSuppler extends Model {
 			$seo['prod_desc'] = str_replace('[c]', $category, $seo['prod_desc']);
 			$seo['prod_keyword'] = str_replace('[c]', $category, $seo['prod_keyword']);
 			$seo['prod_url'] = str_replace('[c]', $category, $seo['prod_url']);
-			
+			$seo['prod_url'] = str_replace('[c_clean]', custom_translit($category), $seo['prod_url']);
 			$seo['prod_h1'] = str_replace('[pc]', $pcategory, $seo['prod_h1']);
 			$seo['prod_title'] = str_replace('[pc]', $pcategory, $seo['prod_title']);
 			$seo['prod_meta_desc'] = str_replace('[pc]', $pcategory, $seo['prod_meta_desc']);
 			$seo['prod_desc'] = str_replace('[pc]', $pcategory, $seo['prod_desc']);
 			$seo['prod_keyword'] = str_replace('[pc]', $pcategory, $seo['prod_keyword']);
 			$seo['prod_url'] = str_replace('[pc]', $pcategory, $seo['prod_url']);
-			
+			$seo['prod_url'] = str_replace('[pc_clean]', custom_translit($pcategory), $seo['prod_url']);
 			$seo['prod_h1'] = str_replace('[m]', $manufacturer, $seo['prod_h1']);
 			$seo['prod_title'] = str_replace('[m]', $manufacturer, $seo['prod_title']);
 			$seo['prod_meta_desc'] = str_replace('[m]', $manufacturer, $seo['prod_meta_desc']);
