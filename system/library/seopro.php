@@ -470,7 +470,8 @@ class SeoPro {
 	}
 	
 	public function validate() {
-		
+    $this->detectAjax();
+
 		// break redirect for php-cli-script
 		if (php_sapi_name() === 'cli') 
 			return;
