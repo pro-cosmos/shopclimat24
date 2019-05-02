@@ -50,6 +50,7 @@ class ModelExtensionFixprice extends Model {
         $is_first = true;
         while($xml->read() && $xml->name !== 'offer');
         while($xml->name === 'offer'){
+          $str = [];
           $node = new SimpleXMLElement($xml->readOuterXML());
           $row = (array) $node;
           $attributes = $row['@attributes'];
@@ -71,9 +72,9 @@ class ModelExtensionFixprice extends Model {
 						}
 
             $fields = array_diff($fields, ['parameters']);
-            $str = mb_convert_encoding (implode(';', $fields) ,"Windows-1251" , "UTF-8" );
+            $fields_str = mb_convert_encoding (implode(';', $fields) ,"Windows-1251" , "UTF-8" );
             $path = fopen($file_csv, "a+");
-            fwrite($path, $str. PHP_EOL);
+            fwrite($path, $fields_str. PHP_EOL);
             fclose($path);
 
             $is_first = false;
@@ -89,34 +90,35 @@ class ModelExtensionFixprice extends Model {
                 $td = (array) $tr->td;
                 $field_value = end($td);
                 $field_value = is_string($field_value) ? (string) $field_value : (string) $field_value->b;
-                $row[$field_name] = '"' . (string) $field_value . '"';
+                $row[$field_name] =  (string) $field_value ;
               }
             }
             unset($html);
             unset($row['parameters']);
           }
 
-          $str = [];
+
           foreach ($fields as $k) {
             $v = isset($row[$k])? $row[$k] : '';
             switch ($k) {
               case 'categoryId':
-                $str[] = '"' . $cat[(string)$v] . '"';
+                $v =  $cat[(string)$v] ;
                 break;
               default:
                 if (is_array($v)){
-                	$str[] = '"' . implode('|', (array) $v) . '"';
+                	$v =  implode('|', (array) $v) ;
                 }
                 else {
-                  $str[] = '"' . (string) $v . '"';
+                  $v =  (string) $v ;
 								}
             }
+            $str[] = '"' . str_replace('"', '', $v) . '"';
           }
 
           $str = implode(';', $str);
-          $str = mb_convert_encoding ($str . PHP_EOL,"Windows-1251" , "UTF-8" );
+          $str = mb_convert_encoding ($str, "Windows-1251" , "UTF-8" );
           $path = fopen($file_csv, "a+");
-          fwrite($path, $str);
+          fwrite($path, $str . PHP_EOL);
           fclose($path);
 
           $xml->next('offer');
