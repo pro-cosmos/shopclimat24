@@ -1,7 +1,7 @@
 <?php 
 class ModelCatalogSuppler extends Model {
 	public function createTables() {
-		$query = $this->db->query("CREATE TABLE IF NOT EXISTS " . DB_PREFIX . "suppler (form_id INT(10) AUTO_INCREMENT, suppler_id INT(11), name varchar(64), main INT(1), sort_order INT(13), rate decimal(12,4), ratep decimal(12,4), ratek decimal(12,4), cod varchar(128), item varchar(128), cat varchar(128), qu varchar(128), price varchar(128), descrip varchar(128), pic_ext varchar(256), manuf varchar(128), warranty varchar(512), ad varchar(2), status INT(2), my_cat INT(5), my_qu varchar(512), my_price INT(2), my_descrip varchar(512), my_manuf varchar(64), my_mark varchar(512), weight varchar(3), length varchar(3), width varchar(3), height varchar(3), parent  varchar(1), hide varchar(1), newphoto varchar(1), my_photo varchar(512), cheap varchar(3), addopt varchar(1), addseo varchar(1), related varchar(3), updte varchar(1), pmanuf varchar(1), upattr varchar(1), upopt varchar(1), upname varchar(1), myplus varchar(3), cprice varchar(3), minus varchar(1), chcode varchar(1), importseo varchar(1), sorder  varchar(3), spec varchar(128), upurl varchar(3), ref varchar(3), ref1 varchar(3), addattr varchar(1), exsame varchar(1), sku2  varchar(3), parss varchar(3), points varchar(64), places varchar(5), parsi varchar(3), pointi varchar(64), placei varchar(5), parsc varchar(3), pointc varchar(64), placec varchar(5), parsp varchar(3), pointp varchar(64), placep varchar(5), parsd varchar(3), pointd varchar(64), placed varchar(5), parsm varchar(3), pointm varchar(64), placem varchar(5), parsk varchar(3), parsq varchar(3), pointq varchar(64), placeq varchar(5), bprice varchar(3), kmenu varchar(3), catcreate varchar(1), stay varchar(1), joen varchar(1), off varchar(1), umanuf varchar(1), onn   varchar(12),  refer varchar(3), disc varchar(12), newurl varchar(1), upc varchar(3), ean varchar(3), mpn varchar(3), ddata varchar(3), bonus varchar(64), ddesc varchar(1), qu_discount varchar(128), plusopt varchar(1), idcat varchar(1), t_ref varchar(3), t_ref1 varchar(3), termin varchar(3), t_status varchar(255), onoff varchar(1), zero varchar(1),  metka varchar(1), jopt varchar(1), optsku varchar(1), newproduct varchar(5), opt_prices varchar(1), opt_fotos varchar(1), usd varchar(3), serie varchar(3), sleep varchar(1), ffile varchar(1), rprice varchar(3), subfolder varchar(1), delimiter varchar(1), skuprefix varchar(24), formdate datetime, PRIMARY KEY (form_id)) ENGINE=MyISAM DEFAULT CHARSET=utf8");
+		$query = $this->db->query("CREATE TABLE IF NOT EXISTS " . DB_PREFIX . "suppler (form_id INT(10) AUTO_INCREMENT, suppler_id INT(11), name varchar(64), main INT(1), sort_order INT(13), rate decimal(12,4), ratep decimal(12,4), ratek decimal(12,4), cod varchar(128), item varchar(128), cat varchar(128), qu varchar(128), price varchar(128), descrip varchar(128), pic_ext varchar(256), manuf varchar(128), warranty varchar(512), ad varchar(2), status INT(2), my_cat INT(5), my_qu varchar(512), my_price INT(2), my_descrip varchar(512), my_manuf varchar(64), my_mark varchar(512), weight varchar(3), length varchar(3), width varchar(3), height varchar(3), parent  varchar(1), hide varchar(1), newphoto varchar(1), my_photo varchar(512), cheap varchar(3), addopt varchar(1), addseo varchar(1), related varchar(3), updte varchar(1), pmanuf varchar(1), upattr varchar(1), upopt varchar(1), upname varchar(1), myplus varchar(3), cprice varchar(3), minus varchar(1), chcode varchar(1), importseo varchar(1), sorder  varchar(3), spec varchar(128), upurl varchar(3), ref varchar(3), ref1 varchar(3), addattr varchar(1), exsame varchar(1), sku2  varchar(3), parss varchar(3), points varchar(64), places varchar(5), parsi varchar(3), pointi varchar(64), placei varchar(5), parsc varchar(3), pointc varchar(64), placec varchar(5), parsp varchar(3), pointp varchar(64), placep varchar(5), parsd varchar(3), pointd varchar(64), placed varchar(5), parsm varchar(3), pointm varchar(64), placem varchar(5), parsk varchar(3), parsq varchar(3), pointq varchar(64), placeq varchar(5), bprice varchar(3), kmenu varchar(3), catcreate varchar(1), stay varchar(1), joen varchar(1), off varchar(1), umanuf varchar(1), onn   varchar(12),  refer varchar(3), disc varchar(12), newurl varchar(1), upc varchar(3), ean varchar(3), mpn varchar(3), ddata varchar(3), bonus varchar(64), ddesc varchar(1), qu_discount varchar(128), plusopt varchar(1), idcat varchar(1), t_ref varchar(3), t_ref1 varchar(3), termin varchar(3), t_status varchar(255), onoff varchar(1), zero varchar(1),  metka varchar(1), jopt varchar(5), optsku varchar(1), newproduct varchar(5), opt_prices varchar(1), opt_fotos varchar(1), usd varchar(3), serie varchar(3), sleep varchar(1), ffile varchar(1), rprice varchar(3), subfolder varchar(1), delimiter varchar(1), skuprefix varchar(24), formdate datetime, PRIMARY KEY (form_id)) ENGINE=MyISAM DEFAULT CHARSET=utf8");
 	
 		$query = $this->db->query("CREATE TABLE IF NOT EXISTS " . DB_PREFIX . "suppler_data (nom_id int(11) AUTO_INCREMENT, form_id int(11), cat_ext varchar(128), category_id int(11), pic_int varchar(160), cat_plus varchar(512), PRIMARY  KEY (nom_id)) ENGINE=MyISAM DEFAULT CHARSET=utf8");
 		
@@ -35,9 +35,11 @@ class ModelCatalogSuppler extends Model {
 		
 		$query = $this->db->query("CREATE TABLE IF NOT EXISTS " . DB_PREFIX . "redirect (redirect_id int(11) AUTO_INCREMENT, active tinyint(1) DEFAULT '0', from_url text, to_url text, response_code int(3) DEFAULT '301', date_start date DEFAULT '0000-00-00', date_end date DEFAULT '0000-00-00', times_used int(5) DEFAULT '0', product_id int(11), PRIMARY  KEY (redirect_id)) ENGINE=MyISAM DEFAULT CHARSET=utf8");
 		
-		$query = $this->db->query("CREATE TABLE IF NOT EXISTS " . DB_PREFIX . "suppler_seo (nom_id int(11) AUTO_INCREMENT,  form_id int(11), prod_title varchar(400), prod_meta_desc varchar(400), prod_desc text, prod_keyword varchar(1000), prod_h1 text, prod_photo text, cat_title varchar(400), cat_meta_desc varchar(400), cat_desc text, manuf_title varchar(400), manuf_meta_desc varchar(400), manuf_desc text, seo_1 text, seo_2 text, seo_3 text, seo_4 text, seo_5 text, seo_6 text, seo_7 text, seo_8 text, seo_9 text, seo_10 text, seo_11 text, seo_12 text, seo_13 text, seo_14 text, seo_15 text, seo_16 text, seo_17 text, seo_18 text, seo_19 text, seo_20 text, seo_r1 text, seo_r2 text, seo_r3 text, seo_r4 text, seo_r5 text, seo_r6 text, PRIMARY  KEY (nom_id)) ENGINE=MyISAM DEFAULT CHARSET=utf8");
+		$query = $this->db->query("CREATE TABLE IF NOT EXISTS " . DB_PREFIX . "suppler_seo (nom_id int(11) AUTO_INCREMENT,  form_id int(11), prod_h1 text, prod_title text, prod_meta_desc text, prod_desc text, prod_keyword text, prod_photo text, prod_url text, cat_h1 text, cat_title text, cat_meta_desc text, cat_desc text, cat_keyword text, manuf_h1 text, manuf_title text, manuf_meta_desc text, manuf_desc text, manuf_keyword text, seo_1 text, seo_2 text, seo_3 text, seo_4 text, seo_5 text, seo_6 text, seo_7 text, seo_8 text, seo_9 text, seo_10 text, seo_11 text, seo_12 text, seo_13 text, seo_14 text, seo_15 text, seo_16 text, seo_17 text, seo_18 text, seo_19 text, seo_20 text, seo_r1 text, seo_r2 text, seo_r3 text, seo_r4 text, seo_r5 text, seo_r6 text, PRIMARY  KEY (nom_id)) ENGINE=MyISAM DEFAULT CHARSET=utf8");
 		
 		$query = $this->db->query("CREATE TABLE IF NOT EXISTS " . DB_PREFIX . "suppler_base_price (nom_id int(11) AUTO_INCREMENT, product_id int(11), model varchar(64), bprice decimal(12,4), bpack int(11), brate decimal(12,4), bsuppler varchar(2), bdisc decimal(12,4), bmin decimal(12,4), bav decimal(12,4), bmax decimal(12,4), optimal  decimal(12,4), market_percent_to_price decimal(6,3), market_percent_to_bprice decimal(6,3),  market_percent_to_bdprice decimal(6,3), PRIMARY  KEY (nom_id)) ENGINE=MyISAM DEFAULT CHARSET=utf8");
+		
+		$query = $this->db->query("CREATE TABLE IF NOT EXISTS " . DB_PREFIX . "suppler_cron (`nom_id` int(11)  AUTO_INCREMENT, `form_id` int(11), `suppler_id` int(11), `cmd` int(1), `cmd1` int(1), `cmd2` int(1), `cmd3` int(1), `cmd4` int(1), `cmd5` int(1), `cmd6` int(1), `act_find` text, `act_find1` text, `act_find2` text, `act_find3` text, `act_find4` text, `act_find5` text, `act_find6` text, `act_change` text, `act_change1` text, `act_change2` text, `act_change3` text, `act_change4` text, `act_change5` text, `act_change6` text, `all0` int(1),  `all1` int(1), `all2` int(1), `all3` int(1), `all4` int(1), `all5` int(1), `all6` int(1), `isno` varchar(20), `isno1` varchar(20), `isno2` varchar(20), `isno3` varchar(20), `isno4` varchar(20), `isno5` varchar(20), `isno6`  varchar(20), `link` text, `ftp_name` text, `ftp_pass` text, `ext` int(1), `rtype` int(1), `mail` text, `pr_name` text, `cron_status` int(11),  `task` int(1), `on_off` int(1),`csort` int(3), `save_on_off` int(1), `report` int(5), `errors` int(5), `save_br_time` int(11), `go` int(1), `save_nom` int(11), `save_form` int(11), `pl_status` int(1), `ctime` date, `ctime1` date, `imap` varchar(32), `pop3` varchar(32), `smtp` varchar(32), `port` varchar(8), `port1` varchar(8), `user` varchar(64), `user1` varchar(64), `text` varchar(64), `text1` varchar(64), `text2` varchar(64), `ip` varchar(32), `ip1` varchar(32), `flag` int(1), `flag1` int(1), PRIMARY  KEY (nom_id)) ENGINE=MyISAM DEFAULT CHARSET=utf8");
 		
 		$langs = $this->getAllLanguages();	
 		if (!empty($langs)) {
@@ -134,7 +136,9 @@ class ModelCatalogSuppler extends Model {
 			else $main = 0;
 		} else $main = $data['main'];
 		
-      	$this->db->query("INSERT INTO " . DB_PREFIX . "suppler SET `suppler_id` = '". $data['suppler_id'] . "', `name` = '" . $this->db->escape($data['name']) . "', `main` = '" . $main . "', `sort_order` = '" . $lang . "', `rate` = '" . $data['rate'] . "', `ratep` = '" . $data['ratep'] . "', `ratek` = '" . $data['ratek'] . "', `cod` = '" . $this->db->escape($data['cod']) . "', `item` = '" . $this->db->escape($data['item']) . "', `cat` = '" . $this->db->escape($data['cat']) . "', `qu` = '" . $this->db->escape($data['qu']) . "', `price` = '" . $this->db->escape($data['price']) . "', `descrip` = '" . $this->db->escape($data['descrip']) . "', `pic_ext` = '" . $this->db->escape($data['pic_ext']) . "', `manuf` = '" . $this->db->escape($data['manuf']) . "', `warranty` = '" . $this->db->escape($data['warranty']) . "', `ad` = '" . $data['ad'] . "', `status` = '" . $data['status'] . "', `my_cat` = '" . $data['my_cat'] . "', `my_qu` = '" . $this->db->escape($data['my_qu']) . "', `my_price` = '" . $data['my_price'] . "', `my_descrip` = '" . $this->db->escape($data['my_descrip']) . "', `my_manuf` = '" . $this->db->escape($data['my_manuf']) . "', `my_mark` = '" . $this->db->escape($data['my_mark']) . "', `weight` = '" . $this->db->escape($data['weight']) . "', `length` = '" . $this->db->escape($data['length']) . "', `width` = '" . $this->db->escape($data['width']) . "', `height` = '" . $this->db->escape($data['height']) ."', `parent` = '" . $data['parent'] ."', `hide` = '" . $data['hide'] ."', `newphoto` = '" . $this->db->escape($data['newphoto']) ."', `my_photo` = '" . $this->db->escape($data['my_photo']) ."', `cheap` = '" . $data['cheap'] ."', `addopt` = '" . $data['addopt'] ."', `addseo` = '" . $data['addseo'] . "', `related` = '" . $this->db->escape($data['related']) ."', `updte` = '" . $data['updte'] . "', `pmanuf` = '" . $data['pmanuf'] ."', `upattr` = '" . $data['upattr']."', `upopt` = '" . $data['upopt']. "', `upname` = '" . $data['upname']. "', `myplus` = '" . $data['myplus']. "', `cprice` = '" . $data['cprice']. "', `minus` = '" . $data['minus']. "', `chcode` = '" . $data['chcode']. "',  `importseo` = '" . $data['importseo'] ."', `sorder` = '" . $data['sorder']."', `spec` = '" . $data['spec']."', `upurl` = '" . $data['upurl']."', `ref` = '" . $data['ref']."', `ref1` = '" . $data['ref1']."', `addattr` = '" . $data['addattr'] ."', `exsame` = '" . 0 ."', `sku2` = '" . $data['sku2']."', `parss` = '" . $data['parss'] . "', `points` = '" . $this->db->escape($data['points']) . "', `places` = '" . $data['places'] . "', `parsi` = '" . $data['parsi'] . "', `pointi` = '" . $this->db->escape($data['pointi']) . "', `placei` = '" . $data['placei'] . "', `parsc` = '" . $data['parsc'] . "', `pointc` = '" . $this->db->escape($data['pointc']) . "', `placec` = '" . $data['placec'] . "', `parsp` = '" . $data['parsp'] . "', `pointp` = '" . $this->db->escape($data['pointp']) . "', `placep` = '" . $data['placep'] . "', `parsd` = '" . $data['parsd'] . "', `pointd` = '" . $this->db->escape($data['pointd']) . "', `placed` = '" . $data['placed'] . "', `parsm` = '" . $data['parsm'] . "', `pointm` = '" . $this->db->escape($data['pointm']) . "', `placem` = '" . $data['placem'] . "', `parsk` = '" . $data['parsk'] . "', `parsq` = '" . $data['parsq'] . "', `pointq` = '" . $this->db->escape($data['pointq']) . "', `placeq` = '" . $data['placeq'] . "', `bprice` = '" . $data['bprice'] . "', `kmenu` = '" . $data['kmenu'] . "', `catcreate` = '" .  0 . "', `stay` = '" . $data['stay'] . "', `joen` = '" . $data['joen'] . "', `off` = '" . $data['off'] . "', `umanuf` = '" . $data['umanuf'] . "', `onn` = '" . $data['onn'] . "', `refer` = '" . $data['refer'] . "', `disc` = '" . $data['disc'] . "', `newurl` = '" . $data['newurl'] ."', `upc` = '" . $data['upc'] . "', `ean` = '" . $data['ean'] . "', `mpn` = '" . $data['mpn'] . "', `ddata` = '" . 0 ."', `bonus` = '" . $data['bonus'] ."', `ddesc` = '" . $data['ddesc'] ."', `qu_discount` = '" . $data['qu_discount'] ."', `plusopt` = '" . $data['plusopt'] ."', `idcat` = '" . $data['idcat'] ."', `t_ref` = '" . $data['t_ref'] ."', `t_ref1` = '" . $data['t_ref1'] ."', `termin` = '" . $data['termin'] ."', `t_status` = '" . $data['t_status'] ."', `onoff` = '" . $data['onoff'] ."',  `zero` = '" . $data['zero'] ."',  `metka` = '" . $data['metka'] ."', `jopt` = '" . $data['jopt'] ."', `optsku` = '" . $data['optsku'] ."', `newproduct` = '" . $data['newproduct'] ."', `opt_prices` = '" . $data['opt_prices'] . "', `opt_fotos` = '" . $data['opt_fotos'] . "', `usd` = '" . $data['usd'] . "', `serie` = '" . $data['serie'] . "', `sleep` = '" . $data['sleep'] . "', `ffile` = '" . $data['ffile'] . "', `rprice` = '" . $data['rprice'] ."', `subfolder` = '" . $data['subfolder'] ."', `delimiter` = '" . $data['delimiter'] ."', `skuprefix` = '" . $data['skuprefix'] ."', `formdate` = '" . $data['formdate'] ."'");
+		$data['formdate'] = '2000-01-01 00:00:00';
+		
+      	$this->db->query("INSERT INTO " . DB_PREFIX . "suppler SET `suppler_id` = '". $data['suppler_id'] . "', `name` = '" . $this->db->escape($data['name']) . "', `main` = '" . $main . "', `sort_order` = '" . $lang . "', `rate` = '" . $data['rate'] . "', `ratep` = '" . $data['ratep'] . "', `ratek` = '" . $data['ratek'] . "', `cod` = '" . $this->db->escape($data['cod']) . "', `item` = '" . $this->db->escape($data['item']) . "', `cat` = '" . $this->db->escape($data['cat']) . "', `qu` = '" . $this->db->escape($data['qu']) . "', `price` = '" . $this->db->escape($data['price']) . "', `descrip` = '" . $this->db->escape($data['descrip']) . "', `pic_ext` = '" . $this->db->escape($data['pic_ext']) . "', `manuf` = '" . $this->db->escape($data['manuf']) . "', `warranty` = '" . $this->db->escape($data['warranty']) . "', `ad` = '" . $data['ad'] . "', `status` = '" . $data['status'] . "', `my_cat` = '" . $data['my_cat'] . "', `my_qu` = '" . $this->db->escape($data['my_qu']) . "', `my_price` = '" . $data['my_price'] . "', `my_descrip` = '" . $this->db->escape($data['my_descrip']) . "', `my_manuf` = '" . $this->db->escape($data['my_manuf']) . "', `my_mark` = '" . $this->db->escape($data['my_mark']) . "', `weight` = '" . $this->db->escape($data['weight']) . "', `length` = '" . $this->db->escape($data['length']) . "', `width` = '" . $this->db->escape($data['width']) . "', `height` = '" . $this->db->escape($data['height']) ."', `parent` = '" . $data['parent'] ."', `hide` = '" . $data['hide'] ."', `newphoto` = '" . $this->db->escape($data['newphoto']) ."', `my_photo` = '" . $this->db->escape($data['my_photo']) ."', `cheap` = '" . $data['cheap'] ."', `addopt` = '" . $data['addopt'] ."', `addseo` = '" . $data['addseo'] . "', `related` = '" . $this->db->escape($data['related']) ."', `updte` = '" . $data['updte'] . "', `pmanuf` = '" . $data['pmanuf'] ."', `upattr` = '" . $data['upattr']."', `upopt` = '" . $data['upopt']. "', `upname` = '" . $data['upname']. "', `myplus` = '" . $data['myplus']. "', `cprice` = '" . $data['cprice']. "', `minus` = '" . $data['minus']. "', `chcode` = '" . $data['chcode']. "',  `importseo` = '" . $data['importseo'] ."', `sorder` = '" . $data['sorder']."', `spec` = '" . $data['spec']."', `upurl` = '" . $data['upurl']."', `ref` = '" . $data['ref']."', `ref1` = '" . $data['ref1']."', `ref2` = '" . $data['ref2']."', `ref3` = '" . $data['ref3']."',`addattr` = '" . $data['addattr'] ."', `exsame` = '" . 0 ."', `sku2` = '" . $data['sku2']."', `parss` = '" . $data['parss'] . "', `points` = '" . $this->db->escape($data['points']) . "', `places` = '" . $data['places'] . "', `parsi` = '" . $data['parsi'] . "', `pointi` = '" . $this->db->escape($data['pointi']) . "', `placei` = '" . $data['placei'] . "', `parsc` = '" . $data['parsc'] . "', `pointc` = '" . $this->db->escape($data['pointc']) . "', `placec` = '" . $data['placec'] . "', `parsp` = '" . $data['parsp'] . "', `pointp` = '" . $this->db->escape($data['pointp']) . "', `placep` = '" . $data['placep'] . "', `parsd` = '" . $data['parsd'] . "', `pointd` = '" . $this->db->escape($data['pointd']) . "', `placed` = '" . $data['placed'] . "', `parsm` = '" . $data['parsm'] . "', `pointm` = '" . $this->db->escape($data['pointm']) . "', `placem` = '" . $data['placem'] . "', `parsk` = '" . $data['parsk'] . "', `parsq` = '" . $data['parsq'] . "', `pointq` = '" . $this->db->escape($data['pointq']) . "', `placeq` = '" . $data['placeq'] . "', `bprice` = '" . $data['bprice'] . "', `kmenu` = '" . $data['kmenu'] . "', `catcreate` = '" .  0 . "', `stay` = '" . $data['stay'] . "', `joen` = '" . $data['joen'] . "', `off` = '" . $data['off'] . "', `umanuf` = '" . $data['umanuf'] . "', `onn` = '" . $data['onn'] . "', `refer` = '" . $data['refer'] . "', `disc` = '" . $data['disc'] . "', `newurl` = '" . $data['newurl'] ."', `upc` = '" . $data['upc'] . "', `ean` = '" . $data['ean'] . "', `mpn` = '" . $data['mpn'] . "', `location` = '" . $data['location'] . "', `jan` = '" . $data['jan'] . "', `isbn` = '" . $data['isbn'] . "', `ddata` = '" . 0 ."', `bonus` = '" . $data['bonus'] ."', `ddesc` = '" . $data['ddesc'] ."', `qu_discount` = '" . $data['qu_discount'] ."', `plusopt` = '" . $data['plusopt'] ."', `idcat` = '" . $data['idcat'] ."', `t_ref` = '" . $data['t_ref'] ."', `t_ref1` = '" . $data['t_ref1'] ."', `t_ref2` = '" . $data['t_ref2'] ."', `t_ref3` = '" . $data['t_ref3'] ."',`termin` = '" . $data['termin'] ."', `t_status` = '" . $data['t_status'] ."', `onoff` = '" . $data['onoff'] ."',  `zero` = '" . $data['zero'] ."',  `metka` = '" . $data['metka'] ."', `jopt` = '" . $data['jopt'] ."', `optsku` = '" . $data['optsku'] ."', `newproduct` = '" . $data['newproduct'] ."', `opt_prices` = '" . $data['opt_prices'] . "', `opt_fotos` = '" . $data['opt_fotos'] . "', `usd` = '" . $data['usd'] . "', `serie` = '" . $data['serie'] . "', `sleep` = '" . $data['sleep'] . "', `ffile` = '" . $data['ffile'] . "', `rprice` = '" . $data['rprice'] ."', `subfolder` = '" . $data['subfolder'] ."', `delimiter` = '" . $data['delimiter'] ."', `skuprefix` = '" . $data['skuprefix'] ."', `formdate` = '" . $data['formdate'] ."'");
 		
 		$form_id = $this->db->getLastId();
 				
@@ -172,7 +176,21 @@ class ModelCatalogSuppler extends Model {
 			$i = $i +1;			
 		}
 		
-		$this->db->query("INSERT INTO " . DB_PREFIX . "suppler_seo SET `form_id` = '" . (int)$form_id . "', `prod_title` = '" . $this->db->escape($data['prod_title']) . "', `prod_meta_desc` = '" . $this->db->escape($data['prod_meta_desc']) ."', `prod_desc` = '" . $this->db->escape($data['prod_desc']) ."', `prod_keyword` = '" . $this->db->escape($data['prod_keyword']) ."', `prod_h1` = '" . $this->db->escape($data['prod_h1']) ."', `prod_photo` = '" . $this->db->escape($data['prod_photo']) ."', `prod_url` = '" . $this->db->escape($data['prod_url']) ."', `cat_title` = '" . $this->db->escape($data['cat_title']) ."', `cat_meta_desc` = '" . $this->db->escape($data['cat_meta_desc']) ."', `cat_desc` = '" . $this->db->escape($data['cat_desc']) ."', `manuf_title` = '" . $this->db->escape($data['manuf_title']) ."', `manuf_meta_desc` = '" . $this->db->escape($data['manuf_meta_desc']) ."', `manuf_desc` = '" . $this->db->escape($data['manuf_desc']) ."', `seo_1` = '" . $this->db->escape($data['seo_1']) ."', `seo_2` = '" . $this->db->escape($data['seo_2']) ."', `seo_3` = '" . $this->db->escape($data['seo_3']) ."', `seo_4` = '" . $this->db->escape($data['seo_4']) ."', `seo_5` = '" . $this->db->escape($data['seo_5']) ."', `seo_6` = '" . $this->db->escape($data['seo_6']) ."', `seo_7` = '" . $this->db->escape($data['seo_7']) ."', `seo_8` = '" . $this->db->escape($data['seo_8']) ."', `seo_9` = '" . $this->db->escape($data['seo_9']) ."', `seo_10` = '" . $this->db->escape($data['seo_10']) ."', `seo_11` = '" . $this->db->escape($data['seo_11']) ."', `seo_12` = '" . $this->db->escape($data['seo_12']) ."', `seo_13` = '" . $this->db->escape($data['seo_13']) ."', `seo_14` = '" . $this->db->escape($data['seo_14']) ."', `seo_15` = '" . $this->db->escape($data['seo_15']) ."', `seo_16` = '" . $this->db->escape($data['seo_16']) ."', `seo_17` = '" . $this->db->escape($data['seo_17']) ."', `seo_18` = '" . $this->db->escape($data['seo_18']) ."', `seo_19` = '" . $this->db->escape($data['seo_19']) ."', `seo_20` = '" . $this->db->escape($data['seo_20']) ."'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "suppler_seo SET `form_id` = '" . (int)$form_id . "', `prod_h1` = '" . $this->db->escape($data['prod_h1']) ."', `prod_title` = '" . $this->db->escape($data['prod_title']) . "', `prod_meta_desc` = '" . $this->db->escape($data['prod_meta_desc']) ."', `prod_desc` = '" . $this->db->escape($data['prod_desc']) ."', `prod_keyword` = '" . $this->db->escape($data['prod_keyword']) ."', `prod_photo` = '" . $this->db->escape($data['prod_photo']) ."', `prod_url` = '" . $this->db->escape($data['prod_url']) ."', `cat_h1` = '" . $this->db->escape($data['cat_h1']) ."', `cat_title` = '" . $this->db->escape($data['cat_title']) ."', `cat_meta_desc` = '" . $this->db->escape($data['cat_meta_desc']) ."', `cat_desc` = '" . $this->db->escape($data['cat_desc']) ."', `cat_keyword` = '" . $this->db->escape($data['cat_keyword']) ."', `manuf_h1` = '" . $this->db->escape($data['manuf_h1']) ."', `manuf_title` = '" . $this->db->escape($data['manuf_title']) ."', `manuf_meta_desc` = '" . $this->db->escape($data['manuf_meta_desc']) ."', `manuf_desc` = '" . $this->db->escape($data['manuf_desc']) ."', `manuf_keyword` = '" . $this->db->escape($data['manuf_keyword']) ."', `seo_1` = '" . $this->db->escape($data['seo_1']) ."', `seo_2` = '" . $this->db->escape($data['seo_2']) ."', `seo_3` = '" . $this->db->escape($data['seo_3']) ."', `seo_4` = '" . $this->db->escape($data['seo_4']) ."', `seo_5` = '" . $this->db->escape($data['seo_5']) ."', `seo_6` = '" . $this->db->escape($data['seo_6']) ."', `seo_7` = '" . $this->db->escape($data['seo_7']) ."', `seo_8` = '" . $this->db->escape($data['seo_8']) ."', `seo_9` = '" . $this->db->escape($data['seo_9']) ."', `seo_10` = '" . $this->db->escape($data['seo_10']) ."', `seo_11` = '" . $this->db->escape($data['seo_11']) ."', `seo_12` = '" . $this->db->escape($data['seo_12']) ."', `seo_13` = '" . $this->db->escape($data['seo_13']) ."', `seo_14` = '" . $this->db->escape($data['seo_14']) ."', `seo_15` = '" . $this->db->escape($data['seo_15']) ."', `seo_16` = '" . $this->db->escape($data['seo_16']) ."', `seo_17` = '" . $this->db->escape($data['seo_17']) ."', `seo_18` = '" . $this->db->escape($data['seo_18']) ."', `seo_19` = '" . $this->db->escape($data['seo_19']) ."', `seo_20` = '" . $this->db->escape($data['seo_20']) ."'");
+		
+		$this->db->query("INSERT INTO " . DB_PREFIX . "suppler_cron SET `form_id` = '" . (int)$form_id . "', `suppler_id` = '" . $this->db->escape($data['suppler_id']) ."', `cmd` = '" . $this->db->escape($data['cmd1']) ."', `cmd1` = '" . $this->db->escape($data['cmd1']) ."', `act_find` = '" . $this->db->escape($data['act_find1']) ."', `act_find1` = '" . $this->db->escape($data['act_find1']) ."', `act_change` = '" . $this->db->escape($data['act_change1']) ."', `act_change1` = '" . $this->db->escape($data['act_change1']) ."', `all0` = '" . $this->db->escape($data['all1']) ."', `all1` = '" . $this->db->escape($data['all1']) ."', `isno` = '" . $this->db->escape($data['isno1']) ."', `isno1` = '" . $this->db->escape($data['isno1']) ."', `cron_status` = '" . 0 ."',  `task` = '" . 1 ."', `on_off` = '" . $data['on_off'] ."', `save_on_off` = '" . $data['on_off'] ."', `csort` = '" . $this->db->escape($data['csort']) ."', `text` = '" . $this->db->escape($data['text']) ."', `text1` = '" . $this->db->escape($data['text1']) ."', `text2` = '" . $this->db->escape($data['text2']) ."', `port1` = '" . $this->db->escape($data['port1']) ."'");
+
+		$this->db->query("INSERT INTO " . DB_PREFIX . "suppler_cron SET `form_id` = '" . (int)$form_id . "', `suppler_id` = '" . $this->db->escape($data['suppler_id']) ."', `cmd` = '" . $this->db->escape($data['cmd2']) ."', `cmd2` = '" . $this->db->escape($data['cmd2']) ."', `act_find` = '" . $this->db->escape($data['act_find2']) ."', `act_find2` = '" . $this->db->escape($data['act_find2']) ."', `act_change` = '" . $this->db->escape($data['act_change2']) ."', `act_change2` = '" . $this->db->escape($data['act_change2']) ."', `all0` = '" . $this->db->escape($data['all2']) ."', `all2` = '" . $this->db->escape($data['all2']) ."', `isno` = '" . $this->db->escape($data['isno2']) ."', `isno2` = '" . $this->db->escape($data['isno2']) ."', `cron_status` = '" . 0 ."',  `task` = '" . 2 ."', `on_off` = '" . $data['on_off'] ."', `save_on_off` = '" . $data['on_off'] ."', `csort` = '" . $this->db->escape($data['csort']) ."', `text` = '" . $this->db->escape($data['text']) ."', `text1` = '" . $this->db->escape($data['text1']) ."', `text2` = '" . $this->db->escape($data['text2']) ."', `port1` = '" . $this->db->escape($data['port1']) ."'");
+		
+		$this->db->query("INSERT INTO " . DB_PREFIX . "suppler_cron SET `form_id` = '" . (int)$form_id . "', `suppler_id` = '" . $this->db->escape($data['suppler_id']) ."', `cmd` = '" . $this->db->escape($data['cmd3']) ."', `cmd3` = '" . $this->db->escape($data['cmd3']) ."', `act_find` = '" . $this->db->escape($data['act_find3']) ."', `act_find3` = '" . $this->db->escape($data['act_find3']) ."', `act_change` = '" . $this->db->escape($data['act_change3']) ."', `act_change2` = '" . $this->db->escape($data['act_change2']) ."', `all0` = '" . $this->db->escape($data['all2']) ."', `all3` = '" . $this->db->escape($data['all3']) ."', `isno` = '" . $this->db->escape($data['isno3']) ."', `isno3` = '" . $this->db->escape($data['isno3']) ."', `cron_status` = '" . 0 ."',  `task` = '" . 3 ."', `on_off` = '" . $data['on_off'] ."', `save_on_off` = '" . $data['on_off'] ."', `csort` = '" . $this->db->escape($data['csort']) ."', `text` = '" . $this->db->escape($data['text']) ."', `text1` = '" . $this->db->escape($data['text1']) ."', `text2` = '" . $this->db->escape($data['text2']) ."', `port1` = '" . $this->db->escape($data['port1']) ."'");
+				
+		$this->db->query("INSERT INTO " . DB_PREFIX . "suppler_cron SET `form_id` = '" . (int)$form_id . "', `suppler_id` = '" . $this->db->escape($data['suppler_id']) ."', `link` = '" . $this->db->escape($data['link']) ."', `ftp_name` = '" . $this->db->escape($data['ftp_name']) ."', `ftp_pass` = '" . $this->db->escape($data['ftp_pass']) ."', `ext` = '" . $this->db->escape($data['ext']) ."', `rtype` = '" . $this->db->escape($data['rtype']) ."', `mail` = '" . $this->db->escape($data['mail']) ."', `pr_name` = '" . $this->db->escape($data['pr_name']) ."', `cron_status` = '" . 0 ."',  `task` = '" . 4 ."', `on_off` = '" . $data['on_off'] ."', `save_on_off` = '" . $data['on_off'] ."', `csort` = '" . $this->db->escape($data['csort']) ."', `text` = '" . $this->db->escape($data['text']) ."', `text1` = '" . $this->db->escape($data['text1']) ."', `text2` = '" . $this->db->escape($data['text2']) ."', `port1` = '" . $this->db->escape($data['port1']) ."'");
+		
+		$this->db->query("INSERT INTO " . DB_PREFIX . "suppler_cron SET `form_id` = '" . (int)$form_id . "', `suppler_id` = '" . $this->db->escape($data['suppler_id']) ."', `cmd` = '" . $this->db->escape($data['cmd4']) ."', `cmd4` = '" . $this->db->escape($data['cmd4']) ."', `act_find` = '" . $this->db->escape($data['act_find4']) ."', `act_find4` = '" . $this->db->escape($data['act_find4']) ."', `act_change` = '" . $this->db->escape($data['act_change4']) ."', `act_change4` = '" . $this->db->escape($data['act_change4']) ."', `all0` = '" . $this->db->escape($data['all4']) ."', `all4` = '" . $this->db->escape($data['all4']) ."', `isno` = '" . $this->db->escape($data['isno4']) ."', `isno4` = '" . $this->db->escape($data['isno4']) ."', `cron_status` = '" . 0 ."',  `task` = '" . 5 ."', `on_off` = '" . $data['on_off'] ."', `save_on_off` = '" . $data['on_off'] ."', `csort` = '" . $this->db->escape($data['csort']) ."', `text` = '" . $this->db->escape($data['text']) ."', `text1` = '" . $this->db->escape($data['text1']) ."', `text2` = '" . $this->db->escape($data['text2']) ."', `port1` = '" . $this->db->escape($data['port1']) ."'");
+		
+		$this->db->query("INSERT INTO " . DB_PREFIX . "suppler_cron SET `form_id` = '" . (int)$form_id . "', `suppler_id` = '" . $this->db->escape($data['suppler_id']) ."', `cmd` = '" . $this->db->escape($data['cmd5']) ."', `cmd5` = '" . $this->db->escape($data['cmd5']) ."', `act_find` = '" . $this->db->escape($data['act_find5']) ."', `act_find5` = '" . $this->db->escape($data['act_find5']) ."', `act_change` = '" . $this->db->escape($data['act_change5']) ."', `act_change5` = '" . $this->db->escape($data['act_change5']) ."', `all0` = '" . $this->db->escape($data['all5']) ."', `all5` = '" . $this->db->escape($data['all5']) ."', `isno` = '" . $this->db->escape($data['isno5']) ."', `isno5` = '" . $this->db->escape($data['isno5']) ."', `cron_status` = '" . 0 ."',  `task` = '" . 6 ."', `on_off` = '" . $data['on_off'] ."', `save_on_off` = '" . $data['on_off'] ."', `csort` = '" . $this->db->escape($data['csort']) ."', `text` = '" . $this->db->escape($data['text']) ."', `text1` = '" . $this->db->escape($data['text1']) ."', `text2` = '" . $this->db->escape($data['text2']) ."', `port1` = '" . $this->db->escape($data['port1']) ."'");
+		
+		$this->db->query("INSERT INTO " . DB_PREFIX . "suppler_cron SET `form_id` = '" . (int)$form_id . "', `suppler_id` = '" . $this->db->escape($data['suppler_id']) ."', `cmd` = '" . $this->db->escape($data['cmd6']) ."', `cmd6` = '" . $this->db->escape($data['cmd6']) ."', `act_find` = '" . $this->db->escape($data['act_find6']) ."', `act_find6` = '" . $this->db->escape($data['act_find6']) ."', `act_change` = '" . $this->db->escape($data['act_change6']) ."', `act_change6` = '" . $this->db->escape($data['act_change6']) ."', `all0` = '" . $this->db->escape($data['all6']) ."', `all6` = '" . $this->db->escape($data['all6']) ."', `isno` = '" . $this->db->escape($data['isno6']) ."', `isno6` = '" . $this->db->escape($data['isno6']) ."', `cron_status` = '" . 0 ."',  `task` = '" . 7 ."', `on_off` = '" . $data['on_off'] ."', `save_on_off` = '" . $data['on_off'] ."', `csort` = '" . $this->db->escape($data['csort']) ."', `text` = '" . $this->db->escape($data['text']) ."', `text1` = '" . $this->db->escape($data['text1']) ."', `text2` = '" . $this->db->escape($data['text2']) ."', `port1` = '" . $this->db->escape($data['port1']) ."'");
 				
 		$this->cache->delete('suppler');		
 	}
@@ -203,7 +221,7 @@ class ModelCatalogSuppler extends Model {
 		if (isset($data['main'])) $main = 1;
 		else $main = 0;
 		
-      	$this->db->query("UPDATE " . DB_PREFIX . "suppler SET `suppler_id` =  '". $data['suppler_id'] . "', `name` = '" . $this->db->escape($data['name']) . "', `main` = '" . $main . "', `sort_order` = '" . $lang . "', `rate` = '" . $data['rate'] . "', `ratep` = '" . $data['ratep'] . "', `ratek` = '" . $data['ratek'] . "', `cod` = '" . $this->db->escape($data['cod']) . "', `item` = '" . $this->db->escape($data['item']) . "', `cat` = '" . $this->db->escape($data['cat']) . "', `qu` = '" . $this->db->escape($data['qu']) . "', `price` = '" . $this->db->escape($data['price']) . "', `descrip` = '" . $this->db->escape($data['descrip']) . "', `pic_ext` = '" . $this->db->escape($data['pic_ext']) . "', `manuf` = '" . $this->db->escape($data['manuf']) . "', `warranty` = '" . $this->db->escape($data['warranty']) . "', `ad` = '" . $data['ad'] . "', `status` = '" . $data['status'] . "', `my_cat` = '" . $data['my_cat'] . "', `my_qu` = '" . $this->db->escape($data['my_qu']) . "', `my_price` = '" . $data['my_price'] . "', `my_descrip` = '" . $this->db->escape($data['my_descrip']) . "', `my_manuf` = '" . $this->db->escape($data['my_manuf']) . "', `my_mark` = '" . $this->db->escape($data['my_mark']) . "', `weight` = '" . $this->db->escape($data['weight']) . "', `length` = '" . $this->db->escape($data['length']) . "', `width` = '" . $this->db->escape($data['width']) . "', `height` = '" . $this->db->escape($data['height']) . "', `parent` = '" . $data['parent'] . "', `hide` = '" . $data['hide'] . "', `newphoto` = '" . $this->db->escape($data['newphoto']) ."', `my_photo` = '" . $this->db->escape($data['my_photo']) ."', `cheap` = '" . $data['cheap'] ."', `addopt` = '" . $data['addopt'] ."', `addseo` = '" . $data['addseo'] . "', `related` = '" . $this->db->escape($data['related']) . "', `updte` = '" . $data['updte'] . "', `pmanuf` = '" . $data['pmanuf'] . "', `upattr` = '" . $data['upattr']."', `upopt` = '" . $data['upopt']. "', `upname` = '" . $data['upname']. "', `myplus` = '" . $data['myplus']. "', `cprice` = '" . $data['cprice']. "', `minus` = '" . $data['minus']. "', `chcode` = '" . $data['chcode']. "',  `importseo` = '" . $data['importseo'] ."', `sorder` = '" . $data['sorder']."', `spec` = '" . $data['spec']."', `upurl` = '" . $data['upurl']."', `ref` = '" . $data['ref']."', `ref1` = '" . $data['ref1']."', `addattr` = '" . $data['addattr'] ."', `exsame` = '" . 0 ."', `sku2` = '" . $data['sku2']."', `parss` = '" . $data['parss'] . "', `points` = '" . $this->db->escape($data['points']) . "', `places` = '" . $data['places'] . "', `parsi` = '" . $data['parsi'] . "', `pointi` = '" . $this->db->escape($data['pointi']) . "', `placei` = '" . $data['placei'] . "', `parsc` = '" . $data['parsc'] . "', `pointc` = '" . $this->db->escape($data['pointc']) . "', `placec` = '" . $data['placec'] . "', `parsp` = '" . $data['parsp'] . "', `pointp` = '" . $this->db->escape($data['pointp']) . "', `placep` = '" . $data['placep'] . "', `parsd` = '" . $data['parsd'] . "', `pointd` = '" . $this->db->escape($data['pointd']) . "', `placed` = '" . $data['placed'] . "', `parsm` = '" . $data['parsm'] . "', `pointm` = '" . $this->db->escape($data['pointm']) . "', `placem` = '" . $data['placem'] . "', `parsk` = '" . $data['parsk'] . "',`parsq` = '" . $data['parsq'] . "', `pointq` = '" . $this->db->escape($data['pointq']) . "', `placeq` = '" . $data['placeq'] . "', `bprice` = '" . $data['bprice'] . "', `kmenu` = '" . $data['kmenu'] . "', `catcreate` = '" .  0 . "', `stay` = '" . $data['stay'] . "', `joen` = '" . $data['joen'] . "', `off` = '" . $data['off'] . "', `umanuf` = '" . $data['umanuf'] . "', `onn` = '" . $data['onn'] . "', `refer` = '" . $data['refer'] . "', `disc` = '" . $data['disc'] . "', `newurl` = '" . $data['newurl'] ."', `upc` = '" . $data['upc'] . "', `ean` = '" . $data['ean'] . "', `mpn` = '" . $data['mpn'] . "', `ddata` = '" . 0 ."', `bonus` = '" . $data['bonus'] ."', `ddesc` = '" . $data['ddesc'] ."', `qu_discount` = '" . $data['qu_discount'] ."', `plusopt` = '" . $data['plusopt'] ."', `idcat` = '" . $data['idcat'] ."', `t_ref` = '" . $data['t_ref'] ."', `t_ref1` = '" . $data['t_ref1'] ."', `termin` = '" . $data['termin'] ."', `t_status` = '" . $data['t_status'] ."', `onoff` = '" . $data['onoff'] ."',  `zero` = '" . $data['zero'] ."',  `metka` = '" . $data['metka'] ."', `optsku` = '" . $data['optsku'] ."', `newproduct` = '" . $data['newproduct'] ."', `opt_prices` = '" . $data['opt_prices'] . "', `opt_fotos` = '" . $data['opt_fotos'] . "', `usd` = '" . $data['usd'] . "', `serie` = '" . $data['serie'] . "', `sleep` = '" . $data['sleep'] . "', `ffile` = '" . $data['ffile'] . "', `rprice` = '" . $data['rprice'] ."', `subfolder` = '" . $data['subfolder'] ."', `delimiter` = '" . $data['delimiter'] ."', `skuprefix` = '" . $data['skuprefix'] ."', `formdate` = '" . $data['formdate'] ."' WHERE `form_id` = '" . (int)$form_id . "'");
+      	$this->db->query("UPDATE " . DB_PREFIX . "suppler SET `suppler_id` =  '". $data['suppler_id'] . "', `name` = '" . $this->db->escape($data['name']) . "', `main` = '" . $main . "', `sort_order` = '" . $lang . "', `rate` = '" . $data['rate'] . "', `ratep` = '" . $data['ratep'] . "', `ratek` = '" . $data['ratek'] . "', `cod` = '" . $this->db->escape($data['cod']) . "', `item` = '" . $this->db->escape($data['item']) . "', `cat` = '" . $this->db->escape($data['cat']) . "', `qu` = '" . $this->db->escape($data['qu']) . "', `price` = '" . $this->db->escape($data['price']) . "', `descrip` = '" . $this->db->escape($data['descrip']) . "', `pic_ext` = '" . $this->db->escape($data['pic_ext']) . "', `manuf` = '" . $this->db->escape($data['manuf']) . "', `warranty` = '" . $this->db->escape($data['warranty']) . "', `ad` = '" . $data['ad'] . "', `status` = '" . $data['status'] . "', `my_cat` = '" . $data['my_cat'] . "', `my_qu` = '" . $this->db->escape($data['my_qu']) . "', `my_price` = '" . $data['my_price'] . "', `my_descrip` = '" . $this->db->escape($data['my_descrip']) . "', `my_manuf` = '" . $this->db->escape($data['my_manuf']) . "', `my_mark` = '" . $this->db->escape($data['my_mark']) . "', `weight` = '" . $this->db->escape($data['weight']) . "', `length` = '" . $this->db->escape($data['length']) . "', `width` = '" . $this->db->escape($data['width']) . "', `height` = '" . $this->db->escape($data['height']) . "', `parent` = '" . $data['parent'] . "', `hide` = '" . $data['hide'] . "', `newphoto` = '" . $this->db->escape($data['newphoto']) ."', `my_photo` = '" . $this->db->escape($data['my_photo']) ."', `cheap` = '" . $data['cheap'] ."', `addopt` = '" . $data['addopt'] ."', `addseo` = '" . $data['addseo'] . "', `related` = '" . $this->db->escape($data['related']) . "', `updte` = '" . $data['updte'] . "', `pmanuf` = '" . $data['pmanuf'] . "', `upattr` = '" . $data['upattr']."', `upopt` = '" . $data['upopt']. "', `upname` = '" . $data['upname']. "', `myplus` = '" . $data['myplus']. "', `cprice` = '" . $data['cprice']. "', `minus` = '" . $data['minus']. "', `chcode` = '" . $data['chcode']. "',  `importseo` = '" . $data['importseo'] ."', `sorder` = '" . $data['sorder']."', `spec` = '" . $data['spec']."', `upurl` = '" . $data['upurl']."', `ref` = '" . $data['ref']."', `ref1` = '" . $data['ref1']."', `ref2` = '" . $data['ref2']."', `ref3` = '" . $data['ref3']."',`addattr` = '" . $data['addattr'] ."', `exsame` = '" . 0 ."', `sku2` = '" . $data['sku2']."', `parss` = '" . $data['parss'] . "', `points` = '" . $this->db->escape($data['points']) . "', `places` = '" . $data['places'] . "', `parsi` = '" . $data['parsi'] . "', `pointi` = '" . $this->db->escape($data['pointi']) . "', `placei` = '" . $data['placei'] . "', `parsc` = '" . $data['parsc'] . "', `pointc` = '" . $this->db->escape($data['pointc']) . "', `placec` = '" . $data['placec'] . "', `parsp` = '" . $data['parsp'] . "', `pointp` = '" . $this->db->escape($data['pointp']) . "', `placep` = '" . $data['placep'] . "', `parsd` = '" . $data['parsd'] . "', `pointd` = '" . $this->db->escape($data['pointd']) . "', `placed` = '" . $data['placed'] . "', `parsm` = '" . $data['parsm'] . "', `pointm` = '" . $this->db->escape($data['pointm']) . "', `placem` = '" . $data['placem'] . "', `parsk` = '" . $data['parsk'] . "',`parsq` = '" . $data['parsq'] . "', `pointq` = '" . $this->db->escape($data['pointq']) . "', `placeq` = '" . $data['placeq'] . "', `bprice` = '" . $data['bprice'] . "', `kmenu` = '" . $data['kmenu'] . "', `catcreate` = '" .  0 . "', `stay` = '" . $data['stay'] . "', `joen` = '" . $data['joen'] . "', `off` = '" . $data['off'] . "', `umanuf` = '" . $data['umanuf'] . "', `onn` = '" . $data['onn'] . "', `refer` = '" . $data['refer'] . "', `disc` = '" . $data['disc'] . "', `newurl` = '" . $data['newurl'] ."', `upc` = '" . $data['upc'] . "', `ean` = '" . $data['ean'] . "', `mpn` = '" . $data['mpn'] . "', `location` = '" . $data['location'] . "', `jan` = '" . $data['jan'] . "', `isbn` = '" . $data['isbn'] . "', `ddata` = '" . 0 ."', `bonus` = '" . $data['bonus'] ."', `ddesc` = '" . $data['ddesc'] ."', `qu_discount` = '" . $data['qu_discount'] ."', `plusopt` = '" . $data['plusopt'] ."', `idcat` = '" . $data['idcat'] ."', `t_ref` = '" . $data['t_ref'] ."', `t_ref1` = '" . $data['t_ref1'] ."', `t_ref2` = '" . $data['t_ref2'] ."', `t_ref3` = '" . $data['t_ref3'] ."',`termin` = '" . $data['termin'] ."', `t_status` = '" . $data['t_status'] ."', `onoff` = '" . $data['onoff'] ."',  `zero` = '" . $data['zero'] ."',  `metka` = '" . $data['metka'] ."', `optsku` = '" . $data['optsku'] ."', `newproduct` = '" . $data['newproduct'] ."', `opt_prices` = '" . $data['opt_prices'] . "', `opt_fotos` = '" . $data['opt_fotos'] . "', `usd` = '" . $data['usd'] . "', `serie` = '" . $data['serie'] . "', `sleep` = '" . $data['sleep'] . "', `ffile` = '" . $data['ffile'] . "', `rprice` = '" . $data['rprice'] ."', `subfolder` = '" . $data['subfolder'] ."', `delimiter` = '" . $data['delimiter'] ."', `skuprefix` = '" . $data['skuprefix'] ."', `formdate` = '" . $data['formdate'] ."' WHERE `form_id` = '" . (int)$form_id . "'");
 		
 		for ($i=0; $i<50; $i++) {
 			if (!isset($data['nom_id'][$i])) break;
@@ -252,9 +270,21 @@ class ModelCatalogSuppler extends Model {
 			$i = $i +1;			
 		}		
 		
-		$this->db->query("DELETE FROM " . DB_PREFIX . "suppler_seo WHERE `form_id`='" . (int)$form_id. "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "suppler_seo SET `prod_h1` = '" . $this->db->escape($data['prod_h1']) ."', `prod_title` = '" . $this->db->escape($data['prod_title']) . "', `prod_meta_desc` = '" . $this->db->escape($data['prod_meta_desc']) ."', `prod_desc` = '" . $this->db->escape($data['prod_desc']) ."', `prod_keyword` = '" . $this->db->escape($data['prod_keyword']) ."', `prod_photo` = '" . $this->db->escape($data['prod_photo']) ."', `prod_url` = '" . $this->db->escape($data['prod_url']) ."',  `cat_h1` = '" . $this->db->escape($data['cat_h1']) ."',  `cat_title` = '" . $this->db->escape($data['cat_title']) ."', `cat_meta_desc` = '" . $this->db->escape($data['cat_meta_desc']) ."', `cat_desc` = '" . $this->db->escape($data['cat_desc']) ."', `cat_keyword` = '" . $this->db->escape($data['cat_keyword']) ."', `manuf_h1` = '" . $this->db->escape($data['manuf_h1']) ."', `manuf_title` = '" . $this->db->escape($data['manuf_title']) ."', `manuf_meta_desc` = '" . $this->db->escape($data['manuf_meta_desc']) ."', `manuf_desc` = '" . $this->db->escape($data['manuf_desc']) ."', `manuf_keyword` = '" . $this->db->escape($data['manuf_keyword']) ."', `seo_1` = '" . $this->db->escape($data['seo_1']) ."', `seo_2` = '" . $this->db->escape($data['seo_2']) ."', `seo_3` = '" . $this->db->escape($data['seo_3']) ."', `seo_4` = '" . $this->db->escape($data['seo_4']) ."', `seo_5` = '" . $this->db->escape($data['seo_5']) ."', `seo_6` = '" . $this->db->escape($data['seo_6']) ."', `seo_7` = '" . $this->db->escape($data['seo_7']) ."', `seo_8` = '" . $this->db->escape($data['seo_8']) ."', `seo_9` = '" . $this->db->escape($data['seo_9']) ."', `seo_10` = '" . $this->db->escape($data['seo_10']) ."', `seo_11` = '" . $this->db->escape($data['seo_11']) ."', `seo_12` = '" . $this->db->escape($data['seo_12']) ."', `seo_13` = '" . $this->db->escape($data['seo_13']) ."', `seo_14` = '" . $this->db->escape($data['seo_14']) ."', `seo_15` = '" . $this->db->escape($data['seo_15']) ."', `seo_16` = '" . $this->db->escape($data['seo_16']) ."', `seo_17` = '" . $this->db->escape($data['seo_17']) ."', `seo_18` = '" . $this->db->escape($data['seo_18']) ."', `seo_19` = '" . $this->db->escape($data['seo_19']) ."', `seo_20` = '" . $this->db->escape($data['seo_20']) ."' WHERE `form_id` = '" . (int)$form_id . "'");
 		
-		$this->db->query("INSERT INTO " . DB_PREFIX . "suppler_seo SET `form_id` = '" . (int)$form_id . "', `prod_title` = '" . $this->db->escape($data['prod_title']) . "', `prod_meta_desc` = '" . $this->db->escape($data['prod_meta_desc']) ."', `prod_desc` = '" . $this->db->escape($data['prod_desc']) ."', `prod_keyword` = '" . $this->db->escape($data['prod_keyword']) ."', `prod_h1` = '" . $this->db->escape($data['prod_h1']) ."', `prod_photo` = '" . $this->db->escape($data['prod_photo']) ."', `prod_url` = '" . $this->db->escape($data['prod_url']) ."',  `cat_title` = '" . $this->db->escape($data['cat_title']) ."', `cat_meta_desc` = '" . $this->db->escape($data['cat_meta_desc']) ."', `cat_desc` = '" . $this->db->escape($data['cat_desc']) ."', `manuf_title` = '" . $this->db->escape($data['manuf_title']) ."', `manuf_meta_desc` = '" . $this->db->escape($data['manuf_meta_desc']) ."', `manuf_desc` = '" . $this->db->escape($data['manuf_desc']) ."', `seo_1` = '" . $this->db->escape($data['seo_1']) ."', `seo_2` = '" . $this->db->escape($data['seo_2']) ."', `seo_3` = '" . $this->db->escape($data['seo_3']) ."', `seo_4` = '" . $this->db->escape($data['seo_4']) ."', `seo_5` = '" . $this->db->escape($data['seo_5']) ."', `seo_6` = '" . $this->db->escape($data['seo_6']) ."', `seo_7` = '" . $this->db->escape($data['seo_7']) ."', `seo_8` = '" . $this->db->escape($data['seo_8']) ."', `seo_9` = '" . $this->db->escape($data['seo_9']) ."', `seo_10` = '" . $this->db->escape($data['seo_10']) ."', `seo_11` = '" . $this->db->escape($data['seo_11']) ."', `seo_12` = '" . $this->db->escape($data['seo_12']) ."', `seo_13` = '" . $this->db->escape($data['seo_13']) ."', `seo_14` = '" . $this->db->escape($data['seo_14']) ."', `seo_15` = '" . $this->db->escape($data['seo_15']) ."', `seo_16` = '" . $this->db->escape($data['seo_16']) ."', `seo_17` = '" . $this->db->escape($data['seo_17']) ."', `seo_18` = '" . $this->db->escape($data['seo_18']) ."', `seo_19` = '" . $this->db->escape($data['seo_19']) ."', `seo_20` = '" . $this->db->escape($data['seo_20']) ."'");
+		$this->db->query("UPDATE " . DB_PREFIX . "suppler_cron SET `suppler_id` = '" . $this->db->escape($data['suppler_id']) ."', `cmd` = '" . $this->db->escape($data['cmd1']) ."', `cmd1` = '" . $this->db->escape($data['cmd1']) ."',  `act_find` = '" . $this->db->escape($data['act_find1']) ."', `act_find1` = '" . $this->db->escape($data['act_find1']) ."', `act_change` = '" . $this->db->escape($data['act_change1']) ."', `act_change1` = '" . $this->db->escape($data['act_change1']) ."', `all0` = '" . $this->db->escape($data['all1']) ."', `all1` = '" . $this->db->escape($data['all1']) ."', `isno` = '" . $this->db->escape($data['isno1']) ."', `isno1` = '" . $this->db->escape($data['isno1']) ."', `on_off` = '" . $data['on_off'] ."', `save_on_off` = '" . $data['on_off'] ."', `csort` = '" . $this->db->escape($data['csort']) ."', `text` = '" . $this->db->escape($data['text']) ."', `text1` = '" . $this->db->escape($data['text1']) ."', `text2` = '" . $this->db->escape($data['text2']) ."', `port1` = '" . $this->db->escape($data['port1']) ."' WHERE `form_id` = '" . (int)$form_id . "' and `task` = '" . 1 ."'");
+
+		$this->db->query("UPDATE " . DB_PREFIX . "suppler_cron SET `suppler_id` = '" . $this->db->escape($data['suppler_id']) ."', `cmd` = '" . $this->db->escape($data['cmd2']) ."', `cmd2` = '" . $this->db->escape($data['cmd2']) ."',  `act_find` = '" . $this->db->escape($data['act_find2']) ."', `act_find2` = '" . $this->db->escape($data['act_find2']) ."', `act_change` = '" . $this->db->escape($data['act_change2']) ."', `act_change2` = '" . $this->db->escape($data['act_change2']) ."', `all0` = '" . $this->db->escape($data['all2']) ."', `all2` = '" . $this->db->escape($data['all2']) ."', `isno` = '" . $this->db->escape($data['isno2']) ."', `isno2` = '" . $this->db->escape($data['isno2']) ."', `on_off` = '" . $data['on_off'] ."', `save_on_off` = '" . $data['on_off'] ."', `csort` = '" . $this->db->escape($data['csort']) ."', `text` = '" . $this->db->escape($data['text']) ."', `text1` = '" . $this->db->escape($data['text1']) ."', `text2` = '" . $this->db->escape($data['text2']) ."', `port1` = '" . $this->db->escape($data['port1']) ."' WHERE `form_id` = '" . (int)$form_id . "' and `task` = '" . 2 ."'");
+		
+		$this->db->query("UPDATE " . DB_PREFIX . "suppler_cron SET `suppler_id` = '" . $this->db->escape($data['suppler_id']) ."', `cmd` = '" . $this->db->escape($data['cmd3']) ."', `cmd3` = '" . $this->db->escape($data['cmd3']) ."',  `act_find` = '" . $this->db->escape($data['act_find3']) ."', `act_find3` = '" . $this->db->escape($data['act_find3']) ."', `act_change` = '" . $this->db->escape($data['act_change2']) ."', `act_change2` = '" . $this->db->escape($data['act_change3']) ."', `all0` = '" . $this->db->escape($data['all3']) ."', `all3` = '" . $this->db->escape($data['all3']) ."', `isno` = '" . $this->db->escape($data['isno3']) ."', `isno3` = '" . $this->db->escape($data['isno3']) ."', `on_off` = '" . $data['on_off'] ."', `save_on_off` = '" . $data['on_off'] ."', `csort` = '" . $this->db->escape($data['csort']) ."', `text` = '" . $this->db->escape($data['text']) ."', `text1` = '" . $this->db->escape($data['text1']) ."', `text2` = '" . $this->db->escape($data['text2']) ."', `port1` = '" . $this->db->escape($data['port1']) ."' WHERE `form_id` = '" . (int)$form_id . "' and `task` = '" . 3 ."'");
+			
+		$this->db->query("UPDATE " . DB_PREFIX . "suppler_cron SET `suppler_id` = '" . $this->db->escape($data['suppler_id']) ."', `link` = '" . $this->db->escape($data['link']) ."', `ftp_name` = '" . $this->db->escape($data['ftp_name']) ."', `ftp_pass` = '" . $this->db->escape($data['ftp_pass']) ."', `ext` = '" . $this->db->escape($data['ext']) ."', `rtype` = '" . $this->db->escape($data['rtype']) ."', `mail` = '" . $this->db->escape($data['mail']) ."', `pr_name` = '" . $this->db->escape($data['pr_name']) ."', `on_off` = '" . $data['on_off'] ."', `save_on_off` = '" . $data['on_off'] ."', `csort` = '" . $this->db->escape($data['csort']) ."', `text` = '" . $this->db->escape($data['text']) ."', `text1` = '" . $this->db->escape($data['text1']) ."', `text2` = '" . $this->db->escape($data['text2']) ."', `port1` = '" . $this->db->escape($data['port1']) ."' WHERE `form_id` = '" . (int)$form_id . "' and `task` = '" . 4 ."'");
+		
+		$this->db->query("UPDATE " . DB_PREFIX . "suppler_cron SET `suppler_id` = '" . $this->db->escape($data['suppler_id']) ."', `cmd` = '" . $this->db->escape($data['cmd4']) ."', `cmd4` = '" . $this->db->escape($data['cmd4']) ."',  `act_find` = '" . $this->db->escape($data['act_find4']) ."', `act_find4` = '" . $this->db->escape($data['act_find4']) ."', `act_change` = '" . $this->db->escape($data['act_change4']) ."', `act_change4` = '" . $this->db->escape($data['act_change4']) ."', `all0` = '" . $this->db->escape($data['all4']) ."', `all4` = '" . $this->db->escape($data['all4']) ."', `isno` = '" . $this->db->escape($data['isno4']) ."', `isno4` = '" . $this->db->escape($data['isno4']) ."', `on_off` = '" . $data['on_off'] ."', `save_on_off` = '" . $data['on_off'] ."', `csort` = '" . $this->db->escape($data['csort']) ."', `text` = '" . $this->db->escape($data['text']) ."', `text1` = '" . $this->db->escape($data['text1']) ."', `text2` = '" . $this->db->escape($data['text2']) ."', `port1` = '" . $this->db->escape($data['port1']) ."' WHERE `form_id` = '" . (int)$form_id . "' and `task` = '" . 5 ."'");
+		
+		$this->db->query("UPDATE " . DB_PREFIX . "suppler_cron SET `suppler_id` = '" . $this->db->escape($data['suppler_id']) ."', `cmd` = '" . $this->db->escape($data['cmd5']) ."', `cmd5` = '" . $this->db->escape($data['cmd5']) ."',  `act_find` = '" . $this->db->escape($data['act_find5']) ."', `act_find5` = '" . $this->db->escape($data['act_find5']) ."', `act_change` = '" . $this->db->escape($data['act_change5']) ."', `act_change5` = '" . $this->db->escape($data['act_change5']) ."', `all0` = '" . $this->db->escape($data['all5']) ."', `all5` = '" . $this->db->escape($data['all5']) ."', `isno` = '" . $this->db->escape($data['isno5']) ."', `isno5` = '" . $this->db->escape($data['isno5']) ."', `on_off` = '" . $data['on_off'] ."', `save_on_off` = '" . $data['on_off'] ."', `csort` = '" . $this->db->escape($data['csort']) ."', `text` = '" . $this->db->escape($data['text']) ."', `text1` = '" . $this->db->escape($data['text1']) ."', `text2` = '" . $this->db->escape($data['text2']) ."', `port1` = '" . $this->db->escape($data['port1']) ."' WHERE `form_id` = '" . (int)$form_id . "' and `task` = '" . 6 ."'");
+		
+		$this->db->query("UPDATE " . DB_PREFIX . "suppler_cron SET `suppler_id` = '" . $this->db->escape($data['suppler_id']) ."', `cmd` = '" . $this->db->escape($data['cmd6']) ."', `cmd6` = '" . $this->db->escape($data['cmd6']) ."',  `act_find` = '" . $this->db->escape($data['act_find6']) ."', `act_find6` = '" . $this->db->escape($data['act_find6']) ."', `act_change` = '" . $this->db->escape($data['act_change6']) ."', `act_change6` = '" . $this->db->escape($data['act_change6']) ."', `all0` = '" . $this->db->escape($data['all6']) ."', `all6` = '" . $this->db->escape($data['all6']) ."', `isno` = '" . $this->db->escape($data['isno6']) ."', `isno6` = '" . $this->db->escape($data['isno6']) ."', `on_off` = '" . $data['on_off'] ."', `save_on_off` = '" . $data['on_off'] ."', `csort` = '" . $this->db->escape($data['csort']) ."', `text` = '" . $this->db->escape($data['text']) ."', `text1` = '" . $this->db->escape($data['text1']) ."', `text2` = '" . $this->db->escape($data['text2']) ."', `port1` = '" . $this->db->escape($data['port1']) ."' WHERE `form_id` = '" . (int)$form_id . "' and `task` = '" . 7 ."'");
 				
 		$this->cache->delete('suppler');		
 	}
@@ -336,6 +366,221 @@ class ModelCatalogSuppler extends Model {
 		return $query->row;
 	}
 	
+	public function insertElement(&$schema, $i, $elem) {
+		$n = count($schema);	
+		for ($ii=$n; $ii>$i; $ii--) {			
+			$schema[$ii+1] = $schema[$ii];
+		}	
+		$schema[$i+1] = $elem;
+	}
+
+	public function addcol($err) {
+		$file_er    = "./uploads/columns.tmp";
+		$er = @fopen($file_er,'a');
+		if (!$er) $er = @fopen($file_er,'w+');
+		@fputs($er, $err);
+		@fclose($er);	
+	}
+
+	public function findColumns($file_xml, $start, $end, &$schema, $ad) {			
+		$fpoint = 0;
+		$ext = 1;
+		while (!@feof($file_xml)) {
+			$st = @fgets($file_xml, 65535);		
+			$l = strlen($st);
+			if (substr_count($st, $start)) {
+				$p =  stripos($st, $start);
+				$fpoint = $fpoint + $p;
+				break;
+			}
+			$fpoint = $fpoint +$l;						
+		}		
+		$line = 0;						
+		for ($r=1; $r<1000; $r++) { // while ($ext) {
+			$line++;
+			$i = 0;					
+			$st = '';
+			$br = 0;			
+			$fpoint_begin = $fpoint;
+			@fseek($file_xml, $fpoint);
+			while (!@feof($file_xml)) {
+				$s = @fgets($file_xml, 4096);
+				$st .= $s;	
+				$l = strlen($s);
+				if (substr_count($s, $end)) {
+					$p =  stripos($s, $end) + strlen($end);
+					$fpoint = $fpoint + $p;
+					break;
+				} elseif (@feof($file_xml)) { $br=1; break; }
+				$fpoint = $fpoint +$l;								
+			}
+			if ($br) break;		
+
+			$st = substr($st, 0, $fpoint-$fpoint_begin);
+
+			$counter = 0;	
+			$Tags = array();
+			$text = '';
+			while ($ext) {				
+				$ee = strpos($st, '<', $counter+1);
+				$stt = trim(substr($st, $counter, $ee-$counter));
+	
+				if (substr_count($stt, '>') and substr_count($stt, '<') and !substr_count($stt, $start)) {					
+					if (!empty($text) and substr_count($stt, '</') and !substr_count($stt, '/>')) {						
+						$t = str_replace('/', '', $stt);
+						$p = strrpos($text, $t);	
+						if ($p === false) {
+							$t = str_replace('>', '', $t);
+							$p = strrpos($text, $t);
+						}
+						$text = substr($text, 0, $p);
+					}
+					if (!substr_count($stt, '</')) {
+						$p = strpos($stt, '>');
+						$t = substr($stt, 0, $p+1);
+						if (!substr_count($t, ' ') and !substr_count($text, $t) and !substr_count($t, '/>')) $text .= $t;
+						else {
+							$a = strpos($stt, '=');
+							$b = strpos($stt, '>');
+							if ($a and ($b and $b > $a or !$b) and (substr_count($stt, "='") or substr_count($stt, '="') or substr_count($stt, "= '") or substr_count($stt, '= "'))) {
+								$p = strpos($stt, ' ', 0);
+								$t = substr($stt, 0, $p);															
+								$p = strrpos($text, $t);
+								if (!substr_count($text, $t) or (substr_count($text, $t) and $p+strlen($t) != strlen($text))) $text .= $t;
+							}
+						}	
+					}	
+				}
+
+				if (substr($stt, 0, 2) != "</" and substr($stt, 0, 2) != "<!") {	
+					$a = strpos($stt, '=');
+					$b = strpos($stt, '>');
+					if ($a and ($b and $b > $a or !$b) and (substr_count($stt, "='") or substr_count($stt, '="') or substr_count($stt, "= '") or substr_count($stt, '= "'))) {
+						if (!substr_count($stt, '/>') and !substr_count($stt, '/ >')) {
+							$p = strpos($stt, ' ', 0);
+							$tag = substr($stt, 0, $p);
+							if (!empty($tag) and !empty($text) and (!in_array($text, $Tags) or empty($Tags))) {				
+								$i++;
+								$Tags[$i] = $text;
+							}
+						} 
+						$pp = 0;					
+						while(1) {						
+							$p = strpos($stt, ' ', $pp);						
+							if (!$p) break;						
+							$p = $p+1;
+							$pp = $p;
+							$e = strpos($stt, "=", $pp);
+							if (!$e) break;							
+							$par = trim(substr($stt, $p, $e-$p));
+							
+							if (substr_count($par, "'") or substr_count($par, '"')) {
+								$ka = strpos($par, "'");
+								if (!$ka) $ka = strpos($par, '"');
+								$pp = $pp+$ka+1;
+								continue;
+							}							
+							$t = $text . '<' . $par;
+							if (!empty($t) and (!in_array($t, $Tags) or empty($Tags))) {				
+								$i++;
+								$Tags[$i] = $t;
+								$pp = $e+1;	
+							}
+						}
+						if (substr_count($stt, '/>')) {
+							$p = strrpos($text, '<');
+							$text = substr($text, 0, $p);
+						}	
+					} else {
+						$e = strpos($stt, '>', 0);						
+						if (!$e) $tag = '';
+						else {
+							$s = trim(substr($stt, 0, $e+1));							
+							if (!substr_count($s, "</")) $tag = $s;
+							$cl = substr($tag, 0, 1) ."/" . substr($tag, 1);
+							if ($stt == $start) $epos = strpos($st, '<', $counter+1);
+							else $epos = strpos($st, $cl, $counter+1);
+							if ($epos) {
+								$lent = strlen($tag);
+								$ss = substr($st, $counter+$lent, $epos-$counter-$lent);
+								if (substr_count($ss, "<") and !substr_count($ss, "<!")) $tag = '';
+								if (substr_count($ss, "<!")) $ee = $ee + $epos-$counter-$lent;	
+							}
+						}
+						if (!empty($text) and $tag != '' and (!in_array($text, $Tags) or empty($Tags)) and !substr_count($tag, "/")) {
+							$i++;							
+							$Tags[$i] = $text;				
+						}		
+					}
+				}	
+				$counter = $ee;
+				$l = strlen($st)-strlen($end);
+
+				if ($counter >= $l) {
+					$fpoint = $fpoint-strlen($end)-10;
+					fseek($file_xml, $fpoint);
+					while (!@feof($file_xml)) {
+						$st = @fgets($file_xml, 65535);		
+						$l = strlen($st);
+						if (substr_count($st, $start)) {
+							$p =  stripos($st, $start);
+							$fpoint = $fpoint + $p;
+							break;
+						}
+						$fpoint = $fpoint +$l;						
+					}
+					break;
+				}				
+			}
+
+			if ($line == 1) $schema = $Tags;
+			else {
+				$nt =count($Tags);				
+				for ($j=1; $j<=$nt; $j++) {			
+					if (!in_array($Tags[$j], $schema)) {						
+						$ns = count($schema);						
+						for ($ii=1; $ii<=$ns; $ii++) {
+							$i=0;
+							if (isset($Tags[$j-1]) and $schema[$ii] == $Tags[$j-1]) $i=$ii;
+							else if (isset($Tags[$j+1]) and $schema[$ii] == $Tags[$j+1]) $i=$ii-1;
+	
+							if ($i) {	
+								$this->insertElement($schema, $i, $Tags[$j]);
+								break;
+							}
+						}	
+						if (!$i) array_push($schema, $Tags[$j]);		
+					}	
+				}
+			}
+		}
+		
+		if ($ad == 16) {
+			$file_col    = "./uploads/column.tmp";
+			if (file_exists($file_col)) unlink($file_col);
+			$n =count($schema);
+			for ($j=1; $j<=$n; $j++) {		
+				$p = strrpos($schema[$j], '<');
+				$a = substr($schema[$j], $p+1);
+				$a = str_replace('>', '', $a);
+				$err = " Column# " . $j . "  " . $a . "  \n";	
+				$this->addcol($err);
+			}
+			return;
+		} else {
+			$file_col    = "./uploads/schema.tmp";
+			$col = @fopen($file_col,'w+');
+			if (!$col) { 
+				@fclose($col);
+				$err = " Permission denied to write to the admin/uploads folder" . "  \n";	
+				$this->adderr($err);
+			}
+			chmod($file_col, 0777);
+			$c = serialize($schema);
+			fwrite($col, $c);
+		}	
+	}
+	
 	public function get100products($c, $store) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_to_category c LEFT JOIN " . DB_PREFIX . "category_to_store c2s ON (c.category_id = c2s.category_id) WHERE c.category_id = '" . $c . "' AND c2s.store_id = '" . (int)$store . "' LIMIT 100");
 		
@@ -353,7 +598,7 @@ class ModelCatalogSuppler extends Model {
 	public function upCategoryDescriptionByID($row, $lang) {
 		$query = $this->db->query("UPDATE " . DB_PREFIX . "category_description SET `name` = '" . $this->db->escape($row['name']) ."', `description` = '" . $this->db->escape($row['description']) . "', `meta_description` = '" . $this->db->escape($row['meta_description']) . "', `meta_keyword` = '" . $this->db->escape($row['meta_keyword']) . "', `meta_title` = '" . $this->db->escape($row['meta_title']) . "', `meta_h1` = '" . $this->db->escape($row['meta_h1']) . "' WHERE `category_id` = '" . $row['category_id'] . "' and `language_id` = '" . $lang . "'");
 	}
-	
+		
 	public function getCategoryStore($category_id, $store) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category c LEFT JOIN " . DB_PREFIX . "category_to_store c2s ON (c.category_id = c2s.category_id) WHERE c.category_id = '" . $category_id . "' AND c2s.store_id = '" . (int)$store . "'");
 		
@@ -419,6 +664,400 @@ class ModelCatalogSuppler extends Model {
 		return $query->rows;
 	}
 	
+	public function setFormDate($form) {
+		$a = date('Y-m-d H:i:s');
+		$this->db->query("UPDATE " . DB_PREFIX . "suppler SET `formdate` = '" . $a . "' WHERE `form_id` = '" .(int)$form . "'");
+	}
+
+	public function CronStop() {
+		
+		$query = $this->db->query("SELECT flag FROM " . DB_PREFIX . "suppler_cron");
+		if ($query->rows[0]['flag']) return;
+		
+		$query = $this->db->query("UPDATE " . DB_PREFIX . "suppler_cron SET `flag1` = '" . 1 ."'");
+		
+		$sos = false;
+		$flag1 = 0;
+		$count_old = 0; 
+		$count_new = 0;
+		$file_sos = "./uploads/sos.tmp";
+		if (file_exists($file_sos)) $sos = @fopen($file_sos,'r+');
+		if ($sos) { 
+			fseek($sos, 0);
+			$mmm = fgets($sos, 100);
+			$m = explode(" " , $mmm);
+			$count_old = (int)$m[0];
+			fclose($sos);
+		}
+
+		sleep(2);
+		
+		if (file_exists($file_sos)) $sos = @fopen($file_sos,'r+');
+		if ($sos) { 
+			fseek($sos, 0);
+			$mmm = fgets($sos, 100);
+			$m = explode(" " , $mmm);
+			$count_new = (int)$m[0];
+			fclose($sos);
+		}
+		
+		if ($count_old == $count_new) $flag1 = 1;
+		else return;
+		
+		$path_old = "./uploads/sos.tmp";
+		if (file_exists($path_old)) {		
+			$path_new = "./uploads/save_sos.tmp";
+			if (file_exists($path_old)) rename($path_old, $path_new);
+		
+			$path_old = "./uploads/errors.tmp";
+			$path_new = "./uploads/save_errors.tmp";
+			if (file_exists($path_old)) rename($path_old, $path_new);
+		
+			$path_old = "./uploads/report.tmp";
+			$path_new = "./uploads/save_report.tmp";
+			if (file_exists($path_old)) rename($path_old, $path_new);
+		
+			$path_old = "./uploads/total.tmp";
+			$path_new = "./uploads/save_total.tmp";
+			if (file_exists($path_old)) rename($path_old, $path_new);
+		}	
+	
+		$this->db->query("UPDATE " . DB_PREFIX . "suppler_cron SET `save_on_off` = `on_off`, `save_br_time` = `cron_status`");
+		$query = $this->db->query("UPDATE " . DB_PREFIX . "suppler_cron SET `on_off` = '" . 0 . "', `flag` = '" . 1 ."'");
+	}
+
+	public function ccontinue() {
+		$query = $this->db->query("UPDATE " . DB_PREFIX . "suppler_cron SET `flag1` = '" . 0 ."'");
+		
+		$query = $this->db->query("SELECT flag FROM " . DB_PREFIX . "suppler_cron");
+		if (!$query->rows[0]['flag']) return;
+		
+		$path_new = "./uploads/sos.tmp";
+		$path_old = "./uploads/save_sos.tmp";
+		if (file_exists($path_old)) rename($path_old, $path_new);
+		
+		$path_new = "./uploads/errors.tmp";
+		$path_old = "./uploads/save_errors.tmp";
+		if (file_exists($path_old)) rename($path_old, $path_new);
+		
+		$path_new = "./uploads/report.tmp";
+		$path_old = "./uploads/save_report.tmp";
+		if (file_exists($path_old)) rename($path_old, $path_new);
+		
+		$path_new = "./uploads/total.tmp";
+		$path_old = "./uploads/save_total.tmp";
+		if (file_exists($path_old)) rename($path_old, $path_new);
+		
+		$this->db->query("UPDATE " . DB_PREFIX . "suppler_cron SET `on_off` = `save_on_off`, `flag` = '" . 0 ."', `flag1` = '" . 0 ."'");
+		
+		$query = $this->db->query("SELECT nom_id, form_id, go, `on_off`, save_br_time FROM " . DB_PREFIX . "suppler_cron ORDER BY `nom_id`, csort ASC");
+		
+		$form_id = 0;
+		for ($i=0; $i<999; $i++) {
+			if (!isset($query->rows[$i]['nom_id'])) break;			
+			if ($query->rows[$i]['go']) {
+				$form_id = $query->rows[$i]['form_id'];				
+				break;
+			}
+		}
+		
+		if ($form_id) {
+			for ($i=0; $i<999; $i++) {
+				if (!isset($query->rows[$i]['nom_id'])) break;			
+				$time = time();
+				if ($query->rows[$i]['go']) $time = $query->rows[$i]['save_br_time'];
+			
+				if ($query->rows[$i]['form_id'] == $form_id and $query->rows[$i]['on_off']) {
+					$this->db->query("UPDATE " . DB_PREFIX . "suppler_cron SET `cron_status` = '" . $time . "' WHERE `nom_id` = '" . $query->rows[$i]['nom_id'] . "'");
+				}	
+
+				if ($query->rows[$i]['go']) break;
+			}
+		}	
+	}
+	
+	public function cstart() {
+		$this->db->query("UPDATE " . DB_PREFIX . "suppler_cron SET `cron_status` = '" . 0 ."', `save_br_time` = '" . 0 ."', `go` = '" . 0 ."', `flag` = '" . 0 ."', `flag1` = '" . 0 ."'");
+		
+		$path = "./uploads/sos.tmp";		
+		if (file_exists($path)) @unlink ($path);
+		
+		$path = "./uploads/errors.tmp";
+		if (file_exists($path)) @unlink ($path);
+		
+		$path = "./uploads/report.tmp";
+		if (file_exists($path)) @unlink ($path);
+		
+		$path = "./uploads/total.tmp";
+		if (file_exists($path)) @unlink ($path);
+		
+		$path = "./uploads/save_sos.tmp";		
+		if (file_exists($path)) @unlink ($path);
+		
+		$path = "./uploads/save_errors.tmp";
+		if (file_exists($path)) @unlink ($path);
+		
+		$path = "./uploads/save_report.tmp";
+		if (file_exists($path)) @unlink ($path);
+		
+		$path = "./uploads/save_total.tmp";
+		if (file_exists($path)) @unlink ($path);
+		
+		$path = "./uploads/schema.tmp";
+		if (file_exists($path)) @unlink ($path);
+	}
+	
+	public function getSupplerCron($form_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "suppler_cron WHERE `form_id` = '" . $form_id . "'");
+		if (empty($query->rows)) {
+			for ($i=1; $i<8; $i++) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "suppler_cron SET `form_id` = '" . (int)$form_id . "', `suppler_id` = '" . 0 ."', `cmd` = '" . 0 ."', `cmd1` = '" . 0 ."', `cmd2` = '" . 0 ."', `cmd3` = '" . 0 ."', `cmd4` = '" . 0 ."', `cmd5` = '" . 0 ."', `cmd6` = '" . 0 ."', `act_find` = '" . '' ."', `act_find1` = '" . '' ."', `act_find2` = '" . '' ."', `act_find3` = '" . '' ."', `act_find4` = '" . '' ."', `act_find5` = '" . '' ."', `act_find6` = '" . '' ."', `act_change` = '" . '' ."', `act_change1` = '" . '' ."', `act_change2` = '" . '' ."', `act_change3` = '" . '' ."', `act_change4` = '" . '' ."', `act_change5` = '" . '' ."', `act_change6` = '" . '' ."', `all0` = '" . 0 ."', `all1` = '" . 0 ."', `all2` = '" . 0 ."', `all3` = '" . 0 ."', `all4` = '" . 0 ."', `all5` = '" . 0 ."', `all6` = '" . 0 ."', `isno` = '" . '' ."', `isno1` = '" . '' ."', `isno2` = '" . '' ."', `isno3` = '" . '' ."', `isno4` = '" . '' ."', `isno5` = '" . '' ."', `isno6` = '" . '' ."', `link` = '" . '' ."', `ftp_name` = '" . '' ."', `ftp_pass` = '" . '' ."', `ext` = '" . 0 ."', `rtype` = '" . 0 ."', `mail` = '" . '' ."', `pr_name` = '" . '' ."', `cron_status` = '" . 0 ."',  `task` = '" . $i ."', `on_off` = '" . 0 ."', `csort` = '" . 0 ."', `save_on_off` = '" . 0 ."', `report` = '" . 0 ."', `errors` = '" . 0 ."', `save_br_time` = '" . 0 ."', `go` = '" . 0 ."', `save_nom` = '" . 0 ."', `save_form` = '" . 0 ."', `pl_status` = '" . 0 ."', `ctime` = '" . '2001-01-01 00:00:00' ."', `ctime1` = '" . '2001-01-01 00:00:00' ."', `imap` = '" . '' ."', `pop3` = '" . '' ."', `smtp` = '" . '' ."', `port` = '" . '' ."', `port1` = '" . '+2' ."', `user` = '" . '' ."', `user1` = '" . '' ."', `text` = '" . '*' ."', `text1` = '" . '*' ."', `text2` = '" . '*' ."', `ip` = '" . '' ."', `ip1` = '" . '' ."', `flag` = '" . 0 ."', `flag1` = '" . 0 ."'");
+			}
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "suppler_cron WHERE `form_id` = '" . $form_id . "'");
+			return $query->rows;
+			
+		} else {
+			$rows[0]['form_id'] = $form_id;
+			
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "suppler_cron WHERE `form_id` = '" . $form_id . "' and `task` = '" . 1 . "'");			
+			$rows[0]['suppler_id'] = $query->row['suppler_id'];
+			$rows[0]['cmd1'] = $query->row['cmd1'];
+			$rows[0]['act_find1'] = $query->row['act_find1'];
+			$rows[0]['act_change1'] = $query->row['act_change1'];
+			$rows[0]['all1'] = $query->row['all1'];
+			$rows[0]['isno1'] = $query->row['isno1'];
+			$rows[0]['on_off'] = $query->row['on_off'];
+			$rows[0]['csort'] = $query->row['csort'];
+			$rows[0]['save_on_off'] = $query->row['save_on_off'];
+			$rows[0]['report'] = $query->row['report'];
+			$rows[0]['errors'] = $query->row['errors'];
+			$rows[0]['save_br_time'] = $query->row['save_br_time'];
+			$rows[0]['go'] = $query->row['go'];
+			$rows[0]['save_nom'] = $query->row['save_nom'];
+			$rows[0]['save_form'] = $query->row['save_form'];
+			$rows[0]['pl_status'] = $query->row['pl_status'];
+			$rows[0]['ctime'] = $query->row['ctime'];
+			$rows[0]['ctime1'] = $query->row['ctime1'];
+			$rows[0]['imap'] = $query->row['imap'];
+			$rows[0]['pop3'] = $query->row['pop3'];
+			$rows[0]['smtp'] = $query->row['smtp'];
+			$rows[0]['port'] = $query->row['port'];
+			$rows[0]['port1'] = $query->row['port1'];
+			$rows[0]['user'] = $query->row['user'];
+			$rows[0]['user1'] = $query->row['user1'];
+			$rows[0]['text'] = $query->row['text'];
+			$rows[0]['text1'] = $query->row['text1'];
+			$rows[0]['text2'] = $query->row['text2'];
+			$rows[0]['ip'] = $query->row['ip'];
+			$rows[0]['ip1'] = $query->row['ip1'];
+			$rows[0]['flag'] = $query->row['flag'];
+			$rows[0]['flag1'] = $query->row['flag1'];
+			
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "suppler_cron WHERE `form_id` = '" . $form_id . "' and `task` = '" . 2 . "'");				
+			$rows[0]['cmd2'] = $query->row['cmd2'];
+			$rows[0]['act_find2'] = $query->row['act_find2'];
+			$rows[0]['act_change2'] = $query->row['act_change2'];
+			$rows[0]['all2'] = $query->row['all2'];
+			$rows[0]['isno2'] = $query->row['isno2'];
+			$rows[0]['on_off'] = $query->row['on_off'];
+			$rows[0]['csort'] = $query->row['csort'];
+			$rows[0]['save_on_off'] = $query->row['save_on_off'];
+			$rows[0]['report'] = $query->row['report'];
+			$rows[0]['errors'] = $query->row['errors'];
+			$rows[0]['save_br_time'] = $query->row['save_br_time'];
+			$rows[0]['go'] = $query->row['go'];
+			$rows[0]['save_nom'] = $query->row['save_nom'];
+			$rows[0]['save_form'] = $query->row['save_form'];
+			$rows[0]['pl_status'] = $query->row['pl_status'];
+			$rows[0]['ctime'] = $query->row['ctime'];
+			$rows[0]['ctime1'] = $query->row['ctime1'];
+			$rows[0]['imap'] = $query->row['imap'];
+			$rows[0]['pop3'] = $query->row['pop3'];
+			$rows[0]['smtp'] = $query->row['smtp'];
+			$rows[0]['port'] = $query->row['port'];
+			$rows[0]['port1'] = $query->row['port1'];
+			$rows[0]['user'] = $query->row['user'];
+			$rows[0]['user1'] = $query->row['user1'];
+			$rows[0]['text'] = $query->row['text'];
+			$rows[0]['text1'] = $query->row['text1'];
+			$rows[0]['text2'] = $query->row['text2'];
+			$rows[0]['ip'] = $query->row['ip'];
+			$rows[0]['ip1'] = $query->row['ip1'];
+			$rows[0]['flag'] = $query->row['flag'];
+			$rows[0]['flag1'] = $query->row['flag1'];
+			
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "suppler_cron WHERE `form_id` = '" . $form_id . "' and `task` = '" . 3 . "'");				
+			$rows[0]['cmd3'] = $query->row['cmd3'];
+			$rows[0]['act_find3'] = $query->row['act_find3'];
+			$rows[0]['act_change3'] = $query->row['act_change3'];
+			$rows[0]['all3'] = $query->row['all3'];
+			$rows[0]['isno3'] = $query->row['isno3'];
+			$rows[0]['on_off'] = $query->row['on_off'];
+			$rows[0]['csort'] = $query->row['csort'];
+			$rows[0]['save_on_off'] = $query->row['save_on_off'];
+			$rows[0]['report'] = $query->row['report'];
+			$rows[0]['errors'] = $query->row['errors'];
+			$rows[0]['save_br_time'] = $query->row['save_br_time'];
+			$rows[0]['go'] = $query->row['go'];
+			$rows[0]['save_nom'] = $query->row['save_nom'];
+			$rows[0]['save_form'] = $query->row['save_form'];
+			$rows[0]['pl_status'] = $query->row['pl_status'];
+			$rows[0]['ctime'] = $query->row['ctime'];
+			$rows[0]['ctime1'] = $query->row['ctime1'];
+			$rows[0]['imap'] = $query->row['imap'];
+			$rows[0]['pop3'] = $query->row['pop3'];
+			$rows[0]['smtp'] = $query->row['smtp'];
+			$rows[0]['port'] = $query->row['port'];
+			$rows[0]['port1'] = $query->row['port1'];
+			$rows[0]['user'] = $query->row['user'];
+			$rows[0]['user1'] = $query->row['user1'];
+			$rows[0]['text'] = $query->row['text'];
+			$rows[0]['text1'] = $query->row['text1'];
+			$rows[0]['text2'] = $query->row['text2'];
+			$rows[0]['ip'] = $query->row['ip'];
+			$rows[0]['ip1'] = $query->row['ip1'];
+			$rows[0]['flag'] = $query->row['flag'];
+			$rows[0]['flag1'] = $query->row['flag1'];
+			
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "suppler_cron WHERE `form_id` = '" . $form_id . "' and `task` = '" . 4 . "'");			
+			$rows[0]['link'] = $query->row['link'];
+			$rows[0]['ftp_name'] = $query->row['ftp_name'];
+			$rows[0]['ftp_pass'] = $query->row['ftp_pass'];
+			$rows[0]['ext'] = $query->row['ext'];
+			$rows[0]['rtype'] = $query->row['rtype'];
+			$rows[0]['mail'] = $query->row['mail'];
+			$rows[0]['pr_name'] = $query->row['pr_name'];
+			$rows[0]['on_off'] = $query->row['on_off'];
+			$rows[0]['csort'] = $query->row['csort'];
+			$rows[0]['save_on_off'] = $query->row['save_on_off'];
+			$rows[0]['report'] = $query->row['report'];
+			$rows[0]['errors'] = $query->row['errors'];
+			$rows[0]['save_br_time'] = $query->row['save_br_time'];
+			$rows[0]['go'] = $query->row['go'];
+			$rows[0]['save_nom'] = $query->row['save_nom'];
+			$rows[0]['save_form'] = $query->row['save_form'];
+			$rows[0]['pl_status'] = $query->row['pl_status'];
+			$rows[0]['ctime'] = $query->row['ctime'];
+			$rows[0]['ctime1'] = $query->row['ctime1'];
+			$rows[0]['imap'] = $query->row['imap'];
+			$rows[0]['pop3'] = $query->row['pop3'];
+			$rows[0]['smtp'] = $query->row['smtp'];
+			$rows[0]['port'] = $query->row['port'];
+			$rows[0]['port1'] = $query->row['port1'];
+			$rows[0]['user'] = $query->row['user'];
+			$rows[0]['user1'] = $query->row['user1'];
+			$rows[0]['text'] = $query->row['text'];
+			$rows[0]['text1'] = $query->row['text1'];
+			$rows[0]['text2'] = $query->row['text2'];
+			$rows[0]['ip'] = $query->row['ip'];
+			$rows[0]['ip1'] = $query->row['ip1'];
+			$rows[0]['flag'] = $query->row['flag'];
+			$rows[0]['flag1'] = $query->row['flag1'];
+			
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "suppler_cron WHERE `form_id` = '" . $form_id . "' and `task` = '" . 5 . "'");				
+			$rows[0]['cmd4'] = $query->row['cmd4'];
+			$rows[0]['act_find4'] = $query->row['act_find4'];
+			$rows[0]['act_change4'] = $query->row['act_change4'];
+			$rows[0]['all4'] = $query->row['all4'];
+			$rows[0]['isno4'] = $query->row['isno4'];
+			$rows[0]['on_off'] = $query->row['on_off'];
+			$rows[0]['csort'] = $query->row['csort'];
+			$rows[0]['save_on_off'] = $query->row['save_on_off'];
+			$rows[0]['report'] = $query->row['report'];
+			$rows[0]['errors'] = $query->row['errors'];
+			$rows[0]['save_br_time'] = $query->row['save_br_time'];
+			$rows[0]['go'] = $query->row['go'];
+			$rows[0]['save_nom'] = $query->row['save_nom'];
+			$rows[0]['save_form'] = $query->row['save_form'];
+			$rows[0]['pl_status'] = $query->row['pl_status'];
+			$rows[0]['ctime'] = $query->row['ctime'];
+			$rows[0]['ctime1'] = $query->row['ctime1'];
+			$rows[0]['imap'] = $query->row['imap'];
+			$rows[0]['pop3'] = $query->row['pop3'];
+			$rows[0]['smtp'] = $query->row['smtp'];
+			$rows[0]['port'] = $query->row['port'];
+			$rows[0]['port1'] = $query->row['port1'];
+			$rows[0]['user'] = $query->row['user'];
+			$rows[0]['user1'] = $query->row['user1'];
+			$rows[0]['text'] = $query->row['text'];
+			$rows[0]['text1'] = $query->row['text1'];
+			$rows[0]['text2'] = $query->row['text2'];
+			$rows[0]['ip'] = $query->row['ip'];
+			$rows[0]['ip1'] = $query->row['ip1'];
+			$rows[0]['flag'] = $query->row['flag'];
+			$rows[0]['flag1'] = $query->row['flag1'];
+			
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "suppler_cron WHERE `form_id` = '" . $form_id . "' and `task` = '" . 6 . "'");			
+			$rows[0]['cmd5'] = $query->row['cmd5'];
+			$rows[0]['act_find5'] = $query->row['act_find5'];
+			$rows[0]['act_change5'] = $query->row['act_change5'];
+			$rows[0]['all5'] = $query->row['all5'];
+			$rows[0]['isno5'] = $query->row['isno5'];
+			$rows[0]['on_off'] = $query->row['on_off'];
+			$rows[0]['csort'] = $query->row['csort'];
+			$rows[0]['save_on_off'] = $query->row['save_on_off'];
+			$rows[0]['report'] = $query->row['report'];
+			$rows[0]['errors'] = $query->row['errors'];
+			$rows[0]['save_br_time'] = $query->row['save_br_time'];
+			$rows[0]['go'] = $query->row['go'];
+			$rows[0]['save_nom'] = $query->row['save_nom'];
+			$rows[0]['save_form'] = $query->row['save_form'];
+			$rows[0]['pl_status'] = $query->row['pl_status'];
+			$rows[0]['ctime'] = $query->row['ctime'];
+			$rows[0]['ctime1'] = $query->row['ctime1'];
+			$rows[0]['imap'] = $query->row['imap'];
+			$rows[0]['pop3'] = $query->row['pop3'];
+			$rows[0]['smtp'] = $query->row['smtp'];
+			$rows[0]['port'] = $query->row['port'];
+			$rows[0]['port1'] = $query->row['port1'];
+			$rows[0]['user'] = $query->row['user'];
+			$rows[0]['user1'] = $query->row['user1'];
+			$rows[0]['text'] = $query->row['text'];
+			$rows[0]['text1'] = $query->row['text1'];
+			$rows[0]['text2'] = $query->row['text2'];
+			$rows[0]['ip'] = $query->row['ip'];
+			$rows[0]['ip1'] = $query->row['ip1'];
+			$rows[0]['flag'] = $query->row['flag'];
+			$rows[0]['flag1'] = $query->row['flag1'];
+			
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "suppler_cron WHERE `form_id` = '" . $form_id . "' and `task` = '" . 7 . "'");			
+			$rows[0]['cmd6'] = $query->row['cmd6'];
+			$rows[0]['act_find6'] = $query->row['act_find6'];
+			$rows[0]['act_change6'] = $query->row['act_change6'];
+			$rows[0]['all6'] = $query->row['all6'];
+			$rows[0]['isno6'] = $query->row['isno6'];
+			$rows[0]['on_off'] = $query->row['on_off'];
+			$rows[0]['csort'] = $query->row['csort'];
+			$rows[0]['save_on_off'] = $query->row['save_on_off'];
+			$rows[0]['report'] = $query->row['report'];
+			$rows[0]['errors'] = $query->row['errors'];
+			$rows[0]['save_br_time'] = $query->row['save_br_time'];
+			$rows[0]['go'] = $query->row['go'];
+			$rows[0]['save_nom'] = $query->row['save_nom'];
+			$rows[0]['save_form'] = $query->row['save_form'];
+			$rows[0]['pl_status'] = $query->row['pl_status'];
+			$rows[0]['ctime'] = $query->row['ctime'];
+			$rows[0]['ctime1'] = $query->row['ctime1'];
+			$rows[0]['imap'] = $query->row['imap'];
+			$rows[0]['pop3'] = $query->row['pop3'];
+			$rows[0]['smtp'] = $query->row['smtp'];
+			$rows[0]['port'] = $query->row['port'];
+			$rows[0]['port1'] = $query->row['port1'];
+			$rows[0]['user'] = $query->row['user'];
+			$rows[0]['user1'] = $query->row['user1'];
+			$rows[0]['text'] = $query->row['text'];
+			$rows[0]['text1'] = $query->row['text1'];
+			$rows[0]['text2'] = $query->row['text2'];
+			$rows[0]['ip'] = $query->row['ip'];
+			$rows[0]['ip1'] = $query->row['ip1'];
+			$rows[0]['flag'] = $query->row['flag'];
+			$rows[0]['flag1'] = $query->row['flag1'];
+			
+			return $rows;	
+		}	
+		
+	}
+	
 	public function getBonus1($customer_group_id, $product_id) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_reward WHERE `product_id` = '" . $product_id . "' AND `customer_group_id` = '" . $customer_group_id . "'");
 			
@@ -482,7 +1121,7 @@ class ModelCatalogSuppler extends Model {
 		return $query->row;
 	}
 	
-	public function putSerie($product_id, $serie_id) {
+	public function putSerie($product_id, $serie_id, $sort) {	
 		if ($serie_id < 1) return;
 		$table = DB_PREFIX . "special_attribute";
 		$tname = "special_attribute_group_id";
@@ -514,14 +1153,24 @@ class ModelCatalogSuppler extends Model {
 		} else {
 			$table = DB_PREFIX . "kjseries_links";
 			$tname = "parent_id";
-			if ($this->getColumnName($table, $tname)) {
+			if ($this->getColumnName($table, $tname)) {	
 				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "kjseries_links WHERE `parent_id` = '" . $serie_id . "' AND `product_id` = '" . $product_id . "'");
 				
 				if (!$query->rows) {
-					$query = $this->db->query("INSERT INTO " . DB_PREFIX . "kjseries_links SET `product_id` = '" . $product_id . "',   `parent_id` = '" . $serie_id . "', `sort` = '" . 1 . "'");
+					$query = $this->db->query("INSERT INTO " . DB_PREFIX . "kjseries_links SET `product_id` = '" . $product_id . "',   `parent_id` = '" . $serie_id . "', `sort` = '" . $sort . "'");
 				}
-			}
-		}	
+			} else {		
+				$table = DB_PREFIX . "hpmodel_links";
+				$tname = "parent_id";
+				if ($this->getColumnName($table, $tname)) {
+					$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "hpmodel_links WHERE `parent_id` = '" . $serie_id . "' AND `product_id` = '" . $product_id . "'");
+				
+					if (!$query->rows) {
+						$query = $this->db->query("INSERT INTO " . DB_PREFIX . "hpmodel_links SET `product_id` = '" . $product_id . "',   `parent_id` = '" . $serie_id . "', `sort` = '" . $sort . "'");
+					}
+				}	
+			}			
+		}
 	}
 	
 	public function getlanguages() {
@@ -610,14 +1259,21 @@ class ModelCatalogSuppler extends Model {
 		if (!empty($query->row)) $filter_id = $query->row['filter_id'];
 	}	
 	
-	public function CreateFilter($data, $filter_group_id, $langs, &$filters) {		
+	public function CreateFilter($data, $filter_group_id, $langs, &$filters) {
 		if (!isset($data['text1']) or empty($data['text1'])) return;
 		$t1 = array();
 		$t2 = array(); 
 		$t3 = array();
-		$t1 = explode(',', $data['text1']);
-		if (isset($data['text2'])) $t2 = explode(',', $data['text2']);
-		if (isset($data['text3'])) $t3 = explode(',', $data['text3']);
+		if (substr_count($data['text1'], ';')) $t1 = explode(';', $data['text1']);
+		else $t1 = explode(',', $data['text1']);
+		if (isset($data['text2'])) {
+			if (substr_count($data['text2'], ';')) $t2 = explode(';', $data['text2']);
+			else $t2 = explode(',', $data['text2']);
+		}	
+		if (isset($data['text3'])) {
+			if (substr_count($data['text3'], ';')) $t3 = explode(';', $data['text3']);
+			else $t3 = explode(',', $data['text3']);
+		}	
 		$n = count($t1);
 		if ($n < count($t2)) $n = count($t2);
 		if ($n < count($t3)) $n = count($t3);
@@ -1149,9 +1805,9 @@ class ModelCatalogSuppler extends Model {
 			}	
 		}
 		if (!$group)
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "attribute_description WHERE `name` = '" . $this->db->escape($n) . "'");	
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "attribute_description WHERE `name` = '" . $this->db->escape($n) . "' ORDER BY attribute_id");	
 		else 	
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "attribute_description d LEFT JOIN " . DB_PREFIX . "attribute a ON (d.attribute_id = a.attribute_id) WHERE d.name = '" . $this->db->escape($n) . "' AND a.attribute_group_id = '" . $group . "'");
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "attribute_description d LEFT JOIN " . DB_PREFIX . "attribute a ON (d.attribute_id = a.attribute_id) WHERE d.name = '" . $this->db->escape($n) . "' AND a.attribute_group_id = '" . $group . "' ORDER BY d.attribute_id");
 		
 		return $query->rows;		
 	}
@@ -1383,7 +2039,7 @@ class ModelCatalogSuppler extends Model {
 			}
 			
 		}
-	
+		
 		if ($t1 and !$t2) {
 			$attID = $attID1;
 			if (!empty($data['text2'])) {
@@ -1495,14 +2151,81 @@ class ModelCatalogSuppler extends Model {
 		return $query->rows;
 	}	
 	
-	public function getSupplers($order) {	
+	public function getSupplers($order) {
+		$out = array();
 		$sql = "SELECT * FROM " . DB_PREFIX . "suppler ORDER BY ";
 		if ($order == "ASC") $sql = $sql . "name ASC";
 		else $sql = $sql . "suppler_id ASC";
 	
-		$query = $this->db->query($sql);		
-		return $query->rows;
-	}	
+		$query = $this->db->query($sql);
+		$out = $query->rows;
+		
+		$s = 0;
+		$fi = "./uploads/sos.tmp";
+		if (file_exists($fi)) $s = 1;		
+
+		for ($i=0; $i<999; $i++) {
+			if (!isset($out[$i]['form_id'])) break;
+			$query1 = $this->db->query("SELECT * FROM " . DB_PREFIX . "suppler_cron WHERE `form_id` = '" . (int)$out[$i]['form_id'] . "'");	
+
+			$out[$i]['save_form'] = '';			
+			$out[$i]['report'] = '';
+			$out[$i]['errors'] = '';
+			$out[$i]['on_off'] = 2;
+			$out[$i]['go'] = 0;	
+			$out[$i]['csort'] = 0;
+			$out[$i]['sos'] = $s;
+			$out[$i]['text'] = '*';
+			$out[$i]['text1'] = '*';
+			$out[$i]['text2'] = '*';
+			$out[$i]['flag'] = 0;
+			$out[$i]['flag1'] = 0;
+			
+			$out[$i]['dj'] = 0;
+			$out[$i]['djssf'] = 0;
+			$out[$i]['dhissf'] = 0;
+			$out[$i]['ddmhissf'] = 0;
+			$out[$i]['port1'] = 0;
+			
+			for ($j=0; $j<999; $j++) {
+
+				if (!isset($query1->rows[$j]['form_id'])) break;
+				if ($query1->rows[$j]['task'] == 4) {
+	
+					$out[$i]['save_form'] = 0;
+					if ($query1->rows[$j]['save_form']) $out[$i]['save_form'] = $query1->rows[$j]['save_form'];			
+					$out[$i]['report'] = $query1->rows[$j]['report'];
+					$out[$i]['errors'] = $query1->rows[$j]['errors'];
+					$out[$i]['on_off'] = $query1->rows[$j]['on_off'];
+					$out[$i]['go'] = $query1->rows[$j]['go'];
+					$out[$i]['csort'] = $query1->rows[$j]['csort'];
+					$out[$i]['text'] = $query1->rows[$j]['text'];
+					$out[$i]['text1'] = $query1->rows[$j]['text1'];
+					$out[$i]['text2'] = $query1->rows[$j]['text2'];
+					$out[$i]['flag'] = $query1->rows[$j]['flag'];
+					$out[$i]['flag1'] = $query1->rows[$j]['flag1'];
+					$out[$i]['port1'] = $query1->rows[$j]['port1'];
+		
+					$mk = time();
+					if (substr_count($out[$i]['port1'], '+')) {
+						$a = substr($out[$i]['port1'], 1);
+						$mk = time() + (int)$a*3600;
+					}
+					if (substr_count($out[$i]['port1'], '-')) {
+						$a = substr($out[$i]['port1'], 1);
+						$mk = time() - (int)$a*3600;
+					}					
+					$out[$i]['dj'] = date('j', $mk);
+					$out[$i]['djssf'] = date('j', $out[$i]['save_form']);
+					$out[$i]['dhissf'] = date('H:i', $out[$i]['save_form']);
+					$out[$i]['ddmhissf'] = date('d.m H:i', $out[$i]['save_form']);
+					
+					
+				}	
+			} 
+		}
+		return $out;
+	}
 	
 	public function getSame($names, $manufacturer_id, $category_id, $store) {
 		$sql = "SELECT * FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "product_to_category p2c ON (p.product_id = p2c.product_id)";
@@ -1604,6 +2327,12 @@ class ModelCatalogSuppler extends Model {
 	
 		return $query->row;
 	}
+	
+	public function zeroDiscountPrice($product_id, $group) {
+		$this->db->query("UPDATE `" . DB_PREFIX . "product_discount` SET `price` = '" . 0 . "' WHERE `product_id` = '" . $product_id . "' and `customer_group_id` = '" . (int)$group . "'");
+	
+		$this->cache->delete('product');
+	}
 		
 	public function deleteWholesale($product_id) {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_discount WHERE product_id = '" . (int)$product_id . "'");
@@ -1697,6 +2426,24 @@ class ModelCatalogSuppler extends Model {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) WHERE p.sku = '" . $this->db->escape($sku) . "' AND p2s.store_id = '" . (int)$store . "'");
 			
 		return $query->rows;
+	}
+	
+	public function checkProductCategoryStatus($arr) {
+		$empt = 1;
+		if (empty($arr)) return $empt;
+		$f = 0;
+		for ($i=0; $i<20000; $i++) {
+			if (!isset($arr[$i]['product_id'])) break;
+			$rows = $this->getProductsByID((int)$arr[$i]['product_id']);
+			if (!empty($rows)) {
+				if ($rows[0]['status']) {
+					$f++;						
+					break;
+				}
+			}	
+		}
+		if ($f) $empt = 0;
+		return $empt;
 	}
 	
 	public function getProductsInCategory($category_id) {
@@ -1842,14 +2589,15 @@ class ModelCatalogSuppler extends Model {
 		return $query->rows;
 	}	
 	
-	public function CreateCategory($name, $langs, $parent_category_id, &$new_id, $date, $refer, $catdesc, $caturl, $catmd, $catmk, $catmt, $catmh, $seo_data, $store) {		
+	public function CreateCategory($name, $langs, $parent_category_id, &$new_id, $date, $refer, $catdesc, $caturl, $catmd, $catmk, $catmt, $catmh, $seo_data, $store) {	
+		if (empty($name)) return;
 		if (!substr_count($refer, "/")) $refer = "catalog/category/" . $refer;
 	
 		$this->db->query("INSERT INTO " . DB_PREFIX . "category SET `image` = '" . $refer . "', `parent_id` = '" . (int)$parent_category_id . "', `top` = '" . 0 . "', `column` = '" . 1 ."', `sort_order` = '" . 0 . "', `status` = '" . 1 . "', `date_added` = '" . $date . "', `date_modified` = '" . $date . "'");
 		
 		$new_id = $this->db->getLastId();
 		$seo = array();
-		$this->seoCategory($store, $name, $parent_category_id, $seo_data, $seo);
+		$this->seoCategory($store, $name, $parent_category_id, $seo_data, $seo, 0);
 		
 		$seo_keyword = '';
 		$h1 = $name;
@@ -1858,10 +2606,12 @@ class ModelCatalogSuppler extends Model {
 		$seo_url = $this->MetaURL($seo_url);	
 		$seo_url = mb_strtolower($seo_url);
 		
+		if (!empty($seo['cat_h1'])) $h1 = $seo['cat_h1'];
 		if (!empty($caturl)) $seo_url = $caturl;		
 		if (!empty($catdesc)) $seo['cat_desc'] = $catdesc;
 		if (!empty($catmd)) $seo['cat_meta_desc'] = $catmd;
-		if (!empty($catmk)) $seo_keyword = $catmk;
+		if (!empty($seo['cat_keyword'])) $seo_keyword = $seo['cat_keyword'];
+		if (!empty($catmk)) $seo_keyword = $catmk;		
 		if (!empty($catmt)) $seo['cat_title'] = $catmt;
 		if (!empty($catmh)) $h1 = $catmh;
 		
@@ -1880,7 +2630,24 @@ class ModelCatalogSuppler extends Model {
 	}
 
 	public function deleteProductImage($product_id) {
-		$this->db->query("DELETE FROM " . DB_PREFIX . "product_image WHERE product_id = '" . (int)$product_id . "'");	
+		$row = $this->getProductById($product_id);	
+		$path_photo = DIR_IMAGE . $row['image'];	
+		if (file_exists($path_photo)) {
+			$row['image'] = '';
+			$this->upProduct($row);
+			@unlink($path_photo);	
+		}					
+
+		$rows = $this->getProductImage($product_id);
+		if (!empty($rows)) {
+			$addr = '';		
+			for ($i=0; $i<50; $i++) {
+				if (!isset($rows[$i]['image'])) break;
+				$path_photo = DIR_IMAGE . $rows[$i]['image'];	
+				if (file_exists($path_photo)) @unlink($path_photo);
+			}
+			$this->db->query("DELETE FROM " . DB_PREFIX . "product_image WHERE product_id = '" . (int)$product_id . "'");			
+		}		
 	}
 	
 	public function countPOPImages($im) {
@@ -2003,6 +2770,7 @@ class ModelCatalogSuppler extends Model {
 	
 	public function addManufacturer($data, $langs, &$last_id, $seo_data, $store) {
 		$name = $data['name'];
+		if (empty($name)) return;
 		$seo_keyword = '';
 		$seo_url = $name;
 	//	$seo_url = $this->TransLit($name);  // translit
@@ -2149,11 +2917,12 @@ class ModelCatalogSuppler extends Model {
 		return $query->rows;	
 	}	
 	
-	public function putProductBySKU($sku, $row_product, $updte, $upname, $max_attr, $attr_ext, $row, $tags, $addseo, $upurl, $umanuf, $seo_data, $store, $parent, $t_ref, $t_ref1, $metka, $yml, $usd, $catmany, $idcat) {		
+	public function putProductBySKU($sku, $row_product, $updte, $upname, $max_attr, $attr_ext, $row, $tags, $addseo, $upurl, $umanuf, $seo_data, $store, $parent, $t_ref, $t_ref1, $t_ref2, $t_ref3, $metka, $yml, $usd, $catmany, $idcat) {
+	
 		$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `model` = '" . $row_product[0]['model'] . "', `sku` = '" . $this->db->escape($row_product[0]['sku']) . "', `price` = '" . $row_product[0]['price'] . "', `stock_status_id` = '" . $row_product[0]['stock_status_id'] . "', `quantity` = '" . $row_product[0]['quantity'] . "', `subtract` = '". $row_product[0]['subtract']. "', `image` = '". $this->db->escape($row_product[0]['image']). "', `status` = '". $row_product[0]['hide'] ."', `noindex` = '". $row_product[0]['hide'] ."',  `sort_order` = '" . (int)$row_product[0]['sort_order'] . "', `weight` = '". $row_product[0]['weight'] . "', `length` = '". $row_product[0]['length'] ."', `width` = '". $row_product[0]['width'] ."', `height` = '". $row_product[0]['height'] ."', `date_modified` = '" . $row_product[0]['date_modified'] . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
-		
+	
 		if ($yml) {
-			$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `model` = '" . $row_product[0]['model'] . "', `sku` = '" . $this->db->escape($row_product[0]['sku']) . "', `price` = '" . $row_product[0]['price'] . "', `stock_status_id` = '" . $row_product[0]['stock_status_id'] . "', `subtract` = '". $row_product[0]['subtract']. "', `image` = '". $this->db->escape($row_product[0]['image']). "', `status` = '". $row_product[0]['hide'] ."', `noindex` = '". $row_product[0]['hide'] ."', `sort_order` = '" . (int)$row_product[0]['sort_order'] . "', `weight` = '". $row_product[0]['weight'] . "', `length` = '". $row_product[0]['length'] ."', `width` = '". $row_product[0]['width'] ."', `height` = '". $row_product[0]['height'] ."', `date_modified` = '" . $row_product[0]['date_modified'] . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
+			$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `model` = '" . $row_product[0]['model'] . "', `sku` = '" . $this->db->escape($row_product[0]['sku']) . "', `price` = '" . $row_product[0]['price'] . "', `stock_status_id` = '" . $row_product[0]['stock_status_id'] . "', `subtract` = '". $row_product[0]['subtract']. "', `image` = '". $this->db->escape($row_product[0]['image']). "', `status` = '". $row_product[0]['hide'] ."', `noindex` = '". $row_product[0]['hide'] ."',  `sort_order` = '" . (int)$row_product[0]['sort_order'] . "', `weight` = '". $row_product[0]['weight'] . "', `length` = '". $row_product[0]['length'] ."', `width` = '". $row_product[0]['width'] ."', `height` = '". $row_product[0]['height'] ."', `date_modified` = '" . $row_product[0]['date_modified'] . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
 						
 			if ($row_product[0]['quantity']) {
 				$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `quantity` = '" . $row_product[0]['quantity'] . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
@@ -2169,13 +2938,22 @@ class ModelCatalogSuppler extends Model {
 			}	
 		}
 		if (!empty($row_product[0]['upc']) or $row_product[0]['upc'] == '0')
-			$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `upc` = '" . $this->db->escape($row_product[0]['upc']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
-
+			$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `upc` = '" . $this->db->escape($row_product[0]['upc']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");	
+		
 		if (!empty($row_product[0]['ean']) or $row_product[0]['ean'] == '0')
-			$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `ean` = '" . $this->db->escape($row_product[0]['ean']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
-			
+			$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `ean` = '" . $this->db->escape($row_product[0]['ean']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");	
+
 		if (!empty($row_product[0]['mpn']) or $row_product[0]['mpn'] == '0')
 			$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `mpn` = '" . $this->db->escape($row_product[0]['mpn']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");	
+		
+		if (!empty($row_product[0]['location']) or $row_product[0]['location'] == '0')
+			$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `location` = '" . $this->db->escape($row_product[0]['location']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");	
+		
+		if (!empty($row_product[0]['jan']) or $row_product[0]['jan'] == '0')
+			$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `jan` = '" . $this->db->escape($row_product[0]['jan']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");	
+		
+		if (!empty($row_product[0]['isbn']) or $row_product[0]['isbn'] == '0')
+			$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `isbn` = '" . $this->db->escape($row_product[0]['isbn']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
 		
 		if ($row_product[0]['manufacturer_id'])
 			$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `manufacturer_id` = '" . $row_product[0]['manufacturer_id'] . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
@@ -2190,7 +2968,7 @@ class ModelCatalogSuppler extends Model {
 		}
 		$lang = $this->config->get('config_language_id');
 		$date = $row_product[0]['date_modified'];
-		
+	
 		// Описание оригинал
 		$descript = "";
 		if (isset($row_product[0]['description'])) $descript = $row_product[0]['description'];
@@ -2246,8 +3024,8 @@ class ModelCatalogSuppler extends Model {
 		//	$url = $this->TransLit($url);  // translit
 			$url = $this->MetaURL($url);
 			$url = mb_strtolower($url);
-		}		
-	
+		}
+
 		for ($j=1; $j<300; $j++) {
 			if (!isset($row[$j]) or empty($row[$j])) continue;
 			$a = '{' . $j . '}';
@@ -2264,7 +3042,7 @@ class ModelCatalogSuppler extends Model {
 		$desc = $this->clearSEO($desc);
 		$keywords = $this->clearSEO($keywords);
 		$url = $this->clearSEO($url);
-		
+	
 		if ($updte == 4) $descript = $desc;
 	
 	// SEO URL
@@ -2327,7 +3105,7 @@ class ModelCatalogSuppler extends Model {
 				}	
 			}			
 		}
-		
+	
 		if (($upurl or $yml) and !empty($seo_url)) {
 			$rows = $this->getURL($row_product[0]['product_id'], $store);
 			if (empty($rows)) {
@@ -2335,7 +3113,11 @@ class ModelCatalogSuppler extends Model {
 			} else {				
 				$this->db->query("UPDATE " . DB_PREFIX . "seo_url SET `keyword` = '" . $this->db->escape($seo_url) . "' WHERE `query` = 'product_id=" .(int)$row_product[0]['product_id']. "' and `store_id` = '" . $store . "' and `language_id` = '" . $lang . "'");		
 			}
-		}		
+		}
+	
+		if (($upurl or $yml) and !empty($seo_url)) {			
+			$this->db->query("UPDATE " . DB_PREFIX . "seo_url SET `keyword` = '" . $this->db->escape($seo_url) . "' WHERE `query` = 'product_id=" .(int)$row_product[0]['product_id']. "' and `store_id` = '" . $store . "' and `language_id` = '" . $lang . "'");
+		}
 	
 		if ($updte > 1 or $yml) {		
 			if (!empty($descript)) {
@@ -2356,7 +3138,7 @@ class ModelCatalogSuppler extends Model {
 				}	
 			}
 		}
-		
+	
 		if ((!empty($row_product[0]['ref']) or $row_product[0]['ref'] == '0') and preg_match('/^[0-9]+$/', $t_ref) and $t_ref > 0) {
 			
 			switch ($t_ref) {			
@@ -2397,13 +3179,10 @@ class ModelCatalogSuppler extends Model {
 					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `points` = '" . $this->db->escape($row_product[0]['ref']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
 					break;
 				case 13:									
-					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `location` = '" . $this->db->escape($row_product[0]['ref']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
 					break;
 				case 14:									
-					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `jan` = '" . $this->db->escape($row_product[0]['ref']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
 					break;	
 				case 15:									
-					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `isbn` = '" . $this->db->escape($row_product[0]['ref']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
 					break;					
 				case 16:									
 					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `stock_status_id` = '" . $this->db->escape($row_product[0]['ref']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
@@ -2417,7 +3196,7 @@ class ModelCatalogSuppler extends Model {
 					}	
 					break;
 				case 18:									
-			//		$this->db->query("UPDATE `" . DB_PREFIX . "my_table` SET `my_field` = '" . $this->db->escape($row_product[0]['ref']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
+	//				$this->db->query("UPDATE `" . DB_PREFIX . "my_table` SET `my_field` = '" . $this->db->escape($row_product[0]['ref']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
 					break;
 				case 19:
 					if ($row_product[0]['ref'] != '') {
@@ -2471,13 +3250,10 @@ class ModelCatalogSuppler extends Model {
 					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `points` = '" . $this->db->escape($row_product[0]['ref1']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
 					break;
 				case 13:									
-					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `location` = '" . $this->db->escape($row_product[0]['ref1']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
 					break;
 				case 14:									
-					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `jan` = '" . $this->db->escape($row_product[0]['ref1']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
 					break;	
 				case 15:									
-					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `isbn` = '" . $this->db->escape($row_product[0]['ref1']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
 					break;	
 				case 16:									
 					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `stock_status_id` = '" . $this->db->escape($row_product[0]['ref1']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
@@ -2505,6 +3281,155 @@ class ModelCatalogSuppler extends Model {
 					break;	
 			}
 		}
+		if ((!empty($row_product[0]['ref2']) or $row_product[0]['ref2'] == '0') and preg_match('/^[0-9]+$/', $t_ref2) and $t_ref2 > 0) {
+			
+			switch ($t_ref2) {			
+				case 1:									
+					$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `meta_h1` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "' and `language_id` = '" . $lang. "'");
+					break;
+				case 2:									
+					$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `meta_title` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "' and `language_id` = '" . $lang. "'");
+					break;
+				case 3:									
+					$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `meta_keyword` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "' and `language_id` = '" . $lang. "'");
+					break;
+				case 4:									
+					$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `meta_description` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "' and `language_id` = '" . $lang. "'");
+					break;
+				case 5:									
+					$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `tag` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "' and `language_id` = '" . $lang. "'");
+					break;
+				case 6:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `minimum` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
+					break;
+				case 7:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `subtract` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
+					break;
+				case 8:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `shipping` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
+					break;
+				case 9:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `length_class_id` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
+					break;
+				case 10:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `weight_class_id` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
+					break;
+				case 11:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `tax_class_id` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
+					break;
+				case 12:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `points` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
+					break;
+				case 13:									
+					
+					break;
+				case 14:									
+				
+					break;	
+				case 15:									
+				
+					break;					
+				case 16:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `stock_status_id` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
+					break;				
+				case 17:
+					$rows = $this->getProductSerie((int)$row_product[0]['product_id']);
+					if (empty($rows)) {
+						$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_series SET `product_id` = '" .(int)$row_product[0]['product_id']. "', `series_id` = '" . (int)$row_product[0]['ref2'] . "'");
+					} else {	
+						$this->db->query("UPDATE `" . DB_PREFIX . "product_to_series` SET `series_id` = '" . (int)$row_product[0]['ref2'] . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
+					}	
+					break;
+				case 18:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "my_table` SET `my_field` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
+					break;
+				case 19:
+					if ($row_product[0]['ref2'] != '') {
+						$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `extra_charge` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
+					}	
+					break;
+				case 20:
+					if ($row_product[0]['ref2'] != '') {
+						$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `cost` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
+					}	
+					break;	
+			}
+		}
+		if ((!empty($row_product[0]['ref3']) or $row_product[0]['ref3'] == '0') and preg_match('/^[0-9]+$/', $t_ref3) and $t_ref3 > 0) {
+			
+			switch ($t_ref3) {			
+				case 1:									
+					$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `meta_h1` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "' and `language_id` = '" . $lang. "'");
+					break;
+				case 2:									
+					$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `meta_title` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "' and `language_id` = '" . $lang. "'");
+					break;
+				case 3:									
+					$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `meta_keyword` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "' and `language_id` = '" . $lang. "'");
+					break;
+				case 4:									
+					$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `meta_description` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "' and `language_id` = '" . $lang. "'");
+					break;
+				case 5:									
+					$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `tag` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "' and `language_id` = '" . $lang. "'");
+					break;
+				case 6:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `minimum` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
+					break;
+				case 7:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `subtract` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
+					break;
+				case 8:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `shipping` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
+					break;
+				case 9:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `length_class_id` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
+					break;
+				case 10:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `weight_class_id` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
+					break;
+				case 11:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `tax_class_id` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
+					break;
+				case 12:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `points` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
+					break;
+				case 13:									
+					
+					break;
+				case 14:									
+				
+					break;	
+				case 15:									
+				
+					break;	
+				case 16:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `stock_status_id` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
+					break;				
+				case 17:
+					$rows = $this->getProductSerie((int)$row_product[0]['product_id']);
+					if (empty($rows)) {
+						$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_series SET `product_id` = '" .(int)$row_product[0]['product_id']. "', `series_id` = '" . (int)$row_product[0]['ref3'] . "'");
+					} else {	
+						$this->db->query("UPDATE `" . DB_PREFIX . "product_to_series` SET `series_id` = '" . (int)$row_product[0]['ref3'] . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
+					}	
+					break;
+				case 18:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "my_table` SET `my_field` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
+					break;
+				case 19:
+					if ($row_product[0]['ref3'] != '') {
+						$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `extra_charge` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
+					}	
+					break;
+				case 20:
+					if ($row_product[0]['ref3'] != '') {
+						$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `cost` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "'");
+					}	
+					break;	
+			}
+		}
+	
 		if ($parent == 4 or $parent == 6) {
 			$product_id = (int)$row_product[0]['product_id'];
 			if ($product_id and $parent == 6) {
@@ -2542,7 +3467,7 @@ class ModelCatalogSuppler extends Model {
 					}	
 				}	
 			}
-		}	
+		}
 		if ($yml and !empty($row_product[0]['category_id'])) {
 			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_to_category WHERE product_id = '" . (int)$row_product[0]['product_id'] . "' and `category_id` = '" . (int)$row_product[0]['category_id'] ."'");
 			
@@ -2558,8 +3483,9 @@ class ModelCatalogSuppler extends Model {
 				$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `tag` = '" . $this->db->escape($tag) . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "' and `language_id` = '" . $lang. "'");
 			}
 		}
-		
+	
 		$this->cache->delete('suppler');
+	
 	}
 	
 	public function getManufacturerID($name, $store) {		
@@ -2688,10 +3614,10 @@ class ModelCatalogSuppler extends Model {
 		$this->cache->delete('*');
 	}
 	
-	public function	putNewProduct($row_product, $parent, &$last_product_id, $attr_ext, $max_attr, $langs, $row, $tags, $addseo, $catmany, $catcreate, $catdescs, $caturls, $catmd, $catmk, $catmt, $catmh, $newurl, $refers, $seo_data, $store, $off, $idcat, $t_ref, $t_ref1, $metka, $usd) {
+	public function	putNewProduct($row_product, $parent, &$last_product_id, $attr_ext, $max_attr, $langs, $row, $tags, $addseo, $catmany, $catcreate, $catdescs, $caturls, $catmd, $catmk, $catmt, $catmh, $newurl, $refers, $seo_data, $store, $off, $idcat, $t_ref, $t_ref1, $t_ref2, $t_ref3, $metka, $usd) {
 	
 		if (!$catcreate) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "product SET `model` = '" . $row_product[0]['model'] . "', `sku` = '" . $this->db->escape($row_product[0]['sku']) . "', `upc` = '" . $this->db->escape($row_product[0]['upc']) . "', `ean` = '" . $this->db->escape($row_product[0]['ean']) . "', `quantity` = '" . $row_product[0]['quantity'] . "', `stock_status_id` = '" . $row_product[0]['stock_status_id'] . "', `image` = '" . $this->db->escape($row_product[0]['image']) . "', `manufacturer_id` = '" . $row_product[0]['manufacturer_id'] . "', `shipping` = '" . $row_product[0]['shipping'] . "', `price` = '" . $row_product[0]['price'] . "', `points` = '0' , `tax_class_id` = '0' , `date_available` = '" . $row_product[0]['date_available'] . "', `weight` = '". $row_product[0]['weight'] . "', `weight_class_id` = '1' , `length` = '". $row_product[0]['length'] ."', `width` = '". $row_product[0]['width'] ."', `height` = '". $row_product[0]['height'] ."' , `length_class_id` = '1' , `subtract` = '". $row_product[0]['subtract']. "', `minimum` = '1' ,  `sort_order` = '" . (int)$row_product[0]['sort_order'] . "', `status` = '". $row_product[0]['hide'] ."', `noindex` = '". 1 ."', `date_added` = '" . $row_product[0]['date_added'] . "', `date_modified` = '" . $row_product[0]['date_added'] . "', `viewed` = '0'");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "product SET `model` = '" . $row_product[0]['model'] . "', `sku` = '" . $this->db->escape($row_product[0]['sku']) . "', `upc` = '" . $this->db->escape($row_product[0]['upc']) . "', `ean` = '" . $this->db->escape($row_product[0]['ean']) . "', `mpn` = '" . $this->db->escape($row_product[0]['mpn']) . "', `location` = '" . $this->db->escape($row_product[0]['location']) . "', `jan` = '" . $this->db->escape($row_product[0]['jan']) . "', `isbn` = '" . $this->db->escape($row_product[0]['isbn']) . "', `quantity` = '" . $row_product[0]['quantity'] . "', `stock_status_id` = '" . $row_product[0]['stock_status_id'] . "', `image` = '" . $this->db->escape($row_product[0]['image']) . "', `manufacturer_id` = '" . $row_product[0]['manufacturer_id'] . "', `shipping` = '" . $row_product[0]['shipping'] . "', `price` = '" . $row_product[0]['price'] . "', `points` = '0' , `tax_class_id` = '0' , `date_available` = '" . $row_product[0]['date_available'] . "', `weight` = '". $row_product[0]['weight'] . "', `weight_class_id` = '1' , `length` = '". $row_product[0]['length'] ."', `width` = '". $row_product[0]['width'] ."', `height` = '". $row_product[0]['height'] ."' , `length_class_id` = '1' , `subtract` = '". $row_product[0]['subtract']. "', `minimum` = '1' ,  `sort_order` = '" . (int)$row_product[0]['sort_order'] . "', `status` = '". $row_product[0]['hide'] ."', `noindex` = '". 1 ."', `date_added` = '" . $row_product[0]['date_added'] . "', `date_modified` = '" . $row_product[0]['date_added'] . "', `viewed` = '0'");
 		
 			$product_id = $this->db->getLastId();
 			$last_product_id = $product_id;
@@ -2856,7 +3782,7 @@ class ModelCatalogSuppler extends Model {
 					}	
 				}	
 			}	
-		}		
+		}
 		$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_store SET `product_id` = '" .(int)$product_id. "', `store_id` = '" . $store ."'");
 			
 		if ($newurl != 3) {
@@ -2928,11 +3854,13 @@ class ModelCatalogSuppler extends Model {
 		$desc = $this->clearSEO($desc);
 		$keywords = $this->clearSEO($keywords);
 		
-		if (!empty($url) and $newurl == 2) {
-			$rows = $this->chURL($url, $store);
-			if (!empty($rows)) $url = $url . '-' . $product_id;
+		for	($i=1; $i<=count($langs); $i++) {
+			if (!empty($url) and $newurl == 2) {
+				$rows = $this->chURL($url, $store);
+				if (!empty($rows)) $url = $url . '-' . $product_id;
 
-			$this->db->query("UPDATE " . DB_PREFIX . "seo_url SET `keyword` = '" . $this->db->escape($url) . "' WHERE `query` = 'product_id=" . (int)$product_id . "' and `store_id` = '" . $store . "' and `language_id` = '" . $this->config->get('config_language_id') . "'");
+				$this->db->query("UPDATE " . DB_PREFIX . "seo_url SET `keyword` = '" . $this->db->escape($url) . "' WHERE `query` = 'product_id=" . (int)$product_id . "' and `store_id` = '" . $store . "' and `language_id` = '" . $lang[$i] . "'");
+			}
 		}
 		
 		if ($off) $descript = $desc;
@@ -3001,13 +3929,10 @@ class ModelCatalogSuppler extends Model {
 					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `points` = '" . $this->db->escape($row_product[0]['ref']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
 					break;
 				case 13:									
-					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `location` = '" . $this->db->escape($row_product[0]['ref']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
 					break;
 				case 14:									
-					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `jan` = '" . $this->db->escape($row_product[0]['ref']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
 					break;
 				case 15:									
-					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `isbn` = '" . $this->db->escape($row_product[0]['ref']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
 					break;	
 				case 16:									
 					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `stock_status_id` = '" . $this->db->escape($row_product[0]['ref']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
@@ -3085,13 +4010,10 @@ class ModelCatalogSuppler extends Model {
 					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `points` = '" . $this->db->escape($row_product[0]['ref1']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
 					break;
 				case 13:									
-					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `location` = '" . $this->db->escape($row_product[0]['ref1']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
 					break;
 				case 14:									
-					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `jan` = '" . $this->db->escape($row_product[0]['ref1']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
 					break;
 				case 15:									
-					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `isbn` = '" . $this->db->escape($row_product[0]['ref1']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
 					break;	
 				case 16:									
 					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `stock_status_id` = '" . $this->db->escape($row_product[0]['ref1']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
@@ -3119,18 +4041,328 @@ class ModelCatalogSuppler extends Model {
 					break;	
 			}
 		}
+		if ((!empty($row_product[0]['ref2']) or $row_product[0]['ref2'] == '0') and preg_match('/^[0-9]+$/', $t_ref2) and $t_ref2 > 0) {	
+			
+			switch ($t_ref2) {			
+				case 1:
+					for	($i=1; $i<=count($langs); $i++) {
+						$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `meta_h1` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$product_id . "' and `language_id` = '" . $langs[$i]. "'");
+					}	
+					break;
+				case 2:
+					for	($i=1; $i<=count($langs); $i++) {
+						$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `meta_title` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$product_id . "' and `language_id` = '" . $langs[$i] . "'");
+					}	
+					break;
+				case 3:
+					for	($i=1; $i<=count($langs); $i++) {
+						$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `meta_keyword` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$product_id . "' and `language_id` = '" . $langs[$i]. "'");
+					}	
+					break;
+				case 4:
+					for	($i=1; $i<=count($langs); $i++) {
+						$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `meta_description` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$product_id . "' and `language_id` = '" . $langs[$i]. "'");
+					}	
+					break;
+				case 5:									
+					for	($i=1; $i<=count($langs); $i++) {
+						$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `tag` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$product_id . "' and `language_id` = '" . $langs[$i]. "'");
+					}
+					break;
+				case 6:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `minimum` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
+					break;
+				case 7:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `subtract` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
+					break;
+				case 8:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `shipping` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
+					break;
+				case 9:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `length_class_id` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
+					break;
+				case 10:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `weight_class_id` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
+					break;
+				case 11:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `tax_class_id` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
+					break;
+				case 12:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `points` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
+					break;
+				case 13:									
+					
+					break;
+				case 14:									
+				
+					break;
+				case 15:									
+				
+					break;	
+				case 16:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `stock_status_id` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
+					break;				
+				case 17:
+                    $rows = $this->getProductSerie((int)$product_id);
+                    if (empty($rows)) {
+                        $this->db->query("INSERT INTO " . DB_PREFIX . "product_to_series SET `product_id` = '" .(int)$product_id. "', `series_id` = '" . (int)$row_product[0]['ref2'] . "'");
+                    } else {    
+                        $this->db->query("UPDATE `" . DB_PREFIX . "product_to_series` SET `series_id` = '" . (int)$row_product[0]['ref2'] . "' WHERE `product_id` = '" .(int)$product_id . "'");
+                    }    
+                    break;
+				case 18:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "my_table` SET `my_field` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
+					break;
+				case 19:
+					if ($row_product[0]['ref2'] != '') {
+						$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `extra_charge` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
+					}	
+					break;
+				case 20:
+					if ($row_product[0]['ref2'] != '') {
+						$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `cost` = '" . $this->db->escape($row_product[0]['ref2']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
+					}	
+					break;	
+			}
+		}
+		if ((!empty($row_product[0]['ref3']) or $row_product[0]['ref3'] == '0') and preg_match('/^[0-9]+$/', $t_ref3) and $t_ref3 > 0) {	
+			
+			switch ($t_ref3) {			
+				case 1:
+					for	($i=1; $i<=count($langs); $i++) {
+						$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `meta_h1` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$product_id . "' and `language_id` = '" . $langs[$i]. "'");
+					}	
+					break;
+				case 2:
+					for	($i=1; $i<=count($langs); $i++) {
+						$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `meta_title` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$product_id . "' and `language_id` = '" . $langs[$i] . "'");
+					}	
+					break;
+				case 3:
+					for	($i=1; $i<=count($langs); $i++) {
+						$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `meta_keyword` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$product_id . "' and `language_id` = '" . $langs[$i]. "'");
+					}	
+					break;
+				case 4:
+					for	($i=1; $i<=count($langs); $i++) {
+						$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `meta_description` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$product_id . "' and `language_id` = '" . $langs[$i]. "'");
+					}	
+					break;
+				case 5:									
+					for	($i=1; $i<=count($langs); $i++) {
+						$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `tag` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$product_id . "' and `language_id` = '" . $langs[$i]. "'");
+					} 
+					break;
+				case 6:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `minimum` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
+					break;
+				case 7:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `subtract` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
+					break;
+				case 8:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `shipping` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
+					break;
+				case 9:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `length_class_id` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
+					break;
+				case 10:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `weight_class_id` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
+					break;
+				case 11:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `tax_class_id` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
+					break;
+				case 12:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `points` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
+					break;
+				case 13:									
+					
+					break;
+				case 14:									
+				
+					break;
+				case 15:									
+				
+					break;	
+				case 16:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `stock_status_id` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
+					break;				
+				case 17:
+                    $rows = $this->getProductSerie((int)$product_id);
+                    if (empty($rows)) {
+                        $this->db->query("INSERT INTO " . DB_PREFIX . "product_to_series SET `product_id` = '" .(int)$product_id. "', `series_id` = '" . (int)$row_product[0]['ref3'] . "'");
+                    } else {    
+                        $this->db->query("UPDATE `" . DB_PREFIX . "product_to_series` SET `series_id` = '" . (int)$row_product[0]['ref3'] . "' WHERE `product_id` = '" .(int)$product_id . "'");
+                    }    
+                    break;
+				case 18:									
+					$this->db->query("UPDATE `" . DB_PREFIX . "my_table` SET `my_field` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
+					break;
+				case 19:
+					if ($row_product[0]['ref3'] != '') {
+						$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `extra_charge` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
+					}	
+					break;
+				case 20:
+					if ($row_product[0]['ref3'] != '') {
+						$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `cost` = '" . $this->db->escape($row_product[0]['ref3']) . "' WHERE `product_id` = '" .(int)$product_id . "'");
+					}	
+					break;	
+			}
+		}
 		$this->cache->delete('*');
 	}
 	
-	public function getQuantity($row, $qu, $my_qu, &$quantity, &$newstatus, &$empt) {		
+	public function photoFromFolder(&$row_product, $row, $pictures, $seo_data, $pic_int, $subfolder, $papka, $catmany, 	$row_count, $af, $product_id, &$report, $store) {
+		
+		$up = 0;		
+		$folder = "../image/data/temp/". $pictures . "/";
+		if (!is_dir($folder)) {
+			$err =  " Folder containing photo " . $folder . " not found " ." \n";
+			$this->adderr($err);
+			return;
+		}	
+		if ($handle = opendir($folder)) {
+			$k = 0;
+			while (false !== ($file = readdir($handle))) { 
+		
+				if (!substr_count($file, '.jpg') and !substr_count($file, '.JPG') and !substr_count($file, '.png') and !substr_count($file, '.PNG') and !substr_count($file, '.jpeg') and !substr_count($file, '.JPEG') and !substr_count($file, '.gif') and !substr_count($file, '.GIF') and !substr_count($file, '.bmp') and !substr_count($file, '.BMP')) continue; 
+	
+				$se = $this->getSe($file, $nom);
+				$app = '';
+				if (!empty($seo_data['prod_photo'])) {
+					$data['name'] = '';
+					if (isset($row_product[0]['item']) and !empty($row_product[0]['item'])) $data['name'] = $row_product[0]['item'];
+					$data['category'] = '';
+					if (isset($text_cat) and !empty($text_cat)) $data['category'] = trim($text_cat);
+					$data['manufacturer'] = '';
+					if (isset($row[$manuf]) and !empty($row[$manuf])) $data['manufacturer'] = $row_product[0]['manuf_name'];
+					$data['model'] = '';
+					if (isset($row_product[0]['model']) and !empty($row_product[0]['model'])) $data['model'] = $row_product[0]['model'];
+					$data['brand'] = '';
+					if (isset($row[$ref]) and !empty($row[$ref])) $data['brand'] = $this->getName($row[$ref]);
+					$data['sku'] = '';
+					if (isset($row[$cod]) and !empty($row[$cod])) $data['sku'] = trim($row[$cod]);
+					$app = $this->namePhoto($store, $data, $seo_data['prod_photo']);
+					$app = $this->TransLit($app);
+					$app = strtolower($app);
+				} else {
+					$app = substr($file, 0, $nom);
+					if (!empty($app)) {
+						$app = $this->TransLit($app);
+						$app = strtolower($app);
+					}	
+				}				
+	
+				if (empty($app)) $app = rand(0, 999999999);
+		
+				$try = $folder . $file;
+				if (!empty ($pic_int))	{
+					$spath = "../image/data/" .$pic_int."/";
+					if (!$subfolder) $path = "../image/data/" .$pic_int."/";
+					else $path = "../image/data/" .$pic_int."/".$papka."/";
+					$spic_addr = "data/".$pic_int."/".$app.$se;
+					if (!$subfolder) $pic_addr = "data/".$pic_int."/".$app.$se;
+					else $pic_addr = "data/".$pic_int."/".$papka."/".$app.$se;				
+				} else {
+					$err =  " Please, set folder for photo on page 'Category and margin'  for Category '" .$this->symbol($catmany)."' Row ~= " . $row_count ." \n";
+					$this->adderr($err);
+					closedir($handle);
+					return;
+				}		
+				
+				if (!is_dir($path)) @mkdir($path, 0755);
+				$path = $path.$app.$se;
+				$a = @copy ($try, $path);
+				if (!$a) {
+					$err =  " Can not copy file from: " . $try . " to: " . $path . " Set chmod 0755 or 0777 for folder: " . $spath . " \n";
+					$this->adderr($err);
+					closedir($handle);
+					return;
+				}	
+				if ($a) {
+					if ($k > 0 or $af) {
+						$rows = $this->getProductImage($product_id);
+						$e = 1;										
+						foreach ($rows as $p) {
+							if ($p['image'] == $pic_addr) $e = 0;
+						}	
+						if ($e and !empty($pic_addr)) {
+							$this->addPicture($product_id, $pic_addr, $k);						
+							if (!$up) {
+								$report = $report."Additional photo added ";
+								$up++;
+							}
+						}	
+					}
+					if ($k == 0 and !$af) {
+						$row_product[0]['image'] = $pic_addr;
+						$report = $report."Main photo photo added ";					
+					}					
+				}
+				$k++;
+			}
+			closedir($handle);
+		}
+	}
+	
+	public function getSe($url, &$nom) {
+		$ise = ".jpg";
+		$nom = strrpos($url, ".jpg");
+		if (!$nom) {
+			$nom = strrpos($url, ".JPG");
+			if ($nom) $ise = ".JPG";
+		}
+		if (!$nom) {
+			$nom = strrpos($url, ".jpeg");
+			if ($nom) $ise = ".jpeg";
+		}								
+		if (!$nom) {
+			$nom = strrpos($url, ".png");
+			if ($nom) $ise = ".png";
+		}	
+		if (!$nom) {
+			$nom = strrpos($url, ".PNG");
+			if ($nom) $ise = ".png";
+		}
+		if (!$nom) {
+			$nom = strrpos($url, ".gif");
+			if ($nom) $ise = ".gif";
+		}
+		if (!$nom) {
+			$nom = strrpos($url, ".GIF");
+			if ($nom) $ise = ".gif";
+		}
+		if (!$nom) {
+			$nom = strrpos($url, ".bmp");
+			if ($nom) $ise = ".bmp";
+		}
+		if (!$nom) {
+			$nom = strrpos($url, ".BMP");
+			if ($nom) $ise = ".bmp";
+		}
+		
+		$a = strlen($url);
+		if (!$nom or $a - $nom > 5) {
+			$se = $ise;
+			$nom = $a;
+		} else $se = substr($url, $nom);
+	
+		return $se;
+	}
+			
+	public function getQuantity($row, $qu, $my_qu, &$quantity, &$newstatus, &$empt, $delim) {
+		$wmas = array();
 		if (preg_match('/^[0-9,]+$/', $qu)) $qus = explode("," , $qu);
 		else $qus[0] = 'qu';
 		for ($k=0; $k<20; $k++) {
 			$quant = 0;
 			if (!isset($qus[$k])) break;
-			$quk = $qus[$k];	
-			if (!isset($row[$quk])) continue;	
-			if (!empty($row[$quk])) {
+			$quk = $qus[$k];			
+			if (!isset($row[$quk])) continue;
+			
+			$wmas = explode($delim, $row[$quk]);
+			$row[$quk] = $wmas[0];
+			if (!empty($row[$quk])) {				
 				$row[$quk] = str_replace("&amp;#160;", '', $row[$quk]);
 				$row[$quk] = str_replace("&#160;", '', $row[$quk]);
 				if (preg_match('/^[0-9 ]+$/', $row[$quk])) $row[$quk] = str_replace(" ", '', $row[$quk]);
@@ -3274,12 +4506,12 @@ class ModelCatalogSuppler extends Model {
 		$text = str_replace('&amp;raquo;', '', $text);
 		$text = str_replace('&amp;nbsp;', '', $text);
 		$text = str_replace ('&amp;', '', $text);
-		$text = str_replace('“', '-', $text);
-		$text = str_replace('”', '-', $text);
+		$text = str_replace("“", '-', $text);
+		$text = str_replace("”", '-', $text);
 		$text = str_replace("'", '-', $text);
 		$text = str_replace('"' , '-' , $text);
-		$text = str_replace('«' , '' , $text);
-		$text = str_replace('»' , '' , $text);
+		$text = str_replace('«' , '-' , $text);
+		$text = str_replace('»' , '-' , $text);
 		$text = str_replace('.' , '-' , $text);
 		$text = str_replace(':' , '-' , $text);
 		$text = str_replace('|' , '-' , $text);
@@ -3297,8 +4529,8 @@ class ModelCatalogSuppler extends Model {
 		$text = str_replace('#' , '' , $text);
 		$text = str_replace(',' , '-' , $text);		
 		$text = str_replace('\\' , '-' , $text);
-		$text = str_replace('\/' , '-' , $text);
-		$text = str_replace("/" , '-' , $text);
+		$text = str_replace('\/' , '-' , $text);	
+		$text = str_replace("/" , '-' , $text);		
 		$text = str_replace("(" , '' , $text);
 		$text = str_replace(")" , '' , $text);
 		$text = str_replace("[" , '' , $text);
@@ -3313,8 +4545,8 @@ class ModelCatalogSuppler extends Model {
 		$text = str_replace("–" , '-' , $text);
 		$text = str_replace("’" , '' , $text);
 		$text = str_replace(";" , '-' , $text);
-		$text = str_replace("±" , '-' , $text);
-		$text = preg_replace('|-+|', '-', $text);
+		$text = str_replace("±" , '-' , $text); 
+		$text = preg_replace('|-+|', '-', $text);     
 		$l = strlen($text);
 		if (substr($text, 0, 1) == "-") $text = substr($text, 1, $l-1);				
 		if (substr($text, $l-1, 1) == "-") $text = substr($text, 0, $l-1);
@@ -3403,8 +4635,10 @@ class ModelCatalogSuppler extends Model {
                 "с"=>"s","т"=>"t","у"=>"u","ф"=>"f","х"=>"h",
                 "ц"=>"ts","ч"=>"ch","ш"=>"sh","щ"=>"sch","ъ"=>"a",
                 "ы"=>"y","ь"=>"","э"=>"e","ю"=>"yu","я"=>"ya",
-                "ї"=> "ji", "і"=> "i", "ґ" =>"g", "Є" =>"e", "є" =>"e","ў" =>"u","Ў"=>"U","і" =>"i","І" =>"I" );
-				
+                "ї"=> "ji", "і"=> "i", "ґ" =>"g", "Є" =>"e", "є" =>"e","ў" =>"u","Ў"=>"u","і" =>"i","І" =>"i",
+				"Ā"=>"a","Č"=>"c","Ē"=>"e","Ģ"=>"g","Ī"=>"i","Ķ"=>"k","Ļ"=>"l","Ņ"=>"n","Š"=>"s","Ū"=>"u","Ž"=>"z",
+				"ā"=>"a","č"=>"c","ē"=>"e","ģ"=>"g","ī"=>"i","ķ"=>"k","ļ"=>"l","ņ"=>"n","š"=>"s","ū"=>"u","ž"=>"z");
+								
 		$text = strtr($text, $tr);
 		unset ($tr);
 		return $text;
@@ -3455,8 +4689,22 @@ class ModelCatalogSuppler extends Model {
 		$text = str_replace('[d]', '', $text);
 		$text = str_replace(' [b]', '', $text);	
 		$text = str_replace('[b]', '', $text);
-		$text = str_replace(' [sku]', '', $text);	
+		$text = str_replace(' [sku]', '', $text);
 		$text = str_replace('[sku]', '', $text);
+		$text = str_replace(' [loc]', '', $text);
+		$text = str_replace('[loc]', '', $text);
+		$text = str_replace(' [upc]', '', $text);
+		$text = str_replace('[upc]', '', $text);
+		$text = str_replace(' [mpn]', '', $text);
+		$text = str_replace('[mpn]', '', $text);
+		$text = str_replace(' [ean]', '', $text);
+		$text = str_replace('[ean]', '', $text);
+		$text = str_replace(' [jan]', '', $text);
+		$text = str_replace('[jan]', '', $text);
+		$text = str_replace(' [isbn]', '', $text);
+		$text = str_replace('[isbn]', '', $text);
+		$text = str_replace(' [mod]', '', $text);
+		$text = str_replace('[mod]', '', $text);
 	
 		for ($j=1; $j<300; $j++) {			
 			$a = ' {' . $j . '}';
@@ -3481,6 +4729,7 @@ class ModelCatalogSuppler extends Model {
 		$new_price = 0;
 		$baseprice1 = 0;
 		$rate_ident = 1;
+		$urls = '';
 		$mas = array();
 		$identificator = array();
 		$rows = $this->getReferens($row['product_id']);								
@@ -3488,8 +4737,9 @@ class ModelCatalogSuppler extends Model {
 			$k = 0;			
 			foreach ($rows as $r) {	
 				$rate_ident = 1;
-				$ht = $this->curl_get_contents($r['url'], 0, $sleep, $ffile);
+				if ($urls != $r['url']) $ht = $this->curl_get_contents($r['url'], 0, $sleep, $ffile);
 				if (strlen($ht) > 1024) {
+					$urls = $r['url'];
 					$ff = 0;
 					for ($l=0; $l<$max_site; $l++) {
 						if ($r['ident'] == $ident[$l]) {
@@ -3641,6 +4891,16 @@ class ModelCatalogSuppler extends Model {
 							else $new_price = $submin - $onnn;											
 							break;
 						case '6': $new_price = 0;
+							break;
+						case '7': $new_price = $bpr*1.02;
+							break;
+						case '8': $new_price = $bpr*1.03;
+							break;
+						case '9': $new_price = $bpr*1.04;
+							break;
+						case '10': $new_price = $bpr*1.05;
+							break;
+						case '11': $new_price = ($bpr+$optimal)/2;
 							break;	
 					}		
 				}
@@ -3843,36 +5103,27 @@ class ModelCatalogSuppler extends Model {
 		}	
 	}
 	
-	public function FixDublAliasProducts($product_id, $store) {
-		if (!$product_id) return;
+	public function FixDublAliasProducts($product_id, $store) {   // create url by meta_h1
 		$lang = $this->config->get('config_language_id');
+		$rows = $this->getProductDesc($product_id);
+		if (empty($rows)) return;
+		$h1 = '';
+		if (isset($rows[0]['seo_h1'])) $h1 = $rows[0]['seo_h1'];
+		if (isset($rows[0]['meta_h1'])) $h1 = $rows[0]['meta_h1'];
+		if (empty($h1)) return;
+		
+		$seo_url = $this->TransLit($h1);		
+		$seo_url = $this->MetaURL($seo_url);
+		$seo_url = strtolower($seo_url);		
+		
+		$rows = $this->chURL($seo_url);
+		if (!empty($rows)) $seo_url = $seo_url . '-' . $product_id;		
+	
 		$row = $this->getURL($product_id, $store);
-		if (empty($row)) return;
-		$seo_url = $row['keyword'];			
-		$rows = $this->chURL($seo_url, $store);
-		if (!isset($rows[1]['query'])) return;
-		$st = 'Product SKU: ';		
-		for ($i=0; $i<50; $i++) {
-			if (!isset($rows[$i]['query'])) break;
-			if (!substr_count($rows[$i]['query'], "duct_id=")) continue;			
-			$a = $rows[$i]['query'];
-			$p = strpos($a, "=");
-			$a = (int)substr($a, $p+1);
-			$row = $this->getProductByID((int)$a);
-			if (empty($row)) {
-				$this->db->query("DELETE FROM " . DB_PREFIX . "seo_url WHERE query = 'product_id=" . $product_id. "' and `store_id` = '" . $store . "' and `language_id` = '" . $lang . "'");
-				continue;
-			} else {	
-				$st = $st . "    " . $row['sku'];
-				if ($i>0 and !substr_count($rows[$i]['query'], $product_id)) {
-					$seo = $seo_url . '-' . $product_id;
-					$this->db->query("UPDATE " . DB_PREFIX . "seo_url SET `keyword` = '" . $this->db->escape($seo) . "' WHERE `query` = 'product_id=" . (int)$a . "' and `store_id` = '" . $store . "' and `language_id` = '" . $lang . "'");
-				}
-			}	
-		}
-		if (strlen($st) > 30) {
-			$err = $st . " \n";
-			$this->adderr($err);
+		if (empty($row)) {
+			$this->db->query("INSERT INTO " . DB_PREFIX . "seo_url SET query = 'product_id=" . (int)$product_id . "', keyword = '" . $this->db->escape($seo_url) . "' and `language_id` = '" . $lang . "'");
+		} else {			
+			$this->db->query("UPDATE " . DB_PREFIX . "seo_url SET `keyword` = '" . $this->db->escape($seo_url) . "' WHERE `query` = 'product_id=" . $product_id . "' and `language_id` = '" . $lang . "'");
 		}
 	}	
 	
@@ -3913,8 +5164,9 @@ class ModelCatalogSuppler extends Model {
 				if (isset($rows[0]['name'])) $name = $rows[0]['name'];
 				$name = str_replace('"', "&quot;", $name);
 				$name = str_replace("'", "&#039;", $name);
+				if (empty($name)) continue;
 				$seo = array();
-				$this->seoCategory($store, $name, 0, $seo_data, $seo);			
+				$this->seoCategory($store, $name, 0, $seo_data, $seo, $rows1[$i]['category_id']);			
 				$seo['cat_desc'] = $this->clearSEO($seo['cat_desc']);
 			
 				if (!empty($seo['cat_desc'])) {
@@ -3926,22 +5178,63 @@ class ModelCatalogSuppler extends Model {
 	
 	public function FixDesCategoryOne($seo_data, $store, $cat) {	
 		$lang = $this->config->get('config_language_id');
-		for ($i=0; $i<2000; $i++) {	
-			if (!isset($cat[$i])) break;
-			$rows = $this->getCategoryName($cat[$i]);
-			if (empty($rows)) continue;
-			$name = '';
-			if (isset($rows[0]['name'])) $name = $rows[0]['name'];
-			$name = str_replace('"', "&quot;", $name);
-			$name = str_replace("'", "&#039;", $name);
-			$seo = array();
-			$this->seoCategory($store, $name, 0, $seo_data, $seo);			
-			$seo['cat_desc'] = $this->clearSEO($seo['cat_desc']);		
+		if (!empty($cat[0])) {
+			for ($i=0; $i<2000; $i++) {	
+				if (!isset($cat[$i])) break;
+				$rows = $this->getCategoryName($cat[$i]);
+				if (empty($rows)) continue;
+				$name = '';
+				if (isset($rows[0]['name'])) $name = $rows[0]['name'];
+				$name = str_replace('"', "&quot;", $name);
+				$name = str_replace("'", "&#039;", $name);
+				if (empty($name)) continue;
+				$seo = array();
+				$this->seoCategory($store, $name, 0, $seo_data, $seo, $cat[$i]);			
+				$seo['cat_desc'] = $this->clearSEO($seo['cat_desc']);		
 	
-			if (!empty($seo['cat_desc'])) {
+				if (!empty($seo['cat_desc'])) {
 				$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `description` = '" . $this->db->escape($seo['cat_desc']) . "' WHERE `category_id` = '". $cat[$i] . "' and `language_id` = '" . $lang . "'");
-			}	
+				}	
+			}
+		} else {
+			$row = $this->getMaxCategoryID();
+			$max = $row['max(category_id)'];
+			for ($i=1; $i<=$max; $i++) {
+				$rows = $this->getCategoryName($i);
+				if (empty($rows)) continue;
+				$name = '';
+				if (isset($rows[0]['name'])) $name = $rows[0]['name'];
+				$name = str_replace('"', "&quot;", $name);
+				$name = str_replace("'", "&#039;", $name);
+				if (empty($name)) continue;
+				$seo = array();
+				$this->seoCategory($store, $name, 0, $seo_data, $seo, $i);
+				$seo['cat_desc'] = $this->clearSEO($seo['cat_desc']);
+			
+				if (!empty($seo['cat_desc'])) {
+					$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `description` = '" . $this->db->escape($seo['cat_desc']) . "' WHERE `category_id` = '". $i . "' and `language_id` = '" . $lang . "'");
+				}
+			}
 		}
+	}
+	
+	public function zeroQuDate($row) {
+		if (empty($row['date_modified'])) return;
+		$d = explode(' ', $row['date_modified']);
+		$date = $d[0];			
+		$y1 = (int)substr($date, 0, 4);
+		$m1 = (int)substr($date, 5, 2);
+		$d1 = (int)substr($date, 8, 2);
+		
+		$y = date('Y');
+		$m = date('m');
+		$d = date('d');
+		
+		if ($y1 == $y and $m1 == $m and $d1 == $d) return;
+		
+		$row['quantity'] = 0;
+		if ($row['sort_order'] < 1000) $row['sort_order'] = $row['sort_order'] + 1000;
+		$this->upProduct($row);		
 	}
 	
 	public function FixMetaCategoryNest($seo_data, $store, $papa) {	
@@ -3958,15 +5251,24 @@ class ModelCatalogSuppler extends Model {
 				if (isset($rows[0]['name'])) $name = $rows[0]['name'];
 				$name = str_replace('"', "&quot;", $name);
 				$name = str_replace("'", "&#039;", $name);
+				if (empty($name)) continue;
 				$seo = array();
-				$this->seoCategory($store, $name, 0, $seo_data, $seo);			
+				$this->seoCategory($store, $name, 0, $seo_data, $seo, $rows1[$i]['category_id']);
+				$h1 = $name;
+				if (!empty($seo['cat_h1'])) $h1 = $seo['cat_h1'];
+				$keyword = '';
+				if (!empty($seo['cat_keyword'])) $keyword = $seo['cat_keyword'];
 				$seo['cat_meta_desc'] = $this->clearSEO($seo['cat_meta_desc']);
-				$seo['cat_title'] = $this->clearSEO($seo['cat_title']);
-		
-				$seo_keyword = '';
+				$seo['cat_title'] = $this->clearSEO($seo['cat_title']);				
+				$name = $this->clearSEO($name);
+				$keyword = $this->clearSEO($keyword);				
 			
 				if (!empty($name)) {
-					$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `name` = '" . $this->db->escape($name) . "', `meta_description` = '" . $this->db->escape($seo['cat_meta_desc']) . "', `meta_keyword` = '" . $this->db->escape($seo_keyword) . "', `meta_h1` = '" . $this->db->escape($name) . "', `meta_title` = '" . $this->db->escape($seo['cat_title']) . "' WHERE `category_id` = '". $rows1[$i]['category_id'] . "' and `language_id` = '" . $lang . "'");
+					if (empty($keyword)) {
+						$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `name` = '" . $this->db->escape($name) . "', `meta_description` = '" . $this->db->escape($seo['cat_meta_desc']) . "', `meta_h1` = '" . $this->db->escape($name) . "', `meta_title` = '" . $this->db->escape($seo['cat_title']) . "' WHERE `category_id` = '". $rows1[$i]['category_id'] . "' and `language_id` = '" . $lang . "'");
+					} else {
+						$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `name` = '" . $this->db->escape($name) . "', `meta_description` = '" . $this->db->escape($seo['cat_meta_desc']) . "', `meta_keyword` = '" . $this->db->escape($keyword) . "', `meta_h1` = '" . $this->db->escape($name) . "', `meta_title` = '" . $this->db->escape($seo['cat_title']) . "' WHERE `category_id` = '". $rows1[$i]['category_id'] . "' and `language_id` = '" . $lang . "'");
+					}	
 				}	
 			}	
 		}		
@@ -3974,33 +5276,85 @@ class ModelCatalogSuppler extends Model {
 	
 	public function FixMetaCategoryOne($seo_data, $store, $cat) {
 		$lang = $this->config->get('config_language_id');
-		for ($i=0; $i<2000; $i++) {	
-			if (!isset($cat[$i])) break;
-			$rows = $this->getCategoryName($cat[$i]);
-			if (empty($rows)) continue;
-			$name = '';
-			if (isset($rows[0]['name'])) $name = $rows[0]['name'];
-			$name = str_replace('"', "&quot;", $name);
-			$name = str_replace("'", "&#039;", $name);
-			$seo = array();
-			$this->seoCategory($store, $name, 0, $seo_data, $seo);			
-			$seo['cat_meta_desc'] = $this->clearSEO($seo['cat_meta_desc']);
-			$seo['cat_title'] = $this->clearSEO($seo['cat_title']);
-	
-			$seo_keyword = '';
-			if (!empty($name)) {
-				$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `name` = '" . $this->db->escape($name) . "', `meta_description` = '" . $this->db->escape($seo['cat_meta_desc']) . "', `meta_keyword` = '" . $this->db->escape($seo_keyword) . "', `meta_h1` = '" . $this->db->escape($name) . "', `meta_title` = '" . $this->db->escape($seo['cat_title']) . "' WHERE `category_id` = '". $cat[$i] . "' and `language_id` = '" . $lang . "'");
-			}	
+		if (!empty($cat[0])) {
+			for ($i=0; $i<2000; $i++) {	
+				if (!isset($cat[$i])) break;
+				$rows = $this->getCategoryName($cat[$i]);
+				if (empty($rows)) continue;
+				$name = '';	
+				if (isset($rows[0]['name'])) $name = $rows[0]['name'];
+				$name = str_replace('"', "&quot;", $name);
+				$name = str_replace("'", "&#039;", $name);
+				if (empty($name)) continue;
+				$seo = array();
+				$this->seoCategory($store, $name, 0, $seo_data, $seo, $i);
+				$h1 = $name;			
+				if (!empty($seo['cat_h1'])) $h1 = $seo['cat_h1'];
+				$keyword = '';
+				if (!empty($seo['cat_keyword'])) $keyword = $seo['cat_keyword'];
+				$seo['cat_meta_desc'] = $this->clearSEO($seo['cat_meta_desc']);
+				$seo['cat_title'] = $this->clearSEO($seo['cat_title']);			
+				$name = $this->clearSEO($name);
+				$keyword = $this->clearSEO($keyword);				
+			
+				if (!empty($name)) {
+					if (empty($keyword)) {
+						$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `name` = '" . $this->db->escape($name) . "', `meta_description` = '" . $this->db->escape($seo['cat_meta_desc']) . "', `meta_h1` = '" . $this->db->escape($h1) . "', `meta_h1` = '" . $this->db->escape($name) . "', `meta_title` = '" . $this->db->escape($seo['cat_title']) . "' WHERE `category_id` = '". $cat[$i] . "' and `language_id` = '" . $lang . "'");
+					} else {
+						$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `name` = '" . $this->db->escape($name) . "', `meta_description` = '" . $this->db->escape($seo['cat_meta_desc']) . "', `meta_keyword` = '" . $this->db->escape($keyword) . "', `meta_h1` = '" . $this->db->escape($name) . "', `meta_title` = '" . $this->db->escape($seo['cat_title']) . "' WHERE `category_id` = '". $cat[$i] . "' and `language_id` = '" . $lang . "'");
+					}	
+				}	
+			}
+		} else {
+			$row = $this->getMaxCategoryID();
+			$max = $row['max(category_id)'];
+			for ($i=1; $i<=$max; $i++) {			
+				$rows = $this->getCategoryName($i);
+				if (empty($rows)) continue;
+				$name = '';	
+				if (isset($rows[0]['name'])) $name = $rows[0]['name'];
+				$name = str_replace('"', "&quot;", $name);
+				$name = str_replace("'", "&#039;", $name);
+				if (empty($name)) continue;
+				$seo = array();
+				$this->seoCategory($store, $name, 0, $seo_data, $seo, $i);
+				$h1 = $name;			
+				if (!empty($seo['cat_h1'])) $h1 = $seo['cat_h1'];
+				$keyword = '';
+				if (!empty($seo['cat_keyword'])) $keyword = $seo['cat_keyword'];
+				$seo['cat_meta_desc'] = $this->clearSEO($seo['cat_meta_desc']);
+				$seo['cat_title'] = $this->clearSEO($seo['cat_title']);			
+				$name = $this->clearSEO($name);
+				$keyword = $this->clearSEO($keyword);
+			
+				if (!empty($name)) {
+					if (empty($keyword)) {
+						$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `name` = '" . $this->db->escape($name) . "', `meta_description` = '" . $this->db->escape($seo['cat_meta_desc']) . "', `meta_h1` = '" . $this->db->escape($h1) . "', `meta_title` = '" . $this->db->escape($seo['cat_title']) . "' WHERE `category_id` = '". $rows[$i]['category_id'] . "' and `language_id` = '" . $lang . "'");
+					} else {
+						$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `name` = '" . $this->db->escape($name) . "', `meta_description` = '" . $this->db->escape($seo['cat_meta_desc']) . "', `meta_keyword` = '" . $this->db->escape($keyword) . "', `meta_h1` = '" . $this->db->escape($h1) . "', `meta_title` = '" . $this->db->escape($seo['cat_title']) . "' WHERE `category_id` = '". $rows[$i]['category_id'] . "' and `language_id` = '" . $lang . "'");
+					}	
+				}	
+			}
 		}	
 	}
 	
 	public function ClearSerie($product_id) {
-		$row = $this->getMasterSerie($product_id);
-		if (empty($row)) return;
-		$rows = $this->getMasterProduct($product_id);
-		foreach ($rows as $r) {
-			$this->db->query("DELETE FROM " . DB_PREFIX . "product_master WHERE product_id = '" . $r['product_id'] . "'");
-			$this->db->query("DELETE FROM " . DB_PREFIX . "product_special_attribute WHERE product_id = '" . $r['product_id'] . "'");
+		$table = DB_PREFIX . "special_attribute";
+		$tname = "special_attribute_group_id";
+		if ($this->getColumnName($table, $tname)) {
+			$row = $this->getMasterSerie($product_id);
+			if (empty($row)) return;
+			$rows = $this->getMasterProduct($product_id);
+			foreach ($rows as $r) {
+				$this->db->query("DELETE FROM " . DB_PREFIX . "product_master WHERE product_id = '" . $r['product_id'] . "'");
+				$this->db->query("DELETE FROM " . DB_PREFIX . "product_special_attribute WHERE product_id = '" . $r['product_id'] . "'");
+			}	
+		} else {
+			$table = DB_PREFIX . "kjseries_links";
+			$tname = "parent_id";
+			if ($this->getColumnName($table, $tname)) {
+				$this->db->query("DELETE FROM " . DB_PREFIX . "kjseries_links WHERE product_id = '" . $product_id . "'");
+			}
 		}	
 	}
 	
@@ -4041,6 +5395,13 @@ class ModelCatalogSuppler extends Model {
 	
 	public function deleteOptionValue($product_id, $option_value_id) {	
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_option_value WHERE option_value_id = '" . $option_value_id . "' AND `product_id` = '" . $product_id . "'");
+	}
+	
+	public function optQu($product_id, $qu) {
+		if (empty($qu)) return;
+		$rows = $this->getProductAllOptionValue($product_id);
+		if (empty($rows)) return;
+		$query = $this->db->query("UPDATE " . DB_PREFIX . "product_option_value SET `quantity` = '" . $qu . "' WHERE `product_id` = '" . $product_id. "'");
 	}
 	
 	public function optQuantity($product_id, $val_id, $qu) {
@@ -4148,15 +5509,16 @@ class ModelCatalogSuppler extends Model {
 		}
 	}
 
-	public function clearPricesOptions($product_id) {		
-		$this->db->query("UPDATE `" . DB_PREFIX . "product_option_value` SET `price` = '" . 0 . "' WHERE `product_id` = '" . $product_id ."'");
+	public function clearPricesOptions($product_id) {
+		$p ='+';
+		$this->db->query("UPDATE `" . DB_PREFIX . "product_option_value` SET `price` = '" . 0 . "', `price_prefix` = '" . $p . "' WHERE `product_id` = '" . $product_id ."'");
 		
 		$table = DB_PREFIX . "product_option_value";
 		$tname = "base_price";
 		if ($this->getColumnName($table, $tname)) {		
 			$this->db->query("UPDATE `" . DB_PREFIX . "product_option_value` SET `base_price` = '" . 0 . "' WHERE `product_id` = '" . $product_id . "'");
 		}
-	}	
+	}
 	
 	public function countOptionPrices($row) {
 		$rows = $this->getProductAllOptionValue($row['product_id']);
@@ -4220,15 +5582,31 @@ class ModelCatalogSuppler extends Model {
 		}		
 	}
 
-	public function addAttribute($product_id, $attribute_id, $val) {
-		if (empty($val)) return;
+	public function addAttribute($row, $attribute_id, $add) {
+		if (empty($add)) return;
+		if (substr_count($add, '[')) {
+			$a = strrpos($add, '[');
+			$b = strrpos($add, ']');
+			if ($b and $b>$a) {
+				$tag = substr($add, $a+1, $b-$a-1);
+				if ($tag == 'sku') $add = str_replace('[sku]', $row['sku'], $add);						
+				if ($tag == 'mod') $add = str_replace('[mod]', $row['model'], $add);
+				if ($tag == 'upc') $add = str_replace('[upc]', $row['upc'], $add);
+				if ($tag == 'loc') $add = str_replace('[loc]', $row['loc'], $add);
+				if ($tag == 'mpn') if (isset($row['mpn'])) $add = str_replace('[mpn]', $row['mpn'], $add);
+				if ($tag == 'isbn' and isset($row['isbn'])) $add = str_replace('[isbn]', $row['isbn'], $add);
+				if ($tag == 'jan' and isset($row['jan'])) $add = str_replace('[jan]', $row['jan'], $add);
+				$add = $this->clearSEO($add);			
+			}
+		}
+		
 		$lang = $this->config->get('config_language_id');
-		$rows = $this->getAttributeById($product_id, $attribute_id, $lang);
+		$rows = $this->getAttributeById($row['product_id'], $attribute_id, $lang);
 		if (empty($rows)) {			
-			$this->db->query("INSERT INTO " . DB_PREFIX . "product_attribute SET `product_id` = '" . $product_id . "', `attribute_id` = '" . $attribute_id . "', `language_id` = '" . $lang . "', `text` = '" . $this->db->escape($val) . "'");			
+			$this->db->query("INSERT INTO " . DB_PREFIX . "product_attribute SET `product_id` = '" . $row['product_id'] . "', `attribute_id` = '" . $attribute_id . "', `language_id` = '" . $lang . "', `text` = '" . $this->db->escape($add) . "'");			
 		} else {
-			$a = $rows[0]['text'] . ',' . $val;
-			$this->db->query("UPDATE " . DB_PREFIX . "product_attribute SET `text` = '" . $this->db->escape($a) . "' WHERE `product_id` = '" . $product_id . "' and `attribute_id` = '" . $attribute_id . "' and `language_id` = '" . $lang . "'");
+			$a = $rows[0]['text'] . ',' . $add;
+			$this->db->query("UPDATE " . DB_PREFIX . "product_attribute SET `text` = '" . $this->db->escape($a) . "' WHERE `product_id` = '" . $row['product_id'] . "' and `attribute_id` = '" . $attribute_id . "' and `language_id` = '" . $lang . "'");
 		}	
 	}
 	
@@ -4244,19 +5622,33 @@ class ModelCatalogSuppler extends Model {
 			else $names[$i] = 'del';
 		}	
 		for ($i=0; $i<1000; $i++) {
-			if (!isset($rows[$i]['attribute_id'])) break;
+			if (!isset($names[$i])) break;
+			if ($names[$i] == 'del') continue;
 			for ($j=0; $j<1000; $j++) {
-				if (!isset($rows[$j]['attribute_id'])) break;
-				if ($i != $j and $names[$i] == $names[$j] and $names[$j] != 'del') {	
+				if (!isset($names[$j])) break;
+				if ($names[$j] == 'del') continue;
+				if ($i != $j and $names[$i] == $names[$j] and $rows1[$i]['attribute_id'] != $rows1[$j]['attribute_id']) {	
 					$names[$j] = 'del';
 					if (!empty($rows[$i]['text']) and !empty($rows[$j]['text'])) $rows[$i]['text'] = $rows[$i]['text'] . ',' . $rows[$j]['text'];
 					
 					$this->db->query("UPDATE " . DB_PREFIX . "product_attribute SET `text` = '" . $this->db->escape($rows[$i]['text']). "' WHERE `product_id` = '" . $product_id . "' and `attribute_id` = '" . $rows[$i]['attribute_id'] . "' and `language_id` = '" . $lang . "'");
 					
 					$this->db->query("DELETE FROM " . DB_PREFIX . "product_attribute WHERE product_id = '" . $product_id . "' AND attribute_id = '" . $rows[$j]['attribute_id'] . "' and `language_id` = '" . $lang . "'");				
-				}
+				}					
 			}
 		}	
+	}
+	
+	public function removeAttGroup($product_id, $group) {
+		if (!is_numeric($group)) return;		
+		$rows = $this->getAttrib($product_id);	
+		if (empty($rows)) return;
+		foreach ($rows as $r) {	
+			$row = $this->isAttribute($r['attribute_id']);	
+			if ($row['attribute_group_id'] == $group) {				
+				$this->db->query("DELETE FROM " . DB_PREFIX . "product_attribute WHERE product_id = '" . (int)$product_id . "' and attribute_id = '" . (int)$r['attribute_id'] . "'");
+			}	
+		}		
 	}
 	
 	public function deleteTheAttribute($product_id, $find) {	
@@ -4685,7 +6077,7 @@ class ModelCatalogSuppler extends Model {
 					if ($parent_id) {
 						$rows  = $this->isCategoryOfProduct($product_id, $parent_id);
 						if (empty($rows)) {
-							$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_category SET `product_id` = '" . $product_id. "', `category_id` = '" . $parent_id . "', `main_category` = 0");
+							$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_category SET `product_id` = '" . $product_id. "', `category_id` = '" . $parent_id . "'");
 						}								
 					}
 					$child = $parent_id ;	
@@ -4695,31 +6087,98 @@ class ModelCatalogSuppler extends Model {
 		$this->cache->delete('product');
 	}
 	
-	public function FixURLCategory($seo_data, $store) {		
+	public function FillURLManufacturer($seo_data, $store) {
+		$row = $this->getMaxManufacturerID();
+		$max = $row['max(manufacturer_id)'];
+		for ($i=1; $i<=$max; $i++) {					
+			$rows = $this->getManufacturerStore($i, $store);
+			if (empty($rows)) continue;
+			$name = '';
+			if (isset($rows[0]['name'])) $name = $rows[0]['name'];
+			
+			$seo_url = $this->TransLit($name);
+			$seo_url = $this->MetaURL($seo_url);
+			$seo_url = strtolower($seo_url);
+			
+			$rows1 = $this->chURL($seo_url);
+			if (!empty($rows1)) $seo_url = $seo_url . '-' . $i;
+			
+			$row = $this->getURLmanufacturer($i);
+			if (empty($row)) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "seo_url SET query = 'manufacturer_id=" . $i . "', keyword = '" . $this->db->escape($seo_url) . "'");
+			}
+		}	
+	}
+	
+	public function FillURLCategory($seo_data, $store) {		
 		$row = $this->getMaxCategoryID();
 		$max = $row['max(category_id)'];
-		$lang = $this->config->get('config_language_id');
 		for ($i=1; $i<=$max; $i++) {			
 			$rows = $this->getCategoryName($i);
 			if (empty($rows)) continue;
 			$name = '';
 			if (isset($rows[0]['name'])) $name = $rows[0]['name'];
-			$name = str_replace('"', "&quot;", $name);
-			$name = str_replace("'", "&#039;", $name);
-			$seo_url = $name;
-		//	$seo_url = $this->TransLit($name); // translit
-			$seo_url = $this->MetaURL($seo_url);
-			$seo_url = mb_strtolower($seo_url);
 			
-			$rows1 = $this->chURL($seo_url, $store);
+			$seo_url = $this->TransLit($name);
+			$seo_url = $this->MetaURL($seo_url);
+			$seo_url = strtolower($seo_url);
+			
+			$rows1 = $this->chURL($seo_url);
 			if (!empty($rows1)) $seo_url = $seo_url . '-' . $i;
 			
-			$row = $this->getURLcategory($i, $store);
+			$row = $this->getURLcategory($i);
 			if (empty($row)) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "seo_url SET query = 'category_id=" . $i . "', keyword = '" . $this->db->escape($seo_url) . "', `store_id` = '" . $store . "', `language_id` = '" . $lang . "'");
-			} else {		
-				$this->db->query("UPDATE " . DB_PREFIX . "seo_url SET `keyword` = '" . $this->db->escape($seo_url) . "' WHERE `query` = 'category_id=" . $i . "' and `store_id` = '" . $store . "' and `language_id` = '" . $lang . "'");			
+				$this->db->query("INSERT INTO " . DB_PREFIX . "seo_url SET query = 'category_id=" . $i . "', keyword = '" . $this->db->escape($seo_url) . "'");
 			}
+		}	
+	}
+	
+	public function FixURLCategory($seo_data, $store, $cat) {		
+		$row = $this->getMaxCategoryID();
+		$max = $row['max(category_id)'];
+		if (!empty($cat[0])) {
+			for ($i=0; $i<$max; $i++) {	
+				if (!isset($cat[$i])) break;
+				$rows = $this->getCategoryName($cat[$i]);
+				if (empty($rows)) continue;
+				$name = '';	
+				if (isset($rows[0]['name'])) $name = $rows[0]['name'];
+			
+				$seo_url = $this->TransLit($name);
+				$seo_url = $this->MetaURL($seo_url);
+				$seo_url = strtolower($seo_url);
+			
+				$rows1 = $this->chURL($seo_url);
+				if (!empty($rows1)) $seo_url = $seo_url . '-' . $i;
+			
+				$row = $this->getURLcategory($i);
+				if (empty($row)) {
+					$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'category_id=" . $cat[$i] . "', keyword = '" . $this->db->escape($seo_url) . "'");
+				} else {		
+					$this->db->query("UPDATE " . DB_PREFIX . "url_alias SET `keyword` = '" . $this->db->escape($seo_url) . "' WHERE `query` = 'category_id=" . $cat[$i] . "'");				
+				}
+			}			
+		} else {	
+			for ($i=1; $i<=$max; $i++) {			
+				$rows = $this->getCategoryName($i);
+				if (empty($rows)) continue;
+				$name = '';
+				if (isset($rows[0]['name'])) $name = $rows[0]['name'];
+			
+				$seo_url = $this->TransLit($name);
+				$seo_url = $this->MetaURL($seo_url);
+				$seo_url = strtolower($seo_url);
+			
+				$rows1 = $this->chURL($seo_url);
+				if (!empty($rows1)) $seo_url = $seo_url . '-' . $i;
+			
+				$row = $this->getURLcategory($i);
+				if (empty($row)) {
+					$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'category_id=" . $i . "', keyword = '" . $this->db->escape($seo_url) . "'");
+				} else {		
+					$this->db->query("UPDATE " . DB_PREFIX . "url_alias SET `keyword` = '" . $this->db->escape($seo_url) . "' WHERE `query` = 'category_id=" . $i . "'");				
+				}
+			}	
 		}	
 	}
 	
@@ -4749,147 +6208,230 @@ class ModelCatalogSuppler extends Model {
 		$this->cache->delete('product');
 	}
 	
-	public function FillDescManufacturer($seo_data, $store) {
+	public function FillDescManufacturer($seo_data, $store, $manuf) {		
 		$lang = $this->config->get('config_language_id');
 		$row = $this->getMaxManufacturerID();
 		$max = $row['max(manufacturer_id)'];
-		for ($i=1; $i<=$max; $i++) {					
-			$rows = $this->getManufacturerStore($i, $store);
-			if (empty($rows)) continue;
-			$name = '';
-			if (isset($rows[0]['name'])) $name = $rows[0]['name'];
-			$name = str_replace('"', "&quot;", $name);
-			$name = str_replace("'", "&#039;", $name);
-			$rows = $this->getManufacturerDesc($i, $lang);
-			if (empty($rows)) continue;	
-			$desc = $rows[0]['description'];
-			$seo = array();
-			$this->seoManufacturer($store, $name, $seo_data, $seo);
-			$seo['manuf_desc'] = $this->clearSEO($seo['manuf_desc']);
+		if (!empty($manuf[0])) {
+			for ($i=0; $i<=$max; $i++) {
+				if (!isset($manuf[$i])) break;				
+				$rows = $this->getManufacturerStore((int)$manuf[$i], $store);
+				if (empty($rows)) continue;
+				$name = '';
+				if (isset($rows[0]['name'])) $name = $rows[0]['name'];
+				$name = str_replace('"', "&quot;", $name);
+				$name = str_replace("'", "&#039;", $name);
+				if (empty($name)) continue;
+				$rows = $this->getManufacturerDesc($i, $lang);
+				if (empty($rows)) continue;	
+				$desc = $rows[0]['description'];
+				$seo = array();
+				$this->seoManufacturer($store, $name, $seo_data, $seo);
+				$seo['manuf_desc'] = $this->clearSEO($seo['manuf_desc']);
 			
-			if (!empty($seo['manuf_desc']) and empty($desc)) {
-				$this->db->query("UPDATE " . DB_PREFIX . "manufacturer_description SET `description` = '" . $this->db->escape($seo['manuf_desc']) . "' WHERE `manufacturer_id` = '". $i . "' and `language_id` = '" . $lang . "'");
+				if (!empty($seo['manuf_desc']) and empty($desc)) {
+					$this->db->query("UPDATE " . DB_PREFIX . "manufacturer_description SET `description` = '" . $this->db->escape($seo['manuf_desc']) . "' WHERE `manufacturer_id` = '". $manuf[$i] . "' and `language_id` = '" . $lang . "'");
+				}
+			}
+		} else {	
+			for ($i=1; $i<=$max; $i++) {					
+				$rows = $this->getManufacturerStore($i, $store);
+				if (empty($rows)) continue;
+				$name = '';
+				if (isset($rows[0]['name'])) $name = $rows[0]['name'];
+				$name = str_replace('"', "&quot;", $name);
+				$name = str_replace("'", "&#039;", $name);
+				if (empty($name)) continue;
+				$rows = $this->getManufacturerDesc($i, $lang);
+				if (empty($rows)) continue;	
+				$desc = $rows[0]['description'];
+				$seo = array();
+				$this->seoManufacturer($store, $name, $seo_data, $seo);
+				$seo['manuf_desc'] = $this->clearSEO($seo['manuf_desc']);
+			
+				if (!empty($seo['manuf_desc']) and empty($desc)) {
+					$this->db->query("UPDATE " . DB_PREFIX . "manufacturer_description SET `description` = '" . $this->db->escape($seo['manuf_desc']) . "' WHERE `manufacturer_id` = '". $i . "' and `language_id` = '" . $lang . "'");
+				}
 			}
 		}	
 	}
 	
-	public function FixDescManufacturer($seo_data, $store) {	
+	public function FixDescManufacturer($seo_data, $store, $manuf) {
+		return;
 		$lang = $this->config->get('config_language_id');
 		$row = $this->getMaxManufacturerID();
 		$max = $row['max(manufacturer_id)'];
-		for ($i=1; $i<=$max; $i++) {					
-			$rows = $this->getManufacturerStore($i, $store);
-			if (empty($rows)) continue;
-			$name = '';
-			if (isset($rows[0]['name'])) $name = $rows[0]['name'];
-			$name = str_replace('"', "&quot;", $name);
-			$name = str_replace("'", "&#039;", $name);
-			$seo = array();
-			$this->seoManufacturer($store, $name, $seo_data, $seo);
-			$seo['manuf_desc'] = $this->clearSEO($seo['manuf_desc']);
+		if (!empty($manuf[0])) {
+			for ($i=0; $i<=$max; $i++) {
+				if (!isset($manuf[$i])) break;				
+				$rows = $this->getManufacturerStore((int)$manuf[$i], $store);
+				if (empty($rows)) continue;
+				$name = '';
+				if (isset($rows[0]['name'])) $name = $rows[0]['name'];
+				$name = str_replace('"', "&quot;", $name);
+				$name = str_replace("'", "&#039;", $name);
+				if (empty($name)) continue;
+				$seo = array();
+				$this->seoManufacturer($store, $name, $seo_data, $seo);
+				$seo['manuf_desc'] = $this->clearSEO($seo['manuf_desc']);
 			
-			if (!empty($seo['manuf_desc'])) {
-				$this->db->query("UPDATE " . DB_PREFIX . "manufacturer_description SET `description` = '" . $this->db->escape($seo['manuf_desc']) . "' WHERE `manufacturer_id` = '". $i . "' and `language_id` = '" . $lang . "'");
+				if (!empty($seo['manuf_desc'])) {
+					$this->db->query("UPDATE " . DB_PREFIX . "manufacturer_description SET `description` = '" . $this->db->escape($seo['manuf_desc']) . "' WHERE `manufacturer_id` = '". (int)$manuf[$i] . "' and `language_id` = '" . $lang . "'");
+				}
+			}
+		} else {	
+			for ($i=1; $i<=$max; $i++) {					
+				$rows = $this->getManufacturerStore($i, $store);
+				if (empty($rows)) continue;
+				$name = '';
+				if (isset($rows[0]['name'])) $name = $rows[0]['name'];
+				$name = str_replace('"', "&quot;", $name);
+				$name = str_replace("'", "&#039;", $name);
+				if (empty($name)) continue;
+				$seo = array();
+				$this->seoManufacturer($store, $name, $seo_data, $seo);
+				$seo['manuf_desc'] = $this->clearSEO($seo['manuf_desc']);
+			
+				if (!empty($seo['manuf_desc'])) {
+					$this->db->query("UPDATE " . DB_PREFIX . "manufacturer_description SET `description` = '" . $this->db->escape($seo['manuf_desc']) . "' WHERE `manufacturer_id` = '". $i . "' and `language_id` = '" . $lang . "'");
+				}
 			}
 		}	
 	}
 	
-	public function FillDescCategory($seo_data, $store) {
+	public function FillDescCategory($seo_data, $store, $cat) {
 		$lang = $this->config->get('config_language_id');
 		$row = $this->getMaxCategoryID();
 		$max = $row['max(category_id)'];
-		for ($i=1; $i<=$max; $i++) {			
-			$rows = $this->getCategoryName($i);
-			if (empty($rows)) continue;
-			$name = '';
-			if (isset($rows[0]['name'])) $name = $rows[0]['name'];
-			$name = str_replace('"', "&quot;", $name);
-			$name = str_replace("'", "&#039;", $name);
-			$desc = $rows[0]['description'];
-			$seo = array();
-			$this->seoCategory($store, $name, 0, $seo_data, $seo);
-			$seo['cat_desc'] = $this->clearSEO($seo['cat_desc']);
+		if (!empty($cat[0])) {
+			for ($i=0; $i<$max; $i++) {	
+				if (!isset($cat[$i])) break;
+				$rows = $this->getCategoryName($cat[$i]);
+				if (empty($rows)) continue;
+				$name = '';
+				if (isset($rows[0]['name'])) $name = $rows[0]['name'];
+				$name = str_replace('"', "&quot;", $name);
+				$name = str_replace("'", "&#039;", $name);
+				if (empty($name)) continue;
+				$desc = $rows[0]['description'];
+				$seo = array();
+				$this->seoCategory($store, $name, 0, $seo_data, $seo, $cat[$i]);
+				$seo['cat_desc'] = $this->clearSEO($seo['cat_desc']);
 			
-			if (!empty($seo['cat_desc']) and empty($desc)) {
-				$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `description` = '" . $this->db->escape($seo['cat_desc']) . "' WHERE `category_id` = '". $i . "' and `language_id` = '" . $lang . "'");
+				if (!empty($seo['cat_desc']) and empty($desc)) {
+					$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `description` = '" . $this->db->escape($seo['cat_desc']) . "' WHERE `category_id` = '". $cat[$i] . "' and `language_id` = '" . $lang . "'");
+				}
+			}
+		} else {	
+			for ($i=1; $i<=$max; $i++) {			
+				$rows = $this->getCategoryName($i);
+				if (empty($rows)) continue;
+				$name = '';
+				if (isset($rows[0]['name'])) $name = $rows[0]['name'];
+				$name = str_replace('"', "&quot;", $name);
+				$name = str_replace("'", "&#039;", $name);
+				if (empty($name)) continue;
+				$desc = $rows[0]['description'];
+				$seo = array();
+				$this->seoCategory($store, $name, 0, $seo_data, $seo, $i);
+				$seo['cat_desc'] = $this->clearSEO($seo['cat_desc']);
+			
+				if (!empty($seo['cat_desc']) and empty($desc)) {
+					$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `description` = '" . $this->db->escape($seo['cat_desc']) . "' WHERE `category_id` = '". $i . "' and `language_id` = '" . $lang . "'");
+				}
 			}
 		}	
-	}	
-	
-	public function FixDescCategory($seo_data, $store) {
-		$lang = $this->config->get('config_language_id');
+	}
+
+	public function delOffCategory() {
 		$row = $this->getMaxCategoryID();
 		$max = $row['max(category_id)'];
 		for ($i=1; $i<=$max; $i++) {			
-			$rows = $this->getCategoryName($i);
-			if (empty($rows)) continue;
-			$name = '';
-			if (isset($rows[0]['name'])) $name = $rows[0]['name'];
-			$name = str_replace('"', "&quot;", $name);
-			$name = str_replace("'", "&#039;", $name);
-			$seo = array();
-			$this->seoCategory($store, $name, 0, $seo_data, $seo);
-			$seo['cat_desc'] = $this->clearSEO($seo['cat_desc']);
-			
-			if (!empty($seo['cat_desc'])) {
-				$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `description` = '" . $this->db->escape($seo['cat_desc']) . "' WHERE `category_id` = '". $i . "' and `language_id` = '" . $lang . "'");
-			}
-		}	
-	}	
-	
-	public function FillMetaCategory($seo_data, $store) {
-		$lang = $this->config->get('config_language_id');
-		$row = $this->getMaxCategoryID();
-		$max = $row['max(category_id)'];
-		for ($i=1; $i<=$max; $i++) {			
-			$rows = $this->getCategoryName($i);
-			if (empty($rows)) continue;
-			$name = '';
-			if (isset($rows[0]['name'])) $name = $rows[0]['name'];
-			$name = str_replace('"', "&quot;", $name);
-			$name = str_replace("'", "&#039;", $name);
-			$seo = array();
-			$this->seoCategory($store, $name, 0, $seo_data, $seo);			
-			$seo['cat_meta_desc'] = $this->clearSEO($seo['cat_meta_desc']);
-			$seo['cat_title'] = $this->clearSEO($seo['cat_title']);
-		
-			$seo_keyword = '';
-			
-			if (!empty($name)) {
-				if (empty($rows[0]['meta_h1']))
-					$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `meta_h1` = '" . $this->db->escape($name) . "' WHERE `category_id` = '". $i . "' and `language_id` = '" . $lang . "'");
-				
-				if (empty($rows[0]['meta_description']))
-					$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `meta_description` = '" . $this->db->escape($seo['cat_meta_desc']) . "' WHERE `category_id` = '". $i . "' and `language_id` = '" . $lang . "'");
-				
-				if (empty($rows[0]['meta_title']))
-					$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `meta_title` = '" . $this->db->escape($seo['cat_title']) . "' WHERE `category_id` = '". $i . "' and `language_id` = '" . $lang . "'");								
+			$rows = $this->getCategoryPhoto($i);  //  read Table category
+			if (empty($rows)) continue;			
+			if (!$rows[0]['status']) {
+				$this->db->query("DELETE FROM " . DB_PREFIX . "category WHERE `category_id` = '" . $i . "'");
+				$this->db->query("DELETE FROM " . DB_PREFIX . "category_description WHERE `category_id` = '" . $i . "'");
+				$this->db->query("DELETE FROM " . DB_PREFIX . "category_to_store WHERE `category_id` = '" . $i . "'");
+				$this->db->query("DELETE FROM " . DB_PREFIX . "category_to_layout WHERE `category_id` = '" . $i . "'");
 			}	
 		}		
 	}
 	
-	public function FixMetaCategory($seo_data, $store) {
+	public function FillMetaCategory($seo_data, $store, $cat) {
 		$lang = $this->config->get('config_language_id');
 		$row = $this->getMaxCategoryID();
 		$max = $row['max(category_id)'];
-		for ($i=1; $i<=$max; $i++) {			
-			$rows = $this->getCategoryName($i);
-			if (empty($rows)) continue;
-			$name = '';
-			if (isset($rows[0]['name'])) $name = $rows[0]['name'];
-			$name = str_replace('"', "&quot;", $name);
-			$name = str_replace("'", "&#039;", $name);
-			$seo = array();
-			$this->seoCategory($store, $name, 0, $seo_data, $seo);			
-			$seo['cat_meta_desc'] = $this->clearSEO($seo['cat_meta_desc']);
-			$seo['cat_title'] = $this->clearSEO($seo['cat_title']);
-		
-			$seo_keyword = '';
+		if (!empty($cat[0])) {			
+			for ($i=0; $i<count($cat); $i++) {			
+				if (!isset($cat[$i])) break;
+				$rows = $this->getCategoryName($cat[$i]);
+				if (empty($rows)) continue;
+				$name = '';	
+				if (isset($rows[0]['name'])) $name = $rows[0]['name'];
+				$name = str_replace('"', "&quot;", $name);
+				$name = str_replace("'", "&#039;", $name);
+				if (empty($name)) continue;
+				$seo = array();
+				$this->seoCategory($store, $name, 0, $seo_data, $seo, $i);
+				$h1 = $name;			
+				if (!empty($seo['cat_h1'])) $h1 = $seo['cat_h1'];
+				$keyword = '';
+				if (!empty($seo['cat_keyword'])) $keyword = $seo['cat_keyword'];
+				$seo['cat_meta_desc'] = $this->clearSEO($seo['cat_meta_desc']);
+				$seo['cat_title'] = $this->clearSEO($seo['cat_title']);			
+				$name = $this->clearSEO($name);
+				$keyword = $this->clearSEO($keyword);
 			
-			if (!empty($name)) {
-				$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `name` = '" . $this->db->escape($name) . "', `meta_description` = '" . $this->db->escape($seo['cat_meta_desc']) . "', `meta_keyword` = '" . $this->db->escape($seo_keyword) . "', `meta_h1` = '" . $this->db->escape($name) . "', `meta_title` = '" . $this->db->escape($seo['cat_title']) . "' WHERE `category_id` = '". $i . "' and `language_id` = '" . $lang . "'");
-			}	
-		}		
+				if (!empty($name)) {
+					if (isset($rows[0]['meta_h1']) and empty($rows[0]['meta_h1']))
+						$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `meta_h1` = '" . $this->db->escape($h1) . "' WHERE `category_id` = '". $cat[$i] . "' and `language_id` = '" . $lang . "'");
+				
+					if (empty($rows[0]['meta_description']))
+						$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `meta_description` = '" . $this->db->escape($seo['cat_meta_desc']) . "' WHERE `category_id` = '". $cat[$i] . "' and `language_id` = '" . $lang . "'");
+				
+					if (isset($rows[0]['meta_title']) and empty($rows[0]['meta_title']))
+						$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `meta_title` = '" . $this->db->escape($seo['cat_title']) . "' WHERE `category_id` = '". $cat[$i] . "' and `language_id` = '" . $lang . "'");
+
+					if (empty($rows[0]['meta_keyword']))
+						$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `meta_keyword` = '" . $this->db->escape($keyword) . "' WHERE `category_id` = '". $cat[$i] . "' and `language_id` = '" . $lang . "'");
+				}	
+			}
+		} else {
+			for ($i=1; $i<=$max; $i++) {			
+				$rows = $this->getCategoryName($i);
+				if (empty($rows)) continue;
+				$name = '';	
+				if (isset($rows[0]['name'])) $name = $rows[0]['name'];
+				$name = str_replace('"', "&quot;", $name);
+				$name = str_replace("'", "&#039;", $name);
+				if (empty($name)) continue;
+				$seo = array();
+				$this->seoCategory($store, $name, 0, $seo_data, $seo, $i);
+				$h1 = $name;			
+				if (!empty($seo['cat_h1'])) $h1 = $seo['cat_h1'];
+				$keyword = '';
+				if (!empty($seo['cat_keyword'])) $keyword = $seo['cat_keyword'];
+				$seo['cat_meta_desc'] = $this->clearSEO($seo['cat_meta_desc']);
+				$seo['cat_title'] = $this->clearSEO($seo['cat_title']);			
+				$name = $this->clearSEO($name);
+				$keyword = $this->clearSEO($keyword);
+			
+				if (!empty($name)) {
+					if (isset($rows[0]['meta_h1']) and empty($rows[0]['meta_h1']))
+						$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `meta_h1` = '" . $this->db->escape($h1) . "' WHERE `category_id` = '". $i . "' and `language_id` = '" . $lang . "'");
+				
+					if (empty($rows[0]['meta_description']))
+						$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `meta_description` = '" . $this->db->escape($seo['cat_meta_desc']) . "' WHERE `category_id` = '". $i . "' and `language_id` = '" . $lang . "'");
+				
+					if (isset($rows[0]['meta_title']) and empty($rows[0]['meta_title']))
+						$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `meta_title` = '" . $this->db->escape($seo['cat_title']) . "' WHERE `category_id` = '". $i . "' and `language_id` = '" . $lang . "'");
+
+					if (empty($rows[0]['meta_keyword']))
+						$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `meta_keyword` = '" . $this->db->escape($keyword) . "' WHERE `category_id` = '". $i . "' and `language_id` = '" . $lang . "'");
+				}	
+			}
+		}
 	}
 	
 	public function uniqueCatManuf($store) {	
@@ -4913,51 +6455,216 @@ class ModelCatalogSuppler extends Model {
 		}	
 	}	
 	
-	public function FixURLManufacturer($seo_data, $store) {
-		$lang = $this->config->get('config_language_id');
+	public function FixURLManufacturer($seo_data, $store, $manuf) {
 		$row = $this->getMaxManufacturerID();
 		$max = $row['max(manufacturer_id)'];
-		for ($i=1; $i<=$max; $i++) {					
-			$rows = $this->getManufacturerStore($i, $store);
-			if (empty($rows)) continue;
-			$name = '';
-			if (isset($rows[0]['name'])) $name = $rows[0]['name'];
-			$seo_url = $name;
-		//	$seo_url = $this->TransLit($name); // translit
-			$seo_url = $this->MetaURL($seo_url);
-			$seo_url = mb_strtolower($seo_url);
+		if (!empty($manuf[0])) {
+			for ($i=0; $i<=$max; $i++) {
+				if (!isset($manuf[$i])) break;				
+				$rows = $this->getManufacturerStore((int)$manuf[$i], $store);
+				if (empty($rows)) continue;
+				$name = '';
+				if (isset($rows[0]['name'])) $name = $rows[0]['name'];
 			
-			$rows1 = $this->chURL($seo_url, $store);
-			if (!empty($rows1)) $seo_url = $seo_url . '-' . $i;
+				$seo_url = $this->TransLit($name);
+				$seo_url = $this->MetaURL($seo_url);
+				$seo_url = strtolower($seo_url);
 			
-			$row = $this->getURLmanufacturer($i, $store);
-			if (empty($row)) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "seo_url SET query = 'manufacturer_id=" . $i . "', keyword = '" . $this->db->escape($seo_url) . "', store_id = '" . $store ."', language_id = '" . $lang . "'");
-			} else {		
-				$this->db->query("UPDATE " . DB_PREFIX . "seo_url SET `keyword` = '" . $this->db->escape($seo_url) . "' WHERE `query` = 'manufacturer_id=" . $i . "' and store_id = '" . $store ."' and language_id = '" . $lang . "'");
+				$rows1 = $this->chURL($seo_url);
+				if (!empty($rows1)) $seo_url = $seo_url . '-' . $i;
+			
+				$row = $this->getURLmanufacturer($i);
+				if (empty($row)) {
+					$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'manufacturer_id=" . $manuf[$i] . "', keyword = '" . $this->db->escape($seo_url) . "'");
+				} else {		
+					$this->db->query("UPDATE " . DB_PREFIX . "url_alias SET `keyword` = '" . $this->db->escape($seo_url) . "' WHERE `query` = 'manufacturer_id=" . $manuf[$i] . "'");
+				}
+			}
+		} else {			
+			for ($i=1; $i<=$max; $i++) {					
+				$rows = $this->getManufacturerStore($i, $store);
+				if (empty($rows)) continue;
+				$name = '';
+				if (isset($rows[0]['name'])) $name = $rows[0]['name'];
+			
+				$seo_url = $this->TransLit($name);
+				$seo_url = $this->MetaURL($seo_url);
+				$seo_url = strtolower($seo_url);
+			
+				$rows1 = $this->chURL($seo_url);
+				if (!empty($rows1)) $seo_url = $seo_url . '-' . $i;
+			
+				$row = $this->getURLmanufacturer($i);
+				if (empty($row)) {
+					$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'manufacturer_id=" . $i . "', keyword = '" . $this->db->escape($seo_url) . "'");
+				} else {		
+					$this->db->query("UPDATE " . DB_PREFIX . "url_alias SET `keyword` = '" . $this->db->escape($seo_url) . "' WHERE `query` = 'manufacturer_id=" . $i . "'");
+				}
 			}
 		}	
 	}
 	
-	public function FixMetaManufacturer($seo_data, $store) {	
+	public function FillMetaManufacturer($seo_data, $store, $manuf) {
 		$lang = $this->config->get('config_language_id');
 		$row = $this->getMaxManufacturerID();
 		$max = $row['max(manufacturer_id)'];
-		for ($i=1; $i<=$max; $i++) {					
-			$rows = $this->getManufacturerStore($i, $store);
-			if (empty($rows)) continue;
-			$name = '';
-			if (isset($rows[0]['name'])) $name = $rows[0]['name'];
-			$name = str_replace('"', "&quot;", $name);
-			$name = str_replace("'", "&#039;", $name);
-			$seo = array();
-			$this->seoManufacturer($store, $name, $seo_data, $seo);
-			$seo['manuf_title'] = $this->clearSEO($seo['manuf_title']);
-			$seo['manuf_meta_desc'] = $this->clearSEO($seo['manuf_meta_desc']);
+		if (!empty($manuf[0])) {
+			for ($i=0; $i<2000; $i++) {	
+				if (!isset($manuf[$i])) break;			
+				$rows = $this->getManufacturerStore($manuf[$i], $store);
+				if (empty($rows)) continue;
+				$name = '';	
+				if (isset($rows[0]['name'])) $name = $rows[0]['name'];
+				$name = str_replace('"', "&quot;", $name);
+				$name = str_replace("'", "&#039;", $name);
+				$rows = $this->getManufacturerDesc($manuf[$i], $lang);
+				if (empty($name)) continue;
+				$seo = array();		
+				$this->seoManufacturer($store, $name, $seo_data, $seo);
+				$h1 = $name;
+				if (!empty($seo['manuf_h1'])) $h1 = $seo['manuf_h1'];
+				$keyword = '';
+				if (!empty($seo['manuf_keyword'])) $keyword = $seo['manuf_keyword'];
+				$seo['manuf_meta_desc'] = $this->clearSEO($seo['manuf_meta_desc']);
+				$seo['manuf_title'] = $this->clearSEO($seo['manuf_title']);			
+				$name = $this->clearSEO($name);
+				$keyword = $this->clearSEO($keyword);
 			
-			$seo_keyword = '';			
+				if (!empty($name)) {
+					if (isset($rows[0]['meta_h1']) and empty($rows[0]['meta_h1']))
+						$this->db->query("UPDATE " . DB_PREFIX . "manufacturer_description SET `meta_h1` = '" . $this->db->escape($h1) . "' WHERE `manufacturer_id` = '". $manuf[$i] . "' and `language_id` = '" . $lang . "'");
+				
+					if (empty($rows[0]['meta_description']))
+						$this->db->query("UPDATE " . DB_PREFIX . "manufacturer_description SET `meta_description` = '" . $this->db->escape($seo['manuf_meta_desc']) . "' WHERE `manufacturer_id` = '". $manuf[$i] . "' and `language_id` = '" . $lang . "'");
+				
+					if (isset($rows[0]['meta_title']) and empty($rows[0]['meta_title']))
+						$this->db->query("UPDATE " . DB_PREFIX . "manufacturer_description SET `meta_title` = '" . $this->db->escape($seo['manuf_title']) . "' WHERE `manufacturer_id` = '". $manuf[$i] . "' and `language_id` = '" . $lang . "'");
 
-			$this->db->query("UPDATE " . DB_PREFIX . "manufacturer_description SET `meta_description` = '" . $this->db->escape($seo['manuf_meta_desc']) . "', `meta_keyword` = '" . $this->db->escape($seo_keyword) . "', `meta_h1` = '" . $this->db->escape($name) . "', `meta_title` = '" . $this->db->escape($seo['manuf_title']) . "' WHERE `manufacturer_id` = '". $i . "' and `language_id` = '" . $lang . "'");
+					if (isset($rows[0]['meta_keyword']) and empty($rows[0]['meta_keyword']))
+						$this->db->query("UPDATE " . DB_PREFIX . "manufacturer_description SET `meta_keyword` = '" . $this->db->escape($keyword) . "' WHERE `manufacturer_id` = '". $manuf[$i] . "' and `language_id` = '" . $lang . "'");
+				}	
+			}
+		} else {
+			for ($i=1; $i<=$max; $i++) {			
+				$rows = $this->getManufacturerStore($i, $store);
+				if (empty($rows)) continue;
+				$name = '';	
+				if (isset($rows[0]['name'])) $name = $rows[0]['name'];
+				$name = str_replace('"', "&quot;", $name);
+				$name = str_replace("'", "&#039;", $name);
+				if (empty($name)) continue;
+				$rows = $this->getManufacturerDesc($i, $lang);
+				$seo = array();		
+				$this->seoManufacturer($store, $name, $seo_data, $seo);
+				$h1 = $name;
+				if (!empty($seo['manuf_h1'])) $h1 = $seo['manuf_h1'];
+				$keyword = '';
+				if (!empty($seo['manuf_keyword'])) $keyword = $seo['manuf_keyword'];
+				$seo['manuf_meta_desc'] = $this->clearSEO($seo['manuf_meta_desc']);
+				$seo['manuf_title'] = $this->clearSEO($seo['manuf_title']);			
+				$name = $this->clearSEO($name);
+				$keyword = $this->clearSEO($keyword);
+			
+				if (!empty($name)) {
+					if (isset($rows[0]['meta_h1']) and empty($rows[0]['meta_h1']))
+						$this->db->query("UPDATE " . DB_PREFIX . "manufacturer_description SET `meta_h1` = '" . $this->db->escape($h1) . "' WHERE `manufacturer_id` = '". $i . "' and `language_id` = '" . $lang . "'");
+				
+					if (empty($rows[0]['meta_description']))
+						$this->db->query("UPDATE " . DB_PREFIX . "manufacturer_description SET `meta_description` = '" . $this->db->escape($seo['manuf_meta_desc']) . "' WHERE `manufacturer_id` = '". $i . "' and `language_id` = '" . $lang . "'");
+				
+					if (isset($rows[0]['meta_title']) and empty($rows[0]['meta_title']))
+						$this->db->query("UPDATE " . DB_PREFIX . "manufacturer_description SET `meta_title` = '" . $this->db->escape($seo['manuf_title']) . "' WHERE `manufacturer_id` = '". $i . "' and `language_id` = '" . $lang . "'");
+
+					if (isset($rows[0]['meta_keyword']) and empty($rows[0]['meta_keyword']))
+						$this->db->query("UPDATE " . DB_PREFIX . "manufacturer_description SET `meta_keyword` = '" . $this->db->escape($keyword) . "' WHERE `manufacturer_id` = '". $i . "' and `language_id` = '" . $lang . "'");
+				}	
+			}
+		}
+	}
+	
+	public function RemoveEmptyManufacturers() {
+		$row = $this->getMaxManufacturerID();
+		$max = $row['max(manufacturer_id)'];
+		for ($i=1; $i<=$max; $i++) {
+			$row = $this->getManufacturerName($i);
+			if (!empty($row)) {
+				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product WHERE `manufacturer_id` = '" . $i . "'");
+		
+				if (empty($query->rows)) {
+					$this->db->query("DELETE FROM " . DB_PREFIX . "manufacturer WHERE `manufacturer_id` = '" . $i . "'");
+					$this->db->query("DELETE FROM " . DB_PREFIX . "manufacturer_to_store WHERE `manufacturer_id` = '" . $i . "'");
+					$table = DB_PREFIX . "manufacturer_description";		
+					if ($this->getColumnName($table, "name")) {	
+						$this->db->query("DELETE FROM " . DB_PREFIX . "manufacturer_description WHERE `manufacturer_id` = '" . $i . "'");
+					}
+				}
+			}
+		}	
+	}
+	
+	public function FixMetaManufacturerSelected($seo_data, $store, $manuf) {		
+		$lang = $this->config->get('config_language_id');
+		$row = $this->getMaxManufacturerID();
+		$max = $row['max(manufacturer_id)'];
+		if (!empty($manuf[0])) {
+			for ($i=0; $i<=$max; $i++) {
+				if (!isset($manuf[$i])) break;				
+				$rows = $this->getManufacturerStore((int)$manuf[$i], $store);
+				if (empty($rows)) continue;
+				$name = '';	
+				if (isset($rows[0]['name'])) $name = $rows[0]['name'];
+				$name = str_replace('"', "&quot;", $name);
+				$name = str_replace("'", "&#039;", $name);
+				if (empty($name)) continue;
+				$rows = $this->getManufacturerDesc($manuf[$i], $lang);
+				$seo = array();		
+				$this->seoManufacturer($store, $name, $seo_data, $seo);
+				$h1 = $name;
+				if (!empty($seo['manuf_h1'])) $h1 = $seo['manuf_h1'];
+				$keyword = '';
+				if (!empty($seo['manuf_keyword'])) $keyword = $seo['manuf_keyword'];
+				$seo['manuf_meta_desc'] = $this->clearSEO($seo['manuf_meta_desc']);
+				$seo['manuf_title'] = $this->clearSEO($seo['manuf_title']);			
+				$name = $this->clearSEO($name);
+				$keyword = $this->clearSEO($keyword);
+
+				if (!empty($name)) {
+					if (empty($keyword)) {
+						$this->db->query("UPDATE " . DB_PREFIX . "manufacturer_description SET `meta_description` = '" . $this->db->escape($seo['manuf_meta_desc']) . "', `meta_h1` = '" . $this->db->escape($h1) . "', `meta_title` = '" . $this->db->escape($seo['manuf_title']) . "' WHERE `manufacturer_id` = '". $manuf[$i] . "' and `language_id` = '" . $lang . "'");
+					} else {
+						$this->db->query("UPDATE " . DB_PREFIX . "manufacturer_description SET `meta_description` = '" . $this->db->escape($seo['manuf_meta_desc']) . "', `meta_h1` = '" . $this->db->escape($h1) . "',  `meta_title` = '" . $this->db->escape($seo['manuf_title']) . "', `meta_keyword` = '" . $this->db->escape($keyword) . "' WHERE `manufacturer_id` = '". $manuf[$i] . "' and `language_id` = '" . $lang . "'");
+					}
+				}	
+			}
+		} else {
+			for ($i=1; $i<=$max; $i++) {					
+				$rows = $this->getManufacturerStore($i, $store);
+				if (empty($rows)) continue;
+				$name = '';	
+				if (isset($rows[0]['name'])) $name = $rows[0]['name'];
+				$name = str_replace('"', "&quot;", $name);
+				$name = str_replace("'", "&#039;", $name);
+				if (empty($name)) continue;
+				$rows = $this->getManufacturerDesc($manuf[$i], $lang);
+				$seo = array();		
+				$this->seoManufacturer($store, $name, $seo_data, $seo);
+				$h1 = $name;
+				if (!empty($seo['manuf_h1'])) $h1 = $seo['manuf_h1'];
+				$keyword = '';
+				if (!empty($seo['manuf_keyword'])) $keyword = $seo['manuf_keyword'];
+				$seo['manuf_meta_desc'] = $this->clearSEO($seo['manuf_meta_desc']);
+				$seo['manuf_title'] = $this->clearSEO($seo['manuf_title']);			
+				$name = $this->clearSEO($name);
+				$keyword = $this->clearSEO($keyword);
+
+				if (!empty($name)) {
+					if (empty($keyword)) {
+						$this->db->query("UPDATE " . DB_PREFIX . "manufacturer_description SET `meta_description` = '" . $this->db->escape($seo['manuf_meta_desc']) . "', `meta_h1` = '" . $this->db->escape($h1) . "', `meta_title` = '" . $this->db->escape($seo['manuf_title']) . "' WHERE `manufacturer_id` = '". $i . "' and `language_id` = '" . $lang . "'");
+					} else {
+						$this->db->query("UPDATE " . DB_PREFIX . "manufacturer_description SET `meta_description` = '" . $this->db->escape($seo['manuf_meta_desc']) . "', `meta_h1` = '" . $this->db->escape($h1) . "',  `meta_title` = '" . $this->db->escape($seo['manuf_title']) . "', `meta_keyword` = '" . $this->db->escape($keyword) . "' WHERE `manufacturer_id` = '". $i . "' and `language_id` = '" . $lang . "'");
+					}
+				}	
+			}
 		}
 	}
 	
@@ -5017,13 +6724,9 @@ class ModelCatalogSuppler extends Model {
 		$date_start = "2000-01-01";
 		$date_end = "2040-01-02";		
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_special WHERE `product_id` = '" . $row['product_id'] . "' and `customer_group_id` = '" . $gr . "'");
-		$table = DB_PREFIX . "product_special";
-		$tname = "base_price";
-		if (!$this->getColumnName($table, $tname)) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "product_special SET `product_id` ='" .$row['product_id']."', `customer_group_id` = '" . $gr . "', `priority` = '" . 1 . "', `price` = '" . $pr . "', `date_start` = '" . $date_start . "', `date_end` = '" . $date_end . "'");
-		} else {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "product_special SET `product_id` ='" .$row['product_id']."', `customer_group_id` = '" . $gr . "', `priority` = '" . 1 . "', `price` = '" . $pr . "', `base_price` = '" . $pr . "', `date_start` = '" . $date_start . "', `date_end` = '" . $date_end . "'");
-		}
+		
+		$this->db->query("INSERT INTO " . DB_PREFIX . "product_special SET `product_id` ='" .$row['product_id']."', `customer_group_id` = '" . $gr . "', `priority` = '" . 1 . "', `price` = '" . $pr . "', `date_start` = '" . $date_start . "', `date_end` = '" . $date_end . "'");
+		
 	}
 	
 	public function percentAction($row, $per, $gr) {		
@@ -5086,14 +6789,32 @@ class ModelCatalogSuppler extends Model {
 		$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `meta_h1` = '', `meta_title` = '', `meta_description` = '', `meta_keyword` =  '' WHERE `product_id` = '" . $product_id . "' and `language_id` = '" . $lang. "'");
 	}
 	
-	public function addtoName($product_id, $add) {
+	public function addtoName($row, $add) {		
 		if ($add == '') return;
 		$lang = $this->config->get('config_language_id');		
-		$rows = $this->getProductDesc($product_id);
+		$rows = $this->getProductDesc($row['product_id']);
 		if (empty($rows)) return;
-		$name = $rows[0]['name'] . $add;
-		$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `name` = '" . $name . "' WHERE `product_id` = '" . $product_id . "' and `language_id` = '" . $lang. "'");
-	}	
+		if (substr_count($rows[0]['name'], ')')) return;
+		if (substr_count($add, '[')) {
+			$a = strrpos($add, '[');
+			if ($a) {
+				$b = strrpos($add, ']');
+				if ($b and $b>$a) {
+					$tag = substr($add, $a+1, $b-$a-1);
+					if ($tag == 'sku') $add = str_replace('[sku]', $row['sku'], $add);						
+					if ($tag == 'mod') $add = str_replace('[mod]', $row['model'], $add);
+					if ($tag == 'upc') $add = str_replace('[upc]', $row['upc'], $add);
+					if ($tag == 'loc') $add = str_replace('[loc]', $row['loc'], $add);
+					if ($tag == 'mpn') if (isset($row['mpn'])) $add = str_replace('[mpn]', $row['mpn'], $add);
+					if ($tag == 'isbn' and isset($row['isbn'])) $add = str_replace('[isbn]', $row['isbn'], $add);
+					if ($tag == 'jan' and isset($row['jan'])) $add = str_replace('[jan]', $row['jan'], $add);
+					$add = $this->clearSEO($add);
+				}	
+			}
+		}	
+		$name = $rows[0]['name'] . ' ' .$add;
+		$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `name` = '" . $name . "' WHERE `product_id` = '" . $row['product_id'] . "' and `language_id` = '" . $lang. "'");
+	}
 
 	public function copyH1toName($product_id) {	
 		$lang = $this->config->get('config_language_id');		
@@ -5188,8 +6909,26 @@ class ModelCatalogSuppler extends Model {
 		$this->db->query("UPDATE " . DB_PREFIX . "product SET `sku` = '" . $this->db->escape($row['ean']) . "' WHERE `product_id` = '" . $row['product_id']. "'");
 	}
 	
+	public function copyLoc_Model($row) {	
+		$this->db->query("UPDATE " . DB_PREFIX . "product SET `model` = '" . $this->db->escape($row['location']) . "' WHERE `product_id` = '" . $row['product_id']. "'");
+	}
+	
 	public function copyLoc_Ean($row) {	
 		$this->db->query("UPDATE " . DB_PREFIX . "product SET `ean` = '" . $this->db->escape($row['location']) . "' WHERE `product_id` = '" . $row['product_id']. "'");
+	}
+	
+	public function copyAttr_ISBN($product_id, $attribute_id) {		
+		$lang = $this->config->get('config_language_id');
+		$rows = $this->getAttributeById($product_id, $attribute_id, $lang);
+		if (empty($rows)) return;	
+			$this->db->query("UPDATE " . DB_PREFIX . "product SET `isbn` = '" . $this->db->escape($rows[0]['text']). "' WHERE `product_id` = '" . $product_id . "'");
+	}
+
+	public function copyAttr_EAN($product_id, $attribute_id) {		
+		$lang = $this->config->get('config_language_id');
+		$rows = $this->getAttributeById($product_id, $attribute_id, $lang);
+		if (empty($rows)) return;	
+			$this->db->query("UPDATE " . DB_PREFIX . "product SET `ean` = '" . $this->db->escape($rows[0]['text']). "' WHERE `product_id` = '" . $product_id . "'");
 	}
 	
 	public function copyAttr_UPC($product_id, $attribute_id) {		
@@ -5253,7 +6992,12 @@ class ModelCatalogSuppler extends Model {
 		$rows = $this->getAttributeById($product_id, $attribute_id, $lang);
 		if (empty($rows)) return;	
 			$this->db->query("UPDATE " . DB_PREFIX . "product SET `sku` = '" . $this->db->escape($rows[0]['text']). "' WHERE `product_id` = '" . $product_id . "'");	
-	}	
+	}
+
+	public function copySKUAttribute($row, $attribute_id) {
+		$lang = $this->config->get('config_language_id');
+		$this->db->query("UPDATE " . DB_PREFIX . "product_attribute SET `text` = '" . $row['sku']. "' WHERE `product_id` = '" . $product_id . "' and `attribute_id` = '" . $attribute_id . "' and `language_id` = '" . $lang . "'");
+	}
 	
 	public function copyWeightAttribute($row, $attribute_id) {
 		if (!$row['weight']) return;
@@ -5323,15 +7067,19 @@ class ModelCatalogSuppler extends Model {
 			$rows = $this->getManufacturerDesc($manufacturer, $lang);
 			if (!empty($rows)) $description = $rows[0]['description'];
 		}
+		$seo['manuf_h1'] = $seo_data['manuf_h1'];
 		$seo['manuf_title'] = $seo_data['manuf_title'];
 		$seo['manuf_meta_desc'] = $seo_data['manuf_meta_desc'];
 		$seo['manuf_desc'] = $seo_data['manuf_desc'];
+		$seo['manuf_keyword'] = $seo_data['manuf_keyword'];
 		
 		$kk = 6;
-		for ($i=0; $i<$kk; $i++) {			
+		for ($i=0; $i<$kk; $i++) {
+			$seo['manuf_h1'] = str_replace('[m]', $manufacturer, $seo['manuf_h1']);
 			$seo['manuf_title'] = str_replace('[m]', $manufacturer, $seo['manuf_title']);
 			$seo['manuf_meta_desc'] = str_replace('[m]', $manufacturer, $seo['manuf_meta_desc']);
 			$seo['manuf_desc'] = str_replace('[m]', $manufacturer, $seo['manuf_desc']);
+			$seo['manuf_keyword'] = str_replace('[m]', $manufacturer, $seo['manuf_keyword']);
 			
 			if (!empty($description) and $i == $kk-1 and substr_count($seo['manuf_desc'],"[d]")) {				
 				$b = str_replace('[d]', '', $seo['manuf_desc']);
@@ -5393,127 +7141,168 @@ class ModelCatalogSuppler extends Model {
 		$kk = 6;
 		for ($i=0; $i<$kk; $i++) {	
 			if (!empty($t1)) {
-				$t1 = str_replace('[m]', $manufacturer, $t1);				
+				$t1 = str_replace('[m]', $manufacturer, $t1);
+				$seo['manuf_h1'] = str_replace('[1]', $t1, $seo['manuf_h1']);
 				$seo['manuf_title'] = str_replace('[1]', $t1, $seo['manuf_title']);
 				$seo['manuf_meta_desc'] = str_replace('[1]', $t1, $seo['manuf_meta_desc']);
 				$seo['manuf_desc'] = str_replace('[1]', $t1, $seo['manuf_desc']);
+				$seo['manuf_keyword'] = str_replace('[1]', $t1, $seo['manuf_keyword']);
 			}	
 			if (!empty($t2)) {
 				$t2 = str_replace('[m]', $manufacturer, $t2);
+				$seo['manuf_h1'] = str_replace('[2]', $t1, $seo['manuf_h1']);
 				$seo['manuf_title'] = str_replace('[2]', $t2, $seo['manuf_title']);
 				$seo['manuf_meta_desc'] = str_replace('[2]', $t2, $seo['manuf_meta_desc']);
 				$seo['manuf_desc'] = str_replace('[2]', $t2, $seo['manuf_desc']);
+				$seo['manuf_keyword'] = str_replace('[2]', $t1, $seo['manuf_keyword']);
 			}
 			if (!empty($t3)) {
 				$t3 = str_replace('[m]', $manufacturer, $t3);
+				$seo['manuf_h1'] = str_replace('[3]', $t1, $seo['manuf_h1']);
 				$seo['manuf_title'] = str_replace('[3]', $t3, $seo['manuf_title']);
 				$seo['manuf_meta_desc'] = str_replace('[3]', $t3, $seo['manuf_meta_desc']);
 				$seo['manuf_desc'] = str_replace('[3]', $t3, $seo['manuf_desc']);
+				$seo['manuf_keyword'] = str_replace('[3]', $t1, $seo['manuf_keyword']);
 			}
 			if (!empty($t4)) {
 				$t4 = str_replace('[m]', $manufacturer, $t4);
+				$seo['manuf_h1'] = str_replace('[4]', $t1, $seo['manuf_h1']);
 				$seo['manuf_title'] = str_replace('[4]', $t4, $seo['manuf_title']);
 				$seo['manuf_meta_desc'] = str_replace('[4]', $t4, $seo['manuf_meta_desc']);
 				$seo['manuf_desc'] = str_replace('[4]', $t4, $seo['manuf_desc']);
+				$seo['manuf_keyword'] = str_replace('[4]', $t1, $seo['manuf_keyword']);
 			}
 			if (!empty($t5)) {	
 				$t5 = str_replace('[m]', $manufacturer, $t5);
+				$seo['manuf_h1'] = str_replace('[5]', $t1, $seo['manuf_h1']);
 				$seo['manuf_title'] = str_replace('[5]', $t5, $seo['manuf_title']);
 				$seo['manuf_meta_desc'] = str_replace('[5]', $t5, $seo['manuf_meta_desc']);
 				$seo['manuf_desc'] = str_replace('[5]', $t5, $seo['manuf_desc']);
+				$seo['manuf_keyword'] = str_replace('[5]', $t1, $seo['manuf_keyword']);
 			}
 			if (!empty($t6)) {
 				$t6 = str_replace('[m]', $manufacturer, $t6);
+				$seo['manuf_h1'] = str_replace('[6]', $t1, $seo['manuf_h1']);
 				$seo['manuf_title'] = str_replace('[6]', $t6, $seo['manuf_title']);
 				$seo['manuf_meta_desc'] = str_replace('[6]', $t6, $seo['manuf_meta_desc']);
 				$seo['manuf_desc'] = str_replace('[6]', $t6, $seo['manuf_desc']);
+				$seo['manuf_keyword'] = str_replace('[6]', $t1, $seo['manuf_keyword']);				
 			}
 			if (!empty($t7)) {
 				$t7 = str_replace('[m]', $manufacturer, $t7);
+				$seo['manuf_h1'] = str_replace('[7]', $t1, $seo['manuf_h1']);
 				$seo['manuf_title'] = str_replace('[7]', $t7, $seo['manuf_title']);
 				$seo['manuf_meta_desc'] = str_replace('[7]', $t7, $seo['manuf_meta_desc']);
 				$seo['manuf_desc'] = str_replace('[7]', $t7, $seo['manuf_desc']);
+				$seo['manuf_keyword'] = str_replace('[7]', $t1, $seo['manuf_keyword']);
 			}
 			if (!empty($t8)) {
 				$t8 = str_replace('[m]', $manufacturer, $t8);
+				$seo['manuf_h1'] = str_replace('[8]', $t1, $seo['manuf_h1']);
 				$seo['manuf_title'] = str_replace('[8]', $t8, $seo['manuf_title']);
 				$seo['manuf_meta_desc'] = str_replace('[8]', $t8, $seo['manuf_meta_desc']);
 				$seo['manuf_desc'] = str_replace('[8]', $t8, $seo['manuf_desc']);
+				$seo['manuf_keyword'] = str_replace('[8]', $t1, $seo['manuf_keyword']);
 			}
 			if (!empty($t9)) {
 				$t9 = str_replace('[m]', $manufacturer, $t9);
+				$seo['manuf_h1'] = str_replace('[9]', $t1, $seo['manuf_h1']);
 				$seo['manuf_title'] = str_replace('[9]', $t9, $seo['manuf_title']);
 				$seo['manuf_meta_desc'] = str_replace('[9]', $t9, $seo['manuf_meta_desc']);
 				$seo['manuf_desc'] = str_replace('[9]', $t9, $seo['manuf_desc']);
+				$seo['manuf_keyword'] = str_replace('[9]', $t1, $seo['manuf_keyword']);
 			}
 			if (!empty($t10)) {
 				$t10 = str_replace('[m]', $manufacturer, $t10);
+				$seo['manuf_h1'] = str_replace('[10]', $t1, $seo['manuf_h1']);
 				$seo['manuf_title'] = str_replace('[10]', $t10, $seo['manuf_title']);
 				$seo['manuf_meta_desc'] = str_replace('[10]', $t10, $seo['manuf_meta_desc']);
 				$seo['manuf_desc'] = str_replace('[10]', $t10, $seo['manuf_desc']);
+				$seo['manuf_keyword'] = str_replace('[10]', $t1, $seo['manuf_keyword']);
 			}
 			if (!empty($t11)) {
 				$t11 = str_replace('[m]', $manufacturer, $t11);
+				$seo['manuf_h1'] = str_replace('[11]', $t1, $seo['manuf_h1']);
 				$seo['manuf_title'] = str_replace('[11]', $t11, $seo['manuf_title']);
 				$seo['manuf_meta_desc'] = str_replace('[11]', $t11, $seo['manuf_meta_desc']);
 				$seo['manuf_desc'] = str_replace('[11]', $t11, $seo['manuf_desc']);
+				$seo['manuf_keyword'] = str_replace('[11]', $t1, $seo['manuf_keyword']);
 			}
 			if (!empty($t12)) {
 				$t12 = str_replace('[m]', $manufacturer, $t12);
+				$seo['manuf_h1'] = str_replace('[12]', $t1, $seo['manuf_h1']);
 				$seo['manuf_title'] = str_replace('[12]', $t12, $seo['manuf_title']);
 				$seo['manuf_meta_desc'] = str_replace('[12]', $t12, $seo['manuf_meta_desc']);
 				$seo['manuf_desc'] = str_replace('[12]', $t12, $seo['manuf_desc']);
+				$seo['manuf_keyword'] = str_replace('[12]', $t1, $seo['manuf_keyword']);
 			}
 			if (!empty($t13)) {	
 				$t13 = str_replace('[m]', $manufacturer, $t13);
+				$seo['manuf_h1'] = str_replace('[13]', $t1, $seo['manuf_h1']);
 				$seo['manuf_title'] = str_replace('[13]', $t13, $seo['manuf_title']);
 				$seo['manuf_meta_desc'] = str_replace('[13]', $t13, $seo['manuf_meta_desc']);
 				$seo['manuf_desc'] = str_replace('[13]', $t13, $seo['manuf_desc']);
+				$seo['manuf_keyword'] = str_replace('[13]', $t1, $seo['manuf_keyword']);
 			}
 			if (!empty($t14)) {
 				$t14 = str_replace('[m]', $manufacturer, $t14);
+				$seo['manuf_h1'] = str_replace('[14]', $t1, $seo['manuf_h1']);
 				$seo['manuf_title'] = str_replace('[14]', $t14, $seo['manuf_title']);
 				$seo['manuf_meta_desc'] = str_replace('[14]', $t14, $seo['manuf_meta_desc']);
 				$seo['manuf_desc'] = str_replace('[14]', $t14, $seo['manuf_desc']);
+				$seo['manuf_keyword'] = str_replace('[14]', $t1, $seo['manuf_keyword']);
 			}
 			if (!empty($t15)) {
 				$t15 = str_replace('[m]', $manufacturer, $t15);
+				$seo['manuf_h1'] = str_replace('[15]', $t1, $seo['manuf_h1']);
 				$seo['manuf_title'] = str_replace('[15]', $t15, $seo['manuf_title']);
 				$seo['manuf_meta_desc'] = str_replace('[15]', $t15, $seo['manuf_meta_desc']);
 				$seo['manuf_desc'] = str_replace('[15]', $t15, $seo['manuf_desc']);
+				$seo['manuf_keyword'] = str_replace('[15]', $t1, $seo['manuf_keyword']);
 			}
 			if (!empty($t16)) {
 				$t16 = str_replace('[m]', $manufacturer, $t16);
+				$seo['manuf_h1'] = str_replace('[16]', $t1, $seo['manuf_h1']);
 				$seo['manuf_title'] = str_replace('[16]', $t16, $seo['manuf_title']);
 				$seo['manuf_meta_desc'] = str_replace('[16]', $t16, $seo['manuf_meta_desc']);
 				$seo['manuf_desc'] = str_replace('[16]', $t16, $seo['manuf_desc']);
+				$seo['manuf_keyword'] = str_replace('[16]', $t1, $seo['manuf_keyword']);
 			}
 			if (!empty($t17)) {	
 				$t17 = str_replace('[m]', $manufacturer, $t17);
+				$seo['manuf_h1'] = str_replace('[17]', $t1, $seo['manuf_h1']);
 				$seo['manuf_title'] = str_replace('[17]', $t17, $seo['manuf_title']);
 				$seo['manuf_meta_desc'] = str_replace('[17]', $t17, $seo['manuf_meta_desc']);
 				$seo['manuf_desc'] = str_replace('[17]', $t17, $seo['manuf_desc']);
+				$seo['manuf_keyword'] = str_replace('[17]', $t1, $seo['manuf_keyword']);
 			}
 			if (!empty($t18)) {	
 				$t18 = str_replace('[m]', $manufacturer, $t18);
+				$seo['manuf_h1'] = str_replace('[18]', $t1, $seo['manuf_h1']);
 				$seo['manuf_title'] = str_replace('[18]', $t18, $seo['manuf_title']);
 				$seo['manuf_meta_desc'] = str_replace('[18]', $t18, $seo['manuf_meta_desc']);
 				$seo['manuf_desc'] = str_replace('[18]', $t18, $seo['manuf_desc']);
+				$seo['manuf_keyword'] = str_replace('[18]', $t1, $seo['manuf_keyword']);
 			}
 			if (!empty($t19)) {
 				$t19 = str_replace('[m]', $manufacturer, $t19);
+				$seo['manuf_h1'] = str_replace('[19]', $t1, $seo['manuf_h1']);
 				$seo['manuf_title'] = str_replace('[19]', $t19, $seo['manuf_title']);
 				$seo['manuf_meta_desc'] = str_replace('[19]', $t19, $seo['manuf_meta_desc']);
 				$seo['manuf_desc'] = str_replace('[19]', $t19, $seo['manuf_desc']);
+				$seo['manuf_keyword'] = str_replace('[19]', $t1, $seo['manuf_keyword']);
 			}
 			if (!empty($t20)) {
 				$t20 = str_replace('[m]', $manufacturer, $t20);
+				$seo['manuf_h1'] = str_replace('[20]', $t1, $seo['manuf_h1']);
 				$seo['manuf_title'] = str_replace('[20]', $t20, $seo['manuf_title']);
 				$seo['manuf_meta_desc'] = str_replace('[20]', $t20, $seo['manuf_meta_desc']);
 				$seo['manuf_desc'] = str_replace('[20]', $t20, $seo['manuf_desc']);
+				$seo['manuf_keyword'] = str_replace('[20]', $t1, $seo['manuf_keyword']);
 			}			
 		}
 		$br = 1;
+		$nak = array();
 		for ($i=0; $i<200; $i++) {
 			if (!$br) break;
 			$br = 0;
@@ -5526,7 +7315,17 @@ class ModelCatalogSuppler extends Model {
 					$m = substr($n, 1, strlen($n)-2);
 					$mm = explode("|", $m);						
 					$text = $mm[rand(0, count($mm)-1)];
-					$seo['manuf_title'] = str_replace($n, $text, $seo['manuf_title']);			
+					for ($z=0; $z<100; $z++) {
+						if (in_array($text, $nak)) $text = $mm[rand(0, count($mm)-1)];
+						else {
+							array_push($nak, $text);
+							break;
+						}
+					}					
+					$aa = substr($seo['manuf_title'], 0, $pb);
+					if (strlen($seo['manuf_title']) == $pe+1) $bb = '';
+					else $bb = substr($seo['manuf_title'], $pe+1);
+					$seo['manuf_title'] = $aa . $text . $bb;						
 				}
 			}	
 			$pb = strpos($seo['manuf_meta_desc'], "[");	
@@ -5538,7 +7337,17 @@ class ModelCatalogSuppler extends Model {
 					$m = substr($n, 1, strlen($n)-2);
 					$mm = explode("|", $m);						
 					$text = $mm[rand(0, count($mm)-1)];
-					$seo['manuf_meta_desc'] = str_replace($n, $text, $seo['manuf_meta_desc']);			
+					for ($z=0; $z<100; $z++) {
+						if (in_array($text, $nak)) $text = $mm[rand(0, count($mm)-1)];
+						else {
+							array_push($nak, $text);
+							break;
+						}
+					}					
+					$aa = substr($seo['manuf_meta_desc'], 0, $pb);
+					if (strlen($seo['manuf_meta_desc']) == $pe+1) $bb = '';
+					else $bb = substr($seo['manuf_meta_desc'], $pe+1);
+					$seo['manuf_meta_desc'] = $aa . $text . $bb;
 				}
 			}	
 			$pb = strpos($seo['manuf_desc'], "[");	
@@ -5550,22 +7359,35 @@ class ModelCatalogSuppler extends Model {
 					$m = substr($n, 1, strlen($n)-2);
 					$mm = explode("|", $m);						
 					$text = $mm[rand(0, count($mm)-1)];
-					$seo['manuf_desc'] = str_replace($n, $text, $seo['manuf_desc']);			
+					for ($z=0; $z<100; $z++) {
+						if (in_array($text, $nak)) $text = $mm[rand(0, count($mm)-1)];
+						else {
+							array_push($nak, $text);
+							break;
+						}
+					}					
+					$aa = substr($seo['manuf_desc'], 0, $pb);
+					if (strlen($seo['manuf_desc']) == $pe+1) $bb = '';
+					else $bb = substr($seo['manuf_desc'], $pe+1);
+					$seo['manuf_desc'] = $aa . $text . $bb;
 				}
 			}	
 		}	
 	}
 	
-	public function seoCategory($store, $category_name, $parent_id, $seo_data, &$seo) {
+	public function seoCategory($store, $category_name, $parent_id, $seo_data, &$seo, $cat) {
 		if (empty($category_name)) return;		
 		$pcategory = '';
 		$category_id = 0;
 		$description = '';
+		$seo['cat_h1'] = $seo_data['cat_h1'];
 		$seo['cat_title'] = $seo_data['cat_title'];
 		$seo['cat_meta_desc'] = $seo_data['cat_meta_desc'];
 		$seo['cat_desc'] = $seo_data['cat_desc'];
+		$seo['cat_keyword'] = $seo_data['cat_keyword'];
 		
-		$rows = $this->getCategoryIDbyName($category_name, $store);
+		if ($cat) $rows = $this->getCategoryName($cat);
+		else $rows = $this->getCategoryIDbyName($category_name, $store);
 		if (!empty($rows)) $description = $rows[0]['description'];
 		
 		if (empty($parent_id) and !empty($rows)) {
@@ -5580,14 +7402,18 @@ class ModelCatalogSuppler extends Model {
 		$category = $category_name;	
 		 
 		$kk = 6;
-		for ($i=0; $i<$kk; $i++) {			
+		for ($i=0; $i<$kk; $i++) {
+			$seo['cat_h1'] = str_replace('[c]', $category, $seo['cat_h1']);
 			$seo['cat_title'] = str_replace('[c]', $category, $seo['cat_title']);			
 			$seo['cat_meta_desc'] = str_replace('[c]', $category, $seo['cat_meta_desc']);
 			$seo['cat_desc'] = str_replace('[c]', $category, $seo['cat_desc']);
+			$seo['cat_keyword'] = str_replace('[c]', $category, $seo['cat_keyword']);
 			
+			$seo['cat_h1'] = str_replace('[pc]', $category, $seo['cat_h1']);
 			$seo['cat_title'] = str_replace('[pc]', $pcategory, $seo['cat_title']);			
 			$seo['cat_meta_desc'] = str_replace('[pc]', $pcategory, $seo['cat_meta_desc']);
 			$seo['cat_desc'] = str_replace('[pc]', $pcategory, $seo['cat_desc']);
+			$seo['cat_keyword'] = str_replace('[pc]', $category, $seo['cat_keyword']);
 
 			if (!empty($description) and $i == $kk-1 and substr_count($seo['cat_desc'],"[d]")) {				
 				$b = str_replace('[d]', '', $seo['cat_desc']);
@@ -5650,146 +7476,187 @@ class ModelCatalogSuppler extends Model {
 		for ($i=0; $i<$kk; $i++) {	
 			if (!empty($t1)) {
 				$t1 = str_replace('[c]', $category, $t1);
-				$t1 = str_replace('[pc]', $pcategory, $t1);	
-				$seo['cat_title'] = str_replace('[1]', $t1, $seo['cat_title']);			
+				$t1 = str_replace('[pc]', $pcategory, $t1);
+				$seo['cat_h1'] = str_replace('[1]', $t1, $seo['cat_h1']);
+				$seo['cat_title'] = str_replace('[1]', $t1, $seo['cat_title']);
 				$seo['cat_meta_desc'] = str_replace('[1]', $t1, $seo['cat_meta_desc']);
-				$seo['cat_desc'] = str_replace('[1]', $t1, $seo['cat_desc']);				
+				$seo['cat_desc'] = str_replace('[1]', $t1, $seo['cat_desc']);
+				$seo['cat_keyword'] = str_replace('[1]', $t1, $seo['cat_keyword']);
 			}	
 			if (!empty($t2)) {				
 				$t2 = str_replace('[c]', $category, $t2);
-				$t2 = str_replace('[pc]', $pcategory, $t2);				
+				$t2 = str_replace('[pc]', $pcategory, $t2);	
+				$seo['cat_h1'] = str_replace('[2]', $t1, $seo['cat_h1']);
 				$seo['cat_title'] = str_replace('[2]', $t2, $seo['cat_title']);			
 				$seo['cat_meta_desc'] = str_replace('[2]', $t2, $seo['cat_meta_desc']);
-				$seo['cat_desc'] = str_replace('[2]', $t2, $seo['cat_desc']);				
+				$seo['cat_desc'] = str_replace('[2]', $t2, $seo['cat_desc']);
+				$seo['cat_keyword'] = str_replace('[2]', $t1, $seo['cat_keyword']);
 			}
 			if (!empty($t3)) {
 				$t3 = str_replace('[c]', $category, $t3);
-				$t3 = str_replace('[pc]', $pcategory, $t3);	
+				$t3 = str_replace('[pc]', $pcategory, $t3);
+				$seo['cat_h1'] = str_replace('[3]', $t1, $seo['cat_h1']);
 				$seo['cat_title'] = str_replace('[3]', $t3, $seo['cat_title']);			
 				$seo['cat_meta_desc'] = str_replace('[3]', $t3, $seo['cat_meta_desc']);
-				$seo['cat_desc'] = str_replace('[3]', $t3, $seo['cat_desc']);				
+				$seo['cat_desc'] = str_replace('[3]', $t3, $seo['cat_desc']);
+				$seo['cat_keyword'] = str_replace('[3]', $t1, $seo['cat_keyword']);
 			}
 			if (!empty($t4)) {
 				$t4 = str_replace('[c]', $category, $t4);
 				$t4 = str_replace('[pc]', $pcategory, $t4);	
+				$seo['cat_h1'] = str_replace('[4]', $t1, $seo['cat_h1']);
 				$seo['cat_title'] = str_replace('[4]', $t4, $seo['cat_title']);			
 				$seo['cat_meta_desc'] = str_replace('[4]', $t4, $seo['cat_meta_desc']);
-				$seo['cat_desc'] = str_replace('[4]', $t4, $seo['cat_desc']);				
+				$seo['cat_desc'] = str_replace('[4]', $t4, $seo['cat_desc']);
+				$seo['cat_keyword'] = str_replace('[4]', $t1, $seo['cat_keyword']);
 			}
 			if (!empty($t5)) {
 				$t5 = str_replace('[c]', $category, $t5);
-				$t5 = str_replace('[pc]', $pcategory, $t5);	
+				$t5 = str_replace('[pc]', $pcategory, $t5);
+				$seo['cat_h1'] = str_replace('[5]', $t1, $seo['cat_h1']);
 				$seo['cat_title'] = str_replace('[5]', $t5, $seo['cat_title']);			
 				$seo['cat_meta_desc'] = str_replace('[5]', $t5, $seo['cat_meta_desc']);
-				$seo['cat_desc'] = str_replace('[5]', $t5, $seo['cat_desc']);				
+				$seo['cat_desc'] = str_replace('[5]', $t5, $seo['cat_desc']);
+				$seo['cat_keyword'] = str_replace('[5]', $t1, $seo['cat_keyword']);
 			}
 			if (!empty($t6)) {
 				$t6 = str_replace('[c]', $category, $t6);
-				$t6 = str_replace('[pc]', $pcategory, $t6);	
+				$t6 = str_replace('[pc]', $pcategory, $t6);
+				$seo['cat_h1'] = str_replace('[6]', $t1, $seo['cat_h1']);
 				$seo['cat_title'] = str_replace('[6]', $t6, $seo['cat_title']);			
 				$seo['cat_meta_desc'] = str_replace('[6]', $t6, $seo['cat_meta_desc']);
-				$seo['cat_desc'] = str_replace('[6]', $t6, $seo['cat_desc']);				
+				$seo['cat_desc'] = str_replace('[6]', $t6, $seo['cat_desc']);
+				$seo['cat_keyword'] = str_replace('[6]', $t1, $seo['cat_keyword']);
 			}
 			if (!empty($t7)) {
 				$t7 = str_replace('[c]', $category, $t7);
-				$t7 = str_replace('[pc]', $pcategory, $t7);	
+				$t7 = str_replace('[pc]', $pcategory, $t7);
+				$seo['cat_h1'] = str_replace('[7]', $t1, $seo['cat_h1']);
 				$seo['cat_title'] = str_replace('[7]', $t7, $seo['cat_title']);			
 				$seo['cat_meta_desc'] = str_replace('[7]', $t7, $seo['cat_meta_desc']);
-				$seo['cat_desc'] = str_replace('[7]', $t7, $seo['cat_desc']);				
+				$seo['cat_desc'] = str_replace('[7]', $t7, $seo['cat_desc']);
+				$seo['cat_keyword'] = str_replace('[7]', $t1, $seo['cat_keyword']);
 			}
 			if (!empty($t8)) {
 				$t8 = str_replace('[c]', $category, $t8);
-				$t8 = str_replace('[pc]', $pcategory, $t8);	
+				$t8 = str_replace('[pc]', $pcategory, $t8);
+				$seo['cat_h1'] = str_replace('[8]', $t1, $seo['cat_h1']);
 				$seo['cat_title'] = str_replace('[8]', $t8, $seo['cat_title']);			
 				$seo['cat_meta_desc'] = str_replace('[8]', $t8, $seo['cat_meta_desc']);
-				$seo['cat_desc'] = str_replace('[8]', $t8, $seo['cat_desc']);				
+				$seo['cat_desc'] = str_replace('[8]', $t8, $seo['cat_desc']);
+				$seo['cat_keyword'] = str_replace('[8]', $t1, $seo['cat_keyword']);
 			}
 			if (!empty($t9)) {
 				$t9 = str_replace('[c]', $category, $t9);
 				$t9 = str_replace('[pc]', $pcategory, $t9);	
+				$seo['cat_h1'] = str_replace('[9]', $t1, $seo['cat_h1']);
 				$seo['cat_title'] = str_replace('[9]', $t9, $seo['cat_title']);			
 				$seo['cat_meta_desc'] = str_replace('[9]', $t9, $seo['cat_meta_desc']);
-				$seo['cat_desc'] = str_replace('[9]', $t9, $seo['cat_desc']);				
+				$seo['cat_desc'] = str_replace('[9]', $t9, $seo['cat_desc']);
+				$seo['cat_keyword'] = str_replace('[9]', $t1, $seo['cat_keyword']);
 			}
 			if (!empty($t10)) {
 				$t10 = str_replace('[c]', $category, $t10);
-				$t10 = str_replace('[pc]', $pcategory, $t10);	
+				$t10 = str_replace('[pc]', $pcategory, $t10);
+				$seo['cat_h1'] = str_replace('[10]', $t1, $seo['cat_h1']);
 				$seo['cat_title'] = str_replace('[10]', $t10, $seo['cat_title']);			
 				$seo['cat_meta_desc'] = str_replace('[10]', $t10, $seo['cat_meta_desc']);
-				$seo['cat_desc'] = str_replace('[10]', $t10, $seo['cat_desc']);				
+				$seo['cat_desc'] = str_replace('[10]', $t10, $seo['cat_desc']);
+				$seo['cat_keyword'] = str_replace('[10]', $t1, $seo['cat_keyword']);
 			}
 			if (!empty($t11)) {	
 				$t11 = str_replace('[c]', $category, $t11);
 				$t11 = str_replace('[pc]', $pcategory, $t11);
+				$seo['cat_h1'] = str_replace('[11]', $t1, $seo['cat_h1']);
 				$seo['cat_title'] = str_replace('[11]', $t11, $seo['cat_title']);			
 				$seo['cat_meta_desc'] = str_replace('[11]', $t11, $seo['cat_meta_desc']);
-				$seo['cat_desc'] = str_replace('[11]', $t11, $seo['cat_desc']);				
+				$seo['cat_desc'] = str_replace('[11]', $t11, $seo['cat_desc']);
+				$seo['cat_keyword'] = str_replace('[11]', $t1, $seo['cat_keyword']);
 			}
 			if (!empty($t12)) {
 				$t12 = str_replace('[c]', $category, $t12);
 				$t12 = str_replace('[pc]', $pcategory, $t12);
+				$seo['cat_h1'] = str_replace('[12]', $t1, $seo['cat_h1']);
 				$seo['cat_title'] = str_replace('[12]', $t12, $seo['cat_title']);			
 				$seo['cat_meta_desc'] = str_replace('[12]', $t12, $seo['cat_meta_desc']);
-				$seo['cat_desc'] = str_replace('[12]', $t12, $seo['cat_desc']);				
+				$seo['cat_desc'] = str_replace('[12]', $t12, $seo['cat_desc']);
+				$seo['cat_keyword'] = str_replace('[12]', $t1, $seo['cat_keyword']);
 			}
 			if (!empty($t13)) {
 				$t13 = str_replace('[c]', $category, $t13);
 				$t13 = str_replace('[pc]', $pcategory, $t13);
+				$seo['cat_h1'] = str_replace('[13]', $t1, $seo['cat_h1']);
 				$seo['cat_title'] = str_replace('[13]', $t13, $seo['cat_title']);			
 				$seo['cat_meta_desc'] = str_replace('[13]', $t13, $seo['cat_meta_desc']);
-				$seo['cat_desc'] = str_replace('[13]', $t13, $seo['cat_desc']);				
+				$seo['cat_desc'] = str_replace('[13]', $t13, $seo['cat_desc']);	
+				$seo['cat_keyword'] = str_replace('[13]', $t1, $seo['cat_keyword']);
 			}
 			if (!empty($t14)) {
 				$t14 = str_replace('[c]', $category, $t14);
 				$t14 = str_replace('[pc]', $pcategory, $t14);
+				$seo['cat_h1'] = str_replace('[14]', $t1, $seo['cat_h1']);
 				$seo['cat_title'] = str_replace('[14]', $t14, $seo['cat_title']);			
 				$seo['cat_meta_desc'] = str_replace('[14]', $t14, $seo['cat_meta_desc']);
-				$seo['cat_desc'] = str_replace('[14]', $t14, $seo['cat_desc']);				
+				$seo['cat_desc'] = str_replace('[14]', $t14, $seo['cat_desc']);	
+				$seo['cat_keyword'] = str_replace('[14]', $t1, $seo['cat_keyword']);
 			}
 			if (!empty($t15)) {
 				$t15 = str_replace('[c]', $category, $t15);
 				$t15 = str_replace('[pc]', $pcategory, $t15);
+				$seo['cat_h1'] = str_replace('[15]', $t1, $seo['cat_h1']);
 				$seo['cat_title'] = str_replace('[15]', $t15, $seo['cat_title']);			
 				$seo['cat_meta_desc'] = str_replace('[15]', $t15, $seo['cat_meta_desc']);
-				$seo['cat_desc'] = str_replace('[15]', $t15, $seo['cat_desc']);				
+				$seo['cat_desc'] = str_replace('[15]', $t15, $seo['cat_desc']);
+				$seo['cat_keyword'] = str_replace('[15]', $t1, $seo['cat_keyword']);
 			}
 			if (!empty($t16)) {
 				$t16 = str_replace('[c]', $category, $t16);
 				$t16 = str_replace('[pc]', $pcategory, $t16);
+				$seo['cat_h1'] = str_replace('[16]', $t1, $seo['cat_h1']);
 				$seo['cat_title'] = str_replace('[16]', $t16, $seo['cat_title']);			
 				$seo['cat_meta_desc'] = str_replace('[16]', $t16, $seo['cat_meta_desc']);
-				$seo['cat_desc'] = str_replace('[16]', $t16, $seo['cat_desc']);				
+				$seo['cat_desc'] = str_replace('[16]', $t16, $seo['cat_desc']);
+				$seo['cat_keyword'] = str_replace('[16]', $t1, $seo['cat_keyword']);
 			}
 			if (!empty($t17)) {
 				$t17 = str_replace('[c]', $category, $t17);
 				$t17 = str_replace('[pc]', $pcategory, $t17);
+				$seo['cat_h1'] = str_replace('[17]', $t1, $seo['cat_h1']);
 				$seo['cat_title'] = str_replace('[17]', $t17, $seo['cat_title']);			
 				$seo['cat_meta_desc'] = str_replace('[17]', $t17, $seo['cat_meta_desc']);
-				$seo['cat_desc'] = str_replace('[17]', $t17, $seo['cat_desc']);				
+				$seo['cat_desc'] = str_replace('[17]', $t17, $seo['cat_desc']);	
+				$seo['cat_keyword'] = str_replace('[17]', $t1, $seo['cat_keyword']);
 			}
 			if (!empty($t18)) {
 				$t18 = str_replace('[c]', $category, $t18);
 				$t18 = str_replace('[pc]', $pcategory, $t18);
+				$seo['cat_h1'] = str_replace('[18]', $t1, $seo['cat_h1']);
 				$seo['cat_title'] = str_replace('[18]', $t18, $seo['cat_title']);			
 				$seo['cat_meta_desc'] = str_replace('[18]', $t18, $seo['cat_meta_desc']);
-				$seo['cat_desc'] = str_replace('[18]', $t18, $seo['cat_desc']);				
+				$seo['cat_desc'] = str_replace('[18]', $t18, $seo['cat_desc']);	
+				$seo['cat_keyword'] = str_replace('[18]', $t1, $seo['cat_keyword']);
 			}
 			if (!empty($t19)) {	
 				$t19 = str_replace('[c]', $category, $t19);
 				$t19 = str_replace('[pc]', $pcategory, $t19);
+				$seo['cat_h1'] = str_replace('[19]', $t1, $seo['cat_h1']);
 				$seo['cat_title'] = str_replace('[19]', $t19, $seo['cat_title']);			
 				$seo['cat_meta_desc'] = str_replace('[19]', $t19, $seo['cat_meta_desc']);
-				$seo['cat_desc'] = str_replace('[19]', $t19, $seo['cat_desc']);				
+				$seo['cat_desc'] = str_replace('[19]', $t19, $seo['cat_desc']);
+				$seo['cat_keyword'] = str_replace('[19]', $t1, $seo['cat_keyword']);
 			}
 			if (!empty($t20)) {	
 				$t20 = str_replace('[c]', $category, $t20);
 				$t20 = str_replace('[pc]', $pcategory, $t20);
+				$seo['cat_h1'] = str_replace('[20]', $t1, $seo['cat_h1']);
 				$seo['cat_title'] = str_replace('[20]', $t20, $seo['cat_title']);			
 				$seo['cat_meta_desc'] = str_replace('[20]', $t20, $seo['cat_meta_desc']);
-				$seo['cat_desc'] = str_replace('[20]', $t20, $seo['cat_desc']);				
+				$seo['cat_desc'] = str_replace('[20]', $t20, $seo['cat_desc']);
+				$seo['cat_keyword'] = str_replace('[20]', $t1, $seo['cat_keyword']);
 			}			
 		}	
 		$br = 1;
+		$nak = array();
 		for ($i=0; $i<200; $i++) {
 			if (!$br) break;
 			$br = 0;
@@ -5802,7 +7669,17 @@ class ModelCatalogSuppler extends Model {
 					$m = substr($n, 1, strlen($n)-2);
 					$mm = explode("|", $m);						
 					$text = $mm[rand(0, count($mm)-1)];
-					$seo['cat_title'] = str_replace($n, $text, $seo['cat_title']);			
+					for ($z=0; $z<100; $z++) {
+						if (in_array($text, $nak)) $text = $mm[rand(0, count($mm)-1)];
+						else {
+							array_push($nak, $text);
+							break;
+						}
+					}					
+					$aa = substr($seo['cat_title'], 0, $pb);
+					if (strlen($seo['cat_title']) == $pe+1) $bb = '';
+					else $bb = substr($seo['cat_title'], $pe+1);
+					$seo['cat_title'] = $aa . $text . $bb;		
 				}
 			}	
 			$pb = strpos($seo['cat_meta_desc'], "[");	
@@ -5814,7 +7691,17 @@ class ModelCatalogSuppler extends Model {
 					$m = substr($n, 1, strlen($n)-2);
 					$mm = explode("|", $m);						
 					$text = $mm[rand(0, count($mm)-1)];
-					$seo['cat_meta_desc'] = str_replace($n, $text, $seo['cat_meta_desc']);			
+					for ($z=0; $z<100; $z++) {
+						if (in_array($text, $nak)) $text = $mm[rand(0, count($mm)-1)];
+						else {
+							array_push($nak, $text);
+							break;
+						}
+					}					
+					$aa = substr($seo['cat_meta_desc'], 0, $pb);
+					if (strlen($seo['cat_meta_desc']) == $pe+1) $bb = '';
+					else $bb = substr($seo['cat_meta_desc'], $pe+1);
+					$seo['cat_meta_desc'] = $aa . $text . $bb;					
 				}
 			}	
 			$pb = strpos($seo['cat_desc'], "[");	
@@ -5826,7 +7713,17 @@ class ModelCatalogSuppler extends Model {
 					$m = substr($n, 1, strlen($n)-2);
 					$mm = explode("|", $m);						
 					$text = $mm[rand(0, count($mm)-1)];
-					$seo['cat_desc'] = str_replace($n, $text, $seo['cat_desc']);			
+					for ($z=0; $z<100; $z++) {
+						if (in_array($text, $nak)) $text = $mm[rand(0, count($mm)-1)];
+						else {
+							array_push($nak, $text);
+							break;
+						}
+					}					
+					$aa = substr($seo['cat_desc'], 0, $pb);
+					if (strlen($seo['cat_desc']) == $pe+1) $bb = '';
+					else $bb = substr($seo['cat_desc'], $pe+1);
+					$seo['cat_desc'] = $aa . $text . $bb;
 				}
 			}	
 		}	
@@ -5906,6 +7803,7 @@ class ModelCatalogSuppler extends Model {
 		$upc = '';
 		$loc = '';
 		$mpn = '';
+		$ean = '';
 		$isbn = '';
 		$jan = '';
 		$url = '';
@@ -5915,9 +7813,11 @@ class ModelCatalogSuppler extends Model {
 			$brand = $rows[0]['location'];
 			$sku = $rows[0]['sku'];
 			$model = $rows[0]['model'];
+		
 			if (isset($rows[0]['upc'])) $upc = $rows[0]['upc'];
 			if (isset($rows[0]['location'])) $loc = $rows[0]['location'];
 			if (isset($rows[0]['mpn'])) $mpn = $rows[0]['mpn'];
+			if (isset($rows[0]['ean'])) $ean = $rows[0]['ean'];
 			if (isset($rows[0]['isbn'])) $isbn = $rows[0]['isbn'];
 			if (isset($rows[0]['jan'])) $jan = $rows[0]['jan'];
 			$rows = $this->getManufacturerStore($rows[0]['manufacturer_id'], $store);
@@ -5964,7 +7864,7 @@ class ModelCatalogSuppler extends Model {
 		$seo['manuf_desc'] = $seo_data['manuf_desc'];
 		$seo['prod_keyword'] = $seo_data['prod_keyword'];
 		$seo['prod_url'] = $seo_data['prod_url'];
-				
+		
 		$kk = 6;
 		for ($i=0; $i<$kk; $i++) {
 			$seo['prod_h1'] = str_replace('[n]', $name, $seo['prod_h1']);
@@ -5973,14 +7873,14 @@ class ModelCatalogSuppler extends Model {
 			$seo['prod_desc'] = str_replace('[n]', $name, $seo['prod_desc']);
 			$seo['prod_keyword'] = str_replace('[n]', $name, $seo['prod_keyword']);
 			$seo['prod_url'] = str_replace('[n]', $name, $seo['prod_url']);
-			$seo['prod_url'] = str_replace('[n_clean]', custom_translit($name), $seo['prod_url']);
+		
 			$seo['prod_h1'] = str_replace('[p]', $price, $seo['prod_h1']);
 			$seo['prod_title'] = str_replace('[p]', $price, $seo['prod_title']);
 			$seo['prod_meta_desc'] = str_replace('[p]', $price, $seo['prod_meta_desc']);
 			$seo['prod_desc'] = str_replace('[p]', $price, $seo['prod_desc']);
 			$seo['prod_keyword'] = str_replace('[p]', $price, $seo['prod_keyword']);
 			$seo['prod_url'] = str_replace('[p]', $price, $seo['prod_url']);
-
+			
 			$seo['prod_h1'] = str_replace('[sp]', $sprice, $seo['prod_h1']);
 			$seo['prod_title'] = str_replace('[sp]', $sprice, $seo['prod_title']);
 			$seo['prod_meta_desc'] = str_replace('[sp]', $sprice, $seo['prod_meta_desc']);
@@ -5994,14 +7894,14 @@ class ModelCatalogSuppler extends Model {
 			$seo['prod_desc'] = str_replace('[c]', $category, $seo['prod_desc']);
 			$seo['prod_keyword'] = str_replace('[c]', $category, $seo['prod_keyword']);
 			$seo['prod_url'] = str_replace('[c]', $category, $seo['prod_url']);
-			$seo['prod_url'] = str_replace('[c_clean]', custom_translit($category), $seo['prod_url']);
+			
 			$seo['prod_h1'] = str_replace('[pc]', $pcategory, $seo['prod_h1']);
 			$seo['prod_title'] = str_replace('[pc]', $pcategory, $seo['prod_title']);
 			$seo['prod_meta_desc'] = str_replace('[pc]', $pcategory, $seo['prod_meta_desc']);
 			$seo['prod_desc'] = str_replace('[pc]', $pcategory, $seo['prod_desc']);
 			$seo['prod_keyword'] = str_replace('[pc]', $pcategory, $seo['prod_keyword']);
 			$seo['prod_url'] = str_replace('[pc]', $pcategory, $seo['prod_url']);
-			$seo['prod_url'] = str_replace('[pc_clean]', custom_translit($pcategory), $seo['prod_url']);
+			
 			$seo['prod_h1'] = str_replace('[m]', $manufacturer, $seo['prod_h1']);
 			$seo['prod_title'] = str_replace('[m]', $manufacturer, $seo['prod_title']);
 			$seo['prod_meta_desc'] = str_replace('[m]', $manufacturer, $seo['prod_meta_desc']);
@@ -6052,6 +7952,14 @@ class ModelCatalogSuppler extends Model {
 				$seo['prod_desc'] = str_replace('[mpn]', $mpn, $seo['prod_desc']);
 				$seo['prod_keyword'] = str_replace('[mpn]', $mpn, $seo['prod_keyword']);
 				$seo['prod_url'] = str_replace('[mpn]', $mpn, $seo['prod_url']);
+			}
+			if ($ean) {
+				$seo['prod_h1'] = str_replace('[ean]', $ean, $seo['prod_h1']);
+				$seo['prod_title'] = str_replace('[ean]', $ean, $seo['prod_title']);
+				$seo['prod_meta_desc'] = str_replace('[ean]', $ean, $seo['prod_meta_desc']);
+				$seo['prod_desc'] = str_replace('[ean]', $ean, $seo['prod_desc']);
+				$seo['prod_keyword'] = str_replace('[ean]', $ean, $seo['prod_keyword']);
+				$seo['prod_url'] = str_replace('[ean]', $ean, $seo['prod_url']);
 			}
 			if ($isbn) {
 				$seo['prod_h1'] = str_replace('[isbn]', $isbn, $seo['prod_h1']);
@@ -6552,6 +8460,7 @@ class ModelCatalogSuppler extends Model {
 		}
 		
 		$br = 1;
+		$nak = array();
 		for ($i=0; $i<200; $i++) {
 			if (!$br) break;
 			$br = 0;
@@ -6564,7 +8473,17 @@ class ModelCatalogSuppler extends Model {
 					$m = substr($n, 1, strlen($n)-2);
 					$mm = explode("|", $m);						
 					$text = $mm[rand(0, count($mm)-1)];
-					$seo['prod_h1'] = str_replace($n, $text, $seo['prod_h1']);
+					for ($z=0; $z<100; $z++) {
+						if (in_array($text, $nak)) $text = $mm[rand(0, count($mm)-1)];
+						else {
+							array_push($nak, $text);
+							break;
+						}
+					}					
+					$aa = substr($seo['prod_h1'], 0, $pb);
+					if (strlen($seo['prod_h1']) == $pe+1) $bb = '';
+					else $bb = substr($seo['prod_h1'], $pe+1);
+					$seo['prod_h1'] = $aa . $text . $bb;					
 				} else {
 					$v = $this->getValue($product_id, $n, $lang);
 					if (!empty($v)) {
@@ -6591,7 +8510,17 @@ class ModelCatalogSuppler extends Model {
 					$m = substr($n, 1, strlen($n)-2);
 					$mm = explode("|", $m);						
 					$text = $mm[rand(0, count($mm)-1)];
-					$seo['prod_title'] = str_replace($n, $text, $seo['prod_title']);
+					for ($z=0; $z<100; $z++) {
+						if (in_array($text, $nak)) $text = $mm[rand(0, count($mm)-1)];
+						else {
+							array_push($nak, $text);
+							break;
+						}
+					}					
+					$aa = substr($seo['prod_title'], 0, $pb);
+					if (strlen($seo['prod_title']) == $pe+1) $bb = '';
+					else $bb = substr($seo['prod_title'], $pe+1);
+					$seo['prod_title'] = $aa . $text . $bb;					
 				} else {
 					$v = $this->getValue($product_id, $n, $lang);
 					if (!empty($v)) {
@@ -6618,7 +8547,17 @@ class ModelCatalogSuppler extends Model {
 					$m = substr($n, 1, strlen($n)-2);
 					$mm = explode("|", $m);						
 					$text = $mm[rand(0, count($mm)-1)];
-					$seo['prod_meta_desc'] = str_replace($n, $text, $seo['prod_meta_desc']);
+					for ($z=0; $z<100; $z++) {
+						if (in_array($text, $nak)) $text = $mm[rand(0, count($mm)-1)];
+						else {
+							array_push($nak, $text);
+							break;
+						}
+					}					
+					$aa = substr($seo['prod_meta_desc'], 0, $pb);
+					if (strlen($seo['prod_meta_desc']) == $pe+1) $bb = '';
+					else $bb = substr($seo['prod_meta_desc'], $pe+1);
+					$seo['prod_meta_desc'] = $aa . $text . $bb;					
 				} else {
 					$v = $this->getValue($product_id, $n, $lang);
 					if (!empty($v)) {
@@ -6646,7 +8585,17 @@ class ModelCatalogSuppler extends Model {
 					$m = substr($n, 1, strlen($n)-2);
 					$mm = explode("|", $m);						
 					$text = $mm[rand(0, count($mm)-1)];
-					$seo['prod_desc'] = str_replace($n, $text, $seo['prod_desc']);
+					for ($z=0; $z<100; $z++) {
+						if (in_array($text, $nak)) $text = $mm[rand(0, count($mm)-1)];
+						else {
+							array_push($nak, $text);
+							break;
+						}
+					}					
+					$aa = substr($seo['prod_desc'], 0, $pb);
+					if (strlen($seo['prod_desc']) == $pe+1) $bb = '';
+					else $bb = substr($seo['prod_desc'], $pe+1);
+					$seo['prod_desc'] = $aa . $text . $bb;						
 				} else {
 					$v = $this->getValue($product_id, $n, $lang);
 					if (!empty($v)) {
@@ -6673,7 +8622,17 @@ class ModelCatalogSuppler extends Model {
 					$m = substr($n, 1, strlen($n)-2);
 					$mm = explode("|", $m);						
 					$text = $mm[rand(0, count($mm)-1)];
-					$seo['cat_title'] = str_replace($n, $text, $seo['cat_title']);
+					for ($z=0; $z<100; $z++) {
+						if (in_array($text, $nak)) $text = $mm[rand(0, count($mm)-1)];
+						else {
+							array_push($nak, $text);
+							break;
+						}
+					}					
+					$aa = substr($seo['cat_title'], 0, $pb);
+					if (strlen($seo['cat_title']) == $pe+1) $bb = '';
+					else $bb = substr($seo['cat_title'], $pe+1);
+					$seo['cat_title'] = $aa . $text . $bb;					
 				} else {
 					$v = $this->getValue($product_id, $n, $lang);
 					if (!empty($v)) {
@@ -6700,7 +8659,17 @@ class ModelCatalogSuppler extends Model {
 					$m = substr($n, 1, strlen($n)-2);
 					$mm = explode("|", $m);						
 					$text = $mm[rand(0, count($mm)-1)];
-					$seo['cat_meta_desc'] = str_replace($n, $text, $seo['cat_meta_desc']);
+					for ($z=0; $z<100; $z++) {
+						if (in_array($text, $nak)) $text = $mm[rand(0, count($mm)-1)];
+						else {
+							array_push($nak, $text);
+							break;
+						}
+					}					
+					$aa = substr($seo['cat_meta_desc'], 0, $pb);
+					if (strlen($seo['cat_meta_desc']) == $pe+1) $bb = '';
+					else $bb = substr($seo['cat_meta_desc'], $pe+1);
+					$seo['cat_meta_desc'] = $aa . $text . $bb;			
 				} else {
 					$v = $this->getValue($product_id, $n, $lang);
 					if (!empty($v)) {
@@ -6727,7 +8696,17 @@ class ModelCatalogSuppler extends Model {
 					$m = substr($n, 1, strlen($n)-2);
 					$mm = explode("|", $m);						
 					$text = $mm[rand(0, count($mm)-1)];
-					$seo['prod_keyword'] = str_replace($n, $text, $seo['prod_keyword']);
+					for ($z=0; $z<100; $z++) {
+						if (in_array($text, $nak)) $text = $mm[rand(0, count($mm)-1)];
+						else {
+							array_push($nak, $text);
+							break;
+						}
+					}					
+					$aa = substr($seo['prod_keyword'], 0, $pb);
+					if (strlen($seo['prod_keyword']) == $pe+1) $bb = '';
+					else $bb = substr($seo['prod_keyword'], $pe+1);
+					$seo['prod_keyword'] = $aa . $text . $bb;					
 				} else {
 					$v = $this->getValue($product_id, $n, $lang);
 					if (!empty($v)) {
@@ -6754,7 +8733,17 @@ class ModelCatalogSuppler extends Model {
 					$m = substr($n, 1, strlen($n)-2);
 					$mm = explode("|", $m);						
 					$text = $mm[rand(0, count($mm)-1)];
-					$seo['cat_desc'] = str_replace($n, $text, $seo['cat_desc']);
+					for ($z=0; $z<100; $z++) {
+						if (in_array($text, $nak)) $text = $mm[rand(0, count($mm)-1)];
+						else {
+							array_push($nak, $text);
+							break;
+						}
+					}					
+					$aa = substr($seo['cat_desc'], 0, $pb);
+					if (strlen($seo['cat_desc']) == $pe+1) $bb = '';
+					else $bb = substr($seo['cat_desc'], $pe+1);
+					$seo['cat_desc'] = $aa . $text . $bb;					
 				} else {
 					$v = $this->getValue($product_id, $n, $lang);
 					if (!empty($v)) {
@@ -6781,7 +8770,17 @@ class ModelCatalogSuppler extends Model {
 					$m = substr($n, 1, strlen($n)-2);
 					$mm = explode("|", $m);						
 					$text = $mm[rand(0, count($mm)-1)];
-					$seo['manuf_title'] = str_replace($n, $text, $seo['manuf_title']);
+					for ($z=0; $z<100; $z++) {
+						if (in_array($text, $nak)) $text = $mm[rand(0, count($mm)-1)];
+						else {
+							array_push($nak, $text);
+							break;
+						}
+					}					
+					$aa = substr($seo['manuf_title'], 0, $pb);
+					if (strlen($seo['manuf_title']) == $pe+1) $bb = '';
+					else $bb = substr($seo['manuf_title'], $pe+1);
+					$seo['manuf_title'] = $aa . $text . $bb;					
 				} else {
 					$v = $this->getValue($product_id, $n, $lang);
 					if (!empty($v)) {
@@ -6808,7 +8807,17 @@ class ModelCatalogSuppler extends Model {
 					$m = substr($n, 1, strlen($n)-2);
 					$mm = explode("|", $m);						
 					$text = $mm[rand(0, count($mm)-1)];
-					$seo['manuf_meta_desc'] = str_replace($n, $text, $seo['manuf_meta_desc']);
+					for ($z=0; $z<100; $z++) {
+						if (in_array($text, $nak)) $text = $mm[rand(0, count($mm)-1)];
+						else {
+							array_push($nak, $text);
+							break;
+						}
+					}					
+					$aa = substr($seo['manuf_meta_desc'], 0, $pb);
+					if (strlen($seo['manuf_meta_desc']) == $pe+1) $bb = '';
+					else $bb = substr($seo['manuf_meta_desc'], $pe+1);
+					$seo['manuf_meta_desc'] = $aa . $text . $bb;
 				} else {
 					$v = $this->getValue($product_id, $n, $lang);
 					if (!empty($v)) {
@@ -6835,7 +8844,17 @@ class ModelCatalogSuppler extends Model {
 					$m = substr($n, 1, strlen($n)-2);
 					$mm = explode("|", $m);						
 					$text = $mm[rand(0, count($mm)-1)];
-					$seo['manuf_desc'] = str_replace($n, $text, $seo['manuf_desc']);
+					for ($z=0; $z<100; $z++) {
+						if (in_array($text, $nak)) $text = $mm[rand(0, count($mm)-1)];
+						else {
+							array_push($nak, $text);
+							break;
+						}
+					}					
+					$aa = substr($seo['manuf_desc'], 0, $pb);
+					if (strlen($seo['manuf_desc']) == $pe+1) $bb = '';
+					else $bb = substr($seo['manuf_desc'], $pe+1);
+					$seo['manuf_desc'] = $aa . $text . $bb;					
 				} else {
 					$v = $this->getValue($product_id, $n, $lang);
 					if (!empty($v)) {
@@ -6882,7 +8901,9 @@ class ModelCatalogSuppler extends Model {
 		$seo_url = mb_strtolower($seo_url);
 		
 		$rows = $this->chURL($seo_url, $store);
-		if (!empty($rows)) $seo_url = $seo_url . '-' . $product_id;	
+		if (!empty($rows)) $seo_url = $seo_url . '-' . $product_id;
+		
+	//	$seo_url = substr($seo_url, 0, 64);  // обрезать до 64 символов        
 	
 		$row = $this->getURL($product_id, $store);
 		if (empty($row)) {
@@ -6908,7 +8929,7 @@ class ModelCatalogSuppler extends Model {
 				
 		if (!empty($seo['prod_h1'])) {
 			$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `meta_h1` = '" . $this->db->escape($seo['prod_h1']) . "'  WHERE `product_id` = '" . $product_id . "' and `language_id` = '" . $lang. "'");
-		}
+			}
 		
 		if (!empty($seo['prod_title'])) {
 			$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `meta_title` = '" . $this->db->escape($seo['prod_title']) . "'  WHERE `product_id` = '" . $product_id . "' and `language_id` = '" . $lang. "'");	
@@ -6987,6 +9008,12 @@ class ModelCatalogSuppler extends Model {
 			if (!file_exists($path)) {
 				$this->db->query("DELETE FROM " . DB_PREFIX . "product_image WHERE product_image_id = '" . $rows[$i]['product_image_id'] . "'");
 			}
+			if (file_exists($path) && !filesize($path)) {
+                $this->db->query("DELETE FROM " . DB_PREFIX . "product_image WHERE product_image_id = '" . $rows[$i]['product_image_id'] . "'");
+            }
+            if (file_exists($path) && !@getimagesize($path)) {
+                $this->db->query("DELETE FROM " . DB_PREFIX . "product_image WHERE product_image_id = '" . $rows[$i]['product_image_id'] . "'");
+            }
 		}
 	}
 	
@@ -7398,25 +9425,78 @@ class ModelCatalogSuppler extends Model {
 		if (!empty($data) and $filter_group_id) $this->CreateFilter($data, $filter_group_id, $langs, $filters);
 		if (!empty($filters)) $this->AttributeToFilter($product_id, $filters);
 	}
-
-	public function addToTags($product_id, $find, $replace) {	
-		if (empty($find) or empty($replace)) return;		
-		$rows = $this->getAttributes($product_id);
+	
+	public function deleteTags($product_id) {
+		$rows = $this->getProductDesc($product_id);
 		if (empty($rows)) return;
-		$f = 0;
-		foreach ($rows as $r) {
-			if ($r['text'] == $replace) {
-				$f = 1;
-				break;
+		$lang = $this->config->get('config_language_id');
+		$query = $this->db->query("UPDATE " . DB_PREFIX . "product_description SET `tag` = '" . '' . "' WHERE `product_id` = '" . $product_id . "' and `language_id` =  '" . $lang . "'");
+	}
+	
+	public function addToTagsText($product_id, $find) {	
+		$rows = $this->getProductDesc($product_id);
+		if (empty($rows)) return;
+		if (substr_count($find, '[')) {
+			$a = strrpos($find, '[');
+			$b = strrpos($find, ']');
+			if ($b and $b>$a) {
+				$tag = substr($find, $a+1, $b-$a-1);
+				if ($tag == 'sku') $find = str_replace('[sku]', $row['sku'], $find);						
+				if ($tag == 'mod') $find = str_replace('[mod]', $row['model'], $find);
+				if ($tag == 'upc') $find = str_replace('[upc]', $row['upc'], $find);
+				if ($tag == 'loc') $find = str_replace('[loc]', $row['loc'], $find);
+				if ($tag == 'mpn') if (isset($row['mpn'])) $find = str_replace('[mpn]', $row['mpn'], $find);
+				if ($tag == 'isbn' and isset($row['isbn'])) $find = str_replace('[isbn]', $row['isbn'], $find);
+				if ($tag == 'jan' and isset($row['jan'])) $find = str_replace('[jan]', $row['jan'], $find);
+				$find = $this->clearSEO($find);			
 			}	
 		}
+		$lang = $this->config->get('config_language_id');
+		if (!substr_count($rows[0]['tag'], $find)) {
+			$tag = $rows[0]['tag'] . "," . $find;
+		
+			$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `tag` = '" . $this->db->escape($tag) . "' WHERE `product_id` = '" . $product_id . "' and `language_id` = '" . $lang. "'");
+		}	
+	}
+
+	public function addToTags($row, $find, $replace) {		
+		if (empty($find)) return;
+		$product_id = $row['product_id'];
+		$rows = $this->getAttributes($product_id);
+		if (empty($rows)) return;
+		if ($replace) {
+			$f = 0;
+			foreach ($rows as $r) {
+				if ($r['text'] == $replace) {
+					$f = 1;
+					break;
+				}	
+			}
+		} else $f = 1;	
 		if ($f) {
 			$rows = $this->getProductDesc($product_id);
 			if (empty($rows)) return;
+			if (substr_count($find, '[')) {
+				$a = strrpos($find, '[');
+				$b = strrpos($find, ']');
+				if ($b and $b>$a) {
+					$tag = substr($find, $a+1, $b-$a-1);
+					if ($tag == 'sku') $find = str_replace('[sku]', $row['sku'], $find);						
+					if ($tag == 'mod') $find = str_replace('[mod]', $row['model'], $find);
+					if ($tag == 'upc') $find = str_replace('[upc]', $row['upc'], $find);
+					if ($tag == 'loc') $find = str_replace('[loc]', $row['loc'], $find);
+					if ($tag == 'mpn') if (isset($row['mpn'])) $find = str_replace('[mpn]', $row['mpn'], $find);
+					if ($tag == 'isbn' and isset($row['isbn'])) $find = str_replace('[isbn]', $row['isbn'], $find);
+					if ($tag == 'jan' and isset($row['jan'])) $find = str_replace('[jan]', $row['jan'], $find);
+					$find = $this->clearSEO($find);			
+				}	
+			}
 			$lang = $this->config->get('config_language_id');
-			$tag = $tag . "," . $find;
+			if (!substr_count($rows[0]['tag'], $find)) {
+				$tag = $rows[0]['tag'] . "," . $find;
 			
-			$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `tag` = '" . $this->db->escape($tag) . "' WHERE `product_id` = '" . $product_id . "' and `language_id` = '" . $lang. "'");			
+				$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `tag` = '" . $this->db->escape($tag) . "' WHERE `product_id` = '" . $product_id . "' and `language_id` = '" . $lang. "'");
+			}	
 		}	
 	}
 
@@ -7533,8 +9613,7 @@ class ModelCatalogSuppler extends Model {
 	}
 	
 	public function deleteDoubleOptions($find) {
-		if ($find == '') return;
-		$lang = $this->config->get('config_language_id');
+		if ($find == '') return;		
 		$finds = explode("|", $find);
 		$max = count($finds);
 		for ($i=0; $i<$max; $i++) {
@@ -7542,9 +9621,9 @@ class ModelCatalogSuppler extends Model {
 			$rows = $this->getOptionsByName($find);
 			if (!empty($rows[0]['option_value_id']) and !empty($rows[1]['option_value_id']) and $rows[0]['option_value_id'] != $rows[1]['option_value_id']) {
 				$id = $rows[0]['option_value_id'];
-				for ($j=1; $j<$max; $j++) {
+				for ($j=1; $j<count($rows); $j++) {
 					$id_old = $rows[$j]['option_value_id'];
-					$this->db->query("UPDATE " . DB_PREFIX . "product_option_value SET `option_value_id` = '" . $id . "' WHERE `option_value_id` = '" . $id_old . "' and `language_id` = '" . $lang . "'");
+					$this->db->query("UPDATE " . DB_PREFIX . "product_option_value SET `option_value_id` = '" . $id . "' WHERE `option_value_id` = '" . $id_old . "'");
 					
 					$this->db->query("DELETE FROM " . DB_PREFIX . "option_value_description WHERE `option_value_id` = '" . $id_old . "'");
 					
@@ -7583,7 +9662,8 @@ class ModelCatalogSuppler extends Model {
 				for ($j=0; $j<$max; $j++) {
 					if (!isset($replaces[$j]) or empty($replaces[$j])) $replaces[$j] = '';	
 					$find = $finds[$j];
-					$replace = $replaces[$j];										
+					$replace = $replaces[$j];
+					if (empty($find)) continue;
 					if (substr_count($r['text'], $find)) {
 						$new = str_replace($find, $replace, $r['text']);						
 						$lang = $this->config->get('config_language_id');
@@ -7610,7 +9690,8 @@ class ModelCatalogSuppler extends Model {
 			for ($j=0; $j<$max; $j++) {
 				if (!isset($replaces[$j])) $replaces[$j] = '';
 				$find = $finds[$j];
-				$replace = $replaces[$j];								
+				$replace = $replaces[$j];
+				if (empty($find)) continue;
 				if (substr_count($rows[0]['text'], $find)) {
 					$new = str_replace($find, $replace, $rows[0]['text']);					
 					$lang = $this->config->get('config_language_id');	
@@ -7660,7 +9741,8 @@ class ModelCatalogSuppler extends Model {
 		for ($j=0; $j<$max; $j++) {
 			if (!isset($replaces[$j])) $replaces[$j] = '';
 			$find = $finds[$j];
-			$replace = $replaces[$j];					
+			$replace = $replaces[$j];
+			if (empty($find)) continue;
 			if (substr_count($newtag, $find)) {
 				$newtag = str_replace($find, $replace, $newtag);
 				$fl = 1;
@@ -7693,7 +9775,8 @@ class ModelCatalogSuppler extends Model {
 		for ($j=0; $j<$max; $j++) {
 			if (!isset($replaces[$j])) $replaces[$j] = '';
 			$find = $finds[$j];
-			$replace = $replaces[$j];						
+			$replace = $replaces[$j];
+			if (empty($find)) continue;
 			if (substr_count($newmeta, $find)) {
 				$newmeta = str_replace($find, $replace, $newmeta);
 				$fl = 1;
@@ -7728,7 +9811,8 @@ class ModelCatalogSuppler extends Model {
 		for ($j=0; $j<$max; $j++) {
 			if (!isset($replaces[$j])) $replaces[$j] = '';
 			$find = $finds[$j];
-			$replace = $replaces[$j];						
+			$replace = $replaces[$j];
+			if (empty($find)) continue;
 			if (substr_count($newh1, $find)) {
 				$newh1 = str_replace($find, $replace, $newh1);
 				$fl = 1;
@@ -7750,6 +9834,86 @@ class ModelCatalogSuppler extends Model {
 		}	
 	}
 	
+	public function findReplaceProductMeta($product_id, $find, $replace) {
+		if ($find == '') return;
+		$rows = $this->getProductDesc($product_id);
+		if (empty($rows)) return;
+		$finds = explode("|", $find);
+		$replaces = explode("|", $replace);
+		$max = count($finds);		
+		$fl = 0;		
+		$newtitle = $rows[0]['meta_title'];
+		for ($j=0; $j<$max; $j++) {
+			if (!isset($replaces[$j])) $replaces[$j] = '';
+			$find = $finds[$j];
+			$replace = $replaces[$j];
+			if (empty($find)) continue;
+			if (substr_count($newtitle, $find)) {
+				$newtitle = str_replace($find, $replace, $newtitle);
+				$fl = 1;
+			} else {
+				$find = $this->symbol($finds[$j]);
+				$find = str_replace('&quot;', '"', $find);
+				$replace = $this->symbol($replaces[$j]);					
+				if (substr_count($newtitle, $find)) {
+					$newtitle = str_replace($find, $replace, $newtitle);
+					$fl = 1;
+				}
+			}	
+		}
+		$newtitle = trim($newtitle);
+		$newtitle = preg_replace('| +|', ' ', $newtitle);
+				
+		$newmeta = $rows[0]['meta_description'];
+		for ($j=0; $j<$max; $j++) {
+			if (!isset($replaces[$j])) $replaces[$j] = '';
+			$find = $finds[$j];
+			$replace = $replaces[$j];
+			if (empty($find)) continue;
+			if (substr_count($newmeta, $find)) {
+				$newmeta = str_replace($find, $replace, $newmeta);
+				$fl = 1;
+			} else {
+				$find = $this->symbol($finds[$j]);
+				$find = str_replace('&quot;', '"', $find);
+				$replace = $this->symbol($replaces[$j]);						
+				if (substr_count($newmeta, $find)) {
+					$newmeta = str_replace($find, $replace, $newmeta);
+					$fl = 1;
+				}
+			}	
+		}
+		$newmeta = trim($newmeta);
+		$newmeta = preg_replace('| +|', ' ', $newmeta);
+		
+		$newtag = $rows[0]['meta_keyword'];
+		for ($j=0; $j<$max; $j++) {
+			if (!isset($replaces[$j])) $replaces[$j] = '';
+			$find = $finds[$j];
+			$replace = $replaces[$j];
+			if (empty($find)) continue;
+			if (substr_count($newtag, $find)) {
+				$newtag = str_replace($find, $replace, $newtag);
+				$fl = 1;
+			} else {
+				$find = $this->symbol($finds[$j]);
+				$find = str_replace('&quot;', '"', $find);
+				$replace = $this->symbol($replaces[$j]);					
+				if (substr_count($newtag, $find)) {
+					$newtag = str_replace($find, $replace, $newtag);
+					$fl = 1;
+				}
+			}	
+		}
+		$newtag = trim($newtag);
+		$newtag = preg_replace('| +|', ' ', $newtag);
+		
+		if ($fl) {			
+			$lang = $this->config->get('config_language_id');
+			$this->db->query("UPDATE " . DB_PREFIX . "product_description SET `meta_title` = '" . $this->db->escape($newtitle) . "', `meta_description` = '" . $this->db->escape($newmeta) . "', `meta_keyword` = '" . $this->db->escape($newtag) . "' WHERE `product_id` = '" .(int)$product_id . "' and `language_id` = '" . $lang. "'");		
+		}		
+	}
+	
 	public function findreplaceTitle($product_id, $find, $replace) {		
 		if ($find == '') return;
 		$rows = $this->getProductDesc($product_id);
@@ -7763,7 +9927,8 @@ class ModelCatalogSuppler extends Model {
 		for ($j=0; $j<$max; $j++) {
 			if (!isset($replaces[$j])) $replaces[$j] = '';
 			$find = $finds[$j];
-			$replace = $replaces[$j];					
+			$replace = $replaces[$j];
+			if (empty($find)) continue;
 			if (substr_count($newtitle, $find)) {
 				$newtitle = str_replace($find, $replace, $newtitle);
 				$fl = 1;
@@ -7797,7 +9962,8 @@ class ModelCatalogSuppler extends Model {
 		for ($j=0; $j<$max; $j++) {
 			if (!isset($replaces[$j])) $replaces[$j] = '';
 			$find = $finds[$j];
-			$replace = $replaces[$j];					
+			$replace = $replaces[$j];
+			if (empty($find)) continue;
 			if (substr_count($newname, $find)) {
 				$newname = str_replace($find, $replace, $newname);
 				$fl = 1;
@@ -7831,7 +9997,8 @@ class ModelCatalogSuppler extends Model {
 		for ($j=0; $j<$max; $j++) {
 			if ($finds[$j] == '') continue;
 			$find = $finds[$j];
-			$replace = $replaces[$j];			
+			$replace = $replaces[$j];
+			if (empty($find)) continue;
 			if (!substr_count($newname, $find)) {
 				$find = $this->symbol($find);
 				$find = str_replace('&quot;', '"', $find);
@@ -7873,7 +10040,8 @@ class ModelCatalogSuppler extends Model {
 		for ($j=0; $j<$max; $j++) {
 			if ($finds[$j] == '') continue;
 			$find = $finds[$j];
-			$replace = $replaces[$j];			
+			$replace = $replaces[$j];
+			if (empty($find)) continue;
 			if (!substr_count($newdesc, $find)) {
 				$find = $this->symbol($find);
 				$find = str_replace('&quot;', '"', $find);
@@ -7915,7 +10083,8 @@ class ModelCatalogSuppler extends Model {
 		for ($j=0; $j<$max; $j++) {
 			if (!isset($replaces[$j])) $replaces[$j] = '';
 			$find = $finds[$j];
-			$replace = $replaces[$j];			
+			$replace = $replaces[$j];
+			if (empty($find)) continue;
 			if (substr_count($newdesc, $find)) {
 				$newdesc = str_replace($find, $replace, $newdesc);
 				$fl = 1;
@@ -8086,7 +10255,7 @@ class ModelCatalogSuppler extends Model {
 		if (!$p) $p = strrpos($row['model'], "~");
 		$id = substr($row['model'], 0, $p);
 		if (strlen($id) < 2) return;
-		$papka = substr($row['model'], $p-2, 1);
+		$papka = substr($product_id, strlen($product_id)-1, 1);
 		
 		$p = strrpos($row['image'], "/");
 		$a = substr($row['image'], $p-4);	
@@ -8147,7 +10316,8 @@ class ModelCatalogSuppler extends Model {
 		$product_id = $row['product_id'];
 		$p = strrpos($row['model'], "-");
 		if (!$p) $p = strrpos($row['model'], "~");
-		$papka = substr($row['model'], $p-1, 1);
+		$papka = substr($product_id, strlen($product_id)-1, 1);
+		
 		$a = substr_count($row['image'], "/0/");
 		if (!$a) $a = substr_count($row['image'], "/1/");
 		if (!$a) $a = substr_count($row['image'], "/2/");
@@ -8221,6 +10391,11 @@ class ModelCatalogSuppler extends Model {
 		return 0;
 	}
 	
+	public function BonusPercent($row, $percent, $group) {
+		$point = $row['price']*$percent/100;
+		$this->Bonus1($group, $row['product_id'], $point);
+	}
+	
 	public function clearBonus($row) {
 		$product_id = $row['product_id'];
 		for ($j=1; $j<20; $j++) {			
@@ -8255,6 +10430,91 @@ class ModelCatalogSuppler extends Model {
 		}	
 	}
 	
+	public function cyrilicDecodeFolder($row) {	
+		$yes = 0;
+		if (preg_match("/[а-яёЁ]/i", $row['image'])) {
+			$arr = explode('/', $row['image']);
+			for ($i=0; $i<count($arr)-1; $i++) {
+				if (preg_match("/[а-яёЁ]/i", $arr[$i])) {					
+					$oldpach = "../image/";
+					$newpach = "../image/";		
+					for ($j=0; $j<=$i; $j++) {
+						$oldpach .= $arr[$j] . '/';						
+						$a = $this->TransLit($arr[$j]);
+						$newpach .= $a . '/';				
+					}
+					$arr[$i] = $a;
+					$yes = 0;
+					if (!is_dir($newpach) and is_dir($oldpach)) {
+						@rename($oldpach, $newpach);
+						$yes = 1;
+					}	
+				}
+			}
+			$a = implode('/', $arr);
+			if ($yes) $this->db->query("UPDATE " . DB_PREFIX . "product SET `image` = '" . $a. "' WHERE `product_id` = '" . $row['product_id'] . "'");
+		}
+		$rows = $this->getProductImage($row['product_id']);		
+		if (!empty($rows)) {
+			for ($k=0; $k<30; $k++) {
+				if (!isset($rows[$k]['image'])) break;				
+				if (preg_match("/[а-яёЁ]/i", $rows[$k]['image'])) {
+					$arr = explode('/', $rows[$k]['image']);
+					for ($i=0; $i<count($arr)-1; $i++) {
+						$yes = 0;
+						if (preg_match("/[а-яёЁ]/i", $arr[$i])) {
+							$yes = 1;
+							$oldpach = "../image/";
+							$newpach = "../image/";		
+							for ($j=0; $j<=$i; $j++) {
+								$oldpach .= $arr[$j] . '/';						
+								$a = $this->TransLit($arr[$j]);
+								$newpach .= $a . '/';				
+							}
+							$arr[$i] = $a;							
+							if (!is_dir($newpach) and is_dir($oldpach)) @rename($oldpach, $newpach);				
+						
+						}
+					}
+					$a = implode('/', $arr);
+					if ($yes) $this->db->query("UPDATE " . DB_PREFIX . "product_image SET `image` = '" .$a. "' WHERE `product_image_id` = '" . $rows[$k]['product_image_id'] . "'");
+				}
+			}
+		}
+		$table = DB_PREFIX . "poip_option_image";
+		$tname = "image";
+		if ($this->getColumnName($table, $tname)) {
+			$rows = $this->getPhotoPRO($row['product_id']);
+			if (!empty($rows)) {
+				foreach ($rows as $r) {
+					if (!empty($r['image'])) {						
+						if (preg_match("/[а-яёЁ]/i", $r['image'])) {
+							$arr = explode('/', $r['image']);
+							for ($i=0; $i<count($arr)-1; $i++) {
+								$yes = 0;
+								if (preg_match("/[а-яёЁ]/i", $arr[$i])) {
+									$yes = 1;
+									$oldpach = "../image/";
+									$newpach = "../image/";		
+									for ($j=0; $j<=$i; $j++) {
+										$oldpach .= $arr[$j] . '/';						
+										$a = $this->TransLit($arr[$j]);
+										$newpach .= $a . '/';				
+									}
+									$arr[$i] = $a;									
+									if (!is_dir($newpach) and is_dir($oldpach)) @rename($oldpach, $newpach);
+									
+								}
+							}
+							$a = implode('/', $arr);
+							if ($yes) $this->db->query("UPDATE " . DB_PREFIX . "poip_option_image SET `image` = '" . $a . "' WHERE `nom` = '" . $r['nom'] ."'");
+						}
+					}
+				}
+			}
+		}	
+	}
+	
 	public function renameFolder($row, $source, $target) {	
 		if (empty($source) or empty($target)) return;
 		$row['image'] = str_replace($source, $target, $row['image']);
@@ -8269,14 +10529,27 @@ class ModelCatalogSuppler extends Model {
 				$this->db->query("UPDATE " . DB_PREFIX . "product_image SET `image` = '" .$rows[$j]['image']. "' WHERE `product_image_id` = '" . $rows[$j]['product_image_id'] . "'");
 				
 			}
-		}				
+		}
+		$table = DB_PREFIX . "poip_option_image";
+		$tname = "image";
+		if ($this->getColumnName($table, $tname)) {
+			$rows = $this->getPhotoPRO($row['product_id']);
+			if (!empty($rows)) {
+				foreach ($rows as $r) {
+					if (!empty($r['image'])) {
+						$a = str_replace($source, $target, $r['image']);
+						$this->db->query("UPDATE " . DB_PREFIX . "poip_option_image SET `image` = '" . $a . "' WHERE `nom` = '" . $r['nom'] ."'");
+					}
+				}
+			}
+		}	
 	}
 	
 	public function DeletePhoto($product_id) {
 		$path = "../image1/";
-		if (!is_dir($path)) return 29;
+		if (!is_dir($path)) return 34;
 		$rows = $this->getProductsByID($product_id);
-		if (!empty($rows) and !empty($rows[0]['image'])) {
+		if (!empty($rows)) {
 			$path_old = "../image/" . $rows[0]['image'];
 			$path_new = "../image1/" . $rows[0]['image'];
 			$a = copy ($path_old, $path_new);
@@ -8288,36 +10561,15 @@ class ModelCatalogSuppler extends Model {
 		$rows = $this->getProductImage($product_id);
 		if (!empty($rows)) {
 			foreach ($rows as $r) {
-				if (!empty($r['image'])) {
-					$path_old = "../image/" . $r['image'];
-					$path_new = "../image1/" . $r['image'];
-					$a = copy ($path_old, $path_new);
-					if (!$a) {
-						$err = " Photo: " . $path_old . " not copied. Product_ID: " . $product_id . " \n";
-						$this->adderr($err);
-					}	
-				}
-			}
-		}
-		$table = DB_PREFIX . "poip_option_image";
-		$tname = "image";
-		if ($this->getColumnName($table, $tname)) {
-			$rows = $this->getPhotoPRO($product_id);
-			if (!empty($rows)) {
-				foreach ($rows as $r) {
-					if (!empty($r['image'])) {
-						$path_old = "../image/" . $r['image'];
-						$path_new = "../image1/" . $r['image'];
-						$a = copy ($path_old, $path_new);
-						if (!$a) {
-							$err = " Photo: " . $path_old . " not copied. Product_ID: " . $product_id . " \n";
-							$this->adderr($err);
-						}	
-					}
+				$path_old = "../image/" . $r['image'];
+				$path_new = "../image1/" . $r['image'];
+				$a = copy ($path_old, $path_new);
+				if (!$a) {
+					$err = " Photo: " . $path_old . " not copied. Product_ID: " . $product_id . " \n";
+					$this->adderr($err);				
 				}
 			}
 		}	
-		
 		return 0;
 	}
 	
@@ -8411,6 +10663,8 @@ class ModelCatalogSuppler extends Model {
 		$form['upurl'] = $rows[0]['upurl'];
 		$form['ref'] = $rows[0]['ref'];
 		$form['ref1'] = $rows[0]['ref1'];
+		$form['ref2'] = $rows[0]['ref2'];
+		$form['ref3'] = $rows[0]['ref3'];
 		$form['addattr'] = $rows[0]['addattr'];
 		$form['exsame'] = $rows[0]['exsame'];
 		$form['parss'] = $rows[0]['parss'];
@@ -8448,6 +10702,9 @@ class ModelCatalogSuppler extends Model {
 		$form['upc']  = $rows[0]['upc'];
 		$form['ean']  = $rows[0]['ean'];
 		$form['mpn']  = $rows[0]['mpn'];
+		$form['location']  = $rows[0]['location'];
+		$form['jan']  = $rows[0]['jan'];
+		$form['isbn']  = $rows[0]['isbn'];
 		$form['newurl']  = $rows[0]['newurl'];
 		$form['ddata']  = $rows[0]['ddata'];
 		$form['bonus']  = $rows[0]['bonus'];
@@ -8459,6 +10716,8 @@ class ModelCatalogSuppler extends Model {
 		$form['t_status'] = $rows[0]['t_status'];
 		$form['t_ref'] = $rows[0]['t_ref'];
 		$form['t_ref1']  = $rows[0]['t_ref1'];
+		$form['t_ref2'] = $rows[0]['t_ref2'];
+		$form['t_ref3']  = $rows[0]['t_ref3'];
 		$form['onoff']  = $rows[0]['onoff'];
 		$form['main']  = $rows[0]['main'];
 		$form['zero']  = $rows[0]['zero'];
@@ -8569,18 +10828,22 @@ class ModelCatalogSuppler extends Model {
 	
 		$rows = $this->getSuppler_SEO($form_id);
 		$form['prod_photo'] = $rows[0]['prod_photo'];
-		$form['prod_h1'] = $rows[0]['prod_h1'];	
-		$form['prod_title'] = $rows[0]['prod_title'];		
-		$form['prod_meta_desc'] = $rows[0]['prod_meta_desc'];		
+		$form['prod_h1'] = $rows[0]['prod_h1'];
+		$form['prod_title'] = $rows[0]['prod_title'];
+		$form['prod_meta_desc'] = $rows[0]['prod_meta_desc'];
 		$form['prod_desc'] = $rows[0]['prod_desc'];
 		$form['prod_keyword'] = $rows[0]['prod_keyword'];
 		$form['prod_url'] = $rows[0]['prod_url'];
-		$form['cat_title'] = $rows[0]['cat_title'];		
-		$form['cat_meta_desc'] = $rows[0]['cat_meta_desc'];		
-		$form['cat_desc'] = $rows[0]['cat_desc'];		
-		$form['manuf_title'] = $rows[0]['manuf_title'];		
-		$form['manuf_meta_desc'] = $rows[0]['manuf_meta_desc'];		
+		$form['cat_h1'] = $rows[0]['cat_h1'];
+		$form['cat_title'] = $rows[0]['cat_title'];
+		$form['cat_meta_desc'] = $rows[0]['cat_meta_desc'];
+		$form['cat_desc'] = $rows[0]['cat_desc'];
+		$form['cat_keyword'] = $rows[0]['cat_keyword'];
+		$form['manuf_h1'] = $rows[0]['manuf_h1'];
+		$form['manuf_title'] = $rows[0]['manuf_title'];
+		$form['manuf_meta_desc'] = $rows[0]['manuf_meta_desc'];
 		$form['manuf_desc'] = $rows[0]['manuf_desc'];
+		$form['manuf_keyword'] = $rows[0]['manuf_keyword'];
 		$form['seo_1'] = $rows[0]['seo_1'];
 		$form['seo_2'] = $rows[0]['seo_2'];
 		$form['seo_3'] = $rows[0]['seo_3'];
@@ -8601,13 +10864,66 @@ class ModelCatalogSuppler extends Model {
 		$form['seo_18'] = $rows[0]['seo_18'];
 		$form['seo_19'] = $rows[0]['seo_19'];
 		$form['seo_20'] = $rows[0]['seo_20'];
+		
+		$rows = $this->getSupplerCron($form_id);
+		$form['form_id'] = $rows[0]['form_id'];
+		
+		$form['cmd1'] = 		$rows[0]['cmd1'];
+		$form['act_find1'] = 	$rows[0]['act_find1'];
+		$form['act_change1'] = 	$rows[0]['act_change1'];
+		$form['all1'] = 		$rows[0]['all1'];
+		$form['isno1'] = 		$rows[0]['isno1'];
+		$form['on_off'] = 		$rows[0]['on_off'];
+		$form['csort'] = 		$rows[0]['csort'];
+		$form['text'] = 		$rows[0]['text'];
+		$form['text1'] = 		$rows[0]['text1'];
+		$form['text2'] = 		$rows[0]['text2'];
+		$form['port1'] = 		$rows[0]['port1'];
+		
+		$form['cmd2'] = 		$rows[0]['cmd2'];
+		$form['act_find2'] = 	$rows[0]['act_find2'];
+		$form['act_change2'] = 	$rows[0]['act_change2'];
+		$form['all2'] = 		$rows[0]['all2'];
+		$form['isno2'] = 		$rows[0]['isno2'];
+		
+		$form['cmd3'] = 		$rows[0]['cmd3'];
+		$form['act_find3'] = 	$rows[0]['act_find3'];
+		$form['act_change3'] = 	$rows[0]['act_change3'];
+		$form['all3'] = 		$rows[0]['all3'];
+		$form['isno3'] = 		$rows[0]['isno3'];
+		
+		$form['link'] = 	$rows[0]['link'];
+		$form['ftp_name'] = $rows[0]['ftp_name'];
+		$form['ftp_pass'] = $rows[0]['ftp_pass'];
+		$form['ext'] = 		$rows[0]['ext'];
+		$form['rtype'] = 	$rows[0]['rtype'];
+		$form['mail'] = 	$rows[0]['mail'];
+		$form['pr_name'] = 	$rows[0]['pr_name'];
+		
+		$form['cmd4'] = 		$rows[0]['cmd4'];
+		$form['act_find4'] = 	$rows[0]['act_find4'];
+		$form['act_change4'] = 	$rows[0]['act_change4'];
+		$form['all4'] = 		$rows[0]['all4'];
+		$form['isno4'] = 		$rows[0]['isno4'];
+		
+		$form['cmd5'] = 		$rows[0]['cmd5'];
+		$form['act_find5'] = 	$rows[0]['act_find5'];
+		$form['act_change5'] = 	$rows[0]['act_change5'];
+		$form['all5'] = 		$rows[0]['all5'];
+		$form['isno5'] = 		$rows[0]['isno5'];
+		
+		$form['cmd6'] = 		$rows[0]['cmd6'];
+		$form['act_find6'] = 	$rows[0]['act_find6'];
+		$form['act_change6'] = 	$rows[0]['act_change6'];
+		$form['all6'] = 		$rows[0]['all6'];
+		$form['isno6'] = 		$rows[0]['isno6'];
 
 		$file_table = "./uploads/form.tmp";
 		$tab = fopen($file_table,'w+b');
 		$str_table = serialize($form);
 		if (fwrite($tab, $str_table) === false) {
 			@fclose($tab);
-			return 35;
+			return 39;
 		}	
 		@fclose($tab);
 	}	
@@ -8826,7 +11142,7 @@ class ModelCatalogSuppler extends Model {
 		if (!file_exists($path)) {
 			$file_ex    = "./uploads/ex.xml";					
 			$ex = @fopen($file_ex,'w+');			
-			if (!$ex) return 3;
+			if (!$ex) return 28;
 			$this->StartEx($ex);			
 			
 			for ($j=0; $j<5; $j++) {
@@ -8952,18 +11268,12 @@ class ModelCatalogSuppler extends Model {
 			$row_count_old = (int)$m[0];
 							
 			if (empty($row_count_old)) $row_count_old = -1;	
-			if ($row_count_old > $row_count) {
-				fclose($sos); 
-				@unlink ($file_sos);
-				$row_count = -5; 
-				return $row_count; 
-			}
+			if ($row_count_old > $row_count) $row_count = $row_count_old;
+			
 			fseek($sos, 0);					
 			$m = $row_count . ' ' . $sku . '     ';	
 			if (!@fputs($sos, $m)) {
-				fclose($sos); 
-				@unlink ($file_sos);
-				$row_count = -5; 
+				fclose($sos);		
 				return $row_count; 
 			}
 			fclose($sos);		
@@ -8993,29 +11303,22 @@ class ModelCatalogSuppler extends Model {
 		$file_ex    = "./uploads/ex.xml";		
 		$ex = @fopen($file_ex,'a');
 		if (!$ex) $ex = @fopen($file_ex,'w+');			
-		if (!$ex) return 3;
+		if (!$ex) return 28;
 		@fputs($ex, $st);
 		@fclose($ex);		
 	}
 			
-	public function checkurl($url) {	
-		$url=trim($url);
-		if (is_numeric($url)) return -1;
+	public function checkurl($url, $prefix) {		
 		if (strlen($url) < 4) return -1;
-		if (!substr_count($url, "/") and (substr_count($url, ".JPG") or substr_count($url, ".jpg") or substr_count($url, ".PNG") or substr_count($url, ".png") or substr_count($url, ".jpeg") or substr_count($url, ".JPEG") or substr_count($url, ".GIF") or substr_count($url, ".gif") or substr_count($url, ".BMP") or substr_count($url, ".bmp"))) return $url;			
+		if (is_numeric($url)) return -1;		
 		$url = str_replace("\\" , "/" , $url);		
-		if (!substr_count($url,"://")) {
-			$a = substr($url, 0, 1);
-			if ($a == "/") $url = substr($url, 1);
-			$a = substr($url, 0, 1);
-			if ($a == "/") $url = substr($url, 1);
-			$url = "http://".$url;
-		}	
 		$url = str_replace("&#45;", "-", $url);
-		$url = str_replace("&amp;", "&", $url);
-	//	$url = str_replace(" ", "%25%20", $url);
-	//	$url = str_replace(" ", "%20", $url);
+		$url = str_replace("&amp;", "&", $url);	
 		$url = trim($url);	
+		if (!empty($prefix) and !substr_count($prefix, ".jpg") and !substr_count($prefix, ".png") and !substr_count($prefix, ".jpeg") and substr_count($url, "/") and !substr_count($url, "http") and !substr_count($url, "www")) { 
+			$url = $prefix . $url;
+		}
+
 		return $url;
 	}
 	
@@ -9406,9 +11709,9 @@ class ModelCatalogSuppler extends Model {
 		$name2 = str_replace("-", " ", $name2);
 		$name2 = str_replace("/", " ", $name2);
 		$name2 = str_replace("III", "3", $name2);
-		$name2 = str_replace("II", "2", $name2);		
-		$name2 = str_replace("V", "5", $name2);
-		$name2 = str_replace("IV", "4", $name2);
+	//	$name2 = str_replace("II", "2", $name2);		
+	//	$name2 = str_replace("V", "5", $name2);
+	//	$name2 = str_replace("IV", "4", $name2);
 		$name2 = str_replace("(", "", $name2);
 		$name2 = str_replace(")", "", $name2);
 		$name2 = str_replace("[", "", $name2);
@@ -9436,9 +11739,9 @@ class ModelCatalogSuppler extends Model {
 			$r['name'] = str_replace("-", " ", $r['name']);
 			$r['name'] = str_replace("/", " ", $r['name']);
 			$r['name'] = str_replace("III", "3", $r['name']);
-			$r['name'] = str_replace("II", "2", $r['name']);			
-			$r['name'] = str_replace("V", "5", $r['name']);
-			$r['name'] = str_replace("IV", "4", $r['name']);
+	//		$r['name'] = str_replace("II", "2", $r['name']);			
+	//		$r['name'] = str_replace("V", "5", $r['name']);
+	//		$r['name'] = str_replace("IV", "4", $r['name']);
 			$r['name'] = str_replace("(", "", $r['name']);
 			$r['name'] = str_replace(")", "", $r['name']);
 			$r['name'] = str_replace("[", "", $r['name']);
@@ -9510,9 +11813,11 @@ class ModelCatalogSuppler extends Model {
 		$store = $row['addattr'];
 		$lang = $this->config->get('config_language_id');
 						
-		if ($data['inoption'] and !$data['isoptvalue']) return 37;
-		if (!$data['inoption'] and $data['isoptvalue']) return 36;
-		if ($data['act_noattribut'] and $data['act_attribut'] and $data['act_attribut'] == $data['act_noattribut'] and $data['command'] != 88) return 38;			
+		if ($data['inoption'] and !$data['isoptvalue']) return 41;
+		if (!$data['inoption'] and $data['isoptvalue']) return 40;
+		if ($data['act_noattribut'] and $data['act_attribut'] and $data['act_attribut'] == $data['act_noattribut'] and $data['command'] != 88) return 38;
+		
+		$this->setFormDate($form_id);
 		
 		$rows = $this->getAllAttr();
 		for ($max_a=0; $max_a<10000; $max_a++) {
@@ -9526,7 +11831,7 @@ class ModelCatalogSuppler extends Model {
 			$lang = $this->config->get('config_language_id');
 			for ($i=0; $i<2000; $i++) {	
 				if (!isset($data['act_manuf'][$i])) break;				
-				$this->db->query("UPDATE " . DB_PREFIX . "manufacturer_description SET `meta_description` = '', `meta_keyword` = '', `meta_h1` = '', `meta_title` = '' WHERE `category_id` = '". (int)$data['act_manuf'][$i] . "' and `language_id` = '" . $lang . "'");		
+				$this->db->query("UPDATE " . DB_PREFIX . "manufacturer_description SET `meta_description` = '', `meta_keyword` = '', `meta_h1` = '', `meta_title` = '' WHERE `manufacturer_id` = '". (int)$data['act_manuf'][$i] . "' and `language_id` = '" . $lang . "'");		
 			}
 		}
 		
@@ -9544,11 +11849,19 @@ class ModelCatalogSuppler extends Model {
 			}
 		}
 		
+		if ($data['command'] == 235) {
+			$lang = $this->config->get('config_language_id');
+			for ($i=0; $i<2000; $i++) {	
+				if (!isset($data['act_cat'][$i])) break;				
+				$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `description` = '' WHERE `category_id` = '". (int)$data['act_cat'][$i] . "' and `language_id` = '" . $lang . "'");		
+			}
+		}
+		
 		if ($data['command'] == 207) {
 			$lang = $this->config->get('config_language_id');
 			for ($i=0; $i<2000; $i++) {	
 				if (!isset($data['act_cat'][$i])) break;				
-				$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `meta_description` = '', `meta_keyword` = '', `meta_h1` = '', `meta_title` = '' WHERE `category_id` = '". (int)$data['act_cat'][$i] . "' and `language_id` = '" . $lang . "'");
+				$this->db->query("UPDATE " . DB_PREFIX . "category_description SET `meta_description` = '', `meta_keyword` = '', `meta_h1` = '', `meta_title` = '' WHERE `category_id` = '". (int)$data['act_cat'][$i] . "' and `language_id` = '" . $lang . "'");		
 			}
 		}	
 	
@@ -9598,10 +11911,10 @@ class ModelCatalogSuppler extends Model {
 		
 		if ($data['command'] == 172) {			
 			$path = "./uploads/ex.xml";			
-			if (!file_exists($path)) return 3;
+			if (!file_exists($path)) return 28;
 			$file_ex    = "./uploads/ex.xml";					
 			$ex = @fopen($file_ex,'r');			
-			if (!$ex) return 3;
+			if (!$ex) return 28;
 			
 			$st = '';
 			$f = array();
@@ -9661,7 +11974,7 @@ class ModelCatalogSuppler extends Model {
 						if ($posb3 < $posb) {
 							$posb = $posb3;
 							$a = '"';						
-						}		
+						}	
 						if ($posb != 999)	{					
 							$posb = strpos($st, $a , $posb) +1;
 							if ($posb < 0) continue;
@@ -9737,7 +12050,7 @@ class ModelCatalogSuppler extends Model {
 				@fclose($sos);					
 			} else {				
 				$sos = @fopen($file_sos,'w+');
-				if (!$sos) { @fclose($sos); return 2;}
+				if (!$sos) { @fclose($sos); return 5;}
 				chmod($file_sos, 0777);
 				$row = $this->getMinCategoryID();
 				$pid = $row['min(category_id)']-1;
@@ -9756,56 +12069,56 @@ class ModelCatalogSuppler extends Model {
 				if (!empty($rows)) {
 					$c[0] = $i;
 					$image = '';
-					if (empty($rows[0]['image']) or substr_count($rows[0]['image'], "no_image")) 
+					if (empty($rows[0]['image']) or substr_count($rows[0]['image'], "no_image") or $rows[0]['image'] == 'catalog/category/')
 						$image = $this->choicePhoto($c, $store);
 					if ($image) $this->upCategoryImage($c[0], $image);					
 					$c[1] = $rows[0]['parent_id'];				
 					if ($c[1] != 0) {
 						$rows  = $this->getChain($c[1]);						
 						$image = '';
-						if (empty($rows[0]['image']) or substr_count($rows[0]['image'], "no_image")) 
+						if (empty($rows[0]['image']) or substr_count($rows[0]['image'], "no_image") or $rows[0]['image'] == 'catalog/category/')
 							$image = $this->choicePhoto($c, $store);
 						if ($image) $this->upCategoryImage($c[1], $image);					
 						$c[2] = $rows[0]['parent_id'];						
 						if ($c[2] != 0) {
 							$rows  = $this->getChain($c[2]);							
 							$image = '';
-							if (empty($rows[0]['image']) or substr_count($rows[0]['image'], "no_image")) 
+							if (empty($rows[0]['image']) or substr_count($rows[0]['image'], "no_image") or $rows[0]['image'] == 'catalog/category/')
 								$image = $this->choicePhoto($c, $store);
 							if ($image) $this->upCategoryImage($c[2], $image);					
 							$c[3] = $rows[0]['parent_id'];
 							if ($c[3] != 0) {
 								$rows  = $this->getChain($c[3]);								
 								$image = '';
-								if (empty($rows[0]['image']) or substr_count($rows[0]['image'], "no_image")) 
+								if (empty($rows[0]['image']) or substr_count($rows[0]['image'], "no_image") or $rows[0]['image'] == 'catalog/category/')
 									$image = $this->choicePhoto($c, $store);
 								if ($image) $this->upCategoryImage($c[3], $image);					
 								$c[4] = $rows[0]['parent_id'];
 								if ($c[4] != 0) {
 									$rows  = $this->getChain($c[4]);									
 									$image = '';
-									if (empty($rows[0]['image']) or substr_count($rows[0]['image'], "no_image")) 
+									if (empty($rows[0]['image']) or substr_count($rows[0]['image'], "no_image") or $rows[0]['image'] == 'catalog/category/')
 										$image = $this->choicePhoto($c, $store);
 									if ($image) $this->upCategoryImage($c[4], $image);					
 									$c[5] = $rows[0]['parent_id'];
 									if ($c[5] != 0) {
 										$rows  = $this->getChain($c[5]);										
 										$image = '';
-										if (empty($rows[0]['image']) or substr_count($rows[0]['image'], "no_image")) 
+										if (empty($rows[0]['image']) or substr_count($rows[0]['image'], "no_image") or $rows[0]['image'] == 'catalog/category/')
 											$image = $this->choicePhoto($c, $store);
 										if ($image) $this->upCategoryImage($c[5], $image);					
 										$c[6] = $rows[0]['parent_id'];
 										if ($c[6] != 0) {
 											$rows  = $this->getChain($c[6]);											
 											$image = '';
-											if (empty($rows[0]['image']) or substr_count($rows[0]['image'], "no_image")) 
+											if (empty($rows[0]['image']) or substr_count($rows[0]['image'], "no_image") or $rows[0]['image'] == 'catalog/category/')
 												$image = $this->choicePhoto($c, $store);
 											if ($image) $this->upCategoryImage($c[6], $image);					
 											$c[7] = $rows[0]['parent_id'];
 											if ($c[7] != 0) {
 												$rows  = $this->getChain($c[7]);											
 												$image = '';
-												if (empty($rows[0]['image']) or substr_count($rows[0]['image'], "no_image")) 
+												if (empty($rows[0]['image']) or substr_count($rows[0]['image'], "no_image") or $rows[0]['image'] == 'catalog/category/')
 													$image = $this->choicePhoto($c, $store);
 												if ($image) $this->upCategoryImage($c[7], $image);
 											}
@@ -9836,7 +12149,7 @@ class ModelCatalogSuppler extends Model {
 			if (!file_exists($path)) {
 				$file_ex    = "./uploads/ex.xml";					
 				$ex = @fopen($file_ex,'w+');			
-				if (!$ex) return 3;
+				if (!$ex) return 28;
 				$this->StartEx($ex);
 				for ($i=0; $i<8; $i++) {
 					$st = ' <Column ss:AutoFitWidth="0" ss:Width="30"/>'."\n";
@@ -10045,7 +12358,7 @@ class ModelCatalogSuppler extends Model {
 				@fclose($sos);					
 			} else {				
 				$sos = @fopen($file_sos,'w+');
-				if (!$sos) { @fclose($sos); return 2;}
+				if (!$sos) { @fclose($sos); return 5;}
 				chmod($file_sos, 0777);
 				$row = $this->getMinCategoryID();
 				$pid = $row['min(category_id)']-1;
@@ -10314,7 +12627,7 @@ class ModelCatalogSuppler extends Model {
 			if (!file_exists($path)) {
 				$file_ex    = "./uploads/ex.xml";					
 				$ex = @fopen($file_ex,'w+');			
-				if (!$ex) return 3;
+				if (!$ex) return 28;
 				$this->StartEx($ex);
 				$st = ' <Column ss:AutoFitWidth="0" ss:Width="80"/>'."\n";
 				@fputs($ex, $st);
@@ -10333,6 +12646,10 @@ class ModelCatalogSuppler extends Model {
 				$st = ' <Column ss:AutoFitWidth="0" ss:Width="80"/>'."\n";
 				@fputs($ex, $st);
 				$st = ' <Column ss:AutoFitWidth="0" ss:Width="80"/>'."\n";
+				@fputs($ex, $st);
+				$st = ' <Column ss:AutoFitWidth="0" ss:Width="80"/>'."\n";
+				@fputs($ex, $st);
+				$st = ' <Column ss:AutoFitWidth="0" ss:Width="180"/>'."\n";
 				@fputs($ex, $st);
 				$st = ' <Column ss:AutoFitWidth="0" ss:Width="180"/>'."\n";
 				@fputs($ex, $st);
@@ -10388,6 +12705,10 @@ class ModelCatalogSuppler extends Model {
 				$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">SubTotal</Data></Cell>'."\n";
 				@fputs($ex, $st);
 				$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">Total</Data></Cell>'."\n";
+				@fputs($ex, $st);
+				$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">Cost</Data></Cell>'."\n";
+				@fputs($ex, $st);
+				$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">Comment</Data></Cell>'."\n";
 				@fputs($ex, $st);
 				$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">Shipping Title</Data></Cell>'."\n";
 				@fputs($ex, $st);
@@ -10455,7 +12776,7 @@ class ModelCatalogSuppler extends Model {
 				else $summ = 0;		
 			} else {				
 				$sos = @fopen($file_sos,'w+');
-				if (!$sos) { @fclose($sos); return 2;}
+				if (!$sos) { @fclose($sos); return 5;}
 				chmod($file_sos, 0777);
 				$row = $this->getMinOrders();
 				$pid = $row['min(order_id)']-1;
@@ -10464,6 +12785,7 @@ class ModelCatalogSuppler extends Model {
 				$summ[0] = 0;
 				$summ[1] = 0;
 				$summ[2] = 0;
+				$summ[3] = 0;
 				$str = serialize($summ);
 				fwrite($tab, $str);				
 			}	
@@ -10508,10 +12830,10 @@ class ModelCatalogSuppler extends Model {
 				if (empty($rows3)) continue;
 				
 				$row  = $this->getOrder($i);	
-				if (empty($row)) continue;				
+				if (empty($row)) continue;
 				
 				for ($j=0; $j<900; $j++) {
-					if (!isset($rows2[$j]['name'])) break;
+					if (!isset($rows2[$j]['name'])) break;					
 					$file_ex    = "./uploads/ex.xml";
 					$ex = @fopen($file_ex,'a');
 					$st = '<Row>'."\n";
@@ -10526,11 +12848,13 @@ class ModelCatalogSuppler extends Model {
 					$st = $rows2[$j]['model'];
 					$st = '<Cell><Data ss:Type="String">'.$st.'</Data></Cell>'."\n";
 					@fputs($ex, $st);
-					
+		
 					$st = '';
+					$cost = 0;
 					$row1 = $this->getProductByID($rows2[$j]['product_id']);
 					if (!empty($row1)) {
-						$sku = $row1['sku'];				
+						$sku = $row1['sku'];						
+						if (isset($row1['cost'])) $cost = round($row1['cost'], 2);
 						$rows4 = $this->getOrderOption($rows2[0]['order_product_id']);
 						if (!empty($rows4)) {
 							$rows4 = $this->getoptsku($rows4[0]['product_option_value_id']);
@@ -10545,10 +12869,12 @@ class ModelCatalogSuppler extends Model {
 					$st = '<Cell><Data ss:Type="String">'.$st.'</Data></Cell>'."\n";
 					@fputs($ex, $st);
 					$qu = (int)$rows2[$j]['quantity'];
-					$price = round($rows2[$j]['price'], 2);
+					$price = round($rows2[$j]['price'], 2);					
 					$summa = $qu*(float)$price;
 					$summ[0] = $summ[0] + $price;
-					$summ[1] = $summ[1] + $qu;					
+					$summ[1] = $summ[1] + $qu;
+					$sub_cost = $cost*$qu;
+					$summ[3] = $summ[3] + $sub_cost;					
 					$st = '<Cell><Data ss:Type="String">'.(string)$price.'</Data></Cell>'."\n";
 					@fputs($ex, $st);					
 					$st = '<Cell><Data ss:Type="String">'.(string)$qu.'</Data></Cell>'."\n";
@@ -10557,6 +12883,11 @@ class ModelCatalogSuppler extends Model {
 					@fputs($ex, $st);
 					$st = '';
 					$st = '<Cell><Data ss:Type="String">'.$st.'</Data></Cell>'."\n";
+					@fputs($ex, $st);
+					if (empty($sub_cost)) $sub_cost = '';
+					$st = '<Cell><Data ss:Type="String">'.(string)$sub_cost.'</Data></Cell>'."\n";
+					@fputs($ex, $st);
+					$st = '<Cell><Data ss:Type="String">'.$row['comment'].'</Data></Cell>'."\n";
 					@fputs($ex, $st);
 					$st1 = '';
 					$st2 = '';
@@ -10638,7 +12969,7 @@ class ModelCatalogSuppler extends Model {
 				@fputs($ex, $st);
 				$st = '';
 				$st = '<Cell><Data ss:Type="String">'.$st.'</Data></Cell>'."\n";
-				@fputs($ex, $st);
+				@fputs($ex, $st);				
 				$st = '';
 				$st = '<Cell><Data ss:Type="String">'.$st.'</Data></Cell>'."\n";
 				@fputs($ex, $st);
@@ -10647,7 +12978,7 @@ class ModelCatalogSuppler extends Model {
 				@fputs($ex, $st);
 				$st = '';
 				$st = '<Cell><Data ss:Type="String">'.$st.'</Data></Cell>'."\n";
-				@fputs($ex, $st);			
+				@fputs($ex, $st);
 				$st = '';
 				$st = '<Cell><Data ss:Type="String">'.$st.'</Data></Cell>'."\n";
 				@fputs($ex, $st);
@@ -10657,9 +12988,10 @@ class ModelCatalogSuppler extends Model {
 				$st = '';
 				$st = '<Cell ss:StyleID="s20"><Data ss:Type="String">'.$st.'</Data></Cell>'."\n";
 				@fputs($ex, $st);
+				$st = '';
 				$st = '<Cell ss:StyleID="s20"><Data ss:Type="String">'.$st.'</Data></Cell>'."\n";
 				@fputs($ex, $st);
-				$st = '';
+				
 				for ($k=$kk; $k<10; $k++) {
 					if (!isset($rows3[$k]['code'])) break;						
 					if ($rows3[$k]['code'] == 'total') {					
@@ -10670,7 +13002,7 @@ class ModelCatalogSuppler extends Model {
 				$summ[2] = $summ[2] + $st;
 				$st = (string)$st;
 				$st = '<Cell ss:StyleID="s20"><Data ss:Type="String">'.$st.'</Data></Cell>'."\n";
-				@fputs($ex, $st);
+				@fputs($ex, $st);				
 				$st = '';
 				$st = '<Cell><Data ss:Type="String">'.$st.'</Data></Cell>'."\n";
 				@fputs($ex, $st);
@@ -10696,6 +13028,9 @@ class ModelCatalogSuppler extends Model {
 				$st = '<Cell><Data ss:Type="String">'.$st.'</Data></Cell>'."\n";
 				@fputs($ex, $st);
 				$st = '';
+				$st = '<Cell><Data ss:Type="String">'.$st.'</Data></Cell>'."\n";
+				@fputs($ex, $st);
+				$st = '';				
 				$st = '<Cell><Data ss:Type="String">'.$st.'</Data></Cell>'."\n";
 				@fputs($ex, $st);
 				$st = '';
@@ -10741,12 +13076,11 @@ class ModelCatalogSuppler extends Model {
 			@fputs($ex, $st);
 			$st = '';
 			$st = '<Cell><Data ss:Type="String">'.$st.'</Data></Cell>'."\n";
-			@fputs($ex, $st);			
+			@fputs($ex, $st);
 			$st = '';
 			$st = '<Cell><Data ss:Type="String">'.$st.'</Data></Cell>'."\n";
 			@fputs($ex, $st);
-			$st = (string)$summ[0];
-			$st = '';
+			$st = (string)$summ[0];		
 			$st = '<Cell ss:StyleID="s20"><Data ss:Type="String">'.$st.'</Data></Cell>'."\n";
 			@fputs($ex, $st);
 			$st = (string)$summ[1];
@@ -10757,8 +13091,9 @@ class ModelCatalogSuppler extends Model {
 			@fputs($ex, $st);
 			$st = (string)$summ[2];
 			$st = '<Cell ss:StyleID="s20"><Data ss:Type="String">'.$st.'</Data></Cell>'."\n";
-			@fputs($ex, $st);
-			$st = '';
+			@fputs($ex, $st);			
+			$st = (string)$summ[3];
+			if (empty($st)) $st = '';
 			$st = '<Cell><Data ss:Type="String">'.$st.'</Data></Cell>'."\n";
 			@fputs($ex, $st);
 			$st = '';
@@ -10813,7 +13148,7 @@ class ModelCatalogSuppler extends Model {
 			@fputs($ex, $st);
 			@fclose($ex);
 			
-			$kol_cell = 26;
+			$kol_cell = 28;
 			$this->EndEx($kol_cell);
 			
 			$path = "./uploads/sos.tmp";
@@ -10840,10 +13175,14 @@ class ModelCatalogSuppler extends Model {
 		$seo_data['prod_desc'] = '';
 		if (isset($rows[0]['prod_desc']))
 		$seo_data['prod_desc'] = $this->symbol($rows[0]['prod_desc']);
+		$seo_data['prod_keyword'] = '';
 		if (isset($rows[0]['prod_keyword']))
 		$seo_data['prod_keyword'] = $this->symbol($rows[0]['prod_keyword']);
 		if (isset($rows[0]['prod_url']))
 		$seo_data['prod_url'] = $this->symbol($rows[0]['prod_url']);
+		$seo_data['cat_h1'] = '';
+		if (isset($rows[0]['cat_h1']))
+		$seo_data['cat_h1'] = $this->symbol($rows[0]['cat_h1']);
 		$seo_data['cat_title'] = '';
 		if (isset($rows[0]['cat_title']))
 		$seo_data['cat_title'] = $this->symbol($rows[0]['cat_title']);		
@@ -10853,6 +13192,12 @@ class ModelCatalogSuppler extends Model {
 		$seo_data['cat_desc'] = '';
 		if (isset($rows[0]['cat_desc']))
 		$seo_data['cat_desc'] = $this->symbol($rows[0]['cat_desc']);		
+		$seo_data['cat_keyword'] = '';
+		if (isset($rows[0]['cat_keyword']))
+		$seo_data['cat_keyword'] = $this->symbol($rows[0]['cat_keyword']);
+		$seo_data['manuf_h1'] = '';
+		if (isset($rows[0]['manuf_h1']))
+		$seo_data['manuf_h1'] = $this->symbol($rows[0]['manuf_h1']);
 		$seo_data['manuf_title'] = '';
 		if (isset($rows[0]['manuf_title']))
 		$seo_data['manuf_title'] = $this->symbol($rows[0]['manuf_title']);		
@@ -10862,6 +13207,9 @@ class ModelCatalogSuppler extends Model {
 		$seo_data['manuf_desc'] = '';
 		if (isset($rows[0]['manuf_desc']))
 		$seo_data['manuf_desc'] = $this->symbol($rows[0]['manuf_desc']);
+		$seo_data['manuf_keyword'] = '';
+		if (isset($rows[0]['manuf_keyword']))
+		$seo_data['manuf_keyword'] = $this->symbol($rows[0]['manuf_keyword']);
 		$seo_data['seo_1'] = '';
 		if (isset($rows[0]['seo_1']))
 		$seo_data['seo_1'] = $this->symbol($rows[0]['seo_1']);
@@ -10988,7 +13336,7 @@ class ModelCatalogSuppler extends Model {
 			$except = 1;
 			$file_con  = "./uploads/exception.xml"; 
 			$con = @fopen($file_con,'r');			
-			if (!$con) return 25;
+			if (!$con) return 24;
 						
 			$st = '';
 			$nex = 0;			
@@ -11061,6 +13409,20 @@ class ModelCatalogSuppler extends Model {
 			}
 		}
 		
+		if ($data['command'] == 239) {
+			$new_path = DIR_APPLICATION;
+			$new_path = substr($new_path, 0, strlen($new_path)-1);
+			$p = strrpos($new_path, '/');
+			$new_path = substr($new_path, 0, $p+1);
+			$new_path = $new_path . $data['act_find'];
+			$new_path = str_replace("//", "/", $new_path);
+			
+			$old_path = DIR_APPLICATION . "uploads/ex.xml";
+
+			@copy($old_path, $new_path);			
+			return;
+		}
+		
 		if ($data['command'] == 163) {
 			$this->deleteAllCategories();
 			return;
@@ -11085,6 +13447,177 @@ class ModelCatalogSuppler extends Model {
 				if ($p) {
 					$text = trim($text);
 					$this->db->query("UPDATE `" . DB_PREFIX . "manufacturer_description` SET `description` = '" . $this->db->escape($text) . "' WHERE `manufacturer_id` = '" . $manufacturer_id ."' and `language_id` = '" . $lang . "'");
+				}
+			}	
+		}
+		
+		if ($data['command'] == 217) {
+			$row = $this->getMaxManufacturerID();
+			$max = $row['max(manufacturer_id)'];
+			
+			$file_table = "./uploads/manufacturer.tmp";
+			$file_sos    = "./uploads/sos.tmp";
+			$was_timelimit = 0;
+			if (!file_exists ($file_sos)) {
+						
+				if (file_exists($file_table)) @unlink ($file_table);				
+				$table = array();
+				$i = 1;
+				for ($k=1; $k<=$max; $k++) {
+					$rows = $this->getManufacturerName($k);
+					if (!empty($rows)) {
+						$rows = $this->getManufacturerID($rows[0]['name'], $store);						
+						if (!empty($rows) and isset($rows[1]['manufacturer_id'])) {	
+							$j=0;
+							foreach ($rows as $r) {
+								$fl = 0;
+								for ($l=1; $l<10000; $l++) {
+									if (!isset($table[$l][0])) break;
+									for ($ll=0; $ll<10000; $ll++) {
+										if (!isset($table[$l][$ll])) break;
+										if ($table[$l][$ll] == $r['manufacturer_id']) {
+											$fl = 1;
+											break;
+										}	
+									}
+								}
+								if (!$fl) {
+									$table[$i][$j] = $r['manufacturer_id'];	
+									$j++;
+								}
+							}
+							if ($j>1) $i++;
+						}	
+					}
+				}				
+		
+				$tab = fopen($file_table,'w+b');
+				$str_table = serialize($table);
+				if (fwrite($tab, $str_table) === false) {
+					@fclose($tab);
+					return 3;
+				}	
+				@fclose($tab);
+
+				$sos = fopen($file_sos,'w+');
+				if (!$sos) { @fclose($sos); return 5;}
+				chmod($file_sos, 0777);
+				@fclose($sos);
+				$row = $this->getMinID();
+				$pid = $row['min(product_id)'];		
+			} else {			
+				$sos = fopen($file_sos,'r+');
+				$pid = (int)fgets($sos, 10);
+				if (empty($pid)) {
+					$row = $this->getMinID();
+					$pid = $row['min(product_id)'];
+				} else $was_timelimit = 1;	
+				@fclose($sos);
+				
+				$tab = fopen($file_table,'rb');
+				if(!$tab) return 3;
+				$table = unserialize(fread($tab, filesize($file_table)));	
+				if (empty($table)) return 3;
+			}	
+			
+			$row = $this->getMaxID();
+			$max_id = $row['max(product_id)'];		
+			for ($k=$pid; $k<=$max_id; $k++) {
+				$row  = $this->getProductByIDStore($k, $store);
+				if (empty($row)) continue;
+					
+				$e = $this->putsos($k, '');
+				if ($e < 0) return 5;				
+								
+				for ($i=1; $i<10000; $i++) {
+					if (!isset($table[$i][0])) break;
+					for ($j=1; $j<10000; $j++) {
+						if (!isset($table[$i][$j])) break;							
+						if ($row['manufacturer_id'] == $table[$i][$j]) {							
+							$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `manufacturer_id` = '" . $table[$i][0] . "' WHERE `product_id` = '" . $row['product_id'] ."'");							
+						}
+					}
+					for ($j=1; $j<10000; $j++) {
+						if (!isset($table[$i][$j])) break;
+						$this->db->query("DELETE FROM `" . DB_PREFIX . "manufacturer` WHERE `manufacturer_id` = '" . (int)$table[$i][$j] . "'");
+						
+						$table = DB_PREFIX . "manufacturer_description";		
+						if ($this->getColumnName($table, "name")) {
+							$this->db->query("DELETE FROM `" . DB_PREFIX . "manufacturer_description` WHERE `manufacturer_id` = '" . $table[$i][$j] . "'");
+						}	
+					}	
+				}			
+			}			
+			if (file_exists($file_table)) unlink ($file_table);
+			if (file_exists($file_sos)) unlink ($file_sos);
+			return 0;	
+		}
+		
+		if ($data['command'] == 216) {
+			$f = explode('|', $data['act_find']);
+			$r = explode('|', $data['act_change']);
+			$row = $this->getMaxManufacturerID();
+			$max = $row['max(manufacturer_id)'];			
+			for ($j=1; $j<=$max; $j++) {
+				$p = 0;
+				$manufacturer_id = $j;
+				$rows = $this->getManufacturerName($manufacturer_id);
+				if (empty($rows)) continue;
+				for ($k=0; $k<50; $k++) {
+					if (!isset($f[$k])) break;
+					$text = str_replace($this->FindReplace($f[$k]), $this->FindReplace($r[$k]), $rows[0]['name']);
+					if ($text) {
+						$p = 1;
+						$text = trim($text);
+					}	
+					
+				}
+				if ($p) {					  
+					$this->db->query("UPDATE `" . DB_PREFIX . "manufacturer` SET `name` = '" . $this->db->escape($text) . "' WHERE `manufacturer_id` = '" . $manufacturer_id ."' and `language_id` = '" . $this->config->get('config_language_id') . "'");
+				}
+			}	
+		}	
+		
+		if ($data['command'] == 215) {
+			$f = explode('|', $data['act_find']);
+			$r = explode('|', $data['act_change']);
+			$row = $this->getMaxCategoryID();
+			$max = $row['max(category_id)'];
+			for ($j=1; $j<=$max; $j++) {
+				$p = 0;
+				$category_id = $j;
+				$rows = $this->getCategoryDescriptionByID($category_id, $lang);
+				if (empty($rows)) continue;
+				for ($k=0; $k<50; $k++) {
+					if (!isset($f[$k])) break;
+					$text = str_replace($this->FindReplace($f[$k]), $this->FindReplace($r[$k]), $rows[0]['meta_description']);
+					if ($text) $p = 1;
+				}
+				if ($p) {
+					$text = trim($text);
+					$this->db->query("UPDATE `" . DB_PREFIX . "category_description` SET `meta_description` = '" . $this->db->escape($text) . "' WHERE `category_id` = '" . $category_id ."' and `language_id` = '" . $this->config->get('config_language_id') . "'");
+				}
+			}	
+		}
+		
+		if ($data['command'] == 214) {
+			$f = explode('|', $data['act_find']);
+			$r = explode('|', $data['act_change']);
+			$row = $this->getMaxCategoryID();
+			$max = $row['max(category_id)'];
+			for ($j=1; $j<=$max; $j++) {
+				$p = 0;
+				$category_id = $j;
+				$rows = $this->getCategoryDescriptionByID($category_id, $lang);
+				if (empty($rows)) continue;
+				for ($k=0; $k<50; $k++) {
+					if (!isset($f[$k])) break;
+					$text = str_replace($this->FindReplace($f[$k]), $this->FindReplace($r[$k]), $rows[0]['meta_title']);
+					if ($text) $p = 1;
+				}
+				if ($p) {
+					$text = trim($text);
+					$this->db->query("UPDATE `" . DB_PREFIX . "category_description` SET `meta_title` = '" . $this->db->escape($text) . "' WHERE `category_id` = '" . $category_id ."' and `language_id` = '" . $this->config->get('config_language_id') . "'");
 				}
 			}	
 		}
@@ -11116,7 +13649,7 @@ class ModelCatalogSuppler extends Model {
 			$this->db->query("UPDATE `" . DB_PREFIX . "category` SET `status` = '" . 1 . "'");
 		}
 		
-		if ($data['command'] == 100) {
+		if ($data['command'] == 100) {			
 			$rows = $this->getAllCategoriesStore($store);
 			for ($i=0; $i<=10000; $i++) {
 				if (!isset($rows[$i]['category_id'])) break;
@@ -11126,7 +13659,8 @@ class ModelCatalogSuppler extends Model {
 				$this->subarr($rows, $cat, $ch);	
 				if (!isset($ch[0]['category_id'])) {
 					$rows1 = $this->getProductsInCategory($cat);
-					if (!empty($rows1)) {	
+					$empt = $this->checkProductCategoryStatus($rows1);
+					if (!empty($rows1) and !$empt) {	
 						$this->db->query("UPDATE `" . DB_PREFIX . "category` SET `status` = '" . 1 . "' WHERE `category_id` = '" . $cat . "'");
 						$rows[$i]['status'] = 1;
 						unset($ch);
@@ -11141,7 +13675,8 @@ class ModelCatalogSuppler extends Model {
 					if ($rows[$i]['status']) continue;				
 					$cat = $rows[$i]['category_id'];
 					$rows1 = $this->getProductsInCategory($cat);
-					if (!empty($rows1)) {
+					$empt = $this->checkProductCategoryStatus($rows1);
+					if (!empty($rows1) and !$empt) {
 						$this->db->query("UPDATE `" . DB_PREFIX . "category` SET `status` = '" . 1 . "' WHERE `category_id` = '" . $cat . "'");
 						$rows[$i]['status'] = 1;
 					} else {					
@@ -11161,8 +13696,29 @@ class ModelCatalogSuppler extends Model {
 				}	
 			}			
 		}
-		
-		if ($data['command'] == 157) {	
+
+		if ($data['command'] == 237) {
+			if (isset($data['act_cat'])) {
+				for ($i=0; $i<2000; $i++) {	
+					if (!isset($data['act_cat'][$i])) break;
+					$query = 'category_id=' . $data['act_cat'][$i];
+					$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE `query` = '" . $query . "'");
+				}
+			} else $this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE `query` LIKE 'category_id=%'");			
+		}
+
+		if ($data['command'] == 238) {
+			if (isset($data['act_manuf'])) {
+				for ($i=0; $i<2000; $i++) {	
+					if (!isset($data['act_manuf'][$i])) break;
+					$query = 'manufacturer_id=' . $data['act_manuf'][$i];
+					$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE `query` = '" . $query . "'");
+				}
+			} else $this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE `query` LIKE 'manufacturer_id=%'");			
+		}
+				
+		if ($data['command'] == 157) {
+
 			$rows = $this->getAllCategoriesStore($store);
 			for ($i=0; $i<=10000; $i++) {
 				if (!isset($rows[$i]['category_id'])) break;
@@ -11172,7 +13728,8 @@ class ModelCatalogSuppler extends Model {
 				$this->subarr($rows, $cat, $ch);	
 				if (!isset($ch[0]['category_id'])) {
 					$rows1 = $this->getProductsInCategory($cat);
-					if (empty($rows1)) {	
+					$empt = $this->checkProductCategoryStatus($rows1);	
+					if ($empt) {
 						$this->db->query("UPDATE `" . DB_PREFIX . "category` SET `status` = '" . 0 . "' WHERE `category_id` = '" . $cat . "'");
 						$rows[$i]['status'] = 0;
 						unset($ch);
@@ -11187,7 +13744,8 @@ class ModelCatalogSuppler extends Model {
 					if (!$rows[$i]['status']) continue;				
 					$cat = $rows[$i]['category_id'];
 					$rows1 = $this->getProductsInCategory($cat);
-					if (!empty($rows1)) continue;	
+					$empt = $this->checkProductCategoryStatus($rows1);	
+					if (!$empt) continue;	
 					$ch = array();
 					$this->subarr($rows, $cat, $ch);					
 					$f = 1;
@@ -11195,7 +13753,7 @@ class ModelCatalogSuppler extends Model {
 						if (!isset($ch[$j]['category_id'])) break;
 						if ($ch[$j]['status']) $f = 0;
 					}	
-					if ($f) {		
+					if ($f) {					
 						$this->db->query("UPDATE `" . DB_PREFIX . "category` SET `status` = '" . 0 . "' WHERE `category_id` = '" . $cat . "'");
 						$rows[$i]['status'] = 0;										
 					}
@@ -11245,21 +13803,31 @@ class ModelCatalogSuppler extends Model {
 		if ($data['command'] == 79 and isset($data['act_find'])) $this->FindReplaceOption($this->FindReplace($data['act_find']), $this->FindReplace($data['act_change']));
 		
 		if ($data['command'] == 118) {
-			$this->db->query("TRUNCATE " . DB_PREFIX . "product_master");
-			$this->db->query("TRUNCATE " . DB_PREFIX . "product_special_attribute");			
+			$table = DB_PREFIX . "special_attribute";
+			$tname = "special_attribute_group_id";
+			if ($this->getColumnName($table, $tname)) {
+				$this->db->query("TRUNCATE " . DB_PREFIX . "product_master");
+				$this->db->query("TRUNCATE " . DB_PREFIX . "product_special_attribute");
+			} else {
+				$table = DB_PREFIX . "kjseries_links";
+				$tname = "parent_id";
+				if ($this->getColumnName($table, $tname)) {	
+					$this->db->query("TRUNCATE " . DB_PREFIX . "kjseries_links");
+				}
+			}	
 		}
 		
 		if ($data['command'] == 119) {			
-			if (!$data['act_filter_group_id']) return 32;
-			if (!$data['act_attribut']) return 34;
+			if (!$data['act_filter_group_id']) return 36;
+			if (!$data['act_attribut']) return 38;
 		}			
 
 		if ($data['command'] == 104) {		
-			if (!$data['act_filter_group_id']) return 32;			
+			if (!$data['act_filter_group_id']) return 36;			
 		}
 		
 		if ($data['command'] == 105) {			
-			if (!$data['act_filter_group_id']) return 32;
+			if (!$data['act_filter_group_id']) return 36;
 			if (!$data['act_change'] or !$data['act_find']) return 33;			
 			$this->checkFilter($this->FindReplace($data['act_find']), $data['act_filter_group_id'], $lang, $filter_id);
 			$filter_old = $filter_id; 
@@ -11282,7 +13850,7 @@ class ModelCatalogSuppler extends Model {
 		
 		if ($data['command'] == 27) {
 			$path = "../image1/";
-			if (!is_dir($path)) return 29;
+			if (!is_dir($path)) return 34;
 			$file_sos    = "./uploads/sos.tmp";
 			if (!file_exists ($file_sos)) {
 				$row = $this->getMaxOptionValueID();
@@ -11324,7 +13892,8 @@ class ModelCatalogSuppler extends Model {
 		}
 	
 		if ($data['command'] == 86) {
-			if (isset($data['act_cat'])) $this->FixDesCategoryOne($seo_data, $store, $data['act_cat']);
+			if (!isset($data['act_cat'])) $data['act_cat'][0] = 0;
+			$this->FixDesCategoryOne($seo_data, $store, $data['act_cat']);
 			return 0;
 		}
 		
@@ -11333,50 +13902,71 @@ class ModelCatalogSuppler extends Model {
 			return 0;
 		}
 		if ($data['command'] == 85) {
-			if (isset($data['act_cat'])) $this->FixMetaCategoryOne($seo_data, $store, $data['act_cat']);
+			if (!isset($data['act_cat'])) $data['act_cat'][0] = 0;
+			$this->FixMetaCategoryOne($seo_data, $store, $data['act_cat']);
 			return 0;
 		}
 		if ($data['command'] == 154) {
-			$this->FillMetaCategory($seo_data, $store);
+			if (!isset($data['act_cat'])) $data['act_cat'][0] = 0;
+			$this->FillMetaCategory($seo_data, $store, $data['act_cat']);
 			return 0;
 		}
 		if ($data['command'] == 31) {
-			$this->FixMetaCategory($seo_data, $store);
+			$this->delOffCategory();
+			return 0;
+		}		
+		if ($data['command'] == 229) {
+			if (!isset($data['act_manuf'])) $data['act_manuf'][0] = 0;
+			$this->FixMetaManufacturerSelected($seo_data, $store, $data['act_manuf']);
 			return 0;
 		}
-		if ($data['command'] == 32) {
-			$this->FixMetaManufacturer($seo_data, $store);
+		if ($data['command'] == 230) {
+			$this->RemoveEmptyManufacturers();
 			return 0;
 		}
 		if ($data['command'] == 57) {
-			$this->FixURLCategory($seo_data, $store);
+			if (!isset($data['act_cat'])) $data['act_cat'][0] = 0;
+			$this->FixURLCategory($seo_data, $store, $data['act_cat']);
+			return 0;
+		}
+		if ($data['command'] == 218) {
+			$this->FillURLCategory($seo_data, $store);
+			return 0;
+		}
+		if ($data['command'] == 219) {
+			$this->FillURLManufacturer($seo_data, $store);
+			return 0;
+		}
+		if ($data['command'] == 224)  {
+			if (!isset($data['act_manuf'])) $data['act_manuf'][0] = 0;
+			$this->FillMetaManufacturer($seo_data, $store, $data['act_manuf']);
 			return 0;
 		}
 		if ($data['command'] == 58) {
-			$this->FixURLManufacturer($seo_data, $store);
+			if (!isset($data['act_manuf'])) $data['act_manuf'][0] = 0;
+			$this->FixURLManufacturer($seo_data, $store, $data['act_manuf']);
 			return 0;
 		}
 		if ($data['command'] == 156) {
 			$this->uniqueCatManuf($store);
 			return 0;
 		}		
-		if ($data['command'] == 49) {
-			$this->FixDescCategory($seo_data, $store);
-			return 0;
-		}
-		
+				
 		if ($data['command'] == 50) {
-			$this->FixDescManufacturer($seo_data, $store);
+			if (!isset($data['act_manuf'])) $data['act_manuf'][0] = 0;
+			$this->FixDescManufacturer($seo_data, $store, $data['act_manuf']);
 			return 0;
 		}
 		
 		if ($data['command'] == 52) {
-			$this->FillDescCategory($seo_data, $store);
+			if (!isset($data['act_cat'])) $data['act_cat'][0] = 0;
+			$this->FillDescCategory($seo_data, $store, $data['act_cat']);
 			return 0;
 		}
 		
 		if ($data['command'] == 53) {
-			$this->FillDescManufacturer($seo_data, $store);
+			if (!isset($data['act_manuf'])) $data['act_manuf'][0] = 0;
+			$this->FillDescManufacturer($seo_data, $store, $data['act_manuf']);
 			return 0;
 		}
 		
@@ -11409,7 +13999,7 @@ class ModelCatalogSuppler extends Model {
 	//	$table_sku = $this->getTable();		
 
 		$path = "./uploads/";		
-		if (!is_dir($path)) return 30;
+		if (!is_dir($path)) return 26;
 
 		if ($data['command'] == 47) {
 			$row = $this->getMaxAttributeID();
@@ -11419,7 +14009,7 @@ class ModelCatalogSuppler extends Model {
 			$was_timelimit = 0;
 			if (!file_exists ($file_sos)) {
 				$sos = fopen($file_sos,'w+');
-				if (!$sos) { @fclose($sos); return 2;}
+				if (!$sos) { @fclose($sos); return 5;}
 				chmod($file_sos, 0777);
 				@fclose($sos);
 				$pid = 0;				
@@ -11435,7 +14025,7 @@ class ModelCatalogSuppler extends Model {
 				$row = $this->isAttribute($i);
 				if (!empty($row)) {
 					$e = $this->putsos($i, '');
-					if ($e < 0) return 2;	
+					if ($e < 0) return 5;	
 					$rows = $this->isProductByAttribute($i);
 					if (empty($rows)) $this->DelAttribute($i);
 				}
@@ -11487,12 +14077,12 @@ class ModelCatalogSuppler extends Model {
 				$str_table = serialize($table);
 				if (fwrite($tab, $str_table) === false) {
 					@fclose($tab);
-					return 26;
+					return 32;
 				}	
 				@fclose($tab);
 
 				$sos = fopen($file_sos,'w+');
-				if (!$sos) { @fclose($sos); return 2;}
+				if (!$sos) { @fclose($sos); return 5;}
 				chmod($file_sos, 0777);
 				@fclose($sos);
 				$row = $this->getMinID();
@@ -11507,9 +14097,9 @@ class ModelCatalogSuppler extends Model {
 				@fclose($sos);
 				
 				$tab = fopen($file_table,'rb');
-				if(!$tab) return 27;
+				if(!$tab) return 32;
 				$table = unserialize(fread($tab, filesize($file_table)));	
-				if (empty($table)) return 26;
+				if (empty($table)) return 32;
 			}	
 			
 			$row = $this->getMaxID();
@@ -11519,7 +14109,7 @@ class ModelCatalogSuppler extends Model {
 				if (empty($row)) continue;
 					
 				$e = $this->putsos($k, '');
-				if ($e < 0) return 2;	
+				if ($e < 0) return 5;	
 				
 				$rows = $this->getAttrib($row['product_id']);
 				foreach ($rows as $r){			
@@ -11547,7 +14137,7 @@ class ModelCatalogSuppler extends Model {
 		if ($data['command'] == 15) {	
 			$file_con  = "./uploads/conv.xml"; 
 			$con = @fopen($file_con,'r');			
-			if (!$con) return 25;
+			if (!$con) return 31;
 						
 			$st = '';
 			$j = 0;
@@ -11623,7 +14213,7 @@ class ModelCatalogSuppler extends Model {
 			if (!file_exists($path)) {
 				$file_ex    = "./uploads/ex.xml";					
 				$ex = @fopen($file_ex,'w+');			
-				if (!$ex) return 3;
+				if (!$ex) return 28;
 				$this->StartEx($ex);			
 			
 				for ($j=0; $j<24; $j++) {
@@ -11690,7 +14280,7 @@ class ModelCatalogSuppler extends Model {
 			if (!file_exists($path)) {
 				$file_ex    = "./uploads/ex.xml";					
 				$ex = @fopen($file_ex,'w+');			
-				if (!$ex) return 3;
+				if (!$ex) return 28;
 				$this->StartEx($ex);			
 			
 				$st = ' <Column ss:AutoFitWidth="0" ss:Width="80"/>'."\n";
@@ -11748,9 +14338,9 @@ class ModelCatalogSuppler extends Model {
 
 		if 	($data['command'] == 26) {
 			$file_ex  = "./uploads/attribute.xml";
-			if (!file_exists($file_ex)) return 26;
+			if (!file_exists($file_ex)) return 23;
 			$ex = @fopen($file_ex,'r');			
-			if (!$ex) return 26;		
+			if (!$ex) return 23;		
 			
 			$st = '';			
 			$k = -1;
@@ -11809,7 +14399,7 @@ class ModelCatalogSuppler extends Model {
 						if ($posb3 < $posb) {
 							$posb = $posb3;
 							$a = '"';						
-						}	
+						}
 						if ($posb != 999)	{					
 							$posb = strpos($st, $a , $posb) +1;
 							if ($posb < 0) continue;
@@ -11844,9 +14434,9 @@ class ModelCatalogSuppler extends Model {
 				$tab = fopen($file_table,'w+b');				
 				@fclose($tab);
 			} else {
-				if (!file_exists($file_table)) return 27;
+				if (!file_exists($file_table)) return 32;
 				$tab = fopen($file_table,'rb');
-				if(!$tab) return 27;
+				if(!$tab) return 32;
 				$l = filesize($file_table);
 				if ($l) $masatt = unserialize(fread($tab, $l));
 				@fclose($tab);
@@ -11854,7 +14444,7 @@ class ModelCatalogSuppler extends Model {
 			if (!file_exists($path)) {			
 				$file_ex    = "./uploads/ex.xml";					
 				$ex = @fopen($file_ex,'w+');			
-				if (!$ex) return 3;
+				if (!$ex) return 28;
 				$this->StartEx($ex);				
 				for ($j=0; $j<2003; $j++) {
 					$st = ' <Column ss:AutoFitWidth="0" ss:Width="82"/>'."\n";
@@ -11883,25 +14473,27 @@ class ModelCatalogSuppler extends Model {
 			}
 		}
 				
-		if 	($data['command'] == 12 or $data['command'] == 88 or $data['command'] == 120 or $data['command'] == 136 or $data['command'] == 178) {		
-				$nf = 12;
+		if 	($data['command'] == 12 or $data['command'] == 88 or $data['command'] == 120 or $data['command'] == 136 or $data['command'] == 178 or $data['command'] == 220) {		
+				$nf = 12;		
 				$allOptions = array();
 				$rows = $this->getOptions();
 				$max_options = 0;				
 				foreach ($rows as $value) {
 					$max_options++;
-					$allOptions[$max_options] = $value['option_id'];
-					}
+					$allOptions[$max_options] = $value['option_id'];	
+				}
 				$max_opt7 = $max_options*7;
 				
 				$path = "./uploads/ex.xml";
 				if (!file_exists($path)) {
 					$file_ex    = "./uploads/ex.xml";					
 					$ex = @fopen($file_ex,'w+');			
-					if (!$ex) return 3;
+					if (!$ex) return 28;
 					$this->StartEx($ex);
 					$kk = 20;
 					if ($data['command'] == 178) $kk = 10;
+					if ($data['command'] == 220) $kk = 9;
+					if ($data['command'] == 120) $kk = 21;
 					for ($j=1; $j<$kk; $j++) {
 						$st = ' <Column ss:AutoFitWidth="0" ss:Width="100"/>'."\n";
 						@fputs($ex, $st);
@@ -11915,7 +14507,7 @@ class ModelCatalogSuppler extends Model {
 						@fputs($ex, $st);
 					}				
 				
-					if ($data['command'] != 120  and $data['command'] != 136) {
+					if ($data['command'] != 120  and $data['command'] != 136 and $data['command'] != 220) {
 						if ($data['command'] != 178) {
 							for ($j=1; $j<12; $j++) {
 								$st = ' <Column ss:StyleID="s16" ss:AutoFitWidth="0" ss:Width="100"/>'."\n";
@@ -11956,7 +14548,7 @@ class ModelCatalogSuppler extends Model {
 					}
 					$st = '<Row>'."\n";
 					@fputs($ex, $st);
-					if ($data['command'] != 178) {
+					if ($data['command'] != 178 and $data['command'] != 220) {
 						$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">Sort Order</Data></Cell>'."\n";
 						@fputs($ex, $st);
 						$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">Product Code</Data></Cell>'."\n";
@@ -11964,12 +14556,12 @@ class ModelCatalogSuppler extends Model {
 					}	
 					$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">Main SKU</Data></Cell>'."\n";
 					@fputs($ex, $st);
-					if ($data['command'] != 178) {
+					if ($data['command'] != 178 and $data['command'] != 220 and $data['command'] != 120) {
 						$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">UPC</Data></Cell>'."\n";
 						@fputs($ex, $st);				
 						$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">EAN</Data></Cell>'."\n";
 						@fputs($ex, $st);						
-						$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">JAN</Data></Cell>'."\n";
+						$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">JAN or ParentSerie</Data></Cell>'."\n";
 						@fputs($ex, $st);
 						$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">ISBN</Data></Cell>'."\n";
 						@fputs($ex, $st);
@@ -11982,14 +14574,16 @@ class ModelCatalogSuppler extends Model {
 					@fputs($ex, $st);
 					$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">Category</Data></Cell>'."\n";
 					@fputs($ex, $st);
-					$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">Parent Category</Data></Cell>'."\n";
-					@fputs($ex, $st);
-					$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">Parent Category</Data></Cell>'."\n";
-					@fputs($ex, $st);
-					$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">Parent Category</Data></Cell>'."\n";
-					@fputs($ex, $st);
-					$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">Parent Category</Data></Cell>'."\n";
-					@fputs($ex, $st);					
+					if ($data['command'] != 120 and $data['command'] != 220) {
+						$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">Parent Category</Data></Cell>'."\n";
+						@fputs($ex, $st);
+						$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">Parent Category</Data></Cell>'."\n";
+						@fputs($ex, $st);
+						$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">Parent Category</Data></Cell>'."\n";
+						@fputs($ex, $st);
+						$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">Parent Category</Data></Cell>'."\n";
+						@fputs($ex, $st);
+					}	
 					$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">Quantity</Data></Cell>'."\n";
 					@fputs($ex, $st);
 					$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">Price</Data></Cell>'."\n";
@@ -12003,7 +14597,7 @@ class ModelCatalogSuppler extends Model {
 					$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">Main photo</Data></Cell>'."\n";
 					@fputs($ex, $st);
 				
-					if ($data['command'] != 120 and $data['command'] != 136) {
+					if ($data['command'] != 136) {
 						for ($j=1; $j<=$nf; $j++) {
 							$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">Photo'.$j.'</Data></Cell>'."\n";
 							@fputs($ex, $st);
@@ -12011,7 +14605,7 @@ class ModelCatalogSuppler extends Model {
 					}
 					$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">Manufacturer</Data></Cell>'."\n";
 					@fputs($ex, $st);
-					if ($data['command'] != 178) {
+					if ($data['command'] != 178 and $data['command'] != 220) {
 						$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">Weight</Data></Cell>'."\n";
 						@fputs($ex, $st);
 						$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">Length</Data></Cell>'."\n";
@@ -12033,7 +14627,7 @@ class ModelCatalogSuppler extends Model {
 						$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">URL</Data></Cell>'."\n";
 						@fputs($ex, $st);
 					}
-					if ($data['command'] != 120 and $data['command'] != 136) {
+					if ($data['command'] != 120 and $data['command'] != 136 and $data['command'] != 220) {
 						if ($data['command'] != 178) {
 							$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">Photo for Category</Data></Cell>'."\n";
 							@fputs($ex, $st);
@@ -12098,6 +14692,7 @@ class ModelCatalogSuppler extends Model {
 							$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">Base Price</Data></Cell>'."\n";
 							@fputs($ex, $st);
 						}
+				
 						for ($j=1; $j<=$max_options; $j++) {					
 							$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">OPTION'.$j.'-&gt;</Data></Cell>'."\n";
 							@fputs($ex, $st);
@@ -12120,7 +14715,7 @@ class ModelCatalogSuppler extends Model {
 								$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">Attribute Value</Data></Cell>'."\n";
 								@fputs($ex, $st);
 							}
-						} elseif ($data['command'] != 178) {
+						} elseif ($data['command'] != 178 and $data['command'] != 220) {
 							for ($j=1; $j<=$max_a; $j++) {						
 								$st = ' <Cell ss:StyleID="s20"><Data ss:Type="String">'.'Attribute Name'.'</Data></Cell>'."\n";
 								@fputs($ex, $st);
@@ -12146,7 +14741,7 @@ class ModelCatalogSuppler extends Model {
 			@fclose($sos);
 		} else {
 			$sos = @fopen($file_sos,'w+');
-			if (!$sos) { @fclose($sos); return 2;}
+			if (!$sos) { @fclose($sos); return 5;}
 			chmod($file_sos, 0777);
 			$row = $this->getMinID();
 			$pid = $row['min(product_id)']-1;		
@@ -12224,7 +14819,7 @@ class ModelCatalogSuppler extends Model {
 					else return;
 				}			
 				
-				if (($data['command'] >= 106 and $data['command'] <= 108) or $data['command'] == 186 or ($data['command'] >= 189 and $data['command'] <= 192) or ($data['command'] >= 147 and $data['command'] <= 152) or $data['command'] == 198) {
+				if (($data['command'] >= 106 and $data['command'] <= 108) or $data['command'] == 186 or ($data['command'] >= 189 and $data['command'] <= 192) or ($data['command'] >= 147 and $data['command'] <= 152) or $data['command'] == 198 or $data['command'] == 221 or $data['command'] == 227 or $data['command'] == 228) {
 					if (empty($data['act_find'])) return;					
 					$rows = $this->getAttributeID($data['act_find']);	
 					if (empty($rows)) return;
@@ -12283,15 +14878,14 @@ class ModelCatalogSuppler extends Model {
 					if (!empty($rows)) $Anoattribute_idf = $rows[0]['attribute_id'];
 					else return;
 				}	
-			}	
+			}
 			
 			$p = strrpos($row['model'], "-");
 			if (!$p) $p = strrpos($row['model'], "~");
 			
 			if (!$data['cod-id']) { 
-				if ((preg_match('/^[0-9-~]+$/', $row['model']) and $p > 0) or 
-					(substr_count($row['model'], 'Series') and $p > 0)) {				
-					$sup = substr($row['model'], $p+1, 2);
+				if ($p > 0) {				
+					$sup = substr($row['model'], $p+1);
 					$number = substr($row['model'], 0, $p);
 					
 					if (!empty ($data['cod_from']) and (int)$data['cod_from'] > (int)$number) continue;
@@ -12303,7 +14897,7 @@ class ModelCatalogSuppler extends Model {
 				}
 			} else {
 				$sup = 0;
-				if ($p > 0) $sup = substr($row['model'], $p+1, 2);
+				if ($p > 0) $sup = substr($row['model'], $p+1);
 				if (!empty ($data['cod_from']) and (int)$data['cod_from'] > (int)$row['product_id']) continue;
 				if (!empty ($data['cod_to']) and (int)$data['cod_to'] < (int)$row['product_id']) continue;
 				if ((int)$data['all'] == 0 and $id != (int)$sup) continue;
@@ -12521,18 +15115,10 @@ class ModelCatalogSuppler extends Model {
 				if ($data['isattribute'] == 2 and !empty($rows)) continue;
 			}
 			
-			if ($data['emopt']) {
-				$rows = $this->isProductOption($row['product_id']);
-				if (empty($rows)) continue;
-				$f = 0;
-				for ($ii=0; $ii<900; $ii++) {
-					if (!isset($rows[$ii]['quantity'])) break;
-					if (empty($rows[$ii]['quantity'])) {
-						$f = 1;
-						break;
-					}
-				}
-				if (!$f) continue;
+			if ($data['emopt']) {    //  is category
+				$rows = $this->getProductCategory($row['product_id']);
+				if (empty($rows) and $data['emopt'] == 1) continue;
+				if (!empty($rows) and $data['emopt'] == 2) continue;
 			}	
 	
 			if ($data['isoptions']) {
@@ -12554,9 +15140,10 @@ class ModelCatalogSuppler extends Model {
 				}
 			}
 			
-			if ($data['isphoto']) {	
-				if ($data['isphoto'] == 1 and (empty($row['image']) or !file_exists("../image/" .$row['image']))) continue;
-				if ($data['isphoto'] == 2 and (!empty($row['image']) and file_exists("../image/" .$row['image']))) continue;
+			if ($data['isphoto']) {				
+				if ($data['isphoto'] == 1 and (empty($row['image']) or !file_exists("../image/" .$row['image']) or substr_count($row['image'], 'no_photo'))) continue;
+				if ($data['isphoto'] == 2 and !empty($row['image']) and file_exists("../image/" .$row['image']) and
+				!substr_count($row['image'], 'no_photo')) continue;				
 			}
 			
 			if ($data['act_sname']) {						
@@ -12615,7 +15202,7 @@ class ModelCatalogSuppler extends Model {
 					break;
 				case 6: $n = (int)$data['act_find'];
 					$row['quantity']	= $n;
-					if (!$n) $row['sort_order'] = $row['sort_order'] + 1000;
+					if (!$n and $row['sort_order'] < 1000) $row['sort_order'] = $row['sort_order'] + 1000;
 					$this->upProduct($row);
 					break;
 				case 7: if (!$data['zact_cat']) return;	
@@ -12688,6 +15275,9 @@ class ModelCatalogSuppler extends Model {
 					if (!empty($rows)) $name = $rows[0]['name'];
 				    $this->Same($row['model'], $row['sku'], $name, $category_id, $row['manufacturer_id'], $row['price'], $store);					 
 					break;
+				case 32:
+					$this->addToTagsText($row['product_id'], $this->FindReplace($data['act_find']));				
+					break;	
 				case 33:
 					$err = $this->DeleteSpecialPrice($row['product_id']);					
 					break;	
@@ -12719,6 +15309,8 @@ class ModelCatalogSuppler extends Model {
 				    break;
 				case 48: $this->weight($row['product_id'], $data['act_find']);
 				    break;
+				case 49: $this->db->query("UPDATE `" . DB_PREFIX . "product` SET `subtract` = '". 1 . "' WHERE `product_id` = '" . $row['product_id'] . "'");
+				    break;	
 				case 51: $this->fillDescProduct($store, $row, $seo_data);
 					break;
 				case 54: $this->fixDescProduct($store, $row, $seo_data);
@@ -12885,7 +15477,7 @@ class ModelCatalogSuppler extends Model {
 					break;
 				case 129: $this->deleteTheAttribute($row['product_id'], $this->FindReplace($data['act_find']));
 					break;
-				case 130: $this->addToTags($row['product_id'], $this->FindReplace($data['act_find']), $this->FindReplace($data['act_change']));
+				case 130: $this->addToTags($row, $this->FindReplace($data['act_find']), $this->FindReplace($data['act_change']));
 					break;
 				case 131: $this->deleteDescPhoto($row['product_id'], $store);
 					break;
@@ -12963,7 +15555,7 @@ class ModelCatalogSuppler extends Model {
 					break;
 				case 185: $this->db->query("DELETE FROM " . DB_PREFIX . "product_related WHERE product_id = '" . $row['product_id'] . "'");
 					break;	
-				case 186: $this->addAttribute($row['product_id'], $Aattribute_id, $data['act_change']);
+				case 186: $this->addAttribute($row, $Aattribute_id, $data['act_change']);
 					break;
 				case 187: $this->setDateEndSpecial($row['product_id'], $data['act_find']);
 					break;	
@@ -13005,13 +15597,39 @@ class ModelCatalogSuppler extends Model {
 					break;
 				case 209: $this->copyH1toName($row['product_id']);
 					break;
-				case 210: $this->addtoName($row['product_id'], $this->FindReplace($data['act_find']));
+				case 210: $this->addtoName($row, $this->FindReplace($data['act_find']));
 					break;
 				case 213: $this->changeEmptyPhoto($row, $data['act_find']);
+					break;
+				case 221: $this->copySKUAttribute($row, $Aattribute_id);
+					break;
+				case 222: $this->copyLoc_Model($row);
+					break;
+				case 223: $this->cyrilicDecodeFolder($row);
+					break;
+				case 225: $this->BonusPercent($row, $data['act_find'], $data['act_change']);
+					break;
+				case 226: $this->removeAttGroup($row['product_id'], $data['act_find']);
+					break;
+				case 227: $this->copyAttr_ISBN($row['product_id'], $Aattribute_id);
+					break;
+				case 228: $this->copyAttr_EAN($row['product_id'], $Aattribute_id);
+					break;
+				case 231: $this->deleteTags($row['product_id']);
+					break;
+				case 232: $this->optQu($row['product_id'], $data['act_find']);
+					break;
+				case 233: $this->zeroDiscountPrice($row['product_id'], $data['act_find']);
+					break;	
+				case 234: $this->findReplaceProductMeta($row['product_id'], $this->FindReplace($data['act_find']), $this->FindReplace($data['act_change']));
+					break;
+				case 236: $this->db->query("UPDATE `" . DB_PREFIX . "product` SET `subtract` = '". 0 . "' WHERE `product_id` = '" . $row['product_id'] . "'");
+					break;
+				case 240: $this->zeroQuDate($row);
 					break;	
 			}
 			
-			if (($data['command'] == 12 or $data['command'] == 88 or $data['command'] == 120 or $data['command'] == 136 or $data['command'] == 178)) {
+			if (($data['command'] == 12 or $data['command'] == 88 or $data['command'] == 120 or $data['command'] == 136 or $data['command'] == 178 or $data['command'] == 220)) {
 				$product_id = $row['product_id'];
 				$manufacturer_id = $row['manufacturer_id'];
 				
@@ -13052,7 +15670,7 @@ class ModelCatalogSuppler extends Model {
 				$status = 0;
 				if (!empty($row['status'])) $status = $row['status'];
 				
-				if ($data['command'] != 178) {
+				if ($data['command'] != 178 and $data['command'] != 220) {
 					$st = '';
 					if ($row['sort_order']) $st = $row['sort_order'];
 					$st = '<Cell><Data ss:Type="String">'.$st.'</Data></Cell>'."\n";
@@ -13070,7 +15688,7 @@ class ModelCatalogSuppler extends Model {
 				if ($row['sku']) $st = $row['sku'];
 				$st = '<Cell><Data ss:Type="String">'.$st.'</Data></Cell>'."\n";
 				@fputs($ex, $st);
-				if ($data['command'] != 178) {
+				if ($data['command'] != 178 and $data['command'] != 220 and $data['command'] != 120) {
 					$st = '';
 					if ($row['upc']) $st = $row['upc'];
 					$st = '<Cell><Data ss:Type="String">'.$st.'</Data></Cell>'."\n";
@@ -13081,6 +15699,20 @@ class ModelCatalogSuppler extends Model {
 					@fputs($ex, $st);
 					$st = '';
 					if (isset($row['jan']) and $row['jan']) $st = $row['jan'];
+					$table = DB_PREFIX . "special_attribute";
+					$tname = "special_attribute_group_id";
+					if ($this->getColumnName($table, $tname)) {
+						$row1 = $this->getMasterSerie($product_id);
+						if (isset($row1['master_product_id']) and !empty($row1['master_product_id'])) $st = $row1['master_product_id'];
+					}
+					$table = DB_PREFIX . "kjseries_links";
+					$tname = "parent_id";
+					if ($this->getColumnName($table, $tname)) {
+						$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "kjseries_links WHERE `product_id` = '" . $product_id . "'");
+				
+						if (isset($query->rows3[0]['parent_id']) and !empty($query->rows3[0]['parent_id']))
+							$st = $query->rows3[0]['parent_id'];
+					}
 					$st = '<Cell><Data ss:Type="String">'.$st.'</Data></Cell>'."\n";
 					@fputs($ex, $st);
 					$st = '';
@@ -13117,7 +15749,9 @@ class ModelCatalogSuppler extends Model {
 						break;
 					}
 					if ((int)$rows[$j]['category_id'] > $child) $child = $rows[$j]['category_id'];					
-				}					
+				}
+				
+				$pach = array();
 				if ($child) {
 					$pach[0] = $child;
 					for ($j=1; $j<5; $j++) {					
@@ -13128,7 +15762,9 @@ class ModelCatalogSuppler extends Model {
 					}	
 				}
 		
-				for ($j=0; $j<5; $j++) {
+				$kk = 5;
+				if ($data['command'] == 220 or $data['command'] == 120) $kk = 1;
+				for ($j=0; $j<$kk; $j++) {
 					$st = '';
 					if (isset($pach[$j])) {
 						$rows = $this->getCategoryName($pach[$j]);						
@@ -13136,8 +15772,9 @@ class ModelCatalogSuppler extends Model {
 					}
 					$st = $this->code($st);
 					$st = '<Cell><Data ss:Type="String">'.$st.'</Data></Cell>'."\n";
-					@fputs($ex, $st);
-				}	
+					@fputs($ex, $st);				
+				}
+				unset($pach);
 				
 				$st = '';
 				if (isset($row['quantity'])) $st = $row['quantity'];
@@ -13191,7 +15828,7 @@ class ModelCatalogSuppler extends Model {
 				$st = '<Cell ss:StyleID="s18"><Data ss:Type="String">'.HTTP_CATALOG."image/".$st.'</Data></Cell>'."\n";
 				@fputs($ex, $st);
 				
-				if ($data['command'] != 120 and $data['command'] != 136) {				
+				if ($data['command'] != 136) {				
 					$rows = $this->getProductImage($product_id);
 					for ($j=0; $j<$nf; $j++) {
 						$st = '';
@@ -13212,7 +15849,7 @@ class ModelCatalogSuppler extends Model {
 				$st = '<Cell><Data ss:Type="String">'.$st.'</Data></Cell>'."\n";
 				@fputs($ex, $st);
 				
-				if ($data['command'] != 178) {
+				if ($data['command'] != 178 and $data['command'] != 220) {
 					$st = '<Cell ss:StyleID="s21"><Data ss:Type="Number">'.$weight.'</Data></Cell>'."\n";
 					@fputs($ex, $st);			
 				
@@ -13226,8 +15863,8 @@ class ModelCatalogSuppler extends Model {
 					@fputs($ex, $st);
 				
 					$st = '';
-					if (isset($desc[0]['meta_h1'])) {
-						$st = $desc[0]['meta_h1'];
+					if (isset($desc[0]['seo_h1'])) {
+						$st = $desc[0]['seo_h1'];
 						$st = $this->code($st);
 					}
 					$st = '<Cell><Data ss:Type="String">'.$st.'</Data></Cell>'."\n";
@@ -13273,7 +15910,7 @@ class ModelCatalogSuppler extends Model {
 					@fputs($ex, $st);
 				}
 				
-				if ($data['command'] != 120 and $data['command'] != 136) {
+				if ($data['command'] != 120 and $data['command'] != 136 and $data['command'] != 220) {
 					if ($data['command'] != 178) {
 						for ($j=0; $j<5; $j++) {
 							$st = '';
@@ -13281,7 +15918,7 @@ class ModelCatalogSuppler extends Model {
 								$rows = $this->getCategoryPhoto($pach[$j]);						
 								if (!empty($rows)) {
 									$st = $rows[0]['image'];
-									$st = str_replace("catalog/", "", $st);
+									$st = str_replace("data/", "", $st);
 								}
 							}	
 							$st = '<Cell><Data ss:Type="String">'.$st.'</Data></Cell>'."\n";
@@ -13364,7 +16001,7 @@ class ModelCatalogSuppler extends Model {
 						$st = '';						
 						if (empty($rows)) {
 							$rows = $this->getProductOption($product_id, $allOptions[$j]);
-							if (!empty($rows)) $st = $rows[0]['value'];  // ['value']
+							if (!empty($rows)) $st = $rows[0]['option_value'];
 							
 						}					
 				
@@ -13471,7 +16108,7 @@ class ModelCatalogSuppler extends Model {
 						}				
 					}	
 				} else {
-					if ($data['command'] != 120 and $data['command'] != 136 and $data['command'] != 178) {
+					if ($data['command'] != 120 and $data['command'] != 136 and $data['command'] != 178 and $data['command'] != 220) {
 						$rows = $this->getAttributes($product_id);
 						for ($j=$cmd; $j<$max_a; $j++) {
 							$st = '';
@@ -13533,7 +16170,7 @@ class ModelCatalogSuppler extends Model {
 				if ($a) @unlink ($file_table1);
 			}
 			$e = $this->putsos($i, '');
-			if ($e < 0) return 2;			
+			if ($e < 0) return 5;			
 		}
 		$this->cache->delete('*');
 		
@@ -13543,7 +16180,7 @@ class ModelCatalogSuppler extends Model {
 			$this->changeFilter($find, $replace, $data['act_filter_group_id'], $lang);		
 		} 
 		
-		if 	($data['command'] == 77) return 31;
+		if 	($data['command'] == 77) return 35;
 		
 		if 	($data['command'] == 12) {
 			$kol_cell = 62 + $nf + $max_a*2 + $max_opt7;
@@ -13555,13 +16192,23 @@ class ModelCatalogSuppler extends Model {
 			$this->EndEx($kol_cell);			
 		}
 
-		if ($data['command'] == 120 or $data['command'] == 136) {
+		if ($data['command'] == 136) {
 			$kol_cell = 32;
+			$this->EndEx($kol_cell);			
+		}
+		
+		if ($data['command'] == 120) {
+			$kol_cell = 33;
 			$this->EndEx($kol_cell);			
 		}
 		
 		if ($data['command'] == 178) {
 			$kol_cell = 12 + $nf + $max_opt7;
+			$this->EndEx($kol_cell);
+		}
+		
+		if ($data['command'] == 220) {
+			$kol_cell = 21;
 			$this->EndEx($kol_cell);
 		}
 		
@@ -13580,7 +16227,7 @@ class ModelCatalogSuppler extends Model {
 		if 	($data['command'] == 25) {
 			$file_table = "./uploads/attribute.tmp";
 			$tab = fopen($file_table,'rb');
-			if(!$tab) return 27;
+			if(!$tab) return 32;
 			$l = filesize($file_table);
 			$masatt = unserialize(fread($tab, $l));
 			@fclose($tab);
@@ -13784,7 +16431,7 @@ class ModelCatalogSuppler extends Model {
 	
 	function curl_get_contents(&$url, $pi, $sleep, $ffile) {
 		$body = '';	
-		$url = $this->checkurl($url);	
+		$url = $this->checkurl($url, '');	
 		if ($url == -1) return $body;
 	
 		/* заменить в ссылке текст на текст	*/	
@@ -13852,7 +16499,7 @@ class ModelCatalogSuppler extends Model {
 		}		
 		
 		if ($pi) {
-			if (strlen($url) < 25) {
+			if (strlen($url) < 15) {
 				$err = " Incorrect link to photo \n";
 				$this->adderr($err);
 				return '';
@@ -13862,11 +16509,11 @@ class ModelCatalogSuppler extends Model {
 
 			/* заменить в ссылке на фото текст john на Sam */
 			$url = str_replace ("http://www.bosch-pt.com/", "http://www.bosch-pt.com/ru/ru/accocs/", $url);
-			$url = str_replace ("john", "Sam", $url);
+	//		$url = str_replace ("john", "Sam", $url);
 			$url = str_replace ("small", "big", $url);
 	
-			$body = @file_get_contents($url);					
-			if ($this->isPicture($body)) return $body;
+	//		$body = @file_get_contents($url);					
+	//		if ($this->isPicture($body)) return $body;
 		}		
 		
 		for ($r=0; $r<5; $r++) {    // здесь установлено количество редиректов
@@ -14006,7 +16653,7 @@ class ModelCatalogSuppler extends Model {
 				if (!$posb) return;
 			}
 			if (!empty($points[1]))	{
-				$pose = strpos($ht, $points[1], $posb);
+				$pose = strpos($ht, $points[1], $posb+strlen($points[0]));
 				$h = substr($ht, $posb+strlen($points[0]), $pose-$posb-strlen($points[0]));
 			} else $h = substr($ht, $posb+strlen($points[0]));
 			$lim = strlen($h);
@@ -14027,17 +16674,17 @@ class ModelCatalogSuppler extends Model {
 				$a = $this->symbol($a);
 				$a = str_replace("&nbsp;", " ", $a);
 				
-		/*                                        Вырезать из значения опции текст от символа ( до символа )
+		/*                                        Вырезать из значения опции текст от символа ( до символа ) 
 				$first = 0;
 				$second = 0;
-				$first = stripos($a, "(", 0);
-				if ($first) $second = stripos($a, ")", $first);
+				$first = stripos($a, "for", 0);
+				$second = stripos($a, ">", $first);
 				if ($second) {
 					$a1 = substr($a, 0, $first);
 					$a2 = substr($a, $second+1);
 					$a = $a1.$a2;
-				}
-		                                          конец вырезания */
+				} 
+		                                        конец вырезания  */
 				$a = trim($a);
 				$maso[$i] = $a;
 				$posa = $pe + $lk11;
@@ -14074,6 +16721,7 @@ class ModelCatalogSuppler extends Model {
 	public function attImage(&$text, $row_count, $url, $sleep, $ffile) {
 		if (empty($text)) return;
 		$spath = "catalog/attribute/";
+		$text = str_replace("&amp;quot;", '"', $text);
 		$text = str_replace("&quot;", '"', $text);
 		$text = str_replace("&#039;", '"', $text);
 		$text = str_replace("&#39;", '"', $text);
@@ -14136,47 +16784,14 @@ class ModelCatalogSuppler extends Model {
 			}
 				
 			$url = $im;
-			$url = $this->checkurl($url);	
+			$url = $this->checkurl($url, '');	
 			if ($url == -1) $this->delRefer($text, $pos, $epos);				
-			$ise = ".jpg";
-			$nom = stripos($url, ".jpg");
-			if (!$nom) {
-				$nom = strrpos($url, ".jpeg");
-				if ($nom) $ise = ".jpeg";
-			}
-			if (!$nom) {
-				$nom = strrpos($url, ".png");
-				if ($nom) $ise = ".png";
-			}	
-			if (!$nom) {
-				$nom = strrpos($url, ".PNG");
-				if ($nom) $ise = ".png";
-			}
-			if (!$nom) {
-				$nom = strrpos($url, ".gif");
-				if ($nom) $ise = ".gif";
-			}
-			if (!$nom) {
-				$nom = strrpos($url, ".GIF");
-				if ($nom) $ise = ".gif";
-			}
-			if (!$nom) {
-				$nom = strrpos($url, ".bmp");
-				if ($nom) $ise = ".bmp";
-			}
-			if (!$nom) {
-				$nom = strrpos($url, ".BMP");
-				if ($nom) $ise = ".bmp";
-			}
-				
-			$a = strlen($url);
-			if (!$nom or $a - $nom > 5) {
-				$se = $ise;
-				$nom = $a;
-			} else $se = substr($url, $nom);										
+			$se = $this->getSe($url, $nom);
 			$app = substr($url, 0, $nom);
-			$nom = strpos($app, ".");
-			$app = substr($app, $nom+7);
+			if (substr_count($app, "/")) {
+				$nom = strpos($app, ".");
+				$app = substr($app, $nom+7);
+			}	
 			$app = $this->TransLit($app);
 			$nom = strlen($app);										
 			if ($nom > 250) $app = substr($app, $nom-250, 250);
@@ -14313,7 +16928,7 @@ class ModelCatalogSuppler extends Model {
 							if ($lk3) {
 								$posv = $posv + $lk2;								
 								$pe = stripos($h, $k[3], $posv);
-							} else $pe = stripos($h, $k[2], $posv);	
+							} else $pe = stripos($h, $k[2], $posv);
 							if (!$pe) break;
 							$le = $pe - $posv;						
 							$v = substr($h, $posv, $le);							
@@ -14334,8 +16949,8 @@ class ModelCatalogSuppler extends Model {
 								$v = str_replace('&amp;', '&',$v);
 								$v = str_replace('&#13;', '',$v);
 								$v = str_replace('&#14;', '',$v);															
-								if ($photo_att == 1) $text[$i]['val'] = strip_tags($v, '<img><em><i><b><strong>');
-								else $text[$i]['val'] = strip_tags($v, '<em><i><b><strong>');
+								if ($photo_att == 1) $text[$i]['val'] = strip_tags($v, '<img>');
+								else $text[$i]['val'] = strip_tags($v);
 								$any = '';
 								$any = '<li class="slidemenuItem">';   // удалить из атрибута все такие тексты			
 								$text[$i]['val'] = $this->delAny($text[$i]['val'], $any);
@@ -14524,25 +17139,28 @@ class ModelCatalogSuppler extends Model {
 				$k[2] = '';
 			}
 			if (!$place) {
-				$pr = $this->Parsing($ht, $k, $point, 1);
-				preg_match_all('/\d+(?:[\., ]\d+)?/', $pr, $mas);
+				$pr = $this->Parsing($ht, $k, $point, 1);	
+				$pr = preg_replace('/[^<>=.a-zа-яё\d]/ui', '', $pr);				
+	
+				preg_match_all('/((?:[0-9]+, )*[0-9]+(?:\.[0-9]+)?)/', $pr, $mas);	
 				$d = 0;
 				if (isset($mas[0]) and isset($mas[0][0])) {
 					$d = count($mas[0]);
 					$pr = $mas[0][0];
-				}
+				}	
 				if ($n and $d) {
 					if (isset($mas[0][$n-1])) $pr =	$mas[0][$n-1];
 					else $pr = 	$mas[0][$d-1];
-				}
-				$pr = $this->convertPrice($pr);	
+				}				
+				$pr = $this->convertPrice($pr);		
 			} else {				
 				$l = 0;
 				for ($i=1; $i<20; $i++) {
 					$pr = 0;
 					$a = $this->Parsing($ht, $k, $point, $i);
+					$a = preg_replace('/[^<>=.a-zа-яё\d]/ui', '', $a);
 					if ($a) {
-						preg_match_all('/\d+(?:[\., ]\d+)?/', $a, $mas);
+						preg_match_all('/((?:[0-9]+, )*[0-9]+(?:\.[0-9]+)?)/', $a, $mas);
 						$d = 0;
 						if (isset($mas[0]) and isset($mas[0][0])) {
 							$d = count($mas[0]);
@@ -14761,29 +17379,32 @@ class ModelCatalogSuppler extends Model {
 		$text = $text1 . $text2;		
 	}
 	
-	public function descImage(&$text, $row_count, $url, $sleep, $ffile) {
+	public function descImage(&$text, $row_count, $url, $sleep, $ffile, $my_photo) {
 		if (empty($text)) return;
+		$dd = 1;
+		if (empty($url)) $dd = 0;
 		$spath = "catalog/description/";
-		$text = str_replace("&quot;", '"', $text);
-		$text = str_replace("&#039;", '"', $text);
-		$text = str_replace("&#39;", '"', $text);
+		$text = str_replace('&quot;', '"', $text);
+		$text = str_replace('&#039;', '"', $text);
+		$text = str_replace('&#39;', '"', $text);
+	
 		$pos = -1;		
 		for ($i=0; $i<50; $i++) {
 			$path = '';
 			$fpath = '';
 			$ppath = '';	
-			$pos1 = stripos($text, '<img', $pos+1);			
+			$pos1 = stripos($text, '<img', $pos+1);	
 			if ($pos1 or ($i == 0 and $pos1 == 0)) {
 				if ($pos > $pos1) break;
 				$pos = $pos1;
 				$epos = 0;
 				$epos = stripos($text, '>', $pos+1);				
 				$kav = stripos($text, 'src', $pos+1);	
-				if (!$kav) $kav = stripos($text, "ref", $pos+1);
+				if (!$kav) $kav = stripos($text, "ref", $pos+1);	
 				if (!$kav and $epos) {
 					$this->delRefer($text, $pos, $epos-$pos+1);
 					continue;
-				}	
+				}
 				$ekav = stripos($text, '"', $kav+8);				
 				if (!$ekav) {
 					$ekav = stripos($text, ".jpg", $kav+8);
@@ -14804,7 +17425,7 @@ class ModelCatalogSuppler extends Model {
 					continue;
 				}
 	
-				$im = substr($text, $bkav+1, $ekav-$bkav-1);
+				$im = substr($text, $bkav+1, $ekav-$bkav-1);				
 				$width = "180";
 				$height= "180";
 				$title = "";
@@ -14841,7 +17462,7 @@ class ModelCatalogSuppler extends Model {
 						if (!$c) $c = stripos($t, "'", $b+1);
 						if ($c) $height = trim(substr($t, $b+1, $c-$b-1));	
 					}	
-				}
+				}			
 				
 				$alt = "";
 				$title = "";				
@@ -14865,73 +17486,52 @@ class ModelCatalogSuppler extends Model {
 						if (!$c) $c = stripos($t, "'", $b+1);
 						if ($c) $title = substr($t, $b+1, $c-$b-1);
 					}	
-				}
-				
-				if (!substr_count($im, "http")) {							
-					$pe = strpos($url, "//");
-					if ($pe) $pe = $pe + 2;
-					$pe = strpos($url, "/", $pe);
-					$a = substr($url, 0, $pe);							
-					if (substr($im, 0 ,1) != "/") $im = '/'.$im;
-					if (substr($im, 0 ,2) == "//") $im = substr($im, 2);						
-					else {	
-						$im = $a.$im;
-						$im = str_replace ("../", "", $im);
-						$im = str_replace ("./", "", $im);
+				}		
+	
+				$rout = 0;
+				if (!$dd) {
+					if (substr($im, 0, 1) == '/') $im = substr($im, 1);		
+					if (substr($im, 0, 7) == 'catalog') $rout = 1;
+					else {
+						if (substr($im, 0, 13) == 'image/catalog') {
+							$im = substr($im, 6);	
+							$rout = 1;
+						}
 					}	
-				} else {
-					$pe = strpos($im, "//");
-					if ($pe) $pe = $pe + 2;
-					$pe = strpos($im, "/", $pe);
-					if (substr($im, $pe+1, 1) == ".") {
-						$im = str_replace ("../", "", $im);
-						$im = str_replace ("./", "", $im);
+				} else {				
+					if (!substr_count($im, "http")) {							
+						$pe = strpos($url, "//");
+						if ($pe) $pe = $pe + 2;
+						$pe = strpos($url, "/", $pe);
+						$a = substr($url, 0, $pe);							
+						if (substr($im, 0 ,1) != "/") $im = '/'.$im;
+						if (substr($im, 0 ,2) == "//") $im = substr($im, 2);						
+						else {	
+							$im = $a.$im;
+							$im = str_replace ("../", "", $im);
+							$im = str_replace ("./", "", $im);
+						}	
+					} else {
+						$pe = strpos($im, "//");
+						if ($pe) $pe = $pe + 2;
+						$pe = strpos($im, "/", $pe);
+						if (substr($im, $pe+1, 1) == ".") {
+							$im = str_replace ("../", "", $im);
+							$im = str_replace ("./", "", $im);
+						}
 					}
 				}
-				
 				$url = $im;
 	
-				$url = $this->checkurl($url);	
-				if ($url == -1) $this->delRefer($text, $pos, $epos);				
-				$ise = ".jpg";
-				$nom = stripos($url, ".jpg");
-				if (!$nom) {
-					$nom = strrpos($url, ".jpeg");
-					if ($nom) $ise = ".jpeg";
-				}
-				if (!$nom) {
-					$nom = strrpos($url, ".png");
-					if ($nom) $ise = ".png";
-				}	
-				if (!$nom) {
-					$nom = strrpos($url, ".PNG");
-					if ($nom) $ise = ".png";
-				}
-				if (!$nom) {
-					$nom = strrpos($url, ".gif");
-					if ($nom) $ise = ".gif";
-				}
-				if (!$nom) {
-					$nom = strrpos($url, ".GIF");
-					if ($nom) $ise = ".gif";
-				}
-				if (!$nom) {
-					$nom = strrpos($url, ".bmp");
-					if ($nom) $ise = ".bmp";
-				}
-				if (!$nom) {
-					$nom = strrpos($url, ".BMP");
-					if ($nom) $ise = ".bmp";
-				}
-				
-				$a = strlen($url);
-				if (!$nom or $a - $nom > 5) {
-					$se = $ise;
-					$nom = $a;
-				} else $se = substr($url, $nom);										
+				$url = $this->checkurl($url, $my_photo);	
+				if ($url == -1) $this->delRefer($text, $pos, $epos);
+
+				$se = $this->getSe($url, $nom);									
 				$app = substr($url, 0, $nom);
-				$nom = strpos($app, ".");
-				$app = substr($app, $nom+7);
+				if (substr_count($app, "/")) {
+					$nom = strpos($app, ".");
+					$app = substr($app, $nom+7);
+				}	
 				$app = $this->TransLit($app);
 				$nom = strlen($app);										
 				if ($nom > 250) $app = substr($app, $nom-250, 250);
@@ -14944,39 +17544,51 @@ class ModelCatalogSuppler extends Model {
 					$this->adderr($err);
 				}
 				$ppath = '../image/' . $spath;	
-				if (!is_dir($ppath)) @mkdir($ppath, 0755);				
-				$ref = '<img src="' . '../image/' . $spath . $app . $se . '" width="' . $width . '" height="' . $height . '" . alt="' . $alt . '" title="' . $title . '" />';
-				$path = $ppath.$app.$se;
-				if (!file_exists($path)) {
-					$pict = $this->curl_get_contents($url, 1, $sleep, $ffile);
-					if (!$this->isPicture($pict)) {
-						$err =  " Download photo in description fails. Row ~= " . $row_count ." Url = ". $url . " \n";
-						$this->adderr($err);					
-						$this->delRefer($text, $pos, $epos);
-						continue;			
-					} else {
-						$bytes = @file_put_contents($path, $pict);
-						if (!$bytes) {
-							$err =  " Write photo in description fails. Row ~= " . $row_count ." Url = ". $url . " \n";
-							$this->adderr($err);
+				if (!is_dir($ppath)) @mkdir($ppath, 0755);
+
+				if (!$rout) {
+					$ref = '<img src="' . '../image/' . $spath . $app . $se . '" width="' . $width . '" height="' . $height . '" alt="' . $alt . '" title="' . $title . '" />';
+					$path = $ppath.$app.$se;		
+					if (!file_exists($path)) {
+						$pict = $this->curl_get_contents($url, 1, $sleep, $ffile);
+						if (!$this->isPicture($pict)) {
+							$err =  " Download photo in description fails. Row ~= " . $row_count ." url = ". $url . " \n";
+							$this->adderr($err);					
 							$this->delRefer($text, $pos, $epos);
 							continue;			
-						}	
+						} else {
+							$bytes = @file_put_contents($path, $pict);
+							if (!$bytes) {
+								$err =  " Write photo in description fails. Row ~= " . $row_count ." url = ". $url . " \n";
+								$this->adderr($err);
+								$this->delRefer($text, $pos, $epos);
+								continue;			
+							}	
+						}
 					}
+				} else {
+					$p = strrpos($url, ".");
+					$e = strrpos($url, "/");
+					$ap = substr($url, $e+1, $p-$e-1);
+					if (strlen($ap)>1 and $p>$e) $app = $ap;
+					$source = '../image/' . $im;
+					$target = '../image/' . $spath.$app.$se;
+					if (copy($source, $target)) $photo = $target;					
+					else $photo = $source;
+					$ref = '<img src="' . $photo . '" width="' . $width . '" height="' . $height . '" alt="' . $alt . '" title="' . $title . '" />';
 				}
-
 				$text1 = substr($text, 0, $pos);
 				$text2 = substr($text, $epos+1);
 				$text = $text1 . $ref . $text2;	
 								
 			} else break;
-		}	
+		}					
 	}
 	
-	public function ParsDescription($ht, $key, $point, $place, $row_count, $url, $sleep, $ffile, $photo_desc) {
+	public function ParsDescription($ht, $key, $point, $place, $row_count, $url, $sleep, $ffile, $photo_desc, $my_photo) {
 	
 		$text = '';			
-		if (!empty($key) and strlen($ht) > 500) {	
+		if (!empty($key) and strlen($ht) > 5) {	
 			$key = $this->symbol($key);
 			$key = str_replace("&#039;", "'", $key);
 			$key = str_replace("&quot;", '"', $key);
@@ -15002,7 +17614,7 @@ class ModelCatalogSuppler extends Model {
 			$any = '<li class="slidemenuItem" id="slideli">';   // удалить из описания все такие тексты			
 			$text = $this->delAny($text, $any);
 			
-			if (substr_count($text, "<img") and $photo_desc) $this->descImage($text, $row_count, $url, $sleep, $ffile);
+			if (substr_count($text, "<img") and $photo_desc) $this->descImage($text, $row_count, $url, $sleep, $ffile, $my_photo);
 			$text = str_replace('Описание', '', $text);
             $text = str_replace('Description', '', $text);			
 			$text = preg_replace('/<P.*?>/','<p>',$text);	
@@ -15275,7 +17887,8 @@ class ModelCatalogSuppler extends Model {
 		$im = str_replace(' ', '%20',$im);
 		
 	/* заменить в ссылке на фото слово john на sam	*/	
-	 $im = str_replace ("john", "sam", $im);
+//	 $im = str_replace ("john", "sam", $im);
+	 $im = str_replace ("\\", "", $im);
 	
 		return $im;
 	}
@@ -15301,15 +17914,31 @@ class ModelCatalogSuppler extends Model {
 			$file_name = $form_id . '.csv';
 			$file_tmp = "./uploads/" . $form_id . '.csv';
 			$err = $this->loadfile($file_tmp, $file_name, $form_id);
-		}	
+		}
+		
+		if ($err == 3) {
+			$err = 0;		
+			$file_name = $form_id . '.xls';
+			$file_tmp = "./uploads/" . $form_id . '.xls';
+			$err = $this->loadfile($file_tmp, $file_name, $form_id);
+		}
+		
+		if ($err == 3) {
+			$err = 0;		
+			$file_name = $form_id . '.xlsx';
+			$file_tmp = "./uploads/" . $form_id . '.xlsx';
+			$err = $this->loadfile($file_tmp, $file_name, $form_id);
+		}
 		return $err;
 	}
 	
 	public function loadfile($file_tmp, $file_name, $form_id) {
+	
 		$row_product = array();
 		$data = array();
 		$masatt = array();
 		$seo_data = array();
+		$schema = array();
 		$row = array();
 		$row1 = array();
 		$row2 = array();
@@ -15318,24 +17947,31 @@ class ModelCatalogSuppler extends Model {
 		$rows2 = array();
 		$rows3 = array();
 		$rows4 = array();
-		
 		$f = htmlspecialchars($file_name);
-		$file_extension = substr($f, strpos($f,'.'));
+		$file_extension = substr($f, strrpos($f,'.'));
 		$st = '';
 	
-		if($file_extension != '.xml' and $file_extension != '.XML' and $file_extension != '.csv' and $file_extension != '.CSV') return 1;
+		if($file_extension != '.xml' and $file_extension != '.XML' and $file_extension != '.csv' and $file_extension != '.CSV' and $file_extension != '.yml' and $file_extension != '.YML' and $file_extension != '.xls' and $file_extension != '.XLS' and $file_extension != '.xlsx' and $file_extension != '.XLSX') return 1;
 		else {		
-			if (!file_exists($file_tmp)) return 3;
+			if (!file_exists($file_tmp)) return 3;			
+			$excel_format = 0;
+			$xls_format = 0;
 			$file_xml = @fopen($file_tmp,"r");
 			if ($file_extension == '.xml' or $file_extension == '.XML') {
-				for ($i=0; $i < 3; $i++) {
-					$st = fgets ($file_xml, 256);
-					$res = substr_count($st, "office");				
+				$r=0;
+				$c=0;
+				for ($i=1; $i<3000; $i++) {
+					$st = @fgets($file_xml, 256);
+					if (@feof($file_xml)) break;					
+					if (substr_count($st, "Row")) $r = 1;
+					if (substr_count($st, "Cell")) $c = 1;
+					if ($r and $c) break;
 				}
-			} else $res = 1;
-			
-			if (!$res) return 4;	
-		} 
+				if ($r and $c) $excel_format = 1;
+			}			
+		}
+		if ($file_extension == '.xls' or $file_extension == '.XLS' or $file_extension == '.xlsx' or $file_extension == '.XLSX') $xls_format = 1;
+		
 		$path = "./uploads/";	
 		if (!is_dir($path)) return 26;
 	
@@ -15346,7 +17982,7 @@ class ModelCatalogSuppler extends Model {
 		$seo_data['prod_photo'] = $this->symbol($rows[0]['prod_photo']);
 		$seo_data['prod_h1'] = '';
 		if (isset($rows[0]['prod_h1']))
-		$seo_data['prod_h1'] = $this->symbol($rows[0]['prod_h1']);	
+		$seo_data['prod_h1'] = $this->symbol($rows[0]['prod_h1']);
 		$seo_data['prod_title'] = '';
 		if (isset($rows[0]['prod_title']))
 		$seo_data['prod_title'] = $this->symbol($rows[0]['prod_title']);		
@@ -15356,10 +17992,14 @@ class ModelCatalogSuppler extends Model {
 		$seo_data['prod_desc'] = '';
 		if (isset($rows[0]['prod_desc']))
 		$seo_data['prod_desc'] = $this->symbol($rows[0]['prod_desc']);
+		$seo_data['prod_keyword'] = '';
 		if (isset($rows[0]['prod_keyword']))
 		$seo_data['prod_keyword'] = $this->symbol($rows[0]['prod_keyword']);
 		if (isset($rows[0]['prod_url']))
 		$seo_data['prod_url'] = $this->symbol($rows[0]['prod_url']);
+		$seo_data['cat_h1'] = '';
+		if (isset($rows[0]['cat_h1']))
+		$seo_data['cat_h1'] = $this->symbol($rows[0]['cat_h1']);
 		$seo_data['cat_title'] = '';
 		if (isset($rows[0]['cat_title']))
 		$seo_data['cat_title'] = $this->symbol($rows[0]['cat_title']);		
@@ -15369,6 +18009,12 @@ class ModelCatalogSuppler extends Model {
 		$seo_data['cat_desc'] = '';
 		if (isset($rows[0]['cat_desc']))
 		$seo_data['cat_desc'] = $this->symbol($rows[0]['cat_desc']);		
+		$seo_data['cat_keyword'] = '';
+		if (isset($rows[0]['cat_keyword']))
+		$seo_data['cat_keyword'] = $this->symbol($rows[0]['cat_keyword']);
+		$seo_data['manuf_h1'] = '';
+		if (isset($rows[0]['manuf_h1']))
+		$seo_data['manuf_h1'] = $this->symbol($rows[0]['manuf_h1']);
 		$seo_data['manuf_title'] = '';
 		if (isset($rows[0]['manuf_title']))
 		$seo_data['manuf_title'] = $this->symbol($rows[0]['manuf_title']);		
@@ -15378,6 +18024,9 @@ class ModelCatalogSuppler extends Model {
 		$seo_data['manuf_desc'] = '';
 		if (isset($rows[0]['manuf_desc']))
 		$seo_data['manuf_desc'] = $this->symbol($rows[0]['manuf_desc']);
+		$seo_data['manuf_keyword'] = '';
+		if (isset($rows[0]['manuf_keyword']))
+		$seo_data['manuf_keyword'] = $this->symbol($rows[0]['manuf_keyword']);
 		$seo_data['seo_1'] = '';
 		if (isset($rows[0]['seo_1']))
 		$seo_data['seo_1'] = $this->symbol($rows[0]['seo_1']);
@@ -15443,165 +18092,169 @@ class ModelCatalogSuppler extends Model {
 				
 		$rows = $this->getMySuppler($form_id);
 		
-		if (empty($rows) or !isset($rows[0]['suppler_id'])) return 27;
+		if (empty($rows) or empty($rows[0]['suppler_id'])) return 27;
 		
-			$id		  = $rows[0]['suppler_id'];
-			$rate     = $rows[0]['rate'];
-			$ratep     = $rows[0]['ratep'];
-			$photo_att = $rows[0]['ratek'];
-			$ccod      = $rows[0]['cod'];
-			$related  = $rows[0]['related'];
-			$lang 	  = $rows[0]['sort_order'];
-			$iitem     = $rows[0]['item'];
-			$ccat      = $rows[0]['cat'];			
-			$qu       = $rows[0]['qu'];
-			$pprice    = $rows[0]['price'];
-			$pqu    	= $rows[0]['qu'];
-			$ddescrip  = $rows[0]['descrip'];
-			$ppic_ext  = $rows[0]['pic_ext'];
-			$mmanuf    = $rows[0]['manuf'];
-			$warranty = $rows[0]['warranty'];
-			$sku2 	  = $rows[0]['sku2'];
-			$ad       = $rows[0]['ad'];
+		$id		  = $rows[0]['suppler_id'];
+		$rate     = $rows[0]['rate'];
+		$ratep     = $rows[0]['ratep'];
+		$photo_att = $rows[0]['ratek'];
+		$ccod      = $rows[0]['cod'];
+		$related  = $rows[0]['related'];
+		$lang 	  = $rows[0]['sort_order'];
+		$iitem     = $rows[0]['item'];
+		$ccat      = $rows[0]['cat'];			
+		$qu       = $rows[0]['qu'];
+		$pprice    = $rows[0]['price'];
+		$pqu    	= $rows[0]['qu'];
+		$ddescrip  = $rows[0]['descrip'];
+		$ppic_ext  = $rows[0]['pic_ext'];
+		$mmanuf    = $rows[0]['manuf'];
+		$warranty = $rows[0]['warranty'];
+		$sku2 	  = $rows[0]['sku2'];
+		$ad       = $rows[0]['ad'];
 			
-			$st_status   = $rows[0]['status'];
-			$my_cat   = $rows[0]['my_cat'];
-			$my_qu    = $rows[0]['my_qu'];
-			$my_price = $rows[0]['my_price'];
-			$my_descrip = $this->symbol($rows[0]['my_descrip']);
-			$my_manuf = $rows[0]['my_manuf'];
-			$my_photo  = $rows[0]['my_photo'];
-			$cheap    = $rows[0]['cheap'];
-			$my_mark  = $rows[0]['my_mark'];
-			$weight  = $rows[0]['weight'];
-			$length  = $rows[0]['length'];
-			$width  = $rows[0]['width'];
-			$height  = $rows[0]['height'];
-			$parent  = $rows[0]['parent'];
-			$hide  = $rows[0]['hide'];
-			$newphoto = $rows[0]['newphoto'];
-			$addopt = $rows[0]['addopt'];
-			$addseo = $rows[0]['addseo'];
-			$ignore_margin = $rows[0]['importseo'];
-			$updte  = $rows[0]['updte'];
-			$pmanuf  = $rows[0]['pmanuf'];
-			$upattr = $rows[0]['upattr'];
-			$upopt = $rows[0]['upopt'];
-			$upname = $rows[0]['upname'];
-			$myplus = $rows[0]['myplus'];			
-			$cprice = $rows[0]['cprice'];
-			$minus = $rows[0]['minus'];
-			$chcode = $rows[0]['chcode'];
-			$sorder = $rows[0]['sorder'];
-			$spec = $rows[0]['spec'];
-			$upurl = $rows[0]['upurl'];
-			$ref = $rows[0]['ref'];
-			$ref1 = $rows[0]['ref1'];
-			$store = $rows[0]['addattr'];
-			$exsame = $rows[0]['exsame'];
-			$parss = $rows[0]['parss'];
-			$points = $rows[0]['points'];
-			$places = $rows[0]['places'];
-			$parsi = $rows[0]['parsi'];
-			$pointi = $rows[0]['pointi'];
-			$placei = $rows[0]['placei'];
-			$parsc = $rows[0]['parsc'];
-			$pointc = $rows[0]['pointc'];
-			$placec = $rows[0]['placec'];
-			$parsp = $rows[0]['parsp'];
-			$pointp = $rows[0]['pointp'];			
-			$placep = $rows[0]['placep'];
-			$parsd = $rows[0]['parsd'];
-			$pointd = $rows[0]['pointd'];
-			$placed = $rows[0]['placed'];
-			$parsm = $rows[0]['parsm'];
-			$pointm = $rows[0]['pointm'];
-			$placem = $rows[0]['placem'];
-			$parsk = $rows[0]['parsk'];
-			$parsq = $rows[0]['parsq'];
-			$pointq = $rows[0]['pointq'];
-			$placeq = $rows[0]['placeq'];
-			$kmenu = $rows[0]['kmenu'];
-			$bprice = $rows[0]['bprice'];
-			$catcreate = $rows[0]['catcreate'];
-			$stay	 = $rows[0]['stay'];
-			$joen	 = $rows[0]['joen'];
-			$off	 = $rows[0]['off'];
-			$umanuf  = $rows[0]['umanuf'];
-			$onn	 = $rows[0]['onn'];
-			$refer  = $rows[0]['refer'];
-			$disc  = $rows[0]['disc'];
-			$upc  = $rows[0]['upc'];
-			$ean  = $rows[0]['ean'];
-			$mpn  = $rows[0]['mpn'];
-			$newurl  = $rows[0]['newurl'];
-			$ddata  = $rows[0]['ddata'];
-			$bonus  = $rows[0]['bonus'];
-			$ddesc  = $rows[0]['ddesc'];
-			$qu_discount = $rows[0]['qu_discount'];
-			$photo_desc  = $rows[0]['plusopt'];
-			$idcat  = $rows[0]['idcat'];
-			$termin  = $rows[0]['termin'];
-			$t_status  = $rows[0]['t_status'];
-			$t_ref  = $rows[0]['t_ref'];
-			$t_ref1  = $rows[0]['t_ref1'];
-			$onoff  = $rows[0]['onoff'];
-			$main  = $rows[0]['main'];
-			$zero  = $rows[0]['zero'];
-			$day = gmmktime(0, 0, 0, gmdate('m'), gmdate('d'), gmdate('Y'));
-			$dform = (int)gmdate('d', $day);
-			$metka  = $rows[0]['metka'];
-			$jpt  = $rows[0]['jopt'];
-			$optsku  = $rows[0]['optsku'];
-			$newproduct  = $rows[0]['newproduct'];			
-			$upOptionFoto = $rows[0]['opt_fotos'];    // Включить фото в опциях
-			$opt_prices  = $rows[0]['opt_prices'];    // Цена в опциях: 0-не пересчитывать, 1 - пересчитывать
-			$usd         = $rows[0]['usd'];          // Для модуля Валюта плюс
-			if (empty($usd)) $usd = 0;
-			$sleep  = $rows[0]['sleep'];
-			$ffile	= $rows[0]['ffile'];
-			$serie	= $rows[0]['serie'];
-			$rprice	= $rows[0]['rprice'];
-			$subfolder	= $rows[0]['subfolder'];
-			$delimiter	= $rows[0]['delimiter'];
-			$skuprefix	= $rows[0]['skuprefix'];			
+		$st_status   = $rows[0]['status'];
+		$my_cat   = $rows[0]['my_cat'];
+		$my_qu    = $rows[0]['my_qu'];
+		$my_price = $rows[0]['my_price'];
+		$my_descrip = $this->symbol($rows[0]['my_descrip']);
+		$my_manuf = $rows[0]['my_manuf'];
+		$my_photo  = $rows[0]['my_photo'];
+		$cheap    = $rows[0]['cheap'];
+		$my_mark  = $rows[0]['my_mark'];
+		$weight  = $rows[0]['weight'];
+		$length  = $rows[0]['length'];
+		$width  = $rows[0]['width'];
+		$height  = $rows[0]['height'];
+		$parent  = $rows[0]['parent'];
+		$hide  = $rows[0]['hide'];
+		$newphoto = $rows[0]['newphoto'];
+		$addopt = $rows[0]['addopt'];
+		$addseo = $rows[0]['addseo'];
+		$ignore_margin = $rows[0]['importseo'];
+		$updte  = $rows[0]['updte'];
+		$pmanuf  = $rows[0]['pmanuf'];
+		$upattr = $rows[0]['upattr'];
+		$upopt = $rows[0]['upopt'];
+		$upname = $rows[0]['upname'];
+		$myplus = $rows[0]['myplus'];			
+		$cprice = $rows[0]['cprice'];
+		$minus = $rows[0]['minus'];
+		$chcode = $rows[0]['chcode'];
+		$sorder = $rows[0]['sorder'];
+		$spec = $rows[0]['spec'];
+		$upurl = $rows[0]['upurl'];
+		$ref = $rows[0]['ref'];
+		$ref1 = $rows[0]['ref1'];
+		$ref2 = $rows[0]['ref2'];
+		$ref3 = $rows[0]['ref3'];
+		$store = $rows[0]['addattr'];
+		$exsame = $rows[0]['exsame'];
+		$parss = $rows[0]['parss'];
+		$points = $rows[0]['points'];
+		$places = $rows[0]['places'];
+		$parsi = $rows[0]['parsi'];
+		$pointi = $rows[0]['pointi'];
+		$placei = $rows[0]['placei'];
+		$parsc = $rows[0]['parsc'];
+		$pointc = $rows[0]['pointc'];
+		$placec = $rows[0]['placec'];
+		$parsp = $rows[0]['parsp'];
+		$pointp = $rows[0]['pointp'];			
+		$placep = $rows[0]['placep'];
+		$parsd = $rows[0]['parsd'];
+		$pointd = $rows[0]['pointd'];
+		$placed = $rows[0]['placed'];
+		$parsm = $rows[0]['parsm'];
+		$pointm = $rows[0]['pointm'];
+		$placem = $rows[0]['placem'];
+		$parsk = $rows[0]['parsk'];
+		$parsq = $rows[0]['parsq'];
+		$pointq = $rows[0]['pointq'];
+		$placeq = $rows[0]['placeq'];
+		$kmenu = $rows[0]['kmenu'];
+		$bprice = $rows[0]['bprice'];
+		$catcreate = $rows[0]['catcreate'];
+		$stay	 = $rows[0]['stay'];
+		$joen	 = $rows[0]['joen'];
+		$off	 = $rows[0]['off'];
+		$umanuf  = $rows[0]['umanuf'];
+		$onn	 = $rows[0]['onn'];
+		$refer  = $rows[0]['refer'];
+		$disc  = $rows[0]['disc'];
+		$upc  = $rows[0]['upc'];
+		$ean  = $rows[0]['ean'];
+		$mpn  = $rows[0]['mpn'];
+		$location  = $rows[0]['location'];
+		$jan  = $rows[0]['jan'];
+		$isbn  = $rows[0]['isbn'];
+		$newurl  = $rows[0]['newurl'];
+		$ddata  = $rows[0]['ddata'];
+		$bonus  = $rows[0]['bonus'];
+		$ddesc  = $rows[0]['ddesc'];
+		$qu_discount = $rows[0]['qu_discount'];
+		$photo_desc  = $rows[0]['plusopt'];
+		$idcat  = $rows[0]['idcat'];
+		$termin  = $rows[0]['termin'];
+		$t_status  = $rows[0]['t_status'];
+		$t_ref  = $rows[0]['t_ref'];
+		$t_ref1  = $rows[0]['t_ref1'];
+		$t_ref2  = $rows[0]['t_ref2'];
+		$t_ref3  = $rows[0]['t_ref3'];
+		$onoff  = $rows[0]['onoff'];
+		$main  = $rows[0]['main'];
+		$zero  = $rows[0]['zero'];
+		$day = gmmktime(0, 0, 0, gmdate('m'), gmdate('d'), gmdate('Y'));
+		$dform = (int)gmdate('d', $day);
+		$metka  = $rows[0]['metka'];
+		$jpt  = $rows[0]['jopt'];
+		$optsku  = $rows[0]['optsku'];
+		$newproduct  = $rows[0]['newproduct'];			
+		$upOptionFoto = $rows[0]['opt_fotos'];    // Включить фото в опциях
+		$opt_prices  = $rows[0]['opt_prices'];    // Цена в опциях: 0-не пересчитывать, 1 - пересчитывать
+		$usd         = $rows[0]['usd'];          // Для модуля Валюта плюс
+		if (empty($usd)) $usd = 0;
+		$sleep  = $rows[0]['sleep'];
+		$ffile	= $rows[0]['ffile'];
+		$serie	= $rows[0]['serie'];
+		$rprice	= $rows[0]['rprice'];
+		$subfolder	= $rows[0]['subfolder'];
+		$delimiter	= $rows[0]['delimiter'];			
+		$skuprefix	= $rows[0]['skuprefix'];		
 			
-			$yml = 0;
-			if ($ad == 11) $yml = 1;
+		if (!$delimiter) $delimiter = ',';
+		$delim = '|*|';
+		$yml = 0;
+		if ($ad == 11) $yml = 1;
 			
-			$la = $this->config->get('config_language_id');
-			$catcreate = 0;
-			$ddata = 0;
-			$exsame = 0;
-			$ks = -1;
-			$summa_options = 0;
-			$nozero_index = 0;
-			$mas_nozero = array();
-			$savei = 1;
-			$jopt = 0;
-			if ($ad == 5) $catcreate = 1;			
-			if ($ad == 6) $ddata = 1;
-			if ($ad == 7) $ddata = 2;
-			if ($ad == 8) $exsame = 1;			
+		$la = $this->config->get('config_language_id');
+		$catcreate = 0;
+		$ddata = 0;
+		$exsame = 0;
+		$ks = -1;
+		$summa_options = 0;
+		$nozero_index = 0;
+		$mas_nozero = array();
+		$savei = 1;
+		$jopt = 0;
+		if ($ad == 5) $catcreate = 1;			
+		if ($ad == 6) $ddata = 1;
+		if ($ad == 7) $ddata = 2;
+		if ($ad == 8) $exsame = 1;			
 			
-			$cod = $ccod;
-			$item = $iitem;
-			$cat = $ccat;
-			$manuf = $mmanuf;
-			$price = $pprice;
-			$descrip = $ddescrip;
-			$qu = $pqu;			
-			$pic_ext = $ppic_ext;			
-			
-		$np = substr_count($rows[0]['pic_ext'], ",");				
-		$np = $np + 1;
-		$ns = substr_count($rows[0]['warranty'], ",");
-		$ns = $ns + 1;	
+		$cod = $ccod;
+		$item = $iitem;
+		$cat = $ccat;
+		$manuf = $mmanuf;
+		$price = $pprice;
+		$descrip = $ddescrip;
+		$qu = $pqu;			
+		$pic_ext = $ppic_ext;		
 			
 		$rows  = $this->getSupplerData($form_id);
 
-		if (empty($rows) and !$ddata) return 21;
-		
+		if (empty($rows) and !$ddata and ($ad == 1 or $ad == 3 or $yml)) return 21;
+			
 		$cat_ext = array();
 		$category_id = array();
 		$pic_int = array();
@@ -15702,17 +18355,18 @@ class ModelCatalogSuppler extends Model {
 				$baseprice[$max_site] = $value['baseprice'];				
 				$max_site++;
 			}	
-		}	
+		}			
 		
 		if (!empty ($rate) and !preg_match('/^[0-9.,Ee+-]+$/', $rate)) return 7;
 		if (empty ($rate)) $rate = 1;	
-		$rate = str_replace(',','.',$rate);	
+		$rate = str_replace(',','.',$rate);
+		$percent_plus = $dform-$jpt;
 		if (!empty ($ratep) and !preg_match('/^[0-9.,Ee+-]+$/', $ratep)) return 7;
 		if (empty ($ratep)) $ratep = 1;	
 		$ratep = str_replace(',','.',$ratep);		
-		if (empty ($cod)) return 8;
-		if (empty ($item)) return 16;
-		if (empty ($price)) return 19;	
+		if (empty($cod) and $ad != 16) return 8;
+		if (empty($item) and $ad != 16) return 16;
+		if (empty($price) and $ad != 16) return 19;	
 		if (empty ($pic_ext) and empty ($parsk) and ($ad == 1 or $ad == 3)) return 13;
 		if (!empty ($weight) and !preg_match('/^[0-9]+$/', $weight)) return 18;
 		if ((!empty ($length) and !preg_match('/^[0-9]+$/', $length)) or
@@ -15720,9 +18374,8 @@ class ModelCatalogSuppler extends Model {
 			(!empty ($height) and !preg_match('/^[0-9]+$/', $height))) return 11;
 		if (!empty ($related) and !preg_match('/^[0-9]+$/', $related)) return 12;
 		if (!empty ($myplus) and !preg_match('/^[0-9]+$/', $myplus)) return 9;
-		if ($optsku and empty($newproduct) and ($ad == 1 or $ad == 3)) return 28;
-		if ($optsku and $joen > 2) return 29;
-		if (empty($cat) and ($ad == 1 or $ad == 3)) return 30;		
+		if ($optsku and empty($newproduct) and ($ad == 1 or $ad == 3)) return 20;	
+		if (empty($cat) and ($ad == 1 or $ad == 3)) return 30;	
 		if (!empty($warranty) and !preg_match('/^[0-9,&lt;&gt;]+$/', $warranty)) return 15;
 		if ((!empty($parss) and !preg_match('/^[0-9]+$/', $parss)) or 
 			(!empty($parsi) and !preg_match('/^[0-9]+$/', $parsi)) or 
@@ -15733,9 +18386,11 @@ class ModelCatalogSuppler extends Model {
 			(!empty($parsq) and !preg_match('/^[0-9]+$/', $parsq)) or
 			(!empty($parsk) and !preg_match('/^[0-9]+$/', $parsk))) return 14;
 				
-		for ($i = 1; $i <= $max; $i++) {
-			if (empty($category_id[$i]) and !$catcreate and $ad != 6 and $ad != 7) return 25;			
-			if (empty($pic_int[$i]) and $ad != 6 and $ad != 7) return 22;
+		if ($ad != 16 and $ad != 2 and $ad > 4 and $ad < 10) {
+			for ($i = 1; $i <= $max; $i++) {
+				if (empty($category_id[$i]) and !$catcreate and $ad != 6 and $ad != 7) return 25;			
+				if (empty($pic_int[$i]) and $ad != 6 and $ad != 7) return 22;
+			}
 		}
 		
 		$file_sos    = "./uploads/sos.tmp"; 
@@ -15750,6 +18405,13 @@ class ModelCatalogSuppler extends Model {
 			
 			$path = "./uploads/ex.xml";
 			if (file_exists($path)) @unlink ($path);
+			
+			$path = "./uploads/total.tmp";
+			if (file_exists($path)) @unlink ($path);
+			
+			$path = "./uploads/schema.tmp";
+			if (file_exists($path)) @unlink ($path);
+			
 		} else $was_timelimit = 1;
 		
 		$file_total    = "./uploads/total.tmp"; 
@@ -15766,10 +18428,11 @@ class ModelCatalogSuppler extends Model {
 			@fclose($total);
 		} else {
 			$total = @fopen($file_total,'w+');
-			if (!$total) { @fclose($total); return;}
-			chmod($file_total, 0777);
+			if (!$total) @fclose($total);
+			else chmod($file_total, 0777);
 			$total_add = 0;
 			$total_up = 0;
+				
 		}
 		
 		$row = array();
@@ -15780,8 +18443,7 @@ class ModelCatalogSuppler extends Model {
 		$same_column = 0;
 		$semicolon = 0;
 		$was_timelimit = 0;
-
-		$was_timelimit = 0;
+		
 		$file_sos    = "./uploads/sos.tmp"; 
 		if (file_exists ($file_sos)) {			
 			$sos = @fopen($file_sos,'r+');
@@ -15798,7 +18460,7 @@ class ModelCatalogSuppler extends Model {
 			if (!$sos) { @fclose($sos); return 5;}
 			chmod($file_sos, 0777);
 			$row_count = 0;		
-		}
+		}		
 		
 		$except = 0;
 		$path = "./uploads/exception.xml";
@@ -15806,7 +18468,7 @@ class ModelCatalogSuppler extends Model {
 			$except = 1;
 			$file_con  = "./uploads/exception.xml"; 
 			$con = @fopen($file_con,'r');			
-			if (!$con) return 25;
+			if (!$con) return 24;
 						
 			$st = '';
 			$nex = 0;			
@@ -15848,6 +18510,54 @@ class ModelCatalogSuppler extends Model {
 				}			
 			}
 			@fclose($con);		
+		}
+		
+		$change_option = 0;
+		$mas_option = array();
+		$file_con  = "./uploads/option.xml";
+		if (file_exists($file_con)) {
+			$con = @fopen($file_con,'r');			
+			if ($con) {				
+				$st = '';
+				$j = 0;				
+				while (!feof($con)) {		
+					while (!@feof($con) and !substr_count($st, "<Row")){
+						$st = @fgets($con, 65534);
+					}	
+					if (@feof($con)) break;	
+
+					for ($i=0; $i<3; $i++) {												
+						$st = @fgets($con, 65534);
+						
+						if (@feof($con)) break;				
+						if (substr_count($st, "</Row>"))  break;		
+									
+						$posb = stripos($st, "String");
+						if (!$posb) $posb = stripos($st, "Number");
+			
+						if (!$posb) break;					
+						$posb = stripos($st, ">", $posb)+1;
+						$pose = stripos($st, "</Data", $posb);
+						if (!$pose) $pose = stripos($st, "</ss:Data", $posb);
+	
+						if ($pose > $posb) {						
+							$len = $pose - $posb;
+							$m = substr($st, $posb, $len);	
+							$mas_option[$j][$i] = $m;
+						} 
+					}
+					$j++;
+				}
+				@fclose($con);
+				
+				if (count($mas_option)) {
+					$change_option = 1;
+					for ($i=0; $i<count($mas_option); $i++) {
+						$rows = $this->getOptionID($mas_option[$i][0]);
+						if (!empty($rows)) $mas_option[$i][0] = $rows[0]['option_id'];
+					}	
+				}					
+			}
 		}
 
 		$change_attribute = 0;
@@ -15897,24 +18607,24 @@ class ModelCatalogSuppler extends Model {
 								}	
 							}					
 							$br = 0;
-						$a = ">";
-						$posb1 = strpos($st, "String");
-						if ($posb1 === false) $posb1 = 999;
-						$posb2 = strpos($st, "Number");
-						if ($posb2 === false) $posb2 = 999;													
-						$posb3 = strpos($st, "HRef=");
-						if ($posb3 === false) $posb3 = 999;
-						$posb4 = strpos($st, "Boolean");
-						if ($posb4 === false) $posb4 = 999;
+							$a = ">";
+							$posb1 = strpos($st, "String");
+							if ($posb1 === false) $posb1 = 999;
+							$posb2 = strpos($st, "Number");
+							if ($posb2 === false) $posb2 = 999;													
+							$posb3 = strpos($st, "HRef=");
+							if ($posb3 === false) $posb3 = 999;
+							$posb4 = strpos($st, "Boolean");
+							if ($posb4 === false) $posb4 = 999;
 							
-						if ($posb1 < $posb2) $posb = $posb1;
-						else $posb = $posb2;
-						if ($posb4 < $posb) $posb = $posb4;
+							if ($posb1 < $posb2) $posb = $posb1;
+							else $posb = $posb2;
+							if ($posb4 < $posb) $posb = $posb4;
 							
-						if ($posb3 < $posb) {
-							$posb = $posb3;
-							$a = '"';						
-						}
+							if ($posb3 < $posb) {
+								$posb = $posb3;
+								$a = '"';						
+							}		
 							if ($posb != 999)	{					
 								$posb = strpos($st, $a , $posb) +1;
 								if ($posb < 0) continue;
@@ -15946,7 +18656,7 @@ class ModelCatalogSuppler extends Model {
 			if (!file_exists($path)) {
 				$file_ex    = "./uploads/ex.xml";					
 				$ex = @fopen($file_ex,'w+');			
-				if (!$ex) return 3;
+				if (!$ex) return 28;
 				$this->StartEx($ex);			
 				
 				$st = ' <Column ss:AutoFitWidth="0" ss:Width="80"/>'."\n";
@@ -15998,113 +18708,444 @@ class ModelCatalogSuppler extends Model {
 					if (substr_count($st, "<Row")) $seek = $offcet - strlen($st);
 				}
 				ftruncate($ex, $seek);	
-				@fclose($ex);
+				@fclose($ex);			
 			}	
 		}
 		$table_sku = 1;
-	//	$table_sku = $this->getTable();
+		$price_xml = 0;
+		if (!$excel_format and $file_extension != '.csv' and $file_extension != '.CSV' and !$xls_format) $price_xml = 1;
 	
-		if (!@rewind($file_xml)) return 3;
+		if (!@rewind($file_xml)) return 3;	
+		
+		$start = '<Row';
+		if ($price_xml) {
+			if (empty($delimiter) or ($delimiter and !substr_count($delimiter, "&lt;"))) return 4;				
+			$delimiter = str_replace('&gt;', '>', $delimiter);
+			$delimiter = str_replace('&lt;', '<', $delimiter);
+			if (substr_count($delimiter, ',')) {
+				$se = explode(',', $delimiter);
+				$start = $se[0];
+				$end = $se[1];
+			} else {				
+				$start = str_replace("/", '', $delimiter);
+				if (substr_count($delimiter, "/")) $end = $delimiter;
+				else $end = substr($delimiter, 0, 1) ."/" . substr($delimiter, 1);				
+				$end = trim($end);
+			}
 	
-		if ($row_count) {
-			$i = 0;
-			if ($file_extension == '.csv' or $file_extension == '.CSV') {
-				while (!@feof($file_xml) and ($i < $row_count)) {
-					$st = @fgetcsv($file_xml, 65534, $delimiter);
-					$i++;
-				}	
-			} else {	
-				while (!@feof($file_xml) and ($i < $row_count)) {
-					$st = @fgets($file_xml, 65534);
-					if (substr_count($st, "<Row")) $i++; 
-				}
-			}	
-		}
+			$file_schema    = "./uploads/schema.tmp";			
+			if (!file_exists($file_schema)) {
+				$this->findColumns($file_xml, $start, $end, $schema, $ad);				
+			} else {				
+				$s = @fopen($file_schema,'rb');
+				if($s) $schema = unserialize(@fread($s, filesize($file_schema)));
+				else return 10;
+			}
+		}	
 
-		if (@feof($file_xml) and ($row_count > 0)) return 6;
-		if (@feof($file_xml) and ($row_count = 0)) return 17;
-	
-		while (!feof($file_xml)) {
-			for ($j=1; $j<2048; $j++) { $row[$j] = NULL;}
+		if ($ad == 16 and ($excel_format or $xls_format)) return 43;
+		if ($ad == 16) return 0;
 			
-			if ($file_extension == '.csv' or $file_extension == '.CSV') {
+		@rewind($file_xml);	
+	
+		if (!$xls_format) {
+			$l = 0;
+			$fpoint = 0;
+			if ($row_count) {
+				$i = 0;
+				if ($file_extension == '.csv' or $file_extension == '.CSV') {
+					while (!@feof($file_xml) and ($i < $row_count)) {
+						$st = @fgetcsv($file_xml, 65535, $delimiter);
+						$i++;
+					}	
+				} else {				
+					if ($excel_format) {					
+						while (!@feof($file_xml) and ($i < $row_count)) {
+							$st = @fgets($file_xml, 65535);
+							if (substr_count($st, $start)) $i++; 
+						}
+					} else {
+						while (!@feof($file_xml)) {
+							$st = @fgets($file_xml, 65535);		
+							$l = strlen($st);
+							$n = substr_count($st, $start);
+							$i = $i + $n;
+							if ($i >= $row_count) {
+								$p = 0;
+								for ($k=0; $k<$n-($i-$row_count); $k++) {
+									$p =  stripos($st, $start, $p+1);								
+								}
+								$fpoint = $fpoint + $p;
+								break;
+							} else $fpoint = $fpoint +$l; 		
+						}	
+					}
+				}
+			}		
+		
+			if ($file_extension != '.csv' and $file_extension != '.CSV' and $excel_format) {	
+				while (!@feof($file_xml)) {
+					$st = @fgets($file_xml, 65535);			
+					if (substr_count($st, $start)) 	break;										
+				}
+			}
+	
+			if ($file_extension != '.csv' and $file_extension != '.CSV' and !$excel_format) {
+				fseek($file_xml, $fpoint);
+				while (!@feof($file_xml)) {
+					$st = @fgets($file_xml, 65535);		
+					$l = strlen($st);
+					if (substr_count($st, $start)) {
+						$p =  stripos($st, $start);
+						$fpoint = $fpoint + $p;
+						break;
+					}
+					$fpoint = $fpoint +$l;						
+				}	
+			}		
+		} else {			
+			
+			$chunkSize = 50;
+			
+			require_once DIR_SYSTEM.'library/PHPExcel.php';
+			require_once DIR_SYSTEM.'library/ChunkReadFilter.php';
+
+			$objReader = PHPExcel_IOFactory::createReaderForFile($file_tmp);
+			$objReader->setReadDataOnly(true);
+
+			$chunkFilter = new chunkReadFilter(); 
+			$objReader->setReadFilter($chunkFilter);
+		}
+			
+		if (@feof($file_xml) and ($row_count > 0)) return 6;  // pls. remove file sos
+	
+		$load_excel = 0;
+		while (!feof($file_xml)) {		
+			$row = array_fill(1, 3000, '');
+			
+			if ($file_extension == '.csv' or $file_extension == '.CSV') {				
 				$data = @fgetcsv($file_xml, 65534, $delimiter);
 				if (@feof($file_xml)) break;
 				$num = count($data);
 				for ($c=0; $c < $num; $c++) {
-					$row[$c+1] = $data[$c];
-				}
-			} else {
-				while (!@feof($file_xml) and !substr_count($st, "<Row")) {
-					$st = @fgets($file_xml, 65534);
+					$row[$c+1] = $data[$c];	
 				}	
-				if (@feof($file_xml)) break;
-				
-				$i = 0;
-				$br = 0;
-				$ext = 1;
-				
-				while ($ext) {			
-					$st = @fgets($file_xml, 65534);
-					if (@feof($file_xml)) break;
-					if (substr_count($st, "</Row>"))  break;
+			} else {				
+				if ($excel_format) {
+					$i = 0;
+					$br = 0;
+					$ext = 1;				
+					while ($ext) {			
+						$st = @fgets($file_xml, 65534);
+						if (@feof($file_xml)) break;
+						if (substr_count($st, "</Row>"))  break;
 								
-					if (!substr_count($st, "<Cell")) {
-				
-						if (substr_count($st, "</Data")) $pose = strpos($st, "</Data"); 
-							else if (substr_count($st, "</ss:Data")) $pose = strpos($st, "</ss:Data"); 
-									else $pose = strlen($st) - 1;
-						if ($pose and $br) $row[$i] = $row[$i].preg_replace('| +|', ' ', substr($st, 0, $pose));					
-						continue;
+						if (!substr_count($st, "<Cell")) {
 					
-					} else {					
-						$p = strpos($st, "Index=");
-						if ($p != 0) {
-							$pe = strpos($st, '"', $p+7);
-							$i = substr ($st, $p+7, $pe-$p-7) + 0;
-						} else $i ++;
+							if (substr_count($st, "</Data")) $pose = strpos($st, "</Data"); 
+								else if (substr_count($st, "</ss:Data")) $pose = strpos($st, "</ss:Data"); 
+										else $pose = strlen($st) - 1;
+							if ($pose and $br) $row[$i] = $row[$i].preg_replace('| +|', ' ', substr($st, 0, $pose));					
+							continue;
 					
-						$br = 0;
-						$a = ">";
-						$posb1 = strpos($st, "String");
-						if ($posb1 === false) $posb1 = 999;
-						$posb2 = strpos($st, "Number");
-						if ($posb2 === false) $posb2 = 999;													
-						$posb3 = strpos($st, "HRef=");
-						if ($posb3 === false) $posb3 = 999;
-						$posb4 = strpos($st, "Boolean");
-						if ($posb4 === false) $posb4 = 999;
+						} else {					
+							$p = strpos($st, "Index=");
+							if ($p != 0) {
+								$pe = strpos($st, '"', $p+7);
+								$i = substr ($st, $p+7, $pe-$p-7) + 0;
+							} else $i++;
+						
+							$br = 0;
+							$a = ">";
+							$posb1 = strpos($st, "String");
+							if ($posb1 === false) $posb1 = 999;
+							$posb2 = strpos($st, "Number");
+							if ($posb2 === false) $posb2 = 999;													
+							$posb3 = strpos($st, "HRef=");
+							if ($posb3 === false) $posb3 = 999;
+							$posb4 = strpos($st, "Boolean");
+							if ($posb4 === false) $posb4 = 999;
 							
-						if ($posb1 < $posb2) $posb = $posb1;
-						else $posb = $posb2;
-						if ($posb4 < $posb) $posb = $posb4;
+							if ($posb1 < $posb2) $posb = $posb1;
+							else $posb = $posb2;
+							if ($posb4 < $posb) $posb = $posb4;
 							
-						if ($posb3 < $posb) {
-							$posb = $posb3;
-							$a = '"';						
-						}		
-						if ($posb != 999)	{					
-							$posb = strpos($st, $a , $posb) +1;
-							if ($posb < 0) continue;
-							$pose = 0;
-							if ($a != '"') {						
-								if (substr_count($st, "</Data")) $pose = strpos($st, "</Data", $posb); 
-								else if (substr_count($st, "</ss:Data")) $pose = strpos($st, "</ss:Data", $posb); 
-							} else $pose = strpos($st, $a, $posb); 
-							if (!$pose) {
-								$br = 1;
-								$row[$i] = substr($st, $posb);
-								continue;
+							if ($posb3 < $posb) {
+								$posb = $posb3;
+								$a = '"';						
+							}
+							if ($posb != 999)	{					
+								$posb = strpos($st, $a , $posb) +1;
+								if ($posb < 0) continue;
+								$pose = 0;
+								if ($a != '"') {						
+									if (substr_count($st, "</Data")) $pose = strpos($st, "</Data", $posb); 
+									else if (substr_count($st, "</ss:Data")) $pose = strpos($st, "</ss:Data", $posb); 
+									} else $pose = strpos($st, $a, $posb); 
+								if (!$pose) {
+									$br = 1;
+									$row[$i] = substr($st, $posb);
+									continue;
+								}	
+								if ($pose and $pose > $posb) {						
+									$len = $pose - $posb;
+									$row[$i] = substr($st, $posb, $len);		
+								} 
+							} else continue;
+						}
+					}	
+				} else {	 	// not ExcelXML	
+					if ($xls_format) {						
+						$not_empty = 0;
+						if (!$row_count) $row_count=1;
+						if ($load_excel > $chunkSize or !$load_excel) {
+							$load_excel = 1;
+							if (isset($objPHPExcel)) {
+								$objPHPExcel->disconnectWorksheets();
+								unset($objPHPExcel);
 							}	
-							if ($pose and $pose > $posb) {						
-								$len = $pose - $posb;
-								$row[$i] = substr($st, $posb, $len);		
-							} 
-						} else continue;
-					}
-				}
-			}			
+							$chunkFilter->setRows($row_count, $chunkSize);
+							$objPHPExcel = $objReader->load($file_tmp);							
+							$objPHPExcel->setActiveSheetIndex(0);
+							$objWorksheet = $objPHPExcel->getActiveSheet();
+							$highestColumn  = $objWorksheet->getHighestColumn();
+							$lastColumn = (int) PHPExcel_Cell::columnIndexFromString($highestColumn);
+						}
+
+						for ($i=$row_count; $i<$row_count+$chunkSize; $i++) {
+							for ($j=0; $j<8; $j++) {
+								$value = trim(htmlspecialchars($objWorksheet->getCellByColumnAndRow($j, $i)->getValue()));
 	
+								if (!empty($value)) {
+									$not_empty = 1;
+									break;
+								}
+							}		
+							if ($not_empty) break;	
+						} 	
+						if ($not_empty) {	
+							$k=1;								
+							for ($i=0; $i<=$lastColumn; $i++) {
+								$row[$k] = trim(htmlspecialchars($objWorksheet->getCellByColumnAndRow($i, $row_count)->getValue()));							
+		
+								$k++;							
+							}
+							
+							$load_excel++;
+												
+						} else {
+							$objPHPExcel->disconnectWorksheets();
+							unset($objPHPExcel);
+							
+							if ($exsame) $this->EndEx(8);					
+							$this->cache->delete('seo_pro');
+	
+							if ($usd) {	
+								$table = DB_PREFIX . "product_option_value";
+								$tname = "base_price";
+								if ($this->getColumnName($table, $tname))
+								@file_get_contents(HTTP_CATALOG."index.php?route=wgi/currency_plus&type=product");	
+							}
+		
+							$path = "./uploads/total.tmp";
+							if (file_exists($path)) unlink ($path);
+		
+							$path = "./uploads/sos.tmp";
+							if (file_exists($path)) unlink ($path);
+				
+							$path = "./uploads/schema.tmp";
+							if (file_exists($path)) unlink ($path);
+				
+							$path = "./uploads/attribute.tmp";
+							if (file_exists($path)) unlink ($path);
+				
+							$path = "./uploads/manufacturer.tmp";
+							if (file_exists($path)) unlink ($path);
+		
+							return '0;'.$total_add.';'.$total_up;
+	
+						}
+					} else {	
+						
+						$ext = 1;
+						$i = 0;
+						$st = '';
+						$br = 0;			
+						$fpoint_begin = $fpoint;
+						@fseek($file_xml, $fpoint);
+						while (!@feof($file_xml)) {
+							$s = @fgets($file_xml, 4096);
+							$st .= $s;	
+							$l = strlen($s);
+							if (substr_count($s, $end)) {
+								$p =  stripos($s, $end) + strlen($end);
+								$fpoint = $fpoint + $p;
+								break;
+							} elseif (@feof($file_xml)) { $br=1; break; }
+							$fpoint = $fpoint +$l;								
+						}
+						if ($br) break;		
+
+						$st = substr($st, 0, $fpoint-$fpoint_begin);
+							
+						$counter = 0;						
+						$text = '';
+						while ($ext) {				
+							$ee = strpos($st, '<', $counter+1);
+							$stt = trim(substr($st, $counter, $ee-$counter));
+
+							if (substr_count($stt, '>') and substr_count($stt, '<') and !substr_count($stt, $start)) {
+								if (!empty($text) and substr_count($stt, '</') and !substr_count($stt, '/>')) {
+									$t = str_replace('/', '', $stt);
+									$p = strrpos($text, $t);	
+									if ($p === false) {
+										$t = str_replace('>', '', $t);
+										$p = strrpos($text, $t);
+									}
+									$text = substr($text, 0, $p);
+								}
+								if (!substr_count($stt, '</')) {
+									$p = strpos($stt, '>');
+									$t = substr($stt, 0, $p+1);
+									if (!substr_count($t, ' ') and !substr_count($text, $t) and !substr_count($t, '/>')) $text .= $t;
+									else {
+										$a = strpos($stt, '=');
+										$b = strpos($stt, '>');
+										if ($a and ($b and $b > $a or !$b) and (substr_count($stt, "='") or substr_count($stt, '="') or substr_count($stt, "= '") or substr_count($stt, '= "'))) {
+											$p = strpos($stt, ' ', 0);
+											$t = substr($stt, 0, $p);
+											$p = strrpos($text, $t);
+											if (!substr_count($text, $t) or (substr_count($text, $t) and $p+strlen($t) != strlen($text))) $text .= $t;
+										}
+									}	
+								}	
+							}
+							
+							if (substr($stt, 0, 2) != "</" and substr($stt, 0, 2) != "<!") {	
+								$a = strpos($stt, '=');
+								$b = strpos($stt, '>');
+								if ($a and ($b and $b > $a or !$b) and (substr_count($stt, "='") or substr_count($stt, '="') or substr_count($stt, "= '") or substr_count($stt, '= "'))) {
+									$ar = array();
+									if (!substr_count($stt, '/>') and !substr_count($stt, '/ >')) {
+										$p = strpos($stt, ' ', 0);
+										$tag = substr($stt, 0, $p);
+										if (!empty($tag) and !empty($text) and in_array($text, $schema)) {				
+											$p = strpos($stt, '>', 0);
+											$a = substr($stt, $p+1);
+											$i = array_search($text, $schema);
+											if (!($i === false)) {
+												$row[$i] .= $a . $delim;											
+											}	
+										}
+									} 
+									$pp = 0;
+									$ppp = 0;								
+									while(1) {						
+										$p = strpos($stt, ' ', $pp);						
+										if (!$p) break;						
+										$p = $p+1;
+										$pp = $p;
+										$e = strpos($stt, "=", $pp);
+										if (!$e) break;							
+										$par = trim(substr($stt, $p, $e-$p));
+										
+										if (substr_count($par, "'") or substr_count($par, '"')) {
+											$ka = strpos($par, "'");
+											if (!$ka) $ka = strpos($par, '"');
+											$pp = $pp+$ka+1;
+											continue;
+										}							
+										$t = $text . '<' . $par;
+										if (!empty($t)) {				
+											$i = array_search($t, $schema);											
+											$pp = $e+1;
+										}
+										
+										$type = 1;
+										$p = strpos($stt, '="', $ppp);
+										if (!$p) {$p = strpos($stt, "='", $ppp); $type = 0;}
+										if (!$p) break;										
+										$p = $p+2;
+										$ppp = $p;
+										if ($type) $e = strpos($stt, '"', $ppp);
+										else $e = strpos($stt, "'", $ppp);
+										if (!$e) break;						
+										$a = trim(substr($stt, $p, $e-$p));
+										if (!($i === false)) {
+											$row[$i] .= $a . $delim;
+											array_push($ar, $i);
+										}	
+										$ppp = $e+1;
+									}
+	
+									$te = $text.'<';
+									if (count($ar)) {
+										for ($k=1; $k<=count($schema); $k++) {
+											if ($te != '<' and substr_count($schema[$k], $te) and substr($schema[$k], strlen($schema[$k])-1) != '>' and !in_array($k, $ar)) {
+												$row[$k] .= $delim;		
+											}
+										}	
+									}
+	
+									unset($ar);
+									if (substr_count($stt, '/>')) {
+										$p = strrpos($text, '<');
+										$text = substr($text, 0, $p);	
+									}
+								} else {
+									$e = strpos($stt, '>', 0);						
+									if (!$e) $tag = '';
+									else {
+										$s = trim(substr($stt, 0, $e+1));							
+										if (!substr_count($s, "</")) $tag = $s;
+										$cl = substr($tag, 0, 1) ."/" . substr($tag, 1);
+										if ($stt == $start) $epos = strpos($st, '<', $counter+1);
+										else $epos = strpos($st, $cl, $counter+1);
+										if ($epos) {
+											$lent = strlen($tag);
+											$ss = substr($st, $counter+$lent, $epos-$counter-$lent);
+	
+											if (substr_count($ss, "<") and !substr_count($ss, "<!")) $tag = '';
+											if (substr_count($ss, "<!")) $ee = $ee + $epos-$counter-$lent;	
+										}
+									}
+									if (!empty($text) and $tag != '' and in_array($text, $schema)) {
+										if (substr_count($ss, "<!")) {
+											$p = strpos($ss, 'CDATA[', 0);
+											if ($p) {
+												$e = strpos($ss, ']]', 0);
+												if ($e) {
+													$ss = substr($ss, $p+6, $e-$p-6);
+												}
+											}
+										}	
+										$i = array_search($text, $schema);
+										if (!($i === false)) $row[$i] .= $ss . $delim;
+									}		
+								}
+							}	
+							$counter = $ee;
+							$l = strlen($st)-strlen($end);
+								if ($counter >= $l) {
+								$fpoint = $fpoint-strlen($end)-10;
+								fseek($file_xml, $fpoint);
+								while (!@feof($file_xml)) {
+									$st = @fgets($file_xml, 65535);		
+									$l = strlen($st);
+									if (substr_count($st, $start)) {
+										$p =  stripos($st, $start);
+										$fpoint = $fpoint + $p;
+										break;
+									}
+									$fpoint = $fpoint +$l;						
+								}
+								break;
+							}				
+						}
+					}	
+				}	
+			}
+
 			$pname = "";
 			$ht = "";
 			$flag_add_up = 0;
@@ -16116,8 +19157,210 @@ class ModelCatalogSuppler extends Model {
 			$price = $pprice;
 			$descrip = $ddescrip;
 			$qu = $pqu;			
-			$pic_ext = $ppic_ext;			
+			$pic_ext = $ppic_ext;
+		
+			if (preg_match('/^[0-9]+$/', $parss) and isset($row[$parss])) {			
+				$wmas = explode($delim, $row[$parss]);
+				$row[$parss] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9]+$/', $cod) and isset($row[$cod])) {
+				$wmas = explode($delim, $row[$cod]);
+				$row[$cod] = trim($wmas[0]);
+			}		
+			if (preg_match('/^[0-9]+$/', $sku2) and isset($row[$sku2])) {
+				$wmas = explode($delim, $row[$sku2]);
+				$row[$sku2] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9,]+$/', $price)) {
+				$wmas = explode(',', $price);
+				foreach ($wmas as $c) {
+					if (!empty($c) and isset($row[$c])) $row[$c] = str_replace($delim, '', $row[$c]);
+				}
+			}
+			if (preg_match('/^[0-9,]+$/', $spec)) {
+				$wmas = explode(',', $spec);
+				foreach ($wmas as $c) {
+					if (!empty($c) and isset($row[$c])) $row[$c] = str_replace($delim, '', $row[$c]);
+				}
+			}
+			if (preg_match('/^[0-9,]+$/', $qu)) {
+				$wmas = explode(',', $qu);
+				foreach ($wmas as $c) {
+					if (!empty($c) and isset($row[$c])) $row[$c] = str_replace($delim, '', $row[$c]);
+				}
+			}
+			if (preg_match('/^[0-9,]+$/', $descrip)) {
+				$wmas = explode(',', $descrip);
+				foreach ($wmas as $c) {
+					if (!empty($c) and isset($row[$c])) $row[$c] = str_replace($delim, '', $row[$c]);
+				}
+			}
+			if (preg_match('/^[0-9,]+$/', $bonus)) {
+				$wmas = explode(',', $bonus);
+				foreach ($wmas as $c) {
+					if (!empty($c) and isset($row[$c])) $row[$c] = str_replace($delim, '', $row[$c]);
+				}
+			}
+			if (preg_match('/^[0-9]+$/', $rprice) and isset($row[$rprice])) {
+				$wmas = explode($delim, $row[$rprice]); 
+				$row[$rprice] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9]+$/', $manuf) and isset($row[$manuf])) {
+				$wmas = explode($delim, $row[$manuf]); 
+				$row[$manuf] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9]+$/', $parsm) and isset($row[$parsm])) {
+				$wmas = explode($delim, $row[$parsm]); 
+				$row[$parsm] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9]+$/', $myplus) and isset($row[$myplus])) {
+				$wmas = explode($delim, $row[$myplus]); 
+				$row[$myplus] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9]+$/', $bprice) and isset($row[$bprice])) {
+				$wmas = explode($delim, $row[$bprice]); 			
+				$row[$bprice] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9]+$/', $usd) and isset($row[$usd])) {
+				$wmas = explode($delim, $row[$usd]); 
+				$row[$usd] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9]+$/', $parsi) and isset($row[$parsi])) {
+				$wmas = explode($delim, $row[$parsi]); 
+				$row[$parsi] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9]+$/', $parsm) and isset($row[$parsm])) {
+				$wmas = explode($delim, $row[$parsm]); 
+				$row[$parsm] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9]+$/', $parsd) and isset($row[$parsd])) {
+				$wmas = explode($delim, $row[$parsd]); 
+				$row[$parsd] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9]+$/', $parsk) and isset($row[$parsk])) {
+				$wmas = explode($delim, $row[$parsk]);
+				$row[$parsk] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9]+$/', $ref) and isset($row[$ref])) {
+				$wmas = explode($delim, $row[$ref]); 
+				$row[$ref] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9]+$/', $ref1) and isset($row[$ref1])) {
+				$wmas = explode($delim, $row[$ref1]); 
+				$row[$ref1] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9]+$/', $ref2) and isset($row[$ref2])) {
+				$wmas = explode($delim, $row[$ref2]); 
+				$row[$ref2] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9]+$/', $ref3) and isset($row[$ref3])) {
+				$wmas = explode($delim, $row[$ref3]); 
+				$row[$ref3] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9]+$/', $serie) and isset($row[$serie])) {
+				$wmas = explode($delim, $row[$serie]); 
+				$row[$serie] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9]+$/', $related) and isset($row[$related])) {
+				$wmas = explode($delim, $row[$related]); 
+				$row[$related] = trim($wmas[0]);
+			}			
+			if (preg_match('/^[0-9]+$/', $upc) and isset($row[$upc])) {
+				$wmas = explode($delim, $row[$upc]); 
+				$row[$upc] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9]+$/', $ean) and isset($row[$ean])) {
+				$wmas = explode($delim, $row[$ean]); 
+				$row[$ean] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9]+$/', $mpn) and isset($row[$mpn])) {
+				$wmas = explode($delim, $row[$mpn]); 
+				$row[$mpn] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9]+$/', $location) and isset($row[$location])) {
+				$wmas = explode($delim, $row[$location]); 
+				$row[$location] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9]+$/', $jan) and isset($row[$jan])) {
+				$wmas = explode($delim, $row[$jan]); 
+				$row[$jan] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9]+$/', $isbn) and isset($row[$isbn])) {
+				$wmas = explode($delim, $row[$isbn]); 
+				$row[$isbn] = trim($wmas[0]);
+			}
+			if (isset($row[38])) {
+				$wmas = explode($delim, $row[38]); 
+				$row[38] = trim($wmas[0]);
+			}
+			if (isset($row[39])) {
+				$wmas = explode($delim, $row[39]); 
+				$row[39] = trim($wmas[0]);
+			}
+			if (isset($row[40])) {
+				$wmas = explode($delim, $row[40]); 
+				$row[40] = trim($wmas[0]);
+			}
+			if (isset($row[41])) {
+				$wmas = explode($delim, $row[41]); 
+				$row[41] = trim($wmas[0]);				
+			}
+			if (isset($row[42])) {
+				$wmas = explode($delim, $row[42]); 
+				$row[42] = trim($wmas[0]);
+			}
+			if (isset($row[43])) {
+				$wmas = explode($delim, $row[43]); 
+				$row[43] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9]+$/', $weight) and isset($row[$weight])) {
+				$wmas = explode($delim, $row[$weight]); 
+				$row[$weight] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9]+$/', $length) and isset($row[$length])) {
+				$wmas = explode($delim, $row[$length]); 
+				$row[$length] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9]+$/', $width) and isset($row[$width])) {
+				$wmas = explode($delim, $row[$width]); 
+				$row[$width] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9]+$/', $height) and isset($row[$height])) {
+				$wmas = explode($delim, $row[$height]); 
+				$row[$height] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9]+$/', $newproduct) and isset($row[$newproduct])) {
+				$wmas = explode($delim, $row[$newproduct]); 
+				$row[$newproduct] = trim($wmas[0]);
+			}
+			if (preg_match('/^[0-9]+$/', $termin) and isset($row[$termin])) {
+				$wmas = explode($delim, $row[$termin]); 
+				$row[$termin] = trim($wmas[0]);
+			}
 			
+			$wmas = array();
+			$pictures = array();
+			if (isset($pic_ext) and !empty($pic_ext) and preg_match('/^[0-9,]+$/', $pic_ext)) {
+				$k=0;			
+				$col = explode(",", $pic_ext);		
+				for ($j=0; $j<count($col); $j++ ) {
+					if (isset($row[$col[$j]]) and !empty($row[$col[$j]])) {
+						$colint = explode($delim, $row[$col[$j]]);
+						for ($l=0; $l<count($colint); $l++) {
+							$pictures[$k] = $colint[$l];
+							$k++;
+						}
+					}	
+				}					
+			} else {
+				if (!empty($parsk) and !empty($my_mark) and !empty($warranty)) {
+					$u = explode($delim, $row[$parsk]);
+					$pictures[0] = $u[0];
+				}
+			}
+			
+			$npic = count($pictures);
+	
 			if ($cheap and $ad != 2 and empty($bprice) and !$ddata and !$catcreate) {				
 				$err = " Please, set the column number, containing the purchase price in price-list" . "\n";
 				$this->adderr($err);					
@@ -16132,6 +19375,9 @@ class ModelCatalogSuppler extends Model {
 					continue;
 				}
 			}
+			
+			$this->setFormDate($form_id);
+			
 			if (!preg_match('/^[0-9]+$/', $cod) and !empty($cod) and !$catcreate) {
 				if (empty($row[$parss])) {
 					$row_count = (int)$this->putsos($row_count, 1);
@@ -16140,7 +19386,7 @@ class ModelCatalogSuppler extends Model {
 					$this->adderr($err);					
 					continue;
 				}
-				$url = $this->checkurl($row[$parss]);
+				$url = $this->checkurl($row[$parss], $my_photo);
 				if ($url == -1) {
 					$err = " The Product passed: Row ~= " . $row_count . " Incorrect link = ".$row[$parss]. " in column = ".$parss."\n";
 					$this->adderr($err);
@@ -16181,7 +19427,7 @@ class ModelCatalogSuppler extends Model {
 					$this->adderr($err);						
 					continue;
 				}
-				$url = $this->checkurl($row[$parsc]);
+				$url = $this->checkurl($row[$parsc], $my_photo);
 				if ($url == -1) {
 					$err =  " The Product passed: Row ~= " . $row_count . " Incorrect link = ".$row[$parsc]. " in column = ".$parsc."\n";
 					$this->adderr($err);
@@ -16224,7 +19470,7 @@ class ModelCatalogSuppler extends Model {
 					$this->adderr($err);					
 					continue;
 				}
-				$url = $this->checkurl($row[$parsp]);
+				$url = $this->checkurl($row[$parsp], $my_photo);
 				if ($url == -1) {
 					$err = " The Product passed: Row ~= " . $row_count . " Incorrect link = ".$row[$parsp]. " in column = ".$parsp."\n";
 					$this->adderr($err);
@@ -16268,7 +19514,7 @@ class ModelCatalogSuppler extends Model {
 					$this->adderr($err);					
 					continue;
 				}
-				$url = $this->checkurl($row[$parsq]);
+				$url = $this->checkurl($row[$parsq], $my_photo);
 				if ($url == -1) {
 					$err = " The Product passed: Row ~= " . $row_count . " Incorrect link = ".$row[$parsq]. " in column = ".$parsq."\n";
 					$this->adderr($err);
@@ -16314,26 +19560,26 @@ class ModelCatalogSuppler extends Model {
 			}	
 		
 			//  Форматирование текста в описании, можно закоментировать ненужное:	
-			if (preg_match('/^[0-9,]+$/', $descrip) and !$ddata and !$catcreate) {
+			if (preg_match('/^[0-9,]+$/', $descrip) and !$ddata and !$catcreate) {	
 				$dd = explode(",", $descrip);
 				$d = '';
 				for ($j=0; $j<20; $j++) {
-					if (!isset($dd[$j])) break;
+					if (!isset($dd[$j])) break;					
 					if (!empty($row[$dd[$j]])) $d = $d . $row[$dd[$j]] . "<br />";
 				}
 				if (!empty($d)) $d = substr($d, 0, strlen($d)-6);
 				$descrip = 'descrip';
-				$row[$descrip] = $d;
-				$row[$descrip] = $this->symbol($row[$descrip]);
+				$row[$descrip] = $d;	
+				$row[$descrip] = $this->symbol($row[$descrip]);	
 				$row[$descrip] = str_replace('&quot;', '"', $row[$descrip]);
+				$row[$descrip] = str_replace($delim, ' ', $row[$descrip]);
 	
 				//   Delete all tags html 
-				//  $row[$descrip]  = strip_tags($row[$descrip]);
-						
-				$url = 'http://mysite.com/aaaaa';	// пусть так и будет		
-		//		$row[$descrip] = strip_tags($row[$descrip], '<u><a><span><h1><h2><h3><h4><ol><img><p><em><i><br><li><ul><tbody><table><tr><td><dd><dt><b><strong><iframe>');
-				if (substr_count($row[$descrip], "<img") and $photo_desc) $this->descImage($row[$descrip], $row_count, $url, $sleep, $ffile);
-				
+				//  $row[$descrip]  = strip_tags($row[$descrip]);				
+	//			$row[$descrip] = strip_tags($row[$descrip], '<u><a><h1><h2><h3><h4><span><ol><img><p><em><i><br><li><ul><table><tr><td><dd><dt><b><strong><iframe>');
+				$url = '';
+				if (substr_count($row[$descrip], "<img") and $photo_desc) $this->descImage($row[$descrip], $row_count, $url, $sleep, $ffile, $my_photo);
+
 				$row[$descrip] = str_replace('&#10;&#10;', '<br /><br />', $row[$descrip]);
 				$row[$descrip] = str_replace('&amp;#10;&amp;#10;', '<br /><br />', $row[$descrip]); 
 				$row[$descrip] = str_replace('&#10;', '<br />', $row[$descrip]);
@@ -16347,9 +19593,8 @@ class ModelCatalogSuppler extends Model {
 				$row[$descrip] = str_replace('Size="11"', 'size="3"', $row[$descrip]);
 				$row[$descrip] = str_replace('Size="12"', 'size="3"', $row[$descrip]);
 				$row[$descrip] = str_replace("\r", '', $row[$descrip]);
-				$row[$descrip] = str_replace("\n", '', $row[$descrip]);
-								
-						
+				$row[$descrip] = str_replace("\n", '', $row[$descrip]);								
+	
 				// Разделить текст на строки
 				//	$row[$descrip] = str_replace('. ', '.<br />', $row[$descrip]);
 				//	$row[$descrip] = str_replace('! ', '!<br />', $row[$descrip]);
@@ -16358,19 +19603,20 @@ class ModelCatalogSuppler extends Model {
 				//	$row[$descrip] = str_replace('Описание', '', $row[$descrip]);
 				//	$row[$descrip] = str_replace('Description', '', $row[$descrip]);
 			
-			}
+			}	
 	
 			$report = '';
-			$row_count = (int)$this->putsos($row_count, $row[$cod]);
+			if (isset($row[$cod])) $row_count = (int)$this->putsos($row_count, $row[$cod]);
+			else $row_count = (int)$this->putsos($row_count, '');
 			if ($row_count < 0) return 5;
 			
+			$mprice = array();		
 			$aprice = array();
-			$mprice = array();
 			if (preg_match('/^[0-9,]+$/', $spec)) {				
 				$aprice = explode("," , $spec);				
 			}
-			
-			if (!preg_match('/[^0-9,()=]+$/', $price)) {				
+		
+			if (preg_match('/^[0-9,()=]+$/', $price)) {
 				$mprice = explode("," , $price);
 				$price = $mprice[0];					
 			}
@@ -16400,13 +19646,13 @@ class ModelCatalogSuppler extends Model {
 			if (!empty($row[$rprice])) {
 				$row[$price] = $this->convertPrice($row[$rprice]);
 				$rrc = 1;				
-			} elseif (!empty($row[$price])) $row[$price] = $this->convertPrice($row[$price]);								
+			} elseif (!empty($row[$price])) $row[$price] = $this->convertPrice($row[$price])+$percent_plus;								
 						
 			if (empty($row[$price]) and $ad != 2 and $ad != 12 and $ad != 13 and !$catcreate and !$yml and $row[$cod] != "end") {
 				$err = " The Product passed: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Invalid price. Column = " . $price . "\n";
 				$this->adderr($err);
 				continue;
-			}
+			}	
 			
 			if ($except) {
 				if ($this->checkException($row[$cod], $masex, $nex)) continue;					
@@ -16422,6 +19668,8 @@ class ModelCatalogSuppler extends Model {
 						$pic_int = '';
 						$cat_plus = '';
 						$category_id = 0;
+						$wmas = explode($delim, $row[$cat]);
+						$row[$cat] = trim($wmas[0]);						
 						$name = $this->getName($row[$cat]);
 						if (empty($name)) continue;
 						$rows = $this->getCategoryIDbyName1($name, $store);
@@ -16456,7 +19704,7 @@ class ModelCatalogSuppler extends Model {
 					}
 				}	
 				continue;
-			}
+			}				
 			
 			$flag = 0;
 			$i = 1;
@@ -16486,27 +19734,51 @@ class ModelCatalogSuppler extends Model {
 				$j = 0;
 				foreach ($cats as $c) {
 					if (!empty($c) and preg_match('/^[0-9]+$/', $c) and isset($row[$c])) {
-						$row[$c] = trim($row[$c]);
+						$wmas = explode($delim, $row[$c]);						
+						$row[$c] = trim($wmas[0]);
 						if (!empty($row[$c])) {
 							$catmany[$j] = $this->getName($row[$c]);
-							if (isset($row[$c+33])) $refers[$j] = trim($row[$c+33]);
-							if (isset($row[$c+53])) $catdescs[$j] = trim($row[$c+53]);
-							if (isset($row[$c+73])) $caturls[$j] = trim($row[$c+73]);
-							if (isset($row[$c+93])) $catmd[$j] = trim($row[$c+93]);
-							if (isset($row[$c+113])) $catmk[$j] = trim($row[$c+113]);
-							if (isset($row[$c+133])) $catmt[$j] = trim($row[$c+133]);
-							if (isset($row[$c+153])) $catmh[$j] = trim($row[$c+153]);
+							if (isset($row[$c+33])) {
+								$wmas = explode($delim, $row[$c+33]);
+								$refers[$j] = trim($wmas[0]);
+							}	
+							if (isset($row[$c+53])) {
+								$wmas = explode($delim, $row[$c+53]);
+								$catdescs[$j] = trim($wmas[0]);
+							}	
+							if (isset($row[$c+73])) {
+								$wmas = explode($delim, $row[$c+73]);
+								$caturls[$j] = trim($wmas[0]);
+							}	
+							if (isset($row[$c+93])) {
+								$wmas = explode($delim, $row[$c+93]);
+								$catmd[$j] = trim($wmas[0]);
+							}
+							if (isset($row[$c+113])) {
+								$wmas = explode($delim, $row[$c+113]);
+								$catmk[$j] = trim($wmas[0]);
+							}
+							if (isset($row[$c+133])) {
+								$wmas = explode($delim, $row[$c+133]);
+								$catmt[$j] = trim($wmas[0]);
+							}
+							if (isset($row[$c+153])) {
+								$wmas = explode($delim, $row[$c+153]);
+								$catmh[$j] = trim($wmas[0]);
+							}	
 							$j++;
 						}	
 					}	
 				}
 			}
-	
+		
 			if (!empty($row[$cat])) {
+				$wmas = explode($delim, $row[$cat]);						
+				$row[$cat] = trim($wmas[0]);
 				$text_cat = $this->getName($row[$cat]);
 				if (!$idcat) {
 					for ($i=1; $i<=$max; $i++) {
-						if (mb_strtolower($text_cat) == mb_strtolower($this->getName($cat_ext[$i]))) {
+						if (strtolower($text_cat) == strtolower($this->getName($cat_ext[$i]))) {
 							$savei = $i;
 							$flag = 1;
 							break;
@@ -16529,11 +19801,11 @@ class ModelCatalogSuppler extends Model {
 				$err = " The Product passed: Row ~= " . $row_count . " Category " . $this->symbol($text_cat) . " not found on page 'Category and margin' \n";
 				$this->adderr($err);
 				continue;				
-			}
+			}			
 			
 			if ($catcreate) {
 				$row_product[0]['date_added'] = date('Y-m-d H:i:s');				
-				$this->putNewProduct($row_product, 0, $a, 1, 1, $langs, 1, 1, 0, $catmany, $catcreate, $catdescs, $caturls, $catmd, $catmk, $catmt, $catmh, $newurl, $refers, $seo_data, $store, 0, 0, 0, 0, 0, $usd);				
+				$this->putNewProduct($row_product, 0, $a, 1, 1, $langs, 1, 1, 0, $catmany, $catcreate, $catdescs, $caturls, $catmd, $catmk, $catmt, $catmh, $newurl, $refers, $seo_data, $store, 0, 0, 0, 0, 0, 0, 0, $usd);				
 				continue;
 			}
 			
@@ -16556,7 +19828,7 @@ class ModelCatalogSuppler extends Model {
 			
 			if (!empty($cod)) $row[$cod] = trim($row[$cod]);
 			if (!empty($sku2)) $row[$sku2] = trim($row[$sku2]);
-	
+		
 			$rows = '';
 			$sku = '';
 			$o_optsku = '';
@@ -16594,7 +19866,7 @@ class ModelCatalogSuppler extends Model {
 						}	
 					}					
 				}	
-			}
+			} 
 			if (empty($sku)) {
 				if (!empty($row[$cod])) {					
 					if (!empty($table_sku)) {
@@ -16606,7 +19878,7 @@ class ModelCatalogSuppler extends Model {
 									if (!isset($rows[$l]['product_id'])) break;
 									$p = strrpos($rows[$l]['model'], "-");
 									if (!$p) $p = strrpos($rows[$l]['model'], "~");
-									$nom = substr($rows[$l]['model'], $p+1, 2);							
+									$nom = substr($rows[$l]['model'], $p+1);
 									if ((int)$id == (int)$nom) { $yes = 1; break; }							
 								}	
 								if ($yes) {
@@ -16638,7 +19910,7 @@ class ModelCatalogSuppler extends Model {
 									if (!isset($rows[$l]['product_id'])) break;
 									$p = strrpos($rows[$l]['model'], "-");
 									if (!$p) $p = strrpos($rows[$l]['model'], "~");
-									$nom = substr($rows[$l]['model'], $p+1, 2);							
+									$nom = substr($rows[$l]['model'], $p+1);
 									if ((int)$id == (int)$nom) { $yes = 1; break; }							
 								}	
 								if ($yes) {
@@ -16674,7 +19946,7 @@ class ModelCatalogSuppler extends Model {
 										if (!isset($rows[$l]['product_id'])) break;
 										$p = strrpos($rows[$l]['model'], "-");
 										if (!$p) $p = strrpos($rows[$l]['model'], "~");
-										$nom = substr($rows[$l]['model'], $p+1, 2);							
+										$nom = substr($rows[$l]['model'], $p+1);
 										if ((int)$id == (int)$nom) { $yes = 1; break; }							
 									}	
 									if ($yes) {
@@ -16706,7 +19978,7 @@ class ModelCatalogSuppler extends Model {
 										if (!isset($rows[$l]['product_id'])) break;
 										$p = strrpos($rows[$l]['model'], "-");
 										if (!$p) $p = strrpos($rows[$l]['model'], "~");
-										$nom = substr($rows[$l]['model'], $p+1, 2);							
+										$nom = substr($rows[$l]['model'], $p+1);
 										if ((int)$id == (int)$nom) { $yes = 1; break; }							
 									}	
 									if ($yes) {
@@ -16731,27 +20003,34 @@ class ModelCatalogSuppler extends Model {
 							}	
 						}	
 					} else {
-						if ($joen == 1) {
-							$row1 = '';
-							if (!empty($row[$cod])) $row1 = $this->getskuDescription($row[$cod], $store);
-							if (!empty($row1)) $this->addSkuToTable($row[$sku2], $row1['sku_id'], $store);
-							else {
-								if (!empty($row[$cod])) {								
-									$last_sku_id = 0;
-									$this->addSkuToTable($row[$cod], $last_sku_id, $store);			
-									$this->putsku($rows[0]['product_id'], $last_sku_id);
-									$this->addSkuToTable($row[$sku2], $last_sku_id, $store);
-									$sku = $rows[0]['sku'];
-								}
+						if ($joen == 1 and $sku2 and !empty($row[$sku2])) {
+							$ss = array();
+							if (substr_count($row[$sku2], ';'))  $ss = explode(';', $row[$sku2]);
+							elseif (substr_count($row[$sku2], ','))  $ss = explode(',', $row[$sku2]);
+							    else $ss[0] = $row[$sku2];							
+							for ($l=0; $l<count($ss); $l++) {
+								$s = trim($ss[$l]);		
+								$row1 = '';
+								if (!empty($row[$cod])) $row1 = $this->getskuDescription($row[$cod], $store);
+								if (!empty($row1)) $this->addSkuToTable($s, $row1['sku_id'], $store);
+								else {
+									if (!empty($row[$cod])) {								
+										$last_sku_id = 0;
+										$this->addSkuToTable($row[$cod], $last_sku_id, $store);			
+										$this->putsku($rows[0]['product_id'], $last_sku_id);
+										$this->addSkuToTable($s, $last_sku_id, $store);
+										$sku = $rows[0]['sku'];
+									}
+								}	
 							}					
-						}					
+						}				
 					}					
 				}
 			}
-			
+		
 			if (!empty($rows) and !empty($sku) and !empty($row[$sku2]) and $stay) $rows[0]['sku'] = $row[$sku2];
-				
-			if (!empty($row[$cod]) and (!empty($sku) or (empty($sku) and substr_count($row[$cod], "end"))) and $old_sku != $sku and $old_sku != 'FF30884Rjklr07754' and $max_opt and ($upopt or $yml))	{	
+	
+			if (!empty($row[$cod]) and (!empty($sku) or (empty($sku) and substr_count($row[$cod], "end"))) and $old_sku != $sku and $old_sku != 'FF30884Rjklr07754' and $max_opt and $upopt) {
 				if ($old_product_id) {
 					$final_price =  0;				
 					$f = 0;
@@ -16853,7 +20132,7 @@ class ModelCatalogSuppler extends Model {
 							for ($j=0; $j<=900; $j++) {				
 								$popt = 0;
 								if (!isset($rows1[$j]['price'])) break;						
-								$popt = (float)$rows1[$j]['price'] - (float)$final_price;
+								$popt = (float)$rows1[$j]['price'] - (float)$final_price + $percent_plus;
 								$prefix = '+';
 								if ($popt<0) $prefix = '-';							
 								$popt = abs($popt);
@@ -16873,7 +20152,7 @@ class ModelCatalogSuppler extends Model {
 										if (!isset($rows2[$j]['price'])) break;
 										$prefix = $rows2[$j]['price_prefix'];
 										if ($rows2[$j]['price_prefix'] == '=' and $opt_prices) {
-											$popt = (float)$rows2[$j]['price'] - (float)$final_price;
+											$popt = (float)$rows2[$j]['price'] - (float)$final_price + $percent_plus;
 											$prefix = '+';
 											if ($popt<0) $prefix = '-';							
 											$popt = abs($popt);
@@ -16900,14 +20179,14 @@ class ModelCatalogSuppler extends Model {
 			}
 
 			if (!empty($rows)) {
-				if ($old_product_id != $rows[0]['product_id']) $old_product_id = $rows[0]['product_id'];
+				if ($old_product_id != $rows[0]['product_id']) $old_product_id = $rows[0]['product_id'];				
 			}	
 
 			if (!empty($sku)) $row[$cod] = $sku;
-				else if (empty($row[$cod]) and isset($row[$sku2]) and !empty($row[$sku2])) $row[$cod] = $row[$sku2];
+			else if (empty($row[$cod]) and isset($row[$sku2]) and !empty($row[$sku2])) $row[$cod] = $row[$sku2];
 			
-			$row_product  = $rows;			
-			
+			$row_product  = $rows;	
+
 			if ($ad == 9) {
 				if (empty($rows)) {
 					$err = " New product. Row ~= " . $row_count . " SKU = " . $row[$cod] . " \n";
@@ -16921,7 +20200,7 @@ class ModelCatalogSuppler extends Model {
 				$this->adderr($err);
 				continue;
 			}
-			
+	
 			$product_found = 0;
 			$zero_prod = 0;
 			$off_prod = 0;
@@ -16931,8 +20210,8 @@ class ModelCatalogSuppler extends Model {
 			if ($ad == 15) {
 				if (isset($rows[0]['price']) and $rows[0]['price'] != 0 and $rows[0]['price'] != '') continue;
 				if (!isset($rows[0]['price'])) continue;
-			}	
-	
+			}
+
 			if ($product_found and $ad != 3) {
 				if ($exsame) continue;
 			
@@ -16945,7 +20224,7 @@ class ModelCatalogSuppler extends Model {
 						$this->adderr($err);						
 						continue;
 					}
-					$url = $this->checkurl($row[$parsm]);
+					$url = $this->checkurl($row[$parsm], $my_photo);
 					if ($url == -1) {
 						$err = " The Product passed: Row ~= " . $row_count . " Incorrect link = ".$row[$parsm]. " in column = ".$parsm."\n";
 						$this->adderr($err);
@@ -16986,10 +20265,9 @@ class ModelCatalogSuppler extends Model {
 					$p = strrpos($row_product[0]['model'], "~");
 					if ($p) $ismain = 1;
 				}	
-				if ($p)	$papka = substr($row_product[0]['model'], $p-1, 1);
-				else $papka = 0;				
+				$papka = substr($row_product[0]['product_id'], strlen($row_product[0]['product_id'])-1, 1);
 				
-				$nom = substr($row_product[0]['model'], $p+1, 2);
+				$nom = substr($row_product[0]['model'], $p+1);
 				if ((int)$id == (int)$nom) $equ = 1;
 		
 				
@@ -17002,7 +20280,7 @@ class ModelCatalogSuppler extends Model {
 				$newstatus = 0;					
 				$quantity = '0';
 				$empt = 0;
-				$this->getQuantity($row, $qu, $my_qu, $quantity, $newstatus, $empt);
+				$this->getQuantity($row, $qu, $my_qu, $quantity, $newstatus, $empt, $delim);
 				if (empty($newstatus)) $newstatus = 0;
 				if (!$empt) $quantity = '';
 				
@@ -17011,9 +20289,9 @@ class ModelCatalogSuppler extends Model {
 					if ($ad != 4 and $ad != 12 and $ad != 14) $report = $report."Quantity set by default ";
 				}				
 				
-				$qu_d = array();  // Расчет скидок по процентам от количества				
+				$qu_d = array();  // Расчет скидок по процентам от количества
 				if (!empty($qu_discount) and substr_count($qu_discount, "=")) {				
-					$pj = explode(",", $qu_discount);
+					$pj = explode(",", $qu_discount);					
 					for ($j=0; $j<20; $j++) {		
 						if (!isset($pj[$j])) break;
 						if (!substr_count($pj[$j], "=")) break;		
@@ -17027,7 +20305,7 @@ class ModelCatalogSuppler extends Model {
 						$per = $this->convertPrice($per);
 						if (!preg_match('/^[0-9.]+$/', $per)) break;
 						$qu_d['quantity'][$j] = $q;
-						$qu_d['percent'][$j] = $per;
+						$qu_d['percent'][$j] = $per;		
 					}
 				}
 				
@@ -17037,6 +20315,7 @@ class ModelCatalogSuppler extends Model {
 				$rate_ident = 1;
 				$mas = array();
 				$identificator = array();	
+				$urls = '';
 				if ($cheap and $ad != 2 and $ad != 12 and $ad != 13 and !$yml and $row_product[0]['sku']) {
 					if ($ad == 4 or $quantity or $ad == 10 or $equ) {
 						if (!$refer) {							
@@ -17044,12 +20323,14 @@ class ModelCatalogSuppler extends Model {
 							for ($l=0; $l<$max_site; $l++) {
 								$rate_ident = 1;
 								if ($mratek[$l]) $rate_ident = $mratek[$l];
+								$wmas = explode($delim, $row[$nomkol[$l]]);
+								$row[$nomkol[$l]] = trim($wmas[0]);
 								if (!empty($row[$nomkol[$l]])) {
-									$url = $this->checkurl($row[$nomkol[$l]]);
+									$url = $this->checkurl($row[$nomkol[$l]], $my_photo);
 									if ($url != -1) {
-										$ht = $this->curl_get_contents($url, 0, $sleep, $ffile);				
+										if ($urls != $url) $ht = $this->curl_get_contents($url, 0, $sleep, $ffile);	
 										if (strlen($ht) > 1024) {
-										
+											$urls = $url;
 											$this->saveRef($row_product[0]['product_id'], $ident[$l], $url);
 											
 											$pr = $this->ParsPrice($ht, $param[$l], $point[$l], $placep);
@@ -17080,6 +20361,17 @@ class ModelCatalogSuppler extends Model {
 											$err = " Row ~= " . $row_count . " url = ". $url. " Site no answer \n";
 											$this->adderr($err);
 										}
+									} else {
+										$this->saveRef($row_product[0]['product_id'], $ident[$l], '');
+										$mas[$k] = $this->convertPrice($row[$nomkol[$l]]);
+		
+										$parsedprice = 0;										
+										if (!empty($mas[$k])) $parsedprice = $mas[$k];
+										
+										$this->db->query("UPDATE `" . DB_PREFIX . "suppler_ref` SET `price` = '" . $parsedprice . "' WHERE `product_id` = '" .(int)$row_product[0]['product_id'] . "' and `ident` = '" . $ident[$l] ."'");
+																				
+										$identificator[$k] = $ident[$l];
+										$k++;	
 									}
 								}	
 							}
@@ -17088,8 +20380,9 @@ class ModelCatalogSuppler extends Model {
 							if (!empty($rows)) {								
 								$k = 0;
 								foreach ($rows as $r) {	
-									$ht = $this->curl_get_contents($r['url'], 0, $sleep, $ffile);
+									if ($urls != $r['url']) $ht = $this->curl_get_contents($r['url'], 0, $sleep, $ffile);
 									if (strlen($ht) > 1024) {
+										$urls = $r['url'];
 										$ff = 0;
 										for ($l=0; $l<$max_site; $l++) {
 											if ($r['ident'] == $ident[$l]) {
@@ -17208,7 +20501,7 @@ class ModelCatalogSuppler extends Model {
 							$plus = 0;
 							$prr = $pr;
 							if ($ad == 4 or $quantity or $ad == 10 or $equ) {
-								if (!$flag and $my_price != 4 and !$cprice and (empty($myplus) or !preg_match('/^[-0-9,.Ee+]+$/', $row[$myplus]))) {
+								if (!$ignore_margin and !$flag and $my_price != 4 and !$cprice and (empty($myplus) or !preg_match('/^[-0-9,.Ee+]+$/', $row[$myplus]))) {
 									$rows = $this->getProductCategory($row_product[0]['product_id']);
 									if (!isset($rows) or empty($rows)) {							
 										$err = " The Product missing: Row ~= " . $row_count . " SKU = " . $row[$cod] . " error in database: unknown category \n";
@@ -17259,7 +20552,7 @@ class ModelCatalogSuppler extends Model {
 													}
 												}	
 											}
-											if (!empty($plus) and !$ignore_margin and !$rrc) $report = $report."Margin added success. ";
+											if (!empty($plus) and !$ignore_margin and !$rrc) $report = $report."Margin added success. ";											
 										}
 									}
 								} else {
@@ -17322,13 +20615,18 @@ class ModelCatalogSuppler extends Model {
 									}
 								}					
 							}		
-							if ($ignore_margin or $rrc) $plus = 0;							
-							if (!substr_count($plus, "+")) $pr = $pr + $pr * $plus/100;
+							if (($ignore_margin and !$myplus) or $rrc) $plus = 0;
+							if (!substr_count($plus, "+") and !substr_count($plus, "--")) $pr = $pr + $pr * $plus/100;
 							else {
-								$pl = explode("+", $plus);									
-								if (isset($pl[0]) and !empty($pl[0])) $pr = $pr + $pr * $pl[0]/100;
-								if (isset($pl[1]) and !empty($pl[1])) $pr = $pr + $pl[1];								
-							}						
+								if (substr_count($plus, "+")) {
+									$pl = explode("+", $plus);
+									if (isset($pl[1]) and !empty($pl[1])) $pr = $pr + $pl[1];
+								}
+								if (substr_count($plus, "--")) {
+									$pl = explode("--", $plus);										
+									if (isset($pl[1]) and !empty($pl[1])) $pr = $pr - $pl[1];
+								}
+							}					
 														
 							$rows = $this->getBasePrice($row_product[0]['product_id']);
 							if (empty($rows)) {	
@@ -17369,7 +20667,17 @@ class ModelCatalogSuppler extends Model {
 											else $new_price = $submin - $onnn;											
 											break;
 										case '6': $new_price = 0;
-											break;		
+											break;
+										case '7': $new_price = $bpr*1.02;
+											break;
+										case '8': $new_price = $bpr*1.03;
+											break;
+										case '9': $new_price = $bpr*1.04;
+											break;
+										case '10': $new_price = $bpr*1.05;
+											break;
+										case '11': $new_price = ($bpr+$optimal)/2;
+											break;	
 									}		
 								}
 							}							
@@ -17400,14 +20708,14 @@ class ModelCatalogSuppler extends Model {
 	
 				unset($mas);
 				unset($identificator);
-	
-				if ($new_price) $kon_price = 1;	
+			
+				if ($new_price) $kon_price = 1;				
 				if (!$new_price and $ad != 2 and $ad != 12 and $ad != 13) {			
 					$plus = 0;					
 					if (!$price_parsed) $row[$price] = $row[$price]*$rate;  // сначала, умножаем на курс	
 					else $row[$price] = $row[$price]*$ratep;
 					if ($ad == 4 or $quantity or $ad == 10 or $equ or $yml) {
-						if (!$flag and $my_price != 4 and !$cprice and (empty($myplus) or !preg_match('/^[-0-9,.Ee+]+$/', $row[$myplus]))) {
+						if (!$ignore_margin and !$flag and $my_price != 4 and !$cprice and (empty($myplus) or !preg_match('/^[-0-9,.Ee+]+$/', $row[$myplus]))) {
 							$rows = $this->getProductCategory($row_product[0]['product_id']);
 							if (empty($rows) and !$yml) {							
 								$err = " The Product missing: Row ~= " . $row_count . " SKU = " . $row[$cod] . " error in database: unknown Category \n";
@@ -17520,24 +20828,26 @@ class ModelCatalogSuppler extends Model {
 							}
 						}					
 					}			
-					if ($ignore_margin or $rrc) $plus = 0;	
+					if (($ignore_margin and !$myplus) or $rrc) $plus = 0;	
 	
-					if (!substr_count($plus, "+")) $new_price = $row[$price] + ($row[$price] * $plus/100);			
+					if (!substr_count($plus, "+") and !substr_count($plus, "--")) $new_price = $row[$price] + ($row[$price] * $plus/100);			
 					else {
-						$pl = explode("+", $plus);	
-						$f = 0;
-						if (isset($pl[0]) and !empty($pl[0])) {
-							$new_price = $row[$price] + ($row[$price] * $pl[0]/100);
-							$f = 1;
+						if (substr_count($plus, "+")) {
+							$pl = explode("+", $plus);							
+							if (isset($pl[1]) and !empty($pl[1])) $new_price = $row[$price] + $pl[1];
+							
 						}
-						if (isset($pl[1]) and !empty($pl[1]) and $f) $new_price = $new_price + $pl[1];
-						if (isset($pl[1]) and !empty($pl[1]) and !$f) $new_price = $row[$price] + $pl[1];
+						if (substr_count($plus, "--")) {
+							$pl = explode("--", $plus);							
+							if (isset($pl[1]) and !empty($pl[1])) $new_price = $row[$price] - $pl[1];
+							
+						}
 					}		
-				}								
-				
+				}
+			
 				if ($yml and $row[$price]) $yml_price = $this->convertPrice($row[$price]);
 				if ($row_product[0]['price'] != 0 and !$usd) $old_price = $row_product[0]['price'];
-				else $old_price = $new_price;
+				else $old_price = $new_price;				
 				
 				$n = $this->convertPrice($new_price); 	// округление цены до копеек, 2 цифры после запятой
 				if (!$new_price and $ad != 10 and !$yml) $report = $report."Price not updated ";
@@ -17553,7 +20863,7 @@ class ModelCatalogSuppler extends Model {
 				if ($ismain and $row_product[0]['quantity'] and !$equ and !$main) $report = $report."Price and quantity not updated, see, Main Supplier ";
 	
 				if ((!$row_product[0]['quantity'] and $my_price != 4 and $quantity and $new_price and $ad != 2 and $ad != 12  and $ad != 13) or $ad == 10 or ($yml and $n) or ($equ and $ad != 2 and $ad != 12 and $ad != 13 and $new_price and $my_price == 1 and $quantity != '')) {
-					$row_product[0]['price'] = $n;
+					$row_product[0]['price'] = $n;	
 					$price_changed = 1;
 					if ($n) $report = $report."Price updated ";				
 				} else {				
@@ -17599,45 +20909,62 @@ class ModelCatalogSuppler extends Model {
 					$err =  " The Product passed: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Zero price" . " \n";
 					$this->adderr($err);
 					continue;
-				}				
+				}
 				
+				if (!$price_changed and !$yml and $ad != 10) {
+					if (!$quantity) {
+						$err =  " Price not updated: Row ~= " . $row_count . " SKU = " . $row[$cod] . " because the quantity is zero" . " \n";
+						$this->adderr($err);
+					} else {
+						$err =  " Price not updated: Row ~= " . $row_count . " SKU = " . $row[$cod] . " \n";
+						$this->adderr($err);
+					}	
+				}
+			
 				// Обновление акционных цен
 				$ff = 0;
 				if (((!empty($aprice) and $quantity and (!$ismain or ($ismain and $main and $equ))) or (!empty($aprice) and ($ad == 10 or ($equ and $quantity != '')))) and $ad != 2 and $ad != 12 and $ad != 13)  {
 					$this->deleteActionPrice($row_product[0]['product_id']);
-					for ($j=0; $j<40; $j++) {
+					for ($j=0; $j<80; $j++) {
 						if (!isset($aprice[$j])) break;
 						if (empty($aprice[$j])) continue;
 						$data['product_id'] = $row_product[0]['product_id'];
 						$data['customer_group_id'] = $j+1;
 						$data['priority'] = 1;
+						$wmas = explode($delim, $row[$aprice[$j]]);
+						$row[$aprice[$j]] = trim($wmas[0]);					
 						$pr = $this->convertPrice($row[$aprice[$j]]);						
 						if (!preg_match('/^[0-9.Ee+-]+$/', $pr)) $pr = '';
 						else $pr = $pr*$rate;
 						if (round($pr, 0) >= round($new_price, 0)) $pr = '';
 						if ($pr and $chcode) {
-							if (!substr_count($plus, "+")) $pr = $pr + ($pr * $plus/100);			
+							if (!substr_count($plus, "+") and !substr_count($plus, "--")) $pr = $pr + ($pr * $plus/100);			
 							else {
-								$pl = explode("+", $plus);									
-								if (isset($pl[0]) and !empty($pl[0])) $pr = $pr + ($pr * $pl[0]/100);				
-								if (isset($pl[1]) and !empty($pl[1])) $pr = $pr + $pl[1];							
-							}
+								if (substr_count($plus, "+")) {
+									$pl = explode("+", $plus);							
+									if (isset($pl[1]) and !empty($pl[1])) $pr = $pr + $pl[1];							
+								}
+								if (substr_count($plus, "--")) {
+									$pl = explode("--", $plus);									
+									if (isset($pl[1]) and !empty($pl[1])) $pr = $pr - $pl[1];
+								}
+							}	
 						}
-						$data['price'] = $this->convertPrice($pr);
+						$data['price'] = $this->convertPrice($pr);						
 						$day = mktime(0, 0, 0, date('m'), date('d')-1, date('Y'));
 						$data['date_start'] = date('Y-m-d', $day);
-						$plus_days = mktime(0, 0, 0, date('m'), date('d')+10, date('Y')); // +10 - акция на 10 дней
+						$plus_days = mktime(0, 0, 0, date('m'), date('d')+10, date('Y')); // +10 это акция на 10 дней
 						$data['date_end'] = date('Y-m-d', $plus_days);
 						if ($pr) {
 							$uu = '';
-							if (isset($row[$usd])) $uu = $row[$usd];
+							if (isset($row[$usd])) $uu = $row[$usd];						
 							$this->putActionPrice($data, $usd, $uu);
 							$ff = 1;
 						}
 					}	
 				}
 				if ($ff) $report = $report."Special price updated ";
-				
+	
 				// Скидочные цены, скидки
 				$ff = 0;
 				if (((count($mprice) > 1 and count($qu_d) == 0 and $quantity and (!$ismain or ($ismain and $main and $equ))) or (count($mprice) > 1  and count($qu_d) == 0 and ($ad == 10 or ($equ and $quantity != '')))) and $ad != 2 and $ad != 12 and $ad != 13) {		
@@ -17647,29 +20974,39 @@ class ModelCatalogSuppler extends Model {
 						if (empty($mprice[$j])) continue;						
 						$data['product_id'] = $row_product[0]['product_id'];
 						$data['customer_group_id'] = $j;
-						$data['priority'] = 1;			
+						$data['priority'] = 1;
+						$mm = array();
 						if (substr_count($mprice[$j], ')')) $mm = explode(')', $mprice[$j]);
 						else $mm[0] = $mprice[$j].'(col';
 						for ($k=0; $k<count($mm); $k++) {
 							$m = explode('(', $mm[$k]);							
 							if (count($m) < 2) continue;
-							$pr = $row[$m[0]];
+							$wmas = explode($delim, $row[$m[0]]); 
+							$pr = trim($wmas[0]);							
 							if ($m[1] == 'col') $q = 1;
 							else {
 								if (substr_count($m[1], '=')) $q = str_replace('=', '', $m[1]);
-								else $q = $row[$m[1]];								
+								else {
+									$wmas = explode($delim, $row[$m[1]]); 
+									$q = trim($wmas[0]);
+								}	
 							}
 							$pr = $this->convertPrice($pr);						
 							if (!preg_match('/^[0-9.Ee+-]+$/', $pr)) $pr = '';
 							else $pr = $pr*$rate;
 							if (round($pr, 0) >= round($new_price, 0)) $pr = '';
 							if ($pr and $chcode) {
-								if (!substr_count($plus, "+")) $pr = $pr + ($pr * $plus/100);			
+								if (!substr_count($plus, "+") and !substr_count($plus, "--")) $pr = $pr + ($pr * $plus/100);			
 								else {
-									$pl = explode("+", $plus);									
-									if (isset($pl[0]) and !empty($pl[0])) $pr = $pr + ($pr * $pl[0]/100);				
-									if (isset($pl[1]) and !empty($pl[1])) $pr = $pr + $pl[1];							
-								}
+									if (substr_count($plus, "+")) {
+										$pl = explode("+", $plus);
+										if (isset($pl[1]) and !empty($pl[1])) $pr = $pr + $pl[1];							
+									}
+									if (substr_count($plus, "--")) {
+										$pl = explode("--", $plus);										
+										if (isset($pl[1]) and !empty($pl[1])) $pr = $pr - $pl[1];
+									}
+								}	
 							}
 							$data['price'] = $this->convertPrice($pr);
 							$data['quantity'] = $q;
@@ -17695,6 +21032,8 @@ class ModelCatalogSuppler extends Model {
 							
 							for ($k=0; $k<40; $k++) {
 								if (!isset($qu_d['quantity'][$k])) break;
+								$wmas = explode($delim, $row[$mprice[0]]); 
+								$row[$mprice[0]] = trim($wmas[0]);
 								$pr = $this->convertPrice($row[$mprice[0]]);
 								$pr = $pr-$pr*$qu_d['percent'][$k]/100;								
 								$data['price'] = $this->convertPrice($pr);
@@ -17715,15 +21054,19 @@ class ModelCatalogSuppler extends Model {
 				}	
 				unset($qu_d);
 				
-				if ($ff) $report = $report."Wholesale price updated ";
+				if ($ff) $report = $report."Discount price updated ";
 				
 				if ((!empty($bonus) and preg_match('/^[0-9,]+$/', $bonus) and (!$ismain or ($ismain and $main and $equ) or $ad == 10 or ($equ and $quantity != ''))) and $ad != 2 and $ad != 12 and $ad != 13) { // бонусы
 					$bb = explode(',', $bonus);					
 					for ($j=0; $j<count($bb); $j++) {
-						if ($j == 0) {							
+						if ($j == 0) {
+							$wmas = explode($delim, $row[$bb[0]]); 
+							$row[$bb[0]] = trim($wmas[0]);
 							if (preg_match('/^[0-9]+$/', $bb[0]) and $row[$bb[0]] == '0') $this->deleteBonus0($row_product[0]['product_id']);
 							else if (!empty($row[$bb[$j]])) $this->Bonus0($row_product[0]['product_id'], $row[$bb[0]]);
 						} else {
+							$wmas = explode($delim, $row[$bb[$j]]); 
+							$row[$bb[$j]] = trim($wmas[0]);
 							if (preg_match('/^[0-9]+$/', $bb[$j]) and $row[$bb[$j]] == '0') 
 								$this->deleteBonus1($j, $row_product[0]['product_id']);
 								
@@ -17739,6 +21082,7 @@ class ModelCatalogSuppler extends Model {
 					$row_product[0]['quantity'] = 0;
 					$quantity_changed = 1;
 					$report = $report."Quantity was set at zero ";
+					if ($row_product[0]['sort_order'] < 1000) $row_product[0]['sort_order'] = $row_product[0]['sort_order'] + 1000;
 				}	
 				
 				if ((($quantity and ($price_changed or $ad == 2 or $my_price == 4)) or $ad == 10 or ($quantity and $yml)) and $ad != 4 and $ad != 12 and $ad != 14) {
@@ -17748,9 +21092,9 @@ class ModelCatalogSuppler extends Model {
 						$report = $report."Quantity updated ";
 						$ymlqu = 1;
 					}	
-					if (!$yml) $report = $report."Quantity updated ";					
+					if (!$yml) $report = $report."Quantity updated ";	
 				}
-		
+			
 				if ($price_changed or ($ad == 2 and $quantity_changed)) {
 					$p = strrpos($row_product[0]['model'], "-");
 					$q = strrpos($row_product[0]['model'], "~");	
@@ -17769,13 +21113,13 @@ class ModelCatalogSuppler extends Model {
 						if (!$equ) $report = $report. "Supplier has been changed ";
 					}	
 				}
-				
+	
 				$row_product[0]['hide'] = $row_product[0]['status'];				
 				if ($quantity_changed and $new_price and $onoff) $row_product[0]['hide'] = 1;
 				if ($onoff and (($ad == 2 and $quantity_changed) or $ad == 10)) $row_product[0]['hide'] = 1;
 				if ($onoff and (($ad == 4 and $price_changed) or $ad == 10)) $row_product[0]['hide'] = 1;
 				if ($off_prod == 1) $row_product[0]['hide'] = 0;
-		
+
 				if ($old_sku != $row[$cod] or (isset($product_new) and $product_new)) {
 					$summa_product_options = 0;
 					$oldprice = $new_price;
@@ -17798,476 +21142,484 @@ class ModelCatalogSuppler extends Model {
 					$mas_nozero = array();
 					$nozero_index = 0;
 				}
-
-				$mas_opt = array();	
+			
 				$opt_val = array();
 				$data_option = array();
+				$mas_opt = array();				
 				$yes_option = 0;				
-				if ($yml) $upopt = 2;
-				if ($max_opt and $upopt and (!$ismain or ($ismain and $main and $equ) or $equ)) {					
+				
+				if ($max_opt and $upopt and (!$ismain or ($ismain and $main and $equ) or $equ)) {	
+
 					$jj = 1;
 					for ($j = 1; $j <= $max_opt; $j++) {						
 						if (empty($opt[$j])) continue;
-						$i1 = 0;
-						if (!$option_idd[$j]) {
-							if (preg_match('/^[0-9]+$/', $opt[$j]) and $opt[$j] > 2) {
-								$name_option = $row[$opt[$j]-1];
-								if ($yml) $name_option = $row[$opt[$j]+1];
-							} else $name_option = $row[$parsi-1];
-							if (!empty($name_option)) {
-								$name_option = $this->getName($name_option);
-								$option_id[$j] = $this->createOption($name_option, $langs);
-							}
-						}
 						
-						if (!$option_id[$j] and !$optsku) continue;
-						if (!isset($ko[$j])) continue;
-		
-						if (preg_match('/^[0-9]+$/', $opt[$j])) {
-							$row[$opt[$j]] = $this->symbol($row[$opt[$j]]);	
-							$row[$opt[$j]] = str_replace("&quot;", "+-=6", $row[$opt[$j]]);
-							$opt_val = explode(";" , $row[$opt[$j]]);
-						}
-						$opt_ko = array();
-						$opt_po = array();
-						$opt_we = array();
-						$opt_art = array();
-						$opt_pr = array();
-						$opt_foto = array();
-						if (isset($maso)) unset($maso);
-						if (isset($masp)) unset($masp);
-						$maso = array();
-						$masp = array();
-						
-						if (empty($ko[$j])) {
-							$err =  ' The "Quantity" field is not filled in the "Options" page '." \n";
-							$this->adderr($err);
-							break;
-						}
-						$row[$ko[$j]] = $this->symbol($row[$ko[$j]]);
-						if (isset($row[$ko[$j]])) {
-							if (substr_count($row[$ko[$j]], ';')) $opt_ko = explode(";" , $row[$ko[$j]]);
-							else $opt_ko = explode("," , $row[$ko[$j]]);
-						}
-						if (isset($row[$po[$j]])) {
-							if (substr_count($row[$po[$j]], ';')) $opt_po = explode(";" , $row[$po[$j]]);
-							else $opt_po = explode("," , $row[$po[$j]]);
-						}										
-						if (preg_match('/^[0-9]+$/', $prro[$j])) {
-							if (substr_count($row[$prro[$j]], ';')) $opt_pr = explode(";" , $row[$prro[$j]]);
-							else $opt_pr = explode("," , $row[$prro[$j]]);						
-						}		
-							
-						$p = explode("," , $pprice);
-						if ($p[0] == $prro[$j] or $prro[$j] == '') $same_column = 1;						
-						if (!empty($row[$art[$j]])) $semicolon = 1;
+						$no_m = array();  // minus
+						$no_p = array();  // plus
+						$no_i = array(); 
+						$no_e = array();
+						$no_ko = array();
+						$no_po = array(); 
+						$no_pr = array();
+						$no_we = array();
+						$no_art = array();
+						$no_fo = array();
 
-						if (isset($row[$we[$j]])) {
-							if (substr_count($row[$we[$j]], ';')) $opt_we = explode(";" , $row[$we[$j]]);
-							else $opt_we = explode("," , $row[$we[$j]]);
-						}
-						if (isset($row[$art[$j]])) {
-							if (substr_count($row[$art[$j]], ';')) $opt_art = explode(";" , $row[$art[$j]]);
-							else $opt_art = explode("," , $row[$art[$j]]);
-						}
-						if (isset($row[$art[$j]])) {
-							if (substr_count($row[$art[$j]], ';')) $opt_art = explode(";" , $row[$art[$j]]);
-							else $opt_art = explode("," , $row[$art[$j]]);
-						}
-						if (isset($row[$foto[$j]])) $opt_foto = explode(";" , $row[$foto[$j]]);
-		
-						if (($opt[$j] and !preg_match('/^[0-9]+$/', $opt[$j])) or ($prro[$j] and !preg_match('/^[0-9]+$/', $prro[$j]))) {
-							if (isset($row[$parsi]) and !empty($row[$parsi])) {	
-								$url = $this->checkurl($row[$parsi]);		
-								if ($url != -1) {																
-									if (strlen($ht) < 1024 or $parsed != $parsi) $ht = $this->curl_get_contents($url, 0, $sleep, $ffile);
-									if (strlen($ht) > 1024) {
-										$parsed = $parsi;										
-										$this->ParsOptions($ht, $opt[$j], $opt_point[$j], $prro[$j], $maso, $masp);
-									}		
-									if ($maso == '') {
-										$err =  " Row ~= " . $row_count . " SKU = " . $row[$cod] ." Error in parameter parsing this option: ". $this->symbol($opt[$j]) . " price: " . $this->symbol($prro[$j]) . " Link: " . $row[$parsi] ." \n";
+						if ($parsi > 0 and isset($row[$parsi-1])) $no_i = explode($delim, $row[$parsi-1]);
+						if (isset($ko[$j]) and !empty($ko[$j])) $no_ko = explode($delim, $row[$ko[$j]]);
+						
+						if (preg_match('/^[0-9]+$/', $opt[$j])) {
+							if (isset($row[$opt[$j]-1])) $no_m = explode($delim, $row[$opt[$j]-1]);
+							if (isset($row[$opt[$j]+1])) $no_p = explode($delim, $row[$opt[$j]+1]);						
+							if (isset($row[$opt[$j]])) $no_e = explode($delim, $row[$opt[$j]]);							
+						} else $no_e[0] = $opt[$j];
+						
+						if (isset($po[$j]) and !empty($po[$j])) $no_po = explode($delim, $row[$po[$j]]);
+						if (isset($we[$j]) and !empty($we[$j])) $no_we = explode($delim, $row[$we[$j]]);
+						if (isset($art[$j]) and !empty($art[$j])) $no_art = explode($delim, $row[$art[$j]]);
+						if (isset($foto[$j]) and !empty($foto[$j])) $no_fo = explode($delim, $row[$foto[$j]]);
+						
+						if (preg_match('/^[0-9]+$/', $prro[$j])) {							
+							if (isset($prro[$j]) and !empty($prro[$j])) $no_pr = explode($delim, $row[$prro[$j]]);
+						} else $no_pr[0] = $prro[$j];
+
+						$qarr = count($no_e);					
+						for ($sep=0; $sep<$qarr; $sep++) {
+			
+							$i1 = 0;
+							if (!$option_idd[$j]) {
+								if (preg_match('/^[0-9]+$/', $opt[$j]) and $opt[$j] > 1) {
+									$y=0;
+									if (!$yml and !$price_xml and isset($no_m[$sep])) {
+										$name_option = $no_m[$sep];
+										$y++;
+									}	
+									if (($yml or $price_xml) and isset($no_p[$sep])) {
+										$name_option = $no_p[$sep];
+											$y++;
+									}
+									if (!$y) continue;
+								} else if (isset($no_i[$sep])) $name_option = $no_i[$sep];
+										else continue;
+								if (!empty($name_option)) {
+									$name_option = $this->getName($name_option);
+									$option_id[$j] = $this->createOption($name_option, $langs);
+								}
+							}
+						
+							if (!$option_id[$j] and !$optsku) continue;
+							if (!isset($ko[$j]) or !isset($no_ko[$sep])) continue;
+	
+							if (preg_match('/^[0-9]+$/', $opt[$j])) {
+								$no_e[$sep] = $this->symbol($no_e[$sep]);
+								$no_e[$sep] = str_replace("&quot;", "+-=6", $no_e[$sep]);
+								$opt_val = explode(";" , $no_e[$sep]);
+							}
+							$opt_ko = array();
+							$opt_po = array();
+							$opt_we = array();
+							$opt_art = array();
+							$opt_pr = array();	
+							$opt_foto = array();
+							if (isset($maso)) unset($maso);
+							if (isset($masp)) unset($masp);
+							$maso = array();
+							$masp = array();
+						
+							if (empty($ko[$j])) {
+								$err =  ' The "Quantity" field is not filled in the "Options" page '." \n";
+								$this->adderr($err);
+								break;
+							}
+							$no_ko[$sep] = $this->symbol($no_ko[$sep]);
+							if (isset($no_ko[$sep])) {
+								if (substr_count($no_ko[$sep], ';')) $opt_ko = explode(";" , $no_ko[$sep]);
+								else $opt_ko = explode("," , $no_ko[$sep]);
+							}
+							if (isset($no_po[$sep])) {
+								if (substr_count($no_po[$sep], ';')) $opt_po = explode(";" , $no_po[$sep]);
+								else $opt_po = explode("," , $no_po[$sep]);
+							}										
+							if (preg_match('/^[0-9]+$/', $prro[$j])) {
+								if (substr_count($no_pr[$sep], ';')) $opt_pr = explode(";" , $no_pr[$sep]);
+								else $opt_pr = explode("," , $no_pr[$sep]);						
+							} else $opt_pr[0] = $no_pr[0];	
+							
+							$p = explode("," , $pprice);
+							if ($p[0] == $prro[$j] or $prro[$j] == '') $same_column = 1;						
+							if (!empty($no_art[$sep])) $semicolon = 1;
+	
+							if (isset($no_we[$sep])) {
+								if (substr_count($no_we[$sep], ';')) $opt_we = explode(";" , $no_we[$sep]);
+								else $opt_we = explode("," , $no_we[$sep]);
+							}
+							if (isset($no_art[$sep])) {
+								if (substr_count($no_art[$sep], ';')) $opt_art = explode(";" , $no_art[$sep]);
+								else $opt_art = explode("," , $no_art[$sep]);
+							}
+								
+							if (isset($no_fo[$sep])) $opt_foto = explode(";" , $no_fo[$sep]);
+	
+							if (($opt[$j] and !preg_match('/^[0-9]+$/', $opt[$j])) or ($prro[$j] and !preg_match('/^[0-9]+$/', $prro[$j]))) {
+						
+								if (isset($row[$parsi]) and !empty($row[$parsi])) {	
+									$url = $this->checkurl($row[$parsi], $my_photo);	
+									if ($url != -1) {																
+										if (strlen($ht) < 1024 or $parsed != $parsi) $ht = $this->curl_get_contents($url, 0, $sleep, $ffile);
+										if (strlen($ht) > 1024) {
+											$parsed = $parsi;										
+											$this->ParsOptions($ht, $opt[$j], $opt_point[$j], $prro[$j], $maso, $masp);
+										}		
+										if (!isset($maso[0]) or $maso[0] == '') {
+											$err =  " Row ~= " . $row_count . " SKU = " . $row[$cod] ." Error in parameter parsing option: ". $this->symbol($opt[$j]) . " price: " . $this->symbol($prro[$j]) . " Link: " . $row[$parsi] ." \n";
+											$this->adderr($err);
+											continue;
+										} else {		
+											if (isset($opt_val)) unset($opt_val);
+											if (isset($opt_pr)) unset($opt_pr);
+											for ($l=0; $l<900; $l++) {	
+												if (!isset($maso[$l])) break;		
+												if ($maso[$l]) $opt_val[$l] = $maso[$l];
+												if ($masp[$l]) $opt_pr[$l] = $masp[$l];
+												if (empty($prro[$j])) $opt_pr[$l] = '';
+											}			
+										}							
+									} else {
+										$err =  " Row ~= " . $row_count . " SKU = " . $row[$cod] ." Error link for parsing options in column: ". $parsi . " \n";
 										$this->adderr($err);
 										continue;
-									} else {		
-										if (isset($opt_val)) unset($opt_val);
-										if (isset($opt_pr)) unset($opt_pr);
-										for ($l=0; $l<900; $l++) {	
-											if (!isset($maso[$l])) break;		
-											if ($maso[$l]) $opt_val[$l] = $maso[$l];
-											if ($masp[$l]) $opt_pr[$l] = $masp[$l];
-											if (empty($prro[$j])) $opt_pr[$l] = '';
-										}
-									}							
+									}
 								} else {
-									$err =  " Row ~= " . $row_count . " SKU = " . $row[$cod] ." Error link for parsing options in column: ". $parsi . " \n";
+									$err =  " Row ~= " . $row_count . " SKU = " . $row[$cod] ." Empty link for parsing options in column: ". $parsi . " \n";
 									$this->adderr($err);
 									continue;
-								}
-							} else {
-								$err =  " Row ~= " . $row_count . " SKU = " . $row[$cod] ." Empty link for parsing options in column: ". $parsi . " \n";
-								$this->adderr($err);
-								continue;
-							}	
-						}
-						for ($l=0; $l<200; $l++) {
-							if (isset($option_foto)) unset($option_foto);
-							$option_foto = array();
-							$option_foto[0] = 0;
-							if (isset($opt_foto[$l]) and !empty($opt_foto[$l])) {								
-								$af = explode(',', $opt_foto[$l]);							
-								for ($x=0; $x<count($af); $x++) {	
-									$url = $af[$x];									
-									$url = $this->checkurl($url);	
-									$pic_addr = '';
-									$a = strlen($url)-6;
-									$en = substr($url, $a);
-									if (!substr_count($url, "/") and (stripos($en, '.jpg') or stripos($en, '.png') or stripos($en, '.jpeg') or stripos($en, '.gif') or stripos($en, '.bmp'))) {			
-	
-										$ise = ".jpg";
-										$nom = stripos($url, ".jpg");
-										if (!$nom) {
-											$nom = strrpos($url, ".jpeg");
-											if ($nom) $ise = ".jpeg";
-										}
-										if (!$nom) {
-											$nom = strrpos($url, ".png");
-											if ($nom) $ise = ".png";
-										}	
-										if (!$nom) {
-											$nom = strrpos($url, ".PNG");
-											if ($nom) $ise = ".png";
-										}
-										if (!$nom) {
-											$nom = strrpos($url, ".gif");
-											if ($nom) $ise = ".gif";
-										}
-										if (!$nom) {
-											$nom = strrpos($url, ".GIF");
-											if ($nom) $ise = ".gif";
-										}
-										if (!$nom) {
-											$nom = strrpos($url, ".bmp");
-											if ($nom) $ise = ".bmp";
-										}
-										if (!$nom) {
-											$nom = strrpos($url, ".BMP");
-											if ($nom) $ise = ".bmp";
-										}
-				
-										$a = strlen($url);
-										if (!$nom or $a - $nom > 5) {
-											$se = $ise;
-											$nom = $a;
-										} else $se = substr($url, $nom);
-										$app = substr($url, 0, $nom);
-										$nom = strpos($app, ".");
-										$app = substr($app, $nom);
-										$app = $this->TransLit($app);							
-										$app = $this->MetaURL($app);
+								}	
+							}
+					
+							for ($l=0; $l<200; $l++) {
+								if (isset($option_foto)) unset($option_foto);
+								$option_foto = array();
+								$option_foto[0] = 0;
+								if (isset($opt_foto[$l]) and !empty($opt_foto[$l])) {								
+									$af = explode(',', $opt_foto[$l]);							
+									for ($x=0; $x<count($af); $x++) {								
+										$url = $af[$x];									
+										$url = $this->checkurl($url, $my_photo);	
+										$pic_addr = '';
+										$a = strlen($url)-6;
+										$en = substr($url, $a);
+										if (!substr_count($url, "/") and (stripos($en, '.jpg') or stripos($en, '.png') or stripos($en, '.jpeg') or stripos($en, '.gif') or stripos($en, '.bmp'))) {			
+											$se = $this->getSe($url, $nom);
+											$app = substr($url, 0, $nom);
+											if (substr_count($app, "/")) {
+												$nom = strpos($app, ".");
+												$app = substr($app, $nom);
+											}	
+											$app = $this->TransLit($app);							
+											$app = $this->MetaURL($app);
 
-										$try = "../image/catalog/temp/".$url;
-										if (file_exists($try)) {						
+											$try = "../image/catalog/temp/".$url;
+											if (file_exists($try)) {						
+												if (!empty ($pic_int[$i]))	{
+													$spath = "../image/catalog/" .$pic_int[$i]."/";
+													if (!$subfolder) $path = "../image/catalog/" .$pic_int[$i]."/";
+													else $path = "../image/catalog/" .$pic_int[$i]."/".$papka."/";
+													$spic_addr = "catalog/".$pic_int[$i]."/".$app.$se;
+													if (!$subfolder) $pic_addr = "catalog/".$pic_int[$i]."/".$app.$se;
+													else $pic_addr = "catalog/".$pic_int[$i]."/".$papka."/".$app.$se;			
+												} else {
+													$err =  " Please, set folder for photo on page 'Category and margin'  for Category '" .$this->symbol($catmany[0])."' Row ~= " . $row_count ." \n";
+													$this->adderr($err);
+													break;
+												}		
+												if (!is_dir($spath)) {
+													if (!@mkdir($spath, 0755)) {								
+														$err =  " Photo has not been write: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Can not create folder: " . $spath. ", create it manually \n";
+														$this->adderr($err);
+														break;
+													}
+												}								
+												if (!is_dir($path)) @mkdir($path, 0755);								
+												$path = $path.$app.$se;	
+												$a = @copy ($try, $path);
+												if (!$a) {
+													$err =  " Can not copy file from: " . $try . " to: " . $path . " Set chmod 0755 or 0777 for folder: " . $spath . " \n";
+													$this->adderr($err);
+													break;
+												}											
+											} else {
+												$err =  " Photo not found: Row ~= " . $row_count . " SKU = " . $row[$cod] . " folder: " . $try . " \n";
+												$this->adderr($err);
+												$pic_addr = '';
+											}								
+										} else {	
+											$se = $this->getSe($url, $nom);
+											$app = '';
+											if (!empty($seo_data['prod_photo'])) {
+												$data['name'] = '';
+												if (isset($row_product[0]['item']) and !empty($row_product[0]['item'])) $data['name'] = $row_product[0]['item'];
+												$data['category'] = '';
+												if (isset($text_cat) and !empty($text_cat)) $data['category'] = trim($text_cat);
+												$data['manufacturer'] = '';
+												if (isset($row[$manuf]) and !empty($row[$manuf])) $data['manufacturer'] = trim($row[$manuf]);
+												$data['model'] = '';
+												if (isset($row_product[0]['model']) and !empty($row_product[0]['model'])) $data['model'] = $row_product[0]['model'];
+												$data['brand'] = '';
+												if (isset($row[$ref]) and !empty($row[$ref])) $data['brand'] = $this->getName($row[$ref]);
+												$data['sku'] = '';
+												if (isset($row[$cod]) and !empty($row[$cod])) $data['sku'] = trim($row[$cod]);
+												$app = $this->namePhoto($store, $data, $seo_data['prod_photo']);
+												$app = $this->TransLit($app);
+												$app = strtolower($app);
+											}
+											if (empty($app)) {
+												$app = substr($url, 0, $nom);
+												if (substr_count($app, "/")) {
+													$nom = strpos($app, ".");
+													$app = substr($app, $nom+7);
+												}	
+												$app = $this->TransLit($app);
+												$nom = strlen($app);
+												if ($nom > 250) $app = substr($app, $nom-250, 250);
+												if ($nom < 2) $app = rand(0, 999999999);								
+												$app = $this->MetaURL($app);
+											}								
+								
 											if (!empty ($pic_int[$i]))	{
 												$spath = "../image/catalog/" .$pic_int[$i]."/";
 												if (!$subfolder) $path = "../image/catalog/" .$pic_int[$i]."/";
 												else $path = "../image/catalog/" .$pic_int[$i]."/".$papka."/";
 												$spic_addr = "catalog/".$pic_int[$i]."/".$app.$se;
 												if (!$subfolder) $pic_addr = "catalog/".$pic_int[$i]."/".$app.$se;
-												else $pic_addr = "catalog/".$pic_int[$i]."/".$papka."/".$app.$se;			
+												else $pic_addr = "catalog/".$pic_int[$i]."/".$papka."/".$app.$se;				
 											} else {
-												$err =  " Please, set folder for photo on page 'Category and margin'  for Category '" .$this->symbol($catmany[0])."' Row ~= " . $row_count ." \n";
+												$path = "../image/catalog/photo/";											
+												$pic_addr = "catalog/photo/".$app.$se;											
+											}
+											if ((!isset($spath) or empty($spath)) and !$idcat) {
+												$err =  " Photo has not been write: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Set, please, folder for photo on the page 'Category and margin'  \n";
 												$this->adderr($err);
 												break;
-											}		
-											if (!is_dir($spath)) {
-												if (!@mkdir($spath, 0755)) {								
-													$err =  " Photo has not been write: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Can not create folder: " . $spath. ", create it manually \n";
+											}	
+											if (!is_dir($path)) {
+												if (!@mkdir($path, 0755)) {								
+													$err =  " Photo has not been write: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Can not create folder: " . $path. ", create it manually \n";
 													$this->adderr($err);
 													break;
 												}
-											}								
-											if (!is_dir($path)) @mkdir($path, 0755);								
-											$path = $path.$app.$se;	
-											$a = @copy ($try, $path);
-											if (!$a) {
-												$err =  " Can not copy file from: " . $try . " to: " . $path . " Set chmod 0755 or 0777 for folder: " . $spath . " \n";
-												$this->adderr($err);
-												break;
-											}											
-										} else {
-											$err =  " Photo not found: Row ~= " . $row_count . " SKU = " . $row[$cod] . " folder: " . $try . " \n";
-											$this->adderr($err);
-											$pic_addr = '';
-										}								
-									} else {	
-										$ise = ".jpg";
-										$nom = stripos($url, ".jpg");
-										if (!$nom) {
-											$nom = strrpos($url, ".jpeg");
-											if ($nom) $ise = ".jpeg";
-										}
-										if (!$nom) {
-											$nom = strrpos($url, ".png");
-											if ($nom) $ise = ".png";
+											}
+											$path = $path.$app.$se;										
+											if (!file_exists($path)) {
+												$pict = $this->curl_get_contents($url, 1, $sleep, $ffile);	
+												if (!$this->isPicture($pict)) {
+													$err =  " Download photo for Option, fails. Row ~= " . $row_count ." Url = ". $url . " Column = " . $foto[$j] . " \n";
+													$this->adderr($err);
+													$pic_addr = '';
+												} else {
+													$bytes = @file_put_contents($path, $pict);
+													if (!$bytes) {
+														$bytes = @file_put_contents($spath, $pict);
+														$pic_addr = $spic_addr;
+													}	
+												} 
+											}
 										}	
-										if (!$nom) {
-											$nom = strrpos($url, ".PNG");
-											if ($nom) $ise = ".png";
-										}
-										if (!$nom) {
-											$nom = strrpos($url, ".gif");
-											if ($nom) $ise = ".gif";
-										}
-										if (!$nom) {
-											$nom = strrpos($url, ".GIF");
-											if ($nom) $ise = ".gif";
-										}
-										if (!$nom) {
-											$nom = strrpos($url, ".bmp");
-											if ($nom) $ise = ".bmp";
-										}
-										if (!$nom) {
-											$nom = strrpos($url, ".BMP");
-											if ($nom) $ise = ".bmp";
-										}
-				
-										$a = strlen($url);
-										if (!$nom or $a - $nom > 5) {
-											$se = $ise;
-											$nom = $a;
-										} else $se = substr($url, $nom);	
-										$app = '';
-										if (!empty($seo_data['prod_photo'])) {
-											$data['name'] = '';
-											if (isset($row_product[0]['item']) and !empty($row_product[0]['item'])) $data['name'] = $row_product[0]['item'];
-											$data['category'] = '';
-											if (isset($text_cat) and !empty($text_cat)) $data['category'] = trim($text_cat);
-											$data['manufacturer'] = '';
-											if (isset($row[$manuf]) and !empty($row[$manuf])) $data['manufacturer'] = trim($row[$manuf]);
-											$data['model'] = '';
-											if (isset($row_product[0]['model']) and !empty($row_product[0]['model'])) $data['model'] = $row_product[0]['model'];
-											$data['brand'] = '';
-											if (isset($row[$ref]) and !empty($row[$ref])) $data['brand'] = $this->getName($row[$ref]);
-											$data['sku'] = '';
-											if (isset($row[$cod]) and !empty($row[$cod])) $data['sku'] = trim($row[$cod]);
-											$app = $this->namePhoto($store, $data, $seo_data['prod_photo']);
-											$app = $this->TransLit($app);
-											$app = strtolower($app);
-										}
-										if (empty($app)) {
-											$app = substr($url, 0, $nom);
-											$nom = strpos($app, ".");
-											$app = substr($app, $nom+7);
-											$app = $this->TransLit($app);
-											$nom = strlen($app);
-											if ($nom > 250) $app = substr($app, $nom-250, 250);
-											if ($nom < 2) $app = rand(0, 999999999);								
-											$app = $this->MetaURL($app);
-										}								
-								
-										if (!empty ($pic_int[$i]))	{
-											$spath = "../image/catalog/" .$pic_int[$i]."/";
-											if (!$subfolder) $path = "../image/catalog/" .$pic_int[$i]."/";
-											else $path = "../image/catalog/" .$pic_int[$i]."/".$papka."/";
-											$spic_addr = "catalog/".$pic_int[$i]."/".$app.$se;
-											if (!$subfolder) $pic_addr = "catalog/".$pic_int[$i]."/".$app.$se;
-											else $pic_addr = "catalog/".$pic_int[$i]."/".$papka."/".$app.$se;				
-										} else {
-											$path = "../image/catalog/photo/";											
-											$pic_addr = "catalog/photo/".$app.$se;											
-										}
-										if ((!isset($spath) or empty($spath)) and !$idcat) {
-											$err =  " Photo has not been write: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Set, please, folder for photo on the page 'Category and margin'  \n";
-											$this->adderr($err);
-											break;
-										}	
-										if (!is_dir($path)) {
-											if (!@mkdir($path, 0755)) {								
-												$err =  " Photo has not been write: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Can not create folder: " . $path. ", create it manually \n";
-												$this->adderr($err);
+										$option_foto[$x] = $pic_addr;
+									}	
+								}
+								$e = 0;	
+						
+								if ((empty($opt_val[$l]) and !isset($opt_val[$l+1]) and !$optsku) or ($optsku and $l > 0) or (isset($row[$art[$j]]) and !isset($opt_art[$l]))) break;
+	
+								$data_option['op_val_id'] = 0;
+								if (!isset($opt_val[$l])) continue;
+								$opt_val[$l] = trim($opt_val[$l]);
+								$opt_val[$l] = str_replace("+-=6", "&quot;", $opt_val[$l]);
+								if ($option_id[$j]) {
+									$rows = $this->getOptionsById($option_id[$j]);	
+									if (!empty($rows) and isset($opt_val[$l]) and !empty($opt_val[$l])) {	
+										foreach ($rows as $r) {		
+											if ((string)$r['name'] == $opt_val[$l]) {	
+												$e = 1;											
+												$data_option['op_val_id'] = $r['option_value_id'];
 												break;
+											}	
+										}
+										if (!$e and $change_option) {
+											for ($q=0; $q<count($mas_option); $q++) {		
+												if (isset($mas_option[$q][0]) and isset($mas_option[$q][2]) and $option_id[$j] == $mas_option[$q][0] and $opt_val[$l] == $mas_option[$q][2]) {													
+													$rows = $this->getOptionValueByName($mas_option[$q][1]);
+													if (!empty($rows)) {
+														$opt_val[$l] = $mas_option[$q][1];
+														$data_option['op_val_id'] = $rows[0]['option_value_id'];		
+														$e = 1;
+														break;
+													} else {
+														$opt_val[$l] = $mas_option[$q][1];
+														$e = 0;
+													}	
+												}		
 											}
 										}
-										$path = $path.$app.$se;										
-										if (!file_exists($path)) {
-											$pict = $this->curl_get_contents($url, 1, $sleep, $ffile);	
-											if (!$this->isPicture($pict)) {
-												$err =  " Download photo for Option, fails. Row ~= " . $row_count ." Url = ". $url . " Column = " . $foto[$j] . " \n";
-												$this->adderr($err);
-												$pic_addr = '';
-											} else {
-												$bytes = @file_put_contents($path, $pict);
-												if (!$bytes) {
-													$bytes = @file_put_contents($spath, $pict);
-													$pic_addr = $spic_addr;
-												}	
-											} 
-										}
-									}	
-									$option_foto[$x] = $pic_addr;				
-								}	
-							}
-							$e = 0;
-							if ((empty($opt_val[$l]) and !isset($opt_val[$l+1]) and !$optsku) or ($optsku and $l > 0) or (isset($row[$art[$j]]) and !isset($opt_art[$l]))) break;			
-							
-							$data_option['op_val_id'] = 0;
-							$opt_val[$l] = trim($opt_val[$l]);
-							$opt_val[$l] = str_replace("+-=6", "&quot;", $opt_val[$l]);
-							if ($option_id[$j]) {
-								$rows = $this->getOptionsById($option_id[$j]);	
-								if (!empty($rows) and isset($opt_val[$l]) and !empty($opt_val[$l])) {	
-									foreach ($rows as $r) {		
-										if ((string)$r['name'] == $opt_val[$l]) {	
-											$e = 1;											
-											$data_option['op_val_id'] = $r['option_value_id'];
-											break;
-										}	
-									}
-								}						
-							}
-									
-							if (!$e and $option_id[$j]) {
-								if ($addopt and !empty($opt_val[$l])) {
-									$this->addValue($option_id[$j], $ovid, $option_foto[0], $upOptionFoto);
-									$this->addValueDescription($option_id[$j], $ovid, $opt_val[$l], $langs);								
-									$data_option['op_val_id'] = $ovid;
-									$report = $report." Option value ".$opt_val[$l]." has been added";
+									}							
 								}
-							}
-						
-							if ($e and $upOptionFoto == '1' and !empty($option_foto[0])) {
-								$this->upOptionFoto($option_id[$j], $data_option['op_val_id'], $option_foto[0]);
-								$option_foto[0] = '';
-							}	
 							
-							if (isset($opt_val[$l])) $data_option['opt'] = $opt_val[$l];
+								if (!$e and $option_id[$j]) {
+									if ($addopt and !empty($opt_val[$l])) {
+										$this->addValue($option_id[$j], $ovid, $option_foto[0], $upOptionFoto);					
+										$this->addValueDescription($option_id[$j], $ovid, $opt_val[$l], $langs);								
+										$data_option['op_val_id'] = $ovid;
+										$report = $report." Option value ".$opt_val[$l]." has been added";
+									}
+								}
+				
+								if ($e and $upOptionFoto == '1' and !empty($option_foto[0])) {
+									$this->upOptionFoto($option_id[$j], $data_option['op_val_id'], $option_foto[0]);
+									$option_foto[0] = '';
+								}	
+							
+								if (isset($opt_val[$l])) $data_option['opt'] = $opt_val[$l];
 	
-							$data_option['ko'] = 0;
-							$data_option['koj'] = 0;
-							if (isset($opt_ko[$l])) {
-								$opt_ko[$l] = trim($opt_ko[$l]);
-								$quop = 0;
-								$newstatusop = 0;
-								$emptop = 0;
-								$row1[1] = $opt_ko[$l];
-								$this->getQuantity($row1, 1, $my_qu, $quop, $newstatusop, $emptop);				
+								$data_option['ko'] = 0;
+								$data_option['koj'] = 0;
+								if (isset($opt_ko[$l])) {
+									$opt_ko[$l] = trim($opt_ko[$l]);
+									$quop = 0;
+									$newstatusop = 0;
+									$emptop = 0;
+									$row1[1] = $opt_ko[$l];
+									$this->getQuantity($row1, 1, $my_qu, $quop, $newstatusop, $emptop, $delim);				
 								
-								$data_option['ko'] = $quop;
-								$data_option['koj'] = $quop;
-							}	
-												
-							if (!$optsku) {
-								$pp = 0;
-								for ($u=0; $u<$ks+1; $u++) {	
-									if (isset($same_opt[$u]['opt']) and !empty($same_opt[$u]['opt']) and $same_opt[$u]['opt'] == $data_option['opt']) {	
-										$same_opt[$u]['ko'] = $same_opt[$u]['ko']+$data_option['ko'];
-										$pp = 1;
-										break;
+									$data_option['ko'] = $quop;
+									$data_option['koj'] = $quop;
+								} 	
+
+								if (!$optsku) {
+									$pp = 0;
+									for ($u=0; $u<$ks+1; $u++) {	
+										if (isset($same_opt[$u]['opt']) and !empty($same_opt[$u]['opt']) and $same_opt[$u]['opt'] == $data_option['opt']) {	
+											$same_opt[$u]['ko'] = $same_opt[$u]['ko']+$data_option['ko'];
+											$pp = 1;
+											break;
+										}
 									}
+							
+									if (!$pp and !empty($data_option['opt'])) {
+										$ks++;								
+										$same_opt[$ks]['opt'] = $data_option['opt'];								
+										$same_opt[$ks]['ko'] = $data_option['ko'];
+									} elseif (isset($same_opt[$u]['ko'])) $data_option['ko'] = $same_opt[$u]['ko'];
+								}
+	
+								$data_option['optsku'] = '';						
+								if (isset($opt_art[$l])) $data_option['optsku'] = $opt_art[$l];							
+								elseif ($optsku) $data_option['optsku'] = $o_optsku;
+							
+								$data_option['pr'] = '';
+								$data_option['pr_prefix'] = '=';
+								if (empty($prro[$j])) $data_option['pr_prefix'] = '+';
+								if (isset($opt_pr[$l]) and !empty($prro[$j])) {
+									$opt_pr[$l] = trim($opt_pr[$l]);
+									$e = substr($opt_pr[$l], strlen($opt_pr[$l])-1, 1);	
+									if ($e == '+' or $e == '-' or $e == '=' or $e == '%' or $e == '*' or $e == '#') {
+										$data_option['pr_prefix'] = $e;								
+										$b = substr($opt_pr[$l], 0, strlen($opt_pr[$l])-1);									
+									} else {
+										$b = $opt_pr[$l];								
+										$e = '=';
+										$data_option['pr_prefix'] = $e;								
+									}	
+									if (!empty($opt_pref[$j])) {
+										$data_option['pr_prefix'] =  $opt_pref[$j];
+										$e = $opt_pref[$j];									
+									}	
+									if (preg_match('/^[0-9.,Ee+-]+$/', $b)) {
+										$data_option['pr'] = str_replace("," , ".", $b);
+										if ($e == '=' and !$same_column) $data_option['pr'] = $data_option['pr']*$rate;
+										if ($opt_margin[$j] and $plus and $e == '=' and !$same_column) {
+											if (!substr_count($plus, "+") and !substr_count($plus, "--")) $data_option['pr'] = $data_option['pr']+(	$data_option['pr']*$plus/100);
+											else {
+												if (substr_count($plus, "+")) {
+													$pl = explode("+", $plus);	
+													if (isset($pl[1]) and !empty($pl[1])) $data_option['pr'] = $data_option['pr'] + $pl[1];
+												}
+												if (substr_count($plus, "--")) {
+													$pl = explode("--", $plus);	
+													if (isset($pl[1]) and !empty($pl[1])) $data_option['pr'] = $data_option['pr'] - $pl[1];
+												}	
+											}	
+										}
+										if ($opt_margin[$j] and $plus and $e == '=' and $same_column) $data_option['pr'] = $row_product[0]['price'];
+										$data_option['pr'] = $this->convertPrice($data_option['pr']);
+
+									}	
 								}
 							
-								if (!$pp and !empty($data_option['opt'])) {
-									$ks++;								
-									$same_opt[$ks]['opt'] = $data_option['opt'];								
-									$same_opt[$ks]['ko'] = $data_option['ko'];
-								} elseif (isset($same_opt[$u]['ko'])) $data_option['ko'] = $same_opt[$u]['ko'];
-							}
-	
-							$data_option['optsku'] = '';						
-							if (isset($opt_art[$l])) $data_option['optsku'] = $opt_art[$l];							
-							elseif ($optsku) $data_option['optsku'] = $o_optsku;
-							
-							$data_option['pr'] = '';
-							$data_option['pr_prefix'] = '=';
-							if (empty($prro[$j])) $data_option['pr_prefix'] = '+';
-							if (isset($opt_pr[$l]) and !empty($prro[$j])) {
-								$opt_pr[$l] = trim($opt_pr[$l]);
-								$e = substr($opt_pr[$l], strlen($opt_pr[$l])-1, 1);	
-								if ($e == '+' or $e == '-' or $e == '=' or $e == '%' or $e == '*' or $e == '#') {
-									$data_option['pr_prefix'] = $e;								
-									$b = substr($opt_pr[$l], 0, strlen($opt_pr[$l])-1);									
-								} else {
-									$b = $opt_pr[$l];								
-									$e = '=';
-									$data_option['pr_prefix'] = $e;								
-								}	
-							
-								if (!empty($opt_pref[$j])) {
-									$data_option['pr_prefix'] =  $opt_pref[$j];
-									$e = $opt_pref[$j];									
-								}	
-								if (preg_match('/^[0-9.,Ee+-]+$/', $b)) {
-									$data_option['pr'] = str_replace("," , ".", $b);							
-									if ($e == '=' and !$same_column) $data_option['pr'] = $data_option['pr']*$rate;
-									if ($opt_margin[$j] and $plus and $e == '=' and !$same_column) $data_option['pr'] = $data_option['pr']+($data_option['pr']*$plus/100);
-									if ($opt_margin[$j] and $plus and $e == '=' and $same_column) $data_option['pr'] = $row_product[0]['price'];
-									$data_option['pr'] = $this->convertPrice($data_option['pr']);											
-								}	
-							}
-														
-							$data_option['po'] = 0;
-							$data_option['po_prefix'] = '=';
-							if (isset($opt_po[$l])) {
-								$opt_po[$l] = trim($opt_po[$l]);
-								$e = substr($opt_po[$l], strlen($opt_po[$l])-1, 1);
-								if ($e == '+' or $e == '-' or $e == '=' or $e == '%' or $e == '*' or $e == '#') 
-								{	
-						 	        $data_option['po_prefix'] = $e;							
-									$b = substr($opt_po[$l], 0, strlen($opt_po[$l])-1);									
-							    } else $b = substr($opt_po[$l], 0, strlen($opt_po[$l]));						
-							    if (preg_match('/^[0-9.,Ee+-]+$/', $b)) $data_option['po'] = str_replace("," , ".", $b);
+								$data_option['po'] = 0;
+								$data_option['po_prefix'] = '=';
+								if (isset($opt_po[$l])) {
+									$opt_po[$l] = trim($opt_po[$l]);
+									$e = substr($opt_po[$l], strlen($opt_po[$l])-1, 1);
+									if ($e == '+' or $e == '-' or $e == '=' or $e == '%' or $e == '*' or $e == '#') 
+									{	
+										$data_option['po_prefix'] = $e;							
+										$b = substr($opt_po[$l], 0, strlen($opt_po[$l])-1);									
+									} else $b = substr($opt_po[$l], 0, strlen($opt_po[$l]));						
+									if (preg_match('/^[0-9.,Ee+-]+$/', $b)) $data_option['po'] = str_replace("," , ".", $b);
 															
-							}						
+								}						
 							
-							$data_option['we'] = 0;
-							$data_option['we_prefix'] = '=';
-							if (isset($opt_we[$l])) {
-								$opt_we[$l] = trim($opt_we[$l]);
-								$e = substr($opt_we[$l], strlen($opt_we[$l])-1, 1);
-								if ($e == '+' or $e == '-' or $e == '=' or $e == '%' or $e == '*' or $e == '#') 
-								{ 	
-							      $data_option['we_prefix'] = $e;								
-								  $b = substr($opt_we[$l], 0, strlen($opt_we[$l])-1);
-								} else  $b = substr($opt_we[$l], 0, strlen($opt_we[$l])); 
-								if (preg_match('/^[0-9.,Ee+-]+$/', $b)) $data_option['we'] = str_replace("," , ".", $b);		
-							}							
+								$data_option['we'] = 0;
+								$data_option['we_prefix'] = '=';
+								if (isset($opt_we[$l])) {
+									$opt_we[$l] = trim($opt_we[$l]);
+									$e = substr($opt_we[$l], strlen($opt_we[$l])-1, 1);
+									if ($e == '+' or $e == '-' or $e == '=' or $e == '%' or $e == '*' or $e == '#') 
+									{ 	
+									$data_option['we_prefix'] = $e;								
+									$b = substr($opt_we[$l], 0, strlen($opt_we[$l])-1);
+									} else  $b = substr($opt_we[$l], 0, strlen($opt_we[$l])); 
+									if (preg_match('/^[0-9.,Ee+-]+$/', $b)) $data_option['we'] = str_replace("," , ".", $b);		
+								}							
 							
-							if (!$yes_option) $report = $report." Product options updated ";						
-							$yes_option = 1;							
-							$data_option['option_required'] = $option_required[$j];
-							$uu = 0;
-							if (isset($row[$usd])) $uu = $row[$usd];
-							$prod_opt_val_id = 0;
-							$this->upProductOption($row_product[0]['product_id'], $option_id[$j], $data_option, $minus, $ad, $option_type[$j], $my_price, $usd, $uu, $option_foto, $prod_opt_val_id, $upOptionFoto, $mas_prod_opt_val_id);
+								if (!$yes_option) $report = $report." Product options updated ";						
+								$yes_option = 1;							
+								$data_option['option_required'] = $option_required[$j];
+								$uu = 0;
+								if (isset($row[$usd])) $uu = $row[$usd];
+								$prod_opt_val_id = 0;
+							
+								$this->upProductOption($row_product[0]['product_id'], $option_id[$j], $data_option, $minus, $ad, $option_type[$j], $my_price, $usd, $uu, $option_foto, $prod_opt_val_id, $upOptionFoto, $mas_prod_opt_val_id);
+
+								for ($i1=0; $i1<900; $i1++) {
+									if (!isset($mas_prod_opt_val_id[$i1]['prod_id'])) break;
+									$mas_nozero[$nozero_index]['prod_id'] = $mas_prod_opt_val_id[$i1]['prod_id'];				
+									$nozero_index++;								
+								}	
+							
+								if ($option_type[$j] == 'select' or $option_type[$j] == 'radio' or $option_type[$j] == 'image' or $option_type[$j] == 'checkbox') {
+									$mas_opt[$jj][$l][0] = $row_product[0]['product_id'];
+									$mas_opt[$jj][$l][1] = $option_id[$j];
+									$mas_opt[$jj][$l][2] = $data_option['op_val_id'];
+									if (!$data_option['op_val_id'] and isset($mas_prod_opt_val_id[0]['val_id'])) $mas_opt[$jj][$l][2] = $mas_prod_opt_val_id[0]['val_id'];
+									$mas_opt[$jj][$l][3] = $ko[$j];
+									$mas_opt[$jj][$l][4] = $data_option['koj'];							
+									$mas_opt[$jj][$l][5] = $data_option['pr'];							
+									$mas_opt[$jj][$l][6] = $data_option['we_prefix'];							
+									$mas_opt[$jj][$l][7] = $data_option['we'];
+									$mas_opt[$jj][$l][8] = $data_option['optsku'];
+									$mas_opt[$jj][$l][9] = $data_option['pr_prefix'];
 	
-							for ($i1=0; $i1<900; $i1++) {
-								if (!isset($mas_prod_opt_val_id[$i1]['prod_id'])) break;
-								$mas_nozero[$nozero_index]['prod_id'] = $mas_prod_opt_val_id[$i1]['prod_id'];				
-								$nozero_index++;								
-							}
-							
-							if ($option_type[$j] == 'select' or $option_type[$j] == 'radio' or $option_type[$j] == 'image' or $option_type[$j] == 'checkbox') {
-								$mas_opt[$jj][$l][0] = $row_product[0]['product_id'];
-								$mas_opt[$jj][$l][1] = $option_id[$j];
-								$mas_opt[$jj][$l][2] = $data_option['op_val_id'];
-								if (!$data_option['op_val_id'] and isset($mas_prod_opt_val_id[0]['val_id'])) $mas_opt[$jj][$l][2] = $mas_prod_opt_val_id[0]['val_id'];
-								$mas_opt[$jj][$l][3] = $ko[$j];
-								$mas_opt[$jj][$l][4] = $data_option['koj'];							
-								$mas_opt[$jj][$l][5] = $data_option['pr'];							
-								$mas_opt[$jj][$l][6] = $data_option['we_prefix'];							
-								$mas_opt[$jj][$l][7] = $data_option['we'];
-								$mas_opt[$jj][$l][8] = $data_option['optsku'];
-								$mas_opt[$jj][$l][9] = $data_option['pr_prefix'];
-		
-								if (isset($summa_product_options)) $summa_product_options = $summa_product_options+$data_option['ko'];
+									if (isset($summa_product_options)) $summa_product_options = $summa_product_options+$data_option['ko'];
 	
-								$jj++;
-							}
-						}	
-					}
+									$jj++;
+							
+								}
+							}	
+						}
+					}  // OK
 					if (!isset($i1)) $i1 = 0;
-					
+				
 						if ($optsku and $i1 > 1) {
 							for ($l=0; $l<900; $l++) {
 								for ($j=1; $j<=$jj; $j++) {
@@ -18285,6 +21637,7 @@ class ModelCatalogSuppler extends Model {
 							}
 						}
 						unset($mas_prod_opt_val_id);
+						
 						for ($l=0; $l<900; $l++) {
 							$gr_data = array();
 							$n = 0; $a = ''; $b = '';	
@@ -18293,7 +21646,7 @@ class ModelCatalogSuppler extends Model {
 								$m = 0;
 								for ($k=1; $k<=$jj; $k++) {
 									if (!isset($mas_opt[$k][$l][0])) continue;
-									if (!empty($mas_opt[$j][$l][2]) and $mas_opt[$j][$l][3] == $mas_opt[$k][$l][3] and $j != $k and $a != $mas_opt[$j][$l][1] and $b != $mas_opt[$j][$l][2]) {								
+									if (!empty($mas_opt[$j][$l][2]) and $mas_opt[$j][$l][3] == $mas_opt[$k][$l][3] and $j != $k and $a != $mas_opt[$j][$l][1] and $b != $mas_opt[$j][$l][2]) {
 										$a = $mas_opt[$j][$l][1];
 										$b = $mas_opt[$j][$l][2];
 										$n++;
@@ -18308,21 +21661,22 @@ class ModelCatalogSuppler extends Model {
 										$gr_data[$n][7] = $mas_opt[$j][$l][7];
 										$gr_data[$n][8] = $mas_opt[$j][$l][8];
 										$gr_data[$n][9] = $mas_opt[$j][$l][9];
+
 									}
 								}
 							}
 	
 							if ($n>1) {
 								$jopt = 1;
-								$summa_options = $summa_options + $gr_data[1][4]*($n-1);
+								$summa_options = $summa_options + $gr_data[1][4]*($n-1);	
 								$this->jOption($gr_data, $ad);
 								unset($gr_data);							
 							}
 						}
 				
 				}
-				unset($mas_opt);				
-				
+				unset($mas_opt);
+
 				if ($yes_option and (!$ismain or ($ismain and $main and $equ))) {
 					if ($jopt ) {					
 						$row_product[0]['quantity'] = $summa_options;						
@@ -18333,7 +21687,7 @@ class ModelCatalogSuppler extends Model {
 				if ($sorder and isset($row[$sorder]) and !empty($row[$sorder]) and $price_changed and $quantity != '')
 					$row_product[0]['sort_order'] = $row[$sorder];
 				elseif (($price_changed or $yes_option or $quantity_changed) and $quantity and $row_product[0]['sort_order'] > 999) $row_product[0]['sort_order'] = $row_product[0]['sort_order'] - 1000;
-				
+			
 				$stat = $row_product[0]['stock_status_id'];
 				if ($newstatus) $stat = $newstatus;
 				if (!empty($termin) and !empty($row[$termin]) and !empty($t_status) and (!$ismain or ($ismain and $main and $equ))) {
@@ -18361,7 +21715,7 @@ class ModelCatalogSuppler extends Model {
 				
 				$yes = 0;
 				$rating_old =0;
-				$l_old = 0;				
+				$l_old = 0;			
 				$row_product[0]['description'] = '';
 				$rows = $this->getProductDesc($row_product[0]['product_id']);				
 				if (!empty($rows)) {					
@@ -18377,8 +21731,8 @@ class ModelCatalogSuppler extends Model {
 				if (($updte > 1 or $upname or $upurl) and $ad != 2 and $ad != 4){
 					$text = "";
 					$pname = "";					
-					if ($descrip == 'descrip' and $updte > 1) {
-						$d = $row[$descrip];
+					if ($descrip == 'descrip' and $updte > 1) {	
+						$d = $row[$descrip];						
 						$rating_new =0;						
 						if (substr_count($d, "<br")) $rating_new++;
 						if (substr_count($d, "<strong")) $rating_new++;
@@ -18409,14 +21763,15 @@ class ModelCatalogSuppler extends Model {
 							$yes = 1;	
 						}						
 					}
+	
 					if (!empty($descrip) and $descrip != 'descrip' and isset($row[$parsd]) and !$yml) {					
-						$url = $this->checkurl($row[$parsd]);
+						$url = $this->checkurl($row[$parsd], $my_photo);
 						if ($url != -1) {							
 							if ($updte > 1) {												
-								if (strlen($ht) < 1024 or $parsed != $parsd) $ht = $this->curl_get_contents($url, 0, $sleep, $ffile);
-								if (strlen($ht) > 1024) {
+								if (strlen($ht) < 10 or $parsed != $parsd) $ht = $this->curl_get_contents($url, 0, $sleep, $ffile);
+								if (strlen($ht) > 10) {
 									$parsed = $parsd;									
-									$text = $this->ParsDescription($ht, $descrip, $pointd, $placed, $row_count, $url, $sleep, $ffile, $photo_desc);
+									$text = $this->ParsDescription($ht, $descrip, $pointd, $placed, $row_count, $url, $sleep, $ffile, $photo_desc, $my_photo);
 									if (strlen($text) < 10) $text = '';
 								} else {
 									$parsed = '';
@@ -18427,15 +21782,17 @@ class ModelCatalogSuppler extends Model {
 						}	
 					}					
 					
-					if (preg_match('/^[0-9,]+$/', $item) and $upname )  {	
+					if (preg_match('/^[0-9,]+$/', $item) and $upname)  {	
 						$a = '';
 						if (substr_count($item, ",")) {
 							$items = explode(",", $item);
 							for ($j=0; $j<10; $j++) {
-								if (!isset($items[$j])) break;
+								if (!isset($items[$j])) break;								
 								if (!empty($row[$items[$j]])) $a = $a . " " . $row[$items[$j]];
-							}							
-						} else $a = $row[$item];
+							}
+							$a = str_replace($delim, ' ', $a);
+							
+						} else $a = str_replace($delim, ' ', $row[$item]);
 						if (!empty($a)) {
 							$row_product[0]['item'] = trim($this->getName($a));
 							if (!$yml or ($yml and $upname)) $report = $report."Product name updated ";
@@ -18443,7 +21800,7 @@ class ModelCatalogSuppler extends Model {
 					}
 					
 					if (!empty($item) and !preg_match('/^[0-9,]+$/', $item) and ($upname or $upurl) and isset($row[$parsi])) {
-						$url = $this->checkurl($row[$parsi]);
+						$url = $this->checkurl($row[$parsi], $my_photo);
 						if ($url != -1) {							
 							if (strlen($ht) < 1024 or $parsed != $parsi) $ht = $this->curl_get_contents($url, 0, $sleep, $ffile);
 							if (strlen($ht) > 1024) {
@@ -18464,7 +21821,7 @@ class ModelCatalogSuppler extends Model {
 								$report = $report."Product name parsed and updated ";
 							} else $report = $report."Product name has not been parsed ";
 						}					
-					}						
+					}
 					
 					if (!empty($my_descrip) and empty($text) and !$yes and !$yml) {
 						if (!empty($my_descrip)) $row_product[0]['description'] = $my_descrip;						
@@ -18494,7 +21851,7 @@ class ModelCatalogSuppler extends Model {
 								}								
 								if ($updte == 2) {
 									$row_product[0]['description'] = $text;
-									$report = $report."Description parsed and updated ";
+									$report = $report."Description parsed and updated ";						
 								}	
 							} else {
 								if ($yml and isset($ymldsc) and !$ymldsc) {
@@ -18506,27 +21863,27 @@ class ModelCatalogSuppler extends Model {
 						}					
 					}
 				}
-	
-				$pictures = array();
-				$pi = explode(",", $pic_ext);
-				if (!empty($parsk) and !preg_match('/^[0-9,]+$/', $pic_ext)) $pictures[0] = $parsk;					
-				else $pictures = $pi;				
-	
-				$nojpg = 0;				
+
+				$nojpg = 0;
+				$up = 0;
 				if ($newphoto > 1 and $ad != 2 and $ad != 4) {
 					if ($newphoto == 4) $this->deleteProductImage($row_product[0]['product_id']);
-					for ($k=0; $k<$np; $k++) {
-						if (!isset($pictures[$k])) break;		
-						$pic = $pictures[$k];		
-						if (isset($row[$pic]) and !empty ($row[$pic])) {
-							$url = $row[$pic];
-							if (substr_count($url, "/")) $url = $this->checkurl($url);	
+					if ($newphoto == 7) $npic = 1;
+					for ($k=0; $k<$npic; $k++) {
+						if (!empty($pictures[$k])) {
+							if (!substr_count($pictures[$k], '/') and !substr_count($pictures[$k], '.jpg') and !substr_count($pictures[$k], '.JPG') and !substr_count($pictures[$k], '.png') and !substr_count($pictures[$k], '.PNG') and !substr_count($pictures[$k], '.jpeg') and !substr_count($pictures[$k], '.JPEG') and !substr_count($pictures[$k], '.gif') and !substr_count($pictures[$k], '.GIF') and !substr_count($pictures[$k], '.bmp') and !substr_count($pictures[$k], '.BMP')) {
+								$this->photoFromFolder($row_product, $row, $pictures[$k], $seo_data, $pic_int[$i], $subfolder, $papka, $catmany[0], $row_count, 0, $row_product[0]['product_id'], $report, $store);
+							
+								continue;
+							}
+							$url = $pictures[$k];
+							if (substr_count($url, "/")) $url = $this->checkurl($url, $my_photo);						
 							if ($url == -1) continue;								
 							$url = str_replace("&#45;", "-", $url);
 							$url = str_replace("&amp;", "&", $url);			
 						} else {
 							if ($k == 0) {
-								$url = $this->checkurl($my_photo);
+								$url = $this->checkurl($my_photo, '');
 								$url = str_replace("&#45;", "-", $url);
 								$url = str_replace("&amp;", "&", $url);
 							} else continue;
@@ -18535,42 +21892,7 @@ class ModelCatalogSuppler extends Model {
 						$a = strlen($url)-6;
 						$en = substr($url, $a);
 						if (!substr_count($url, "/") and (stripos($en, '.jpg') or stripos($en, '.png') or stripos($en, '.jpeg') or stripos($en, '.gif') or stripos($en, '.bmp'))) {	
-							$ise = ".jpg";
-							$nom = stripos($url, ".jpg");
-							if (!$nom) {
-								$nom = strrpos($url, ".jpeg");
-								if ($nom) $ise = ".jpeg";
-							}
-							if (!$nom) {
-								$nom = strrpos($url, ".png");
-								if ($nom) $ise = ".png";
-							}	
-							if (!$nom) {
-								$nom = strrpos($url, ".PNG");
-								if ($nom) $ise = ".png";
-							}
-							if (!$nom) {
-								$nom = strrpos($url, ".gif");
-								if ($nom) $ise = ".gif";
-							}
-							if (!$nom) {
-								$nom = strrpos($url, ".GIF");
-								if ($nom) $ise = ".gif";
-							}
-							if (!$nom) {
-								$nom = strrpos($url, ".bmp");
-								if ($nom) $ise = ".bmp";
-							}
-							if (!$nom) {
-								$nom = strrpos($url, ".BMP");
-								if ($nom) $ise = ".bmp";
-							}
-				
-							$a = strlen($url);
-							if (!$nom or $a - $nom > 5) {
-								$se = $ise;
-								$nom = $a;
-							} else $se = substr($url, $nom);
+							$se = $this->getSe($url, $nom);
 							$app = '';
 							if (!empty($seo_data['prod_photo'])) {
 								$data['name'] = '';
@@ -18591,8 +21913,10 @@ class ModelCatalogSuppler extends Model {
 							}	
 							if (empty($app)) {
 								$app = substr($url, 0, $nom);
-								$nom = strpos($app, ".");
-								$app = substr($app, $nom);
+								if (substr_count($app, "/")) {
+									$nom = strpos($app, ".");
+									$app = substr($app, $nom);
+								}	
 								$app = $this->TransLit($app);							
 								$app = $this->MetaURL($app);
 							}
@@ -18627,9 +21951,18 @@ class ModelCatalogSuppler extends Model {
 								}	
 								if ($a) {								
 									$met = 0;		
-									if ((!$yml and ($k == 0 and $newphoto != 6)) or ($yml and empty($row_product[0]['image']))) { 	   	
-									    $row_product[0]['image'] = $pic_addr;
-										$met = 1;
+									if ((!$yml and ($k == 0 and $newphoto != 6)) or ($yml and empty($row_product[0]['image']))) {		
+										if ($newphoto == 7) {
+											if (!$row_product[0]['image'] or substr_count($row_product[0]['image'], 'no_photo') or substr_count($row_product[0]['image'], 'no-photo')) {
+												$row_product[0]['image'] = $pic_addr;
+												$met = 1;
+											}	
+										} else {
+											$path_del = "../image/" . $row_product[0]['image'];	
+											if (file_exists($path_del)) @unlink($path_del);
+											$row_product[0]['image'] = $pic_addr;
+											$met = 1;
+										}	
 									}
 									$rout = 1;
 									if ((!$yml and ($k>0 or $newphoto == 6)) or (!$met and $yml and !empty($row_product[0]['image']) and $newphoto == 6)) {
@@ -18640,27 +21973,31 @@ class ModelCatalogSuppler extends Model {
 										}	
 										if ($e and !empty($pic_addr)) $this->addPicture($row_product[0]['product_id'], $pic_addr, $k);				
 									}	
-								} else if ($k==0 and $newphoto != 6 and $my_photo) $url = $this->checkurl($my_photo);
+								} else if ($k==0 and $newphoto != 6 and $my_photo) $url = $this->checkurl($my_photo, '');
 							} else {
 								$err =  " Photo not found: Row ~= " . $row_count . " SKU = " . $row[$cod] . " folder: " . $try . " \n";
 								$this->adderr($err);								
 							}	
 						}
 						
-						if ($rout) $report = $report."Photo updated ";	
-					
+						if ($rout and !$up) {
+							$report = $report."Photo updated ";
+							$up++;
+						}
+						
 						if (!$rout) {
 							$pars = 0;
 							$a = strlen($url)-6;
-							$en = substr($url, $a);						
-							
+							$en = substr($url, $a);
 							if (substr_count($url, "/") and strlen($url) > 12 and !stripos($en, '.jpg') and !stripos($en, '.png') and !stripos($en, '.jpeg') and !stripos($en, '.gif') and !stripos($en, '.bmp') and $url != -1 and $k == 0 and $parsk) $pars = 1;
 							
 							$save = $row_product[0]['image'];														
-							if ($pars) {									
+							if ($pars) {
 								$fname = "photo";
-								$marks = explode(",", $my_mark);								
-								for ($j=0; $j<20; $j++) {
+								$marks = explode(",", $my_mark);
+								$lim = 20;
+								if ($newphoto == 7) $lim = 1;
+								for ($j=0; $j<$lim; $j++) {
 									if (!isset($marks[$j])) break;
 									if (!empty($marks[$j])) {
 										$fname = $marks[$j];
@@ -18669,14 +22006,14 @@ class ModelCatalogSuppler extends Model {
 											$fname = trim($row[$manuf]);											
 											$fname = substr($fname, 0, 16);
 										}
-									}										
+									}						
 									$nojpg = 1;							
-									$seeks = explode(",", $warranty);
+									$seeks = explode(",", $warranty);		
 									if (!isset($seeks[$j]) or empty($seeks[$j])) break;								
-									$seek = $seeks[$j];															
+									$seek = $seeks[$j];
 									
-									if (strlen($ht) < 1024 or $parsed != $parsk) {	
-										$ht = $this->curl_get_contents($url, 0, $sleep, $ffile);	
+									if (strlen($ht) < 1024 or $parsed != $parsk) {							
+										$ht = $this->curl_get_contents($url, 0, $sleep, $ffile);
 										if (strlen($ht) > 1024) $parsed = $parsk;
 										else {
 											$parsed = '';
@@ -18684,52 +22021,17 @@ class ModelCatalogSuppler extends Model {
 											$this->adderr($err);												
 											break;
 										}	
-									}									
-									$key = '';														
-									$urlp = $this->ParsPic($ht, $url, $key, $seek, $fname, $pic_ext);		
-									$urlp = $this->checkurl($urlp);
+									}
+									$key = '';						
+									$urlp = $this->ParsPic($ht, $url, $key, $seek, $fname, $pic_ext);						
+									$urlp = $this->checkurl($urlp, $my_photo);
 									if ($urlp == -1) {
 										$err =  " Photo not parsed: Row ~= " . $row_count . " url = ". $urlp. " Photo number " . $j . " \n";
 										$this->adderr($err);
 										continue;								
-									}							
-										
-									$ise = ".jpg";
-									$nom = stripos($urlp, ".jpg");
-									if (!$nom) {
-										$nom = strrpos($urlp, ".jpeg");
-										if ($nom) $ise = ".jpeg";
 									}
-									if (!$nom) {
-										$nom = strrpos($urlp, ".png");
-										if ($nom) $ise = ".png";
-									}	
-									if (!$nom) {
-										$nom = strrpos($urlp, ".PNG");
-										if ($nom) $ise = ".png";
-									}
-									if (!$nom) {
-										$nom = strrpos($urlp, ".gif");
-										if ($nom) $ise = ".gif";
-									}
-									if (!$nom) {
-										$nom = strrpos($urlp, ".GIF");
-										if ($nom) $ise = ".gif";
-									}
-									if (!$nom) {
-										$nom = strrpos($urlp, ".bmp");
-										if ($nom) $ise = ".bmp";
-									}
-									if (!$nom) {
-										$nom = strrpos($urlp, ".BMP");
-										if ($nom) $ise = ".bmp";
-									}
-				
-									$a = strlen($urlp);
-									if (!$nom or $a - $nom > 5) {
-										$se = $ise;
-										$nom = $a;
-									} else $se = substr($urlp, $nom);
+									$se = $this->getSe($urlp, $nom);
+	
 									$app = '';
 									if (!empty($seo_data['prod_photo'])) {
 										$data['name'] = '';
@@ -18750,8 +22052,10 @@ class ModelCatalogSuppler extends Model {
 									}
 									if (empty($app)) {
 										$app = substr($urlp, 0, $nom);
-										$nom = strpos($app, ".");
-										$app = substr($app, $nom+7);
+										if (substr_count($app, "/")) {
+											$nom = strpos($app, ".");
+											$app = substr($app, $nom+7);
+										}	
 										$app = $this->TransLit($app);
 										$nom = strlen($app);										
 										if ($nom > 250) $app = substr($app, $nom-250, 250);
@@ -18770,7 +22074,8 @@ class ModelCatalogSuppler extends Model {
 										$err =  " Please, set folder for photo on page 'Category and margin'  for Category '" .$this->symbol($catmany[0])."' Row ~= " . $row_count ." \n";
 										$this->adderr($err);
 										continue;
-									}		
+									}
+									
 									if (!is_dir($spath)) {
 										if (!@mkdir($spath, 0755)) {								
 											$err =  " Photo has not been write: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Can not create folder: " . $spath. ", create it manually \n";
@@ -18780,7 +22085,14 @@ class ModelCatalogSuppler extends Model {
 									}
 									if (!is_dir($path)) @mkdir($path, 0755);
 									$path = $path.$app.$se;								
-									if ($j == 0 and $newphoto != 6) $row_product[0]['image'] = $pic_addr;
+									if ($j == 0 and $newphoto != 6) {		
+										if ($newphoto == 7) {
+											if (!$row_product[0]['image'] or substr_count($row_product[0]['image'], 'no_photo') or substr_count($row_product[0]['image'], 'no-photo')) {
+												$row_product[0]['image'] = $pic_addr;
+											}
+										} else $row_product[0]['image'] = $pic_addr;
+									
+									}
 									if (!file_exists($path)) {											
 										$pict = $this->curl_get_contents($urlp, 1, $sleep, $ffile);
 										if (!$this->isPicture($pict)) {
@@ -18788,7 +22100,7 @@ class ModelCatalogSuppler extends Model {
 											$err =  " Download photo fails. Row ~= " . $row_count ." Url = ". $urlp . " \n";
 											$this->adderr($err);											
 										} else {	
-											if ($newphoto == 2 or $newphoto == 4 or $newphoto == 6) {
+											if ($newphoto == 2 or $newphoto == 4 or $newphoto == 6 or $newphoto == 7) {
 												$bytes = @file_put_contents($path, $pict);
 												if (!$bytes) {
 													$bytes = @file_put_contents($spath, $pict);
@@ -18849,10 +22161,19 @@ class ModelCatalogSuppler extends Model {
 													$row_product[0]['image'] = $save;									
 													$err =  " Photo has not been updated  Url: ". $urlp . " Row = ".$row_count." Folder: ". $path . " is bad \n";
 													$this->adderr($err);
-												} else $report = $report."Photo updated ";
+												} else {
+													if (!$up) {
+														$report = $report."Photo updated ";
+														$up++;
+													}
+												}	
 											}	
 										}
-									} else {		
+									} else {
+										if (!$up) {
+											$report = $report."Photo updated ";
+											$up++;
+										}
 										if ($j>0 or $newphoto == 6) {
 											$rows = $this->getProductImage($row_product[0]['product_id']);
 											$e = 1;
@@ -18868,43 +22189,8 @@ class ModelCatalogSuppler extends Model {
 										} else $row_product[0]['image'] = $pic_addr;									
 									}		
 								}
-							} else {							
-								$ise = ".jpg";
-								$nom = stripos($url, ".jpg");
-								if (!$nom) {
-									$nom = strrpos($url, ".jpeg");
-									if ($nom) $ise = ".jpeg";
-								}
-								if (!$nom) {
-									$nom = strrpos($url, ".png");
-									if ($nom) $ise = ".png";
-								}	
-								if (!$nom) {
-									$nom = strrpos($url, ".PNG");
-									if ($nom) $ise = ".png";
-								}
-								if (!$nom) {
-									$nom = strrpos($url, ".gif");
-									if ($nom) $ise = ".gif";
-								}
-								if (!$nom) {
-									$nom = strrpos($url, ".GIF");
-									if ($nom) $ise = ".gif";
-								}
-								if (!$nom) {
-									$nom = strrpos($url, ".bmp");
-									if ($nom) $ise = ".bmp";
-								}
-								if (!$nom) {
-									$nom = strrpos($url, ".BMP");
-									if ($nom) $ise = ".bmp";
-								}
-				
-								$a = strlen($url);
-								if (!$nom or $a - $nom > 5) {
-									$se = $ise;
-									$nom = $a;
-								} else $se = substr($url, $nom);
+							} else {	
+								$se = $this->getSe($url, $nom);
 								$app = '';
 								if (!empty($seo_data['prod_photo'])) {
 									$data['name'] = '';
@@ -18925,8 +22211,10 @@ class ModelCatalogSuppler extends Model {
 								}
 								if (empty($app)) {
 									$app = substr($url, 0, $nom);
-									$nom = strpos($app, ".");
-									$app = substr($app, $nom+7);
+									if (substr_count($app, "/")) {
+										$nom = strpos($app, ".");
+										$app = substr($app, $nom+7);
+									}	
 									$app = $this->TransLit($app);
 									$nom = strlen($app);
 									if ($nom > 250) $app = substr($app, $nom-250, 250);
@@ -18934,7 +22222,7 @@ class ModelCatalogSuppler extends Model {
 									$app = $this->MetaURL($app);
 								}
 								
-								if ($newphoto != 5) {
+								if ($newphoto != 5) {			
 									if (!empty ($pic_int[$i]))	{
 										$spath = "../image/catalog/" .$pic_int[$i]."/";
 										if (!$subfolder) $path = "../image/catalog/" .$pic_int[$i]."/";
@@ -18951,7 +22239,8 @@ class ModelCatalogSuppler extends Model {
 											$path = "../image/catalog/photo/";											
 											$pic_addr = "catalog/photo/".$app.$se;
 										}	
-									}		
+									}
+				
 									if ((!isset($spath) or empty($spath)) and !$idcat) {
 										$err =  " Photo has not been write: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Set, please, folder for photo on the page 'Category and margin'  \n";
 										$this->adderr($err);
@@ -18963,23 +22252,21 @@ class ModelCatalogSuppler extends Model {
 											$this->adderr($err);
 											break;
 										}
-									}
+									}																		
 								} else {
 									$pic_addr = '';
 									if (!empty($url)) {										
-										$link = $this->symbol($url);													
-										if (substr_count($link, "catalog/")) {
-											$nom = strpos($link, "catalog/");		
-											$link = substr($link, $nom);
-											$pic_addr = $link;		
+										if (substr_count($url, "catalog/")) {
+											$nom = strpos($url, "catalog/");		
+											$pic_addr = substr($url, $nom);											
 										}
-									}	
+									}
 								}	
 							}
 							
 							if (!$pars) {	
 								if ($newphoto != 5) $path = $path.$app.$se;	
-								$pyml = 0;
+								$pyml = 0;		
 								if (($k == 0 and !$yml and $newphoto != 6) or ($yml and empty($row_product[0]['image']))) {
 									if ($newphoto == 5) {
 										$pic_addr = str_replace("%25%20", " ", $pic_addr);
@@ -18989,21 +22276,29 @@ class ModelCatalogSuppler extends Model {
 											$row_product[0]['image'] = $pic_addr;
 											$pyml = 1;
 										}
-									} else {	
-										$row_product[0]['image'] = $pic_addr;
-										$pyml = 1;
+									} else {
+										if ($newphoto == 7) {
+											if (!$row_product[0]['image'] or substr_count($row_product[0]['image'], 'no_photo') or substr_count($row_product[0]['image'], 'no-photo')) {
+												$row_product[0]['image'] = $pic_addr;
+											    $pyml = 1;
+											}	
+										} else {
+											$row_product[0]['image'] = $pic_addr;		
+											$pyml = 1;										
+										}	
 									}	
-								}	
-								if (!file_exists($path) and $newphoto != 5) {
-									$pict = $this->curl_get_contents($url, 1, $sleep, $ffile);
+								}
+
+								if (!file_exists($path) and $newphoto != 5) {		
+									$pict = $this->curl_get_contents($url, 1, $sleep, $ffile);	
 									if (!$this->isPicture($pict)) {
 										if ($k == 0) $row_product[0]['image'] = $save;									
 										if (!$yml) {
-											$err =  " Download photo fails. Row ~= " . $row_count ." Url = ". $url . " Column = " . $pic . " \n";
+											$err =  " Download photo fails. Row ~= " . $row_count ." Url = ". $url . " \n";
 											$this->adderr($err);
 										}	
 									} else {
-										if ($newphoto == 2 or $newphoto == 4 or $newphoto == 6) {
+										if ($newphoto == 2 or $newphoto == 4 or $newphoto == 6 or $newphoto == 7) {
 											$bytes = @file_put_contents($path, $pict);
 											if (!$bytes) {
 												$bytes = @file_put_contents($spath, $pict);
@@ -19064,7 +22359,12 @@ class ModelCatalogSuppler extends Model {
 												$row_product[0]['image'] = $save;										
 												$err =  " Photo has not been updated  Url: ". $url . " Row = ".$row_count." Folder: ". $path . " ist schlecht \n";
 												$this->adderr($err);
-											} else $report = $report."Photo updated ";
+											} else {
+												if (!$up) {
+													$report = $report."Photo updated ";
+													$up++;
+												}
+											}	
 										}	
 									}
 								} else {		
@@ -19088,8 +22388,8 @@ class ModelCatalogSuppler extends Model {
 							}				
 						}				
 					}
-				}				
-				
+				}	
+
 				$row_product[0]['category_id'] = '';
 				if ($flag) $row_product[0]['category_id'] = $category_id[$i];					
 				else if (!$yml) $row_product[0]['category_id'] = $my_cat;
@@ -19124,90 +22424,122 @@ class ModelCatalogSuppler extends Model {
 				}				
 				
 				$yesno = 0;				
-				if ($max_attr and $upattr and $ad != 2 and $ad != 4) {					
+				if ($max_attr and $upattr and $ad != 2 and $ad != 4) {
 					$fl =0;
 					$er = 0;
 					$delfilter = 0;
 					for ($j = 1; $j <= $max_attr; $j++) {
-						$attname = '';
-						$attvalue = '';
+						$col = explode(",", $attr_ext[$j]);
 						if (isset($data)) unset($data);
 						$data = array();
-						$r = 0;
-						$at = $attribute_id[$j];
-						$col = explode(",", $attr_ext[$j]);
-						if (!empty($col[0]) and preg_match('/^[0-9]+$/', $col[0])) {
+						$r = 0;						
+						
+						$rc = array();
+						$rc_m = array();  // minus
+						$rc_p = array();  // plus
+						$rc1 = array();
+						$rc1_m = array(); 
+						$rc1_p = array();
+						$rc2 = array();
+						$rc2_m = array();
+						$rc2_p = array();						
+						
+						if (!empty($col[0]) and preg_match('/^[0-9]+$/', $col[0])) {							
+							$rc = explode($delim, $row[$col[0]]);							
+							$rc_p = explode($delim, $row[$col[0]+1]);
+							if (isset($row[$col[0]-1])) $rc_m = explode($delim, $row[$col[0]-1]);
+											
+							if (isset($col[1]) and !empty($col[1])) {
+								$rc1 = explode($delim, $row[$col[1]]);
+								$rc1_p = explode($delim, $row[$col[1]+1]);
+								$rc1_m = explode($delim, $row[$col[1]-1]);
+							}
+							if (isset($col[2]) and !empty($col[2])) {
+								$rc2 = explode($delim, $row[$col[2]]);
+								$rc2_p = explode($delim, $row[$col[2]+1]);
+								$rc2_m = explode($delim, $row[$col[2]-1]);
+							}
 							
 							if (!$fl and $upattr == 1) {								
 								$this->deleteAttribute($row_product[0]['product_id']);
 								$fl = 1;
 							}
-							if (($at == 0 and !empty($row[$col[0]-1]) and !$yml) or ($at == 0 and !empty($row[$col[0]+1]) and $yml)) {
-								
-								if (!$yml) $attname = $this->getName($row[$col[0]-1]);
-								else $attname = $this->getName($row[$col[0]+1]);
-								if ($change_attribute) $this->changeAtt($masatt, $r, $attname, $attvalue);
-								$rows = $this->getAttributeID($attname);
-							
-								if (isset($rows[0]['attribute_id'])) $at = $rows[0]['attribute_id'];
 	
-								if (!$at and ($upattr == 1 or $upattr == 2 or $upattr == 5)) {
-									$data['text1'] = $attname;								
-									$data['text2'] = '';
-									if (isset($col[1]) and !empty($col[1])) $data['text2'] = $this->getName($row[$col[1]-1]);
-									$data['text3'] = '';
-									if (isset($col[2]) and !empty($col[2])) $data['text3'] = $this->getName($row[$col[2]-1]);
-									$this->createAttribute($data, $attID, $langs);
-									$at = $attID;
-									if ($at == 1.2) {
-										$er = 1;
-										break;
-									}	
-								} 
-								if (!$at) continue;
-							}
-							if ($upattr == 4 and $at) {
-								$rows = $this->getAttributeById($row_product[0]['product_id'], $at, $lang);
-								if (empty($rows)) continue;
-							}
-							if (isset($row[$col[0]]) and $row[$col[0]] != '') {
-								$t = $this->symbol($row[$col[0]]);
-								if ($change_attribute) $this->changeAtt($masatt, $r, $attname, $t);						
-								$t = trim($t);
-								$data['text1'] = $t;
-								$t = '';
-								if (isset($col[1]) and $row[$col[1]] != '') {
-									$t = $this->symbol($row[$col[1]]);
-									if ($change_attribute) $this->changeAtt($masatt, $r, $attname, $t);
+							$qarr = count($rc);
+							if ($price_xml) $qarr--;
+							for ($sep=0; $sep<$qarr; $sep++) {
+								if ($rc[$sep] == '') continue;
+								$attname = '';
+								$attvalue = '';
+								$at = $attribute_id[$j];
+								
+								if (($at == 0 and !empty($rc_m[$sep]) and !$yml) or ($at == 0 and !empty($rc_p[$sep]) and ($yml or $price_xml))) {		
+									if (!$yml and !$price_xml) $attname = $this->getName($rc_m[$sep]);
+									if ($yml or $price_xml) $attname = $this->getName($rc_p[$sep]);
+									if ($change_attribute) $this->changeAtt($masatt, $r, $attname, $attvalue);
+									$rows = $this->getAttributeID($attname);
+		
+									if (isset($rows[0]['attribute_id'])) $at = $rows[0]['attribute_id'];
+	
+									if (!$at and ($upattr == 1 or $upattr == 2 or $upattr == 5)) {
+										$data['text1'] = $attname;								
+										$data['text2'] = '';
+										if (isset($col[1]) and !empty($col[1])) $data['text2'] = $this->getName($rc1_m[$sep]);
+										$data['text3'] = '';
+										if (isset($col[2]) and !empty($col[2])) $data['text3'] = $this->getName($rc2_m[$sep]);
+										$this->createAttribute($data, $attID, $langs);
+										$at = $attID;
+										if ($at == 1.2) {
+											$er = 1;
+											break;
+										}	
+									}
+									if (!$at) continue;
+								}
+								if ($upattr == 4 and $at) {
+									$rows = $this->getAttributeById($row_product[0]['product_id'], $at, $lang);
+									if (empty($rows)) continue;
+								}
+	
+								if (isset($rc[$sep]) and $rc[$sep] != '') {
+									$t = $this->symbol($rc[$sep]);
+									if ($change_attribute) $this->changeAtt($masatt, $r, $attname, $t);		
 									$t = trim($t);
-								}								
-								$data['text2'] = $t;
-								$t = '';
-								if (isset($col[2]) and $row[$col[2]] != '') {
-									$t = $this->symbol($row[$col[2]]);
-									if ($change_attribute) $this->changeAtt($masatt, $r, $attname, $t);
-									$t = trim($t);
-								}								
-								$data['text3'] = $t;
-								$data['product_id'] = $row_product[0]['product_id'];
-								$data['attribute_id'] = $at;
-								$this->putAttributeById($data, $upattr, $langs);
-								$yesno = 1;
-							}	
-							if ($attribute_id[$j] and $filter_group_id[$j] and !empty($data)) {
-								if (!$delfilter and $upattr == 1) {
-									$this->deleteFilterProduct($row_product[0]['product_id']);
-									$delfilter = 1;
+									$data['text1'] = $t;
+									$t = '';
+									if (isset($rc1[$sep]) and $rc1[$sep] != '') { 
+										$t = $this->symbol($rc1[$sep]);
+										if ($change_attribute) $this->changeAtt($masatt, $r, $attname, $t);
+										$t = trim($t);
+									}								
+									$data['text2'] = $t;
+									$t = '';
+									if (isset($rc2[$sep]) and $rc2[$sep] != '') {
+										$t = $this->symbol($rc2[$sep]);
+										if ($change_attribute) $this->changeAtt($masatt, $r, $attname, $t);
+										$t = trim($t);
+									}								
+									$data['text3'] = $t;
+									$data['product_id'] = $row_product[0]['product_id'];
+									$data['attribute_id'] = $at;	
+									$this->putAttributeById($data, $upattr, $langs);
+									$yesno = 1;
 								}	
-								$filters = array();
-								$this->CreateFilter($data, $filter_group_id[$j], $langs, $filters);
-								if (!empty($filters)) $this->AttributeToFilter($row_product[0]['product_id'], $filters);				
+								if ($attribute_id[$j] and $filter_group_id[$j] and !empty($data)) {
+									if (!$delfilter and $upattr == 1) {
+										$this->deleteFilterProduct($row_product[0]['product_id']);
+										$delfilter = 1;
+									}	
+									$filters = array();
+									$this->CreateFilter($data, $filter_group_id[$j], $langs, $filters);
+									if (!empty($filters)) $this->AttributeToFilter($row_product[0]['product_id'], $filters);				
+								}
 							}	
-						} else {											
-							if (isset($row[$parsi])) $url = $this->checkurl($row[$parsi]);
+						} else {
+							if (isset($row[$parsi])) $url = $this->checkurl($row[$parsi], $my_photo);
 							else $url = -1;
 							if ($url != -1) {	
-								if (strlen($ht) < 1024 or $parsed != $parsi) $ht = $this->curl_get_contents($url, 0, $sleep, $ffile);	
+								if (strlen($ht) < 1024 or $parsed != $parsi) $ht = $this->curl_get_contents($url, 0, $sleep, $ffile);		
 								if (strlen($ht) > 1024) {
 									$parsed = $parsi;
 									$text = array();
@@ -19216,7 +22548,7 @@ class ModelCatalogSuppler extends Model {
 									$parsed = '';
 									$text = '';										
 								}														
-								if (!empty ($text)) {		
+								if (!empty ($text)) {
 									if (!$fl and $upattr == 1) {
 										$this->deleteAttribute($row_product[0]['product_id']);
 										$fl = 1;
@@ -19227,13 +22559,13 @@ class ModelCatalogSuppler extends Model {
 										if (isset($at) and !empty($at) and $t['name'] == 'noname') {
 											$rows = $this->getAttributeName($at);
 											$t['name'] = $rows[0]['name'];
-										}
+										}	
 										if ($change_attribute) $this->changeAtt($masatt, $r, $t['name'], $attvalue);
 										if (strlen((string)$t['name']) > 256) {
 											$err =  " Attribute name: ". $t['name'] . " is too large. I cat it. \n";
 											$this->adderr($err);
 											$t['name'] = mb_substr($t['name'], 0, 256);
-										}
+										}									
 										$rows = $this->getAttributeID($t['name']);										
 										if (isset($rows[0]['attribute_id'])) $at = $rows[0]['attribute_id'];
 										else {
@@ -19256,7 +22588,7 @@ class ModelCatalogSuppler extends Model {
 										$data['text1'] = $t['val'];
 										$data['text2'] = '';
 										$data['text3'] = '';
-										$data['attribute_id'] = $at;
+										$data['attribute_id'] = $at;	
 										$this->putAttributeById($data, $upattr, $langs);
 										$yesno = 1;
 									}
@@ -19273,6 +22605,7 @@ class ModelCatalogSuppler extends Model {
 					}	
 				}
 				if ($yesno and !$yml and $upattr != 5) $report = $report." Attribute updated \n";
+				
 				if ($yml and $yesno and isset($ymlatt) and !$ymlatt) {
 					$report = $report." Attribute updated \n";
 					$ymlatt = 1;
@@ -19285,11 +22618,33 @@ class ModelCatalogSuppler extends Model {
 				$row_product[0]['ean'] = "";				
 				if (isset($row[$ean]) and $ad != 2 and $ad != 4) $row_product[0]['ean'] = $this->symbol($row[$ean]);
 				$row_product[0]['mpn'] = "";				
-				if (isset($row[$mpn]) and $ad != 2 and $ad != 4) $row_product[0]['mpn'] = $this->symbol($row[$mpn]);
-				$row_product[0]['ref'] = "";				
-				if (isset($row[$ref]) and $ad != 2 and $ad != 4) $row_product[0]['ref'] = $row[$ref];
+				if (isset($row[$mpn]) and $ad != 2 and $ad != 4) $row_product[0]['mpn'] = $this->symbol($row[$mpn]);	
+				$row_product[0]['location'] = "";				
+				if (isset($row[$location]) and $ad != 2 and $ad != 4) $row_product[0]['location'] = $this->symbol($row[$location]);
+				$row_product[0]['jan'] = "";				
+				if (isset($row[$jan]) and $ad != 2 and $ad != 4) $row_product[0]['jan'] = $this->symbol($row[$jan]);
+				$row_product[0]['isbn'] = "";				
+				if (isset($row[$isbn]) and $ad != 2 and $ad != 4) $row_product[0]['isbn'] = $this->symbol($row[$isbn]);
+				$row_product[0]['ref'] = "";
+				if ($ad != 2 and $ad != 4) {
+					if (preg_match('/^[0-9]+$/', $ref) and isset($row[$ref])) $row_product[0]['ref'] = $row[$ref];
+					else $row_product[0]['ref'] = $ref;
+				}
 				$row_product[0]['ref1'] = "";				
-				if (isset($row[$ref1]) and $ad != 2 and $ad != 4) $row_product[0]['ref1'] = $row[$ref1];
+				if ($ad != 2 and $ad != 4) {
+					if (preg_match('/^[0-9]+$/', $ref1) and isset($row[$ref1])) $row_product[0]['ref1'] = $row[$ref1];
+					else $row_product[0]['ref1'] = $ref1;
+				}
+				$row_product[0]['ref2'] = "";
+				if ($ad != 2 and $ad != 4) {
+					if (preg_match('/^[0-9]+$/', $ref2) and isset($row[$ref2])) $row_product[0]['ref2'] = $row[$ref2];
+					else $row_product[0]['ref2'] = $ref2;
+				}
+				$row_product[0]['ref3'] = "";				
+				if ($ad != 2 and $ad != 4) {
+					if (preg_match('/^[0-9]+$/', $ref3) and isset($row[$ref3])) $row_product[0]['ref3'] = $row[$ref3];
+					else $row_product[0]['ref3'] = $ref3;
+				}
 				$row_product[0]['seo_h1'] = 0;
 				if (isset($row[38]) and $ad != 2 and $ad != 4) $row_product[0]['seo_h1'] = $this->getName($row[38]);
 				$row_product[0]['seo_title'] = 0;
@@ -19335,17 +22690,17 @@ class ModelCatalogSuppler extends Model {
 							$row_product[0]['bpack'] = 1;
 							$row_product[0]['brate'] = $rate;
 							$row_product[0]['bsuppler'] = $id;
-							if (!substr_count($plus, "+")) $row_product[0]['bdisc'] = $row[$price]*$rate * $plus/100;
+							if (!substr_count($plus, "+") and !substr_count($plus, "--")) $row_product[0]['bdisc'] = $row[$price]*$rate * $plus/100;
 							else {
-								$pl = explode("+", $plus);	
-								$f = 0;
-								if (isset($pl[0]) and !empty($pl[0])) {
-									$row_product[0]['bdisc'] = $row[$price]*$rate * $pl[0]/100;
-									$f = 1;
+								if (substr_count($plus, "+")) {
+									$pl = explode("+", $plus);									
+									if (isset($pl[1]) and !empty($pl[1])) $row_product[0]['bdisc'] = $row_product[0]['bdisc'] + $pl[1];
 								}
-								if (isset($pl[1]) and !empty($pl[1]) and $f) $row_product[0]['bdisc'] = $row_product[0]['bdisc'] + $pl[1];
-								if (isset($pl[1]) and !empty($pl[1]) and !$f) $row_product[0]['bdisc'] = $pl[1];
-							} 
+								if (substr_count($plus, "--")) {
+									$pl = explode("--", $plus);									
+									if (isset($pl[1]) and !empty($pl[1])) $row_product[0]['bdisc'] = $row_product[0]['bdisc'] - $pl[1];
+								}
+							}
 						}	
 					}
 				}
@@ -19353,22 +22708,28 @@ class ModelCatalogSuppler extends Model {
 				
 				$row_product[0]['date_modified'] = date('Y-m-d H:i:s');
 				
-				if (isset($row[$serie]) and !empty($row[$serie])) {
-					$rows = $this->getProductBySKU($row[$serie], $store);
+				$ss = explode(',', $serie);
+				if (isset($row[$ss[0]]) and !empty($row[$ss[0]])) {
+					$a = $skuprefix . $row[$ss[0]];
+					$rows = $this->getProductBySKU($a, $store);
 					if (isset($rows) and !empty($rows)) {
 						$serie_id = $rows[0]['product_id'];
-						$this->putSerie($row_product[0]['product_id'], $serie_id);
+						$a = 1;
+						if (isset($ss[1]) and is_numeric($row[$ss[1]])) $a = $row[$ss[1]];
+						$this->putSerie($row_product[0]['product_id'], $serie_id, $a);
 					}	
 				}
-
-				if( $this->config->get( 'mfilter_plus_version' ) ) {        // mfilter
+			
+				if ( $this->config->get( 'mfilter_plus_version' ) ) {        // mfilter
 					require_once DIR_SYSTEM . 'library/mfilter_plus.php';     
 					Mfilter_Plus::getInstance( $this )->updateProduct( $row_product[0]['product_id'] );
 				}
 				
-				$this->putProductBySKU($row[$cod], $row_product, $updte, $upname, $max_attr, $attr_ext, $row, $tags, $addseo, $upurl, $umanuf, $seo_data, $store, $parent, $t_ref, $t_ref1, $metka, $yml, $usd, $catmany, $idcat);
-
-				if (!$flag_add_up and $old_sku != $row[$cod] or (isset($product_new) and $product_new)) {
+				$row_product[0]['price'] = $this->convertPrice($row_product[0]['price']);
+			
+				$this->putProductBySKU($row[$cod], $row_product, $updte, $upname, $max_attr, $attr_ext, $row, $tags, $addseo, $upurl, $umanuf, $seo_data, $store, $parent, $t_ref, $t_ref1, $t_ref2, $t_ref3, $metka, $yml, $usd, $catmany, $idcat);
+			
+				if (!$flag_add_up and $old_sku != $row[$cod] or (isset($product_new) and $product_new)) {					
 					$total_up++;
 					$this->puttotal($total_add, $total_up);
 					$flag_add_up = 1;					
@@ -19394,7 +22755,6 @@ class ModelCatalogSuppler extends Model {
 					
 			} elseif ((!$product_found and !$optsku) or (!$product_found and $optsku and empty($row[$newproduct]))) {
 				$row_product = array();
-				
 				if ($ad == 0 or $ad == 2 or $ad == 4) {						
 					$err = " Row ~= " . $row_count . " SKU = " . $row[$cod] . " not found in the Store. " . " \n";
 					$this->adderr($err);	
@@ -19410,7 +22770,7 @@ class ModelCatalogSuppler extends Model {
 						$this->adderr($err);						
 						continue;
 					}
-					$url = $this->checkurl($row[$parsm]);
+					$url = $this->checkurl($row[$parsm], $my_photo);
 					if ($url == -1) {
 						$err = " The Product passed: Row ~= " . $row_count . " Incorrect link = ".$row[$parsm]. " in column = ".$parsm."\n";
 						$this->adderr($err);
@@ -19443,7 +22803,7 @@ class ModelCatalogSuppler extends Model {
 					}	
 				}
 		/**************/		
-	
+				
 				$row_product[0]['cat_name'] = $text_cat;
 				$row_product[0]['category_id'] = '';				
 				
@@ -19517,7 +22877,7 @@ class ModelCatalogSuppler extends Model {
 				$row_product[0]['model'] = $max_model;				 
 				$row_product[0]['sku'] = $row[$cod];
 				$row_product[0]['lang'] = $lang;
-
+	
 				if ($exsame and isset($row[$cod]) and !empty($row[$cod])) {
 					$a = '';
 					if (preg_match('/^[0-9,]+$/', $item)) {
@@ -19525,15 +22885,15 @@ class ModelCatalogSuppler extends Model {
 						for ($j=0; $j<10; $j++) {
 							if (!isset($items[$j])) break;
 							$a = $a . " " . $row[$items[$j]];
-						}
-						$row[$item] = $this->getName($a);
-					} else $row[$item] = $this->getName($row[$item]);
+						}						
+						$row[$item] = $this->getName(str_replace($delim, ' ', $a));
+					} else $row[$item] = $this->getName(str_replace($delim, ' ', $row[$item]));
 					
 					if (!empty($item) and preg_match('/^[0-9,]+$/', $item)) $pname = $row[$item];
 					else {
 						if (!empty($item) and !preg_match('/^[0-9,]+$/', $item) and empty($pname) and isset($row[$parsi]) and !empty($row[$item])) {
 							$pname = "";
-							$url = $this->checkurl($row[$parsi]);
+							$url = $this->checkurl($row[$parsi], $my_photo);
 							if ($url != -1) {							
 								if (strlen($ht) < 1024 or $parsed != $parsi) $ht = $this->curl_get_contents($url, 0, $sleep, $ffile);
 								if (strlen($ht) > 1024) {
@@ -19550,7 +22910,7 @@ class ModelCatalogSuppler extends Model {
 								}							
 							}					
 						}					
-					}			
+					}
 	
 					if (!empty($pname))
 					$this->Same('', $row[$cod], $pname, $row_product[0]['category_id'], $row_product[0]['manufacturer_id'], $row[$price], $store);
@@ -19598,7 +22958,7 @@ class ModelCatalogSuppler extends Model {
 					if (!empty($row[$descrip])) {
 						$row_product[0]['description'] = $this->symbol($row[$descrip]);
 						$yes = 1;
-						if (!$yml) $report = $report."Description found in price-list and added ";
+						if (!$yml) $report = $report."Description added ";
 					} else {
 						if (!empty($my_descrip)) {
 						  $row_product[0]['description'] = $this->symbol($my_descrip);
@@ -19618,15 +22978,16 @@ class ModelCatalogSuppler extends Model {
 							if (!empty($row[$items[$j]])) $a = $a . " " . $row[$items[$j]];
 						}						
 					} else $a = $row[$item];
+					$a = str_replace($delim, ' ', $a);
 				    if (!empty($a)) $pname = trim($this->getName($a));					
 				}
 				if ($descrip != 'descrip' and isset($row[$parsd]) and (!$optsku or empty($row[$newproduct]))) {			
-					$url = $this->checkurl($row[$parsd]);
+					$url = $this->checkurl($row[$parsd], $my_photo);
 					if ($url != -1) {							
-						if (strlen($ht) < 1024 or $parsed != $parsd) $ht = $this->curl_get_contents($url, 0, $sleep, $ffile);
-						if (strlen($ht) > 1024) {
+						if (strlen($ht) < 10 or $parsed != $parsd) $ht = $this->curl_get_contents($url, 0, $sleep, $ffile);
+						if (strlen($ht) > 10) {
 							$parsed = $parsd;							
-							$text = $this->ParsDescription($ht, $descrip, $pointd, $placed, $row_count, $url, $sleep, $ffile, $photo_desc);
+							$text = $this->ParsDescription($ht, $descrip, $pointd, $placed, $row_count, $url, $sleep, $ffile, $photo_desc, $my_photo);
 							if (strlen($text) < 10) $text = '';			
 						} else {
 							$parsed = '';
@@ -19636,7 +22997,7 @@ class ModelCatalogSuppler extends Model {
 					}
 				}	
 				if (!preg_match('/^[0-9,]+$/', $item) and isset($row[$parsi]) and (!$optsku or empty($row[$newproduct]))) {
-					$url = $this->checkurl($row[$parsi]);
+					$url = $this->checkurl($row[$parsi], $my_photo);
 					if ($url != -1) {							
 						if (strlen($ht) < 1024 or $parsed != $parsi) $ht = $this->curl_get_contents($url, 0, $sleep, $ffile);
 						if (strlen($ht) > 1024) {
@@ -19676,456 +23037,386 @@ class ModelCatalogSuppler extends Model {
 					if (!$yml) $report = $report."No Description ";
 				}
 				
-				$p = strpos($max_model, "-");
-				if (!$p) $p = strpos($max_model, "~");
-				$papka = substr($max_model, $p-1, 1);
-				$row_product[0]['image'] = '';	
-				
-				$photo_default = 0;		
-				$nojpg = 0;
-				$pictures = array();
-				$pi = explode(",", $pic_ext);
-				if (!empty($parsk)) {
-					$pictures[0] = $parsk;
-					$m = 0;
-					for ($l=1; $l<$np; $l++) {
-						if (!isset($pi[$m])) break;							
-						$pictures[$l] = $pi[$m];
-						$m++;
-					}
-				} else $pictures = $pi;
-	
+				$row1 = $this->getMaxID();
+				$max_id = $row1['max(product_id)']+1;
+				$papka = substr($max_id, strlen($max_id)-1, 1);
+				$row_product[0]['image'] = '';
+		
+				$photo_default = 0;
+				$nojpg = 0;	
 				$enn = 0;
-			$q = -1;			
-			$npic = count($pictures);
-			for ($n=0; $n<$npic; $n++) {
-				$nolink = 0;
-				$q++;
-				$pic = $pictures[$n];
+				$q = -1;			
+				$up = 0;
+				for ($n=0; $n<$npic; $n++) {
+					$nolink = 0;
+					$q++;
+					$pictures[$n];
 
-				if (!empty ($row[$pic]) and (!$optsku or empty($row[$newproduct]))) {
-					if (!substr_count($row[$pic], "/")) $nolink = 1;
-					$url = $row[$pic];
-					if (!$nolink) $url = $this->checkurl($row[$pic]);					
-					if ($url == -1) {
-						if ($n == $npic-1) {
-							if ($my_photo) {
-								$url = $my_photo;
-								$photo_default = 1;
-								$nolink = 0;									
-								break;
-							} else {						
-								if (!$yml) {
-									$err =  " The Product has not been added: Row ~= " . $row_count . " SKU = " . $row[$cod] ." Invalid picture link\n";
-									$this->adderr($err);							
-									$enn = 1;
-								}	
-								break;
-							}	
-						} else if (!$yml) continue;
-					}
-
-					$a = strlen($url)-6;
-					$en = substr($url, $a);
-					if (substr_count($url, "/") and strlen($url) > 12 and !stripos($en, '.jpg') and !stripos($en, '.png') and !stripos($en, '.jpeg') and !stripos($en, '.gif') and !stripos($en, '.bmp') and $url != -1 and $parsk) {
-					
-						$fname = "photo";
-						$marks = explode(",", $my_mark);
-						if (isset($marks[0]) and !empty($marks[0])) {													
-							$fname = $marks[0];
-						} else {						
-							if (isset($row[$manuf]) and !empty($row[$manuf])) {
-								$fname = $row[$manuf];							
-								$fname = substr($fname, 0, 16);
-							}
-						}							
-					
-						if ((empty ($row[$manuf]) or !isset($row[$manuf])) and (!isset($my_mark) or empty($my_mark))) {	
-							if ($my_photo) {
-								$url = $my_photo;
-								$photo_default = 1;
-								$nolink = 0;								
-								break;		
-							} else {									
-								$err =  " Photo can not be found: Row ~= " . $row_count . " SKU = " . $row[$cod] ." Please, set  Manufacturer or keyword \n";
-								$this->adderr($err);							
-								$enn = 2;
-								break;								
-							}
-						}							
-						$nojpg = 1;
-						$seeks = explode(",", $warranty);
-						$seek = $seeks[0];	
-						if (strlen($ht) < 1024 or $parsed != $parsk) $ht = $this->curl_get_contents($url, 0, $sleep, $ffile);	
-						if (strlen($ht) > 1024) {
-							$parsed = $parsk;								
-							$key = '';
-							$url = $this->ParsPic($ht, $url, $key, $seek, $fname, $pic_ext);
-							if ($this->checkurl($url) == -1) {
-								if (empty($my_photo)) {
-									$err =  " Parsing main photo error: Row ~= " . $row_count . " url = ". $url. " Check your settings \n";
-									$this->adderr($err);
-									$enn = 3;
-									break;	
-								} else {													
+					if (!empty($pictures[$n]) and (!$optsku or empty($row[$newproduct]))) {
+						if (!substr_count($pictures[$n], "/")) $nolink = 1;
+						$url = $pictures[$n];
+						if (!$nolink) $url = $this->checkurl($pictures[$n], $my_photo);		
+						if ($url == -1) {
+							if ($n == $npic-1) {
+								if ($my_photo) {
 									$url = $my_photo;
 									$photo_default = 1;
 									$nolink = 0;									
 									break;
-								}	
-							}	
-						} else {							
-							$err =  " The Product passed: Row ~= " . $row_count . " url = ". $url. " Site no answer \n";
-							$this->adderr($err);
-							$row_count = (int)$this->putsos($row_count, $row[$cod]);
-							if ($row_count < 0) return 5;
-							$enn = 4;
-							break;							
-						}										
-	
-						if (!$url) {
-							$row_product[0]['image'] = '';							
-							if (!empty($my_photo)) {
-								$url = $my_photo;
-								$photo_default = 1;
-								$nolink = 0;								
-								break;
-							} else {					
-								$err =  " The Product has not been added: Row ~= " . $row_count . " SKU = " . $row[$cod] ." Photo not found on the site: " . $url." Check your setting field in form: 'location photo'"." keywords = ".$this->symbol($fname)." seek = ".$seek."\n";
-								$this->adderr($err);								
-								$enn = 5;
-								break;
-							}
-						}							
-					} else {						
-						if (strlen($url) < 5) {	
-							$row_product[0]['image'] = '';							
-							if (!empty($my_photo)) {
-								$url = $my_photo;
-								if ((strlen($url) < 3) or (!stristr($url, '.jpg') and !stristr($url, '.png') and !stristr($url, '.jpeg') and !stristr($url, '.gif') and !stripos($en, '.bmp'))) {
+								} else {						
 									if (!$yml) {
-										$err =  " The Product has not been added: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Default link: " . $url. " too short "." \n";
-										$this->adderr($err);
+										$err =  " The Product has not been added: Row ~= " . $row_count . " SKU = " . $row[$cod] ." Invalid picture link\n";
+										$this->adderr($err);							
+										$enn = 1;
 									}	
 									break;
-								}
-								$photo_default = 1;
-								$nolink = 0;
-							} else {					
-								if (!$yml) {
-									$err =  " The Product has not been added: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Link: " . $url. " too short "." \n";
-									$this->adderr($err);								
-									$enn = 6;
 								}	
-								break;
-							}	
+							} else if (!$yml) continue;
 						}
-					}					
-					$rout = 0;
-					$try = "";					
-					if (!$nolink) $url = $this->checkurl($url);		
-					if ($url != -1) {
-						if ($nolink) {	
-							$ise = ".jpg";
-							$nom = stripos($url, ".jpg");
-							if (!$nom) {
-								$nom = strrpos($url, ".jpeg");
-								if ($nom) $ise = ".jpeg";
-							}
-							if (!$nom) {
-								$nom = strrpos($url, ".png");
-								if ($nom) $ise = ".png";
-							}	
-							if (!$nom) {
-								$nom = strrpos($url, ".PNG");
-								if ($nom) $ise = ".png";
-							}
-							if (!$nom) {
-								$nom = strrpos($url, ".gif");
-								if ($nom) $ise = ".gif";
-							}
-							if (!$nom) {
-								$nom = strrpos($url, ".GIF");
-								if ($nom) $ise = ".gif";
-							}
-							if (!$nom) {
-								$nom = strrpos($url, ".bmp");
-								if ($nom) $ise = ".bmp";
-							}
-							if (!$nom) {
-								$nom = strrpos($url, ".BMP");
-								if ($nom) $ise = ".bmp";
-							}
-				
-							$a = strlen($url);
-							if (!$nom or $a - $nom > 5) {
-								$se = $ise;
-								$nom = $a;
-							} else $se = substr($url, $nom);	
-							$app = '';
-							if (!empty($seo_data['prod_photo'])) {								
-								$data['name'] = '';
-								if (isset($row_product[0]['item']) and !empty($row_product[0]['item'])) $data['name'] = $row_product[0]['item'];
-								$data['category'] = '';
-								if (isset($text_cat) and !empty($text_cat)) $data['category'] = trim($text_cat);
-								$data['manufacturer'] = '';
-								if (isset($row[$manuf]) and !empty($row[$manuf])) $data['manufacturer'] = $row_product[0]['manuf_name'];
-								$data['model'] = '';
-								if (isset($row_product[0]['model']) and !empty($row_product[0]['model'])) $data['model'] = $row_product[0]['model'];
-								$data['brand'] = '';
-								if (isset($row[$ref]) and !empty($row[$ref])) $data['brand'] = $this->getName($row[$ref]);
-								$data['sku'] = '';
-								if (isset($row[$cod]) and !empty($row[$cod])) $data['sku'] = trim($row[$cod]);
-								$app = $this->namePhoto($store, $data, $seo_data['prod_photo']);
-								$app = $this->TransLit($app);
-								$app = strtolower($app);
-							}
-							if (empty($app)) {
-								$app = substr($url, 0, $nom);
-								$nom = strpos($app, ".");
-								$app = substr($app, $nom);
-								$app = $this->TransLit($app);							
-								$app = $this->MetaURL($app);
-							}
-							$try = "../image/catalog/temp/".$url;
-	
-							if (file_exists($try)) {						
-								if (!empty ($pic_int[$i]))	{
-									$spath = "../image/catalog/" .$pic_int[$i]."/";
-									if (!$subfolder) $path = "../image/catalog/" .$pic_int[$i]."/";
-									else $path = "../image/catalog/" .$pic_int[$i]."/".$papka."/";
-									$spic_addr = "catalog/".$pic_int[$i]."/".$app.$se;
-									if (!$subfolder) $pic_addr = "catalog/".$pic_int[$i]."/".$app.$se;
-									else $pic_addr = "catalog/".$pic_int[$i]."/".$papka."/".$app.$se;				
-								} else {
-									$err =  " Please, set folder for photo on page 'Category and margin'  for Category '" .$this->symbol($catmany[0])."' Row ~= " . $row_count . " Product passed" ." \n";
-									$this->adderr($err);
-									$enn = 7;
-									break;
-								}		
-								if (!is_dir($spath)) {
-									if (!@mkdir($spath, 0755)) {								
-										$err =  " Photo has not been write: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Can not create folder: " . $spath. ", create it manually \n";
-										$this->adderr($err);
-										continue;
-									}
-								}								
-								
-								if (!is_dir($path)) @mkdir($path, 0755);
-								$path = $path.$app.$se;
-								$a = @copy ($try, $path);
-								if (!$a) {
-									$err =  " Can not copy file from: " . $try . " to: " . $path . " Set chmod 0755 or 0777 for folder: " . $spath . " \n";
-									$this->adderr($err);
+
+						$a = strlen($url)-6;
+						$en = substr($url, $a);
+						if (substr_count($url, "/") and strlen($url) > 12 and !stripos($en, '.jpg') and !stripos($en, '.png') and !stripos($en, '.jpeg') and !stripos($en, '.gif') and !stripos($en, '.bmp') and $url != -1 and $parsk) {
+						
+							$fname = "photo";
+							$marks = explode(",", $my_mark);
+							if (isset($marks[0]) and !empty($marks[0])) {													
+								$fname = $marks[0];
+							} else {						
+								if (isset($row[$manuf]) and !empty($row[$manuf])) {
+									$fname = $row[$manuf];							
+									$fname = substr($fname, 0, 16);
 								}
-								$row_product[0]['image'] = $pic_addr;			
-								$rout = 1;
-								break;
-							} else {
-								if ($n == $npic-1) {
-									if ($my_photo) {
+							}							
+					
+							if ((empty ($row[$manuf]) or !isset($row[$manuf])) and (!isset($my_mark) or empty($my_mark))) {	
+								if ($my_photo) {
+									$url = $my_photo;
+									$photo_default = 1;
+									$nolink = 0;								
+									break;		
+								} else {									
+									$err =  " Photo can not be found: Row ~= " . $row_count . " SKU = " . $row[$cod] ." Please, set  Manufacturer or keyword \n";
+									$this->adderr($err);							
+									$enn = 2;
+									break;								
+								}
+							}							
+							$nojpg = 1;
+							$seeks = explode(",", $warranty);
+							$seek = $seeks[0];	
+							if (strlen($ht) < 1024 or $parsed != $parsk) $ht = $this->curl_get_contents($url, 0, $sleep, $ffile);
+							if (strlen($ht) > 1024) {
+								$parsed = $parsk;								
+								$key = '';
+								$url = $this->ParsPic($ht, $url, $key, $seek, $fname, $pic_ext);							
+								if ($this->checkurl($url, $my_photo) == -1) {
+									if (empty($my_photo)) {
+										$err =  " Parsing main photo error: Row ~= " . $row_count . " url = ". $url. " Check your settings \n";
+										$this->adderr($err);
+										$enn = 3;
+										break;	
+									} else {													
 										$url = $my_photo;
 										$photo_default = 1;
-										$nolink = 0;
+										$nolink = 0;									
 										break;
-									} else {
-										$enn = 9;																		
-										break;
-									}
-								} else continue;
-							}	
-						}					
-						if (!$rout) {	
-							$ise = ".jpg";
-							$nom = stripos($url, ".jpg");
-							if (!$nom) {
-								$nom = strrpos($url, ".jpeg");
-								if ($nom) $ise = ".jpeg";
-							}
-							if (!$nom) {
-								$nom = strrpos($url, ".png");
-								if ($nom) $ise = ".png";
-							}	
-							if (!$nom) {
-								$nom = strrpos($url, ".PNG");
-								if ($nom) $ise = ".png";
-							}
-							if (!$nom) {
-								$nom = strrpos($url, ".gif");
-								if ($nom) $ise = ".gif";
-							}
-							if (!$nom) {
-								$nom = strrpos($url, ".GIF");
-								if ($nom) $ise = ".gif";
-							}
-							if (!$nom) {
-								$nom = strrpos($url, ".bmp");
-								if ($nom) $ise = ".bmp";
-							}
-							if (!$nom) {
-								$nom = strrpos($url, ".BMP");
-								if ($nom) $ise = ".bmp";
-							}
-				
-							$a = strlen($url);
-							if (!$nom or $a - $nom > 5) {
-								$se = $ise;
-								$nom = $a;
-							} else $se = substr($url, $nom);
-							$app = '';
-							if (!empty($seo_data['prod_photo'])) {
-								$data['name'] = '';
-								if (isset($row_product[0]['item']) and !empty($row_product[0]['item'])) $data['name'] = $row_product[0]['item'];
-								$data['category'] = '';
-								if (isset($text_cat) and !empty($text_cat)) $data['category'] = trim($text_cat);
-								$data['manufacturer'] = '';
-								if (isset($row[$manuf]) and !empty($row[$manuf])) $data['manufacturer'] = $row_product[0]['manuf_name'];
-								$data['model'] = '';
-								if (isset($row_product[0]['model']) and !empty($row_product[0]['model'])) $data['model'] = $row_product[0]['model'];
-								$data['brand'] = '';
-								if (isset($row[$ref]) and !empty($row[$ref])) $data['brand'] = $this->getName($row[$ref]);
-								$data['sku'] = '';
-								if (isset($row[$cod]) and !empty($row[$cod])) $data['sku'] = trim($row[$cod]);
-								$app = $this->namePhoto($store, $data, $seo_data['prod_photo']);
-								$app = $this->TransLit($app);
-								$app = strtolower($app);
-							}
-							if (empty($app)) {
-								$app = substr($url, 0, $nom);
-								$nom = strpos($app, ".");
-								$app = substr($app, $nom+7);
-								$app = $this->TransLit($app);
-								$nom = strlen($app);
-								if ($nom > 250) $app = substr($app, $nom-250, 250);
-								if ($nom < 2) $app = rand(0, 999999999);							
-								$app = $this->MetaURL($app);
-							}
-							if ($newphoto != 5) {
-								if (!empty ($pic_int[$i]))	{
-									$spath = "../image/catalog/" .$pic_int[$i]."/";
-									if (!$subfolder) $path = "../image/catalog/" .$pic_int[$i]."/";
-									else $path = "../image/catalog/" .$pic_int[$i]."/".$papka."/";
-									$spic_addr = "catalog/".$pic_int[$i]."/".$app.$se;
-									if (!$subfolder) $pic_addr = "catalog/".$pic_int[$i]."/".$app.$se;
-									else $pic_addr = "catalog/".$pic_int[$i]."/".$papka."/".$app.$se;				
-								} else {
-									$err =  " Please, set folder for photo on page 'Category and margin'  for Category '" .$this->symbol($catmany[0])."' Row ~= " . $row_count ." The product passed"." \n";
-									$this->adderr($err);
-									$enn = 10;
-									break;
-								}		
-								if (!is_dir($spath)) {
-									if (!@mkdir($spath, 0755)) {								
-										$err =  " Photo has not been write: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Can not create folder: " . $spath. ", create it manually \n";
-										$this->adderr($err);
-										continue;
-									}
-								}
-								if (!is_dir($path)) @mkdir($path, 0755);		
-								$path = $path.$app.$se;	
-							} else 	{
-								$pic_addr = '';
-								if (!empty($url)) {										
-									$link = $this->symbol($url);													
-									if (substr_count($link, "catalog/")) {
-										$nom = strpos($link, "catalog/");		
-										$link = substr($link, $nom);
-										$pic_addr = $link;		
-									}
+									}	
 								}	
-							}
-							if ($newphoto == 5) {
-								$pic_addr = str_replace("%25%20", " ", $pic_addr);
-								$pic_addr = str_replace("%20", " ", $pic_addr);
-								$pa = "../image/" . $pic_addr;
-								if (file_exists($pa)) $row_product[0]['image'] = $pic_addr;
-								else {
-									if ($n == $npic-1) {
+							} else {							
+								$err =  " The Product passed: Row ~= " . $row_count . " url = ". $url. " Site no answer \n";
+								$this->adderr($err);
+								$row_count = (int)$this->putsos($row_count, $row[$cod]);
+								if ($row_count < 0) return 5;
+								$enn = 4;
+								break;							
+							}										
+	
+							if (!$url) {
+								$row_product[0]['image'] = '';							
+								if (!empty($my_photo)) {
+									$url = $my_photo;
+									$photo_default = 1;
+									$nolink = 0;								
+									break;
+								} else {					
+									$err =  " The Product has not been added: Row ~= " . $row_count . " SKU = " . $row[$cod] ." Photo not found on the site: " . $url." Check your setting field in form: 'location photo'"." keywords = ".$this->symbol($fname)." seek = ".$seek."\n";
+									$this->adderr($err);								
+									$enn = 5;
+									break;
+								}
+							}							
+						} else {						
+							if (strlen($url) < 5) {	
+								$row_product[0]['image'] = '';							
+								if (!empty($my_photo)) {
+									$url = $my_photo;
+									if ((strlen($url) < 3) or (!stristr($url, '.jpg') and !stristr($url, '.png') and !stristr($url, '.jpeg') and !stristr($url, '.gif') and !stripos($en, '.bmp'))) {
 										if (!$yml) {
-											$err =  " Main photo not found. Path: ". $pic_addr . " Row ~= " . $row_count . " SKU = " . $row[$cod] . " Product passed \n";
+											$err =  " The Product has not been added: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Default link: " . $url. " too short "." \n";
 											$this->adderr($err);
-											$enn = 12;
 										}	
 										break;
-									} else continue;
+									}
+									$photo_default = 1;
+									$nolink = 0;
+								} else {					
+									if (!$yml) {
+										$err =  " The Product has not been added: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Link: " . $url. " too short "." \n";
+										$this->adderr($err);								
+										$enn = 6;
+									}	
+									break;
 								}	
-							} else $row_product[0]['image'] = $pic_addr;
-							if (!file_exists($path) and $newphoto != 5) {
-								$pict = $this->curl_get_contents($url, 1, $sleep, $ffile);								
-								if (!$this->isPicture($pict)) {	
+							}
+						}					
+						$rout = 0;
+						$try = "";					
+						if (!$nolink) $url = $this->checkurl($url, $my_photo);	
+						if ($url != -1) {
+							if ($nolink) {	
+								$se = $this->getSe($url, $nom);
+								$app = '';
+								if (!empty($seo_data['prod_photo'])) {								
+									$data['name'] = '';
+									if (isset($row_product[0]['item']) and !empty($row_product[0]['item'])) $data['name'] = $row_product[0]['item'];
+									$data['category'] = '';
+									if (isset($text_cat) and !empty($text_cat)) $data['category'] = trim($text_cat);
+									$data['manufacturer'] = '';
+									if (isset($row[$manuf]) and !empty($row[$manuf])) $data['manufacturer'] = $row_product[0]['manuf_name'];
+									$data['model'] = '';
+									if (isset($row_product[0]['model']) and !empty($row_product[0]['model'])) $data['model'] = $row_product[0]['model'];
+									$data['brand'] = '';
+									if (isset($row[$ref]) and !empty($row[$ref])) $data['brand'] = $this->getName($row[$ref]);
+									$data['sku'] = '';
+									if (isset($row[$cod]) and !empty($row[$cod])) $data['sku'] = trim($row[$cod]);
+									$app = $this->namePhoto($store, $data, $seo_data['prod_photo']);
+									$app = $this->TransLit($app);
+									$app = strtolower($app);
+								}
+								if (empty($app)) {
+									$app = substr($url, 0, $nom);
+									if (substr_count($app, "/")) {
+										$nom = strpos($app, ".");
+										$app = substr($app, $nom);
+									}	
+									$app = $this->TransLit($app);							
+									$app = $this->MetaURL($app);
+								}
+								$try = "../image/catalog/temp/".$url;
+	
+								if (file_exists($try)) {						
+									if (!empty ($pic_int[$i]))	{
+										$spath = "../image/catalog/" .$pic_int[$i]."/";
+										if (!$subfolder) $path = "../image/catalog/" .$pic_int[$i]."/";
+										else $path = "../image/catalog/" .$pic_int[$i]."/".$papka."/";
+										$spic_addr = "catalog/".$pic_int[$i]."/".$app.$se;
+										if (!$subfolder) $pic_addr = "catalog/".$pic_int[$i]."/".$app.$se;
+										else $pic_addr = "catalog/".$pic_int[$i]."/".$papka."/".$app.$se;				
+									} else {
+										$err =  " Please, set folder for photo on page 'Category and margin'  for Category '" .$this->symbol($catmany[0])."' Row ~= " . $row_count . " Product passed" ." \n";
+										$this->adderr($err);
+										$enn = 7;
+										break;
+									}		
+									if (!is_dir($spath)) {
+										if (!@mkdir($spath, 0755)) {								
+											$err =  " Photo has not been write: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Can not create folder: " . $spath. ", create it manually \n";
+											$this->adderr($err);
+											continue;
+										}
+									}								
+								
+									if (!is_dir($path)) @mkdir($path, 0755);
+									$path = $path.$app.$se;
+									$a = @copy ($try, $path);
+									if (!$a) {
+										$err =  " Can not copy file from: " . $try . " to: " . $path . " Set chmod 0755 or 0777 for folder: " . $spath . " \n";
+										$this->adderr($err);
+									} else {
+										if (!$up) {
+											$report = $report."Photo added ";
+											$up++;
+										}
+									}	
+									$row_product[0]['image'] = $pic_addr;			
+									$rout = 1;
+									break;
+								} else {
 									if ($n == $npic-1) {
-										if ($my_photo) {											
+										if ($my_photo) {
+										$url = $my_photo;
 											$photo_default = 1;
 											$nolink = 0;
+											break;
+										} else {
+											$enn = 9;																		
+											break;
+										}
+									} else continue;
+								}	
+							}					
+							if (!$rout) {
+								$se = $this->getSe($url, $nom);
+								$app = '';
+								if (!empty($seo_data['prod_photo'])) {
+									$data['name'] = '';
+									if (isset($row_product[0]['item']) and !empty($row_product[0]['item'])) $data['name'] = $row_product[0]['item'];
+									$data['category'] = '';
+									if (isset($text_cat) and !empty($text_cat)) $data['category'] = trim($text_cat);
+									$data['manufacturer'] = '';
+									if (isset($row[$manuf]) and !empty($row[$manuf])) $data['manufacturer'] = $row_product[0]['manuf_name'];
+									$data['model'] = '';
+									if (isset($row_product[0]['model']) and !empty($row_product[0]['model'])) $data['model'] = $row_product[0]['model'];
+									$data['brand'] = '';
+									if (isset($row[$ref]) and !empty($row[$ref])) $data['brand'] = $this->getName($row[$ref]);
+									$data['sku'] = '';
+									if (isset($row[$cod]) and !empty($row[$cod])) $data['sku'] = trim($row[$cod]);
+									$app = $this->namePhoto($store, $data, $seo_data['prod_photo']);
+									$app = $this->TransLit($app);
+									$app = strtolower($app);
+								}
+								if (empty($app)) {
+									$app = substr($url, 0, $nom);
+									if (substr_count($app, "/")) {
+										$nom = strpos($app, ".");
+										$app = substr($app, $nom+7);
+									}	
+									$app = $this->TransLit($app);
+									$nom = strlen($app);
+									if ($nom > 250) $app = substr($app, $nom-250, 250);
+									if ($nom < 2) $app = rand(0, 999999999);							
+									$app = $this->MetaURL($app);
+								}
+								if ($newphoto != 5) {
+									if (!empty ($pic_int[$i]))	{
+										$spath = "../image/catalog/" .$pic_int[$i]."/";
+										if (!$subfolder) $path = "../image/catalog/" .$pic_int[$i]."/";
+										else $path = "../image/catalog/" .$pic_int[$i]."/".$papka."/";
+										$spic_addr = "catalog/".$pic_int[$i]."/".$app.$se;
+										if (!$subfolder) $pic_addr = "catalog/".$pic_int[$i]."/".$app.$se;
+										else $pic_addr = "catalog/".$pic_int[$i]."/".$papka."/".$app.$se;				
+									} else {
+										$err =  " Please, set folder for photo on page 'Category and margin'  for Category '" .$this->symbol($catmany[0])."' Row ~= " . $row_count ." The product passed"." \n";
+										$this->adderr($err);
+										$enn = 10;
+										break;
+									}		
+									if (!is_dir($spath)) {
+										if (!@mkdir($spath, 0755)) {								
+											$err =  " Photo has not been write: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Can not create folder: " . $spath. ", create it manually \n";
+											$this->adderr($err);
+											continue;
+										}
+									}
+									if (!is_dir($path)) @mkdir($path, 0755);		
+									$path = $path.$app.$se;	
+								} else 	{
+									$pic_addr = '';
+									if (!empty($url)) {										
+										if (substr_count($url, "catalog/")) {
+											$nom = strpos($url, "catalog/");		
+											$pic_addr = substr($url, $nom);											
+										}
+									}	
+								}
+								if ($newphoto == 5) {
+									$pic_addr = str_replace("%25%20", " ", $pic_addr);
+									$pic_addr = str_replace("%20", " ", $pic_addr);
+									$pa = "../image/" . $pic_addr;
+									if (file_exists($pa)) $row_product[0]['image'] = $pic_addr;
+									else {
+										if ($n == $npic-1) {
 											if (!$yml) {
-												$err =  " Download main photo fails. Url: ". $url . " Row ~= " . $row_count . " SKU = " . $row[$cod] . " I'll try insert default photo \n";
+												$err =  " Main photo not found. Path: ". $pic_addr . " Row ~= " . $row_count . " SKU = " . $row[$cod] . " Product passed \n";
 												$this->adderr($err);
-												$url = $my_photo;
 												$enn = 12;
 											}	
 											break;
-										} else {
-											if (!$yml) {
-												$err =  " Download main photo fails. Url: ". $url . " Row ~= " . $row_count . " SKU = " . $row[$cod] . " Product passed \n";
-												$this->adderr($err);												
-											}	
-											break;
-										}
-									} else continue;	
-									
-								} else {
-									$bytes = @file_put_contents($path, $pict);
-									if (!$bytes) {
-										$bytes = @file_put_contents($spath, $pict);
-										$row_product[0]['image'] = $spic_addr;
-									}
-
-									if (!$bytes) {
+										} else continue;
+									}	
+								} else $row_product[0]['image'] = $pic_addr;
+								if (!file_exists($path) and $newphoto != 5) {
+									$pict = $this->curl_get_contents($url, 1, $sleep, $ffile);								
+									if (!$this->isPicture($pict)) {	
 										if ($n == $npic-1) {
-											if (!$yml) {
-												$err =  " The Product has not been added: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Link in price-list: ". $row[$pic]. " patch = ".$path." url = ".$url." is not available \n";
-												$this->adderr($err);
-											}	
-											if ($my_photo) {
-												$url = $my_photo;
+											if ($my_photo) {											
 												$photo_default = 1;
 												$nolink = 0;
+												if (!$yml) {
+													$err =  " Download main photo fails. Url: ". $url . " Row ~= " . $row_count . " SKU = " . $row[$cod] . " I'll try insert default photo \n";
+													$this->adderr($err);
+													$url = $my_photo;
+													$enn = 12;
+												}	
 												break;
 											} else {
-												$enn = 13;
+												if (!$yml) {
+													$err =  " Download main photo fails. Url: ". $url . " Row ~= " . $row_count . " SKU = " . $row[$cod] . " Product passed \n";
+													$this->adderr($err);												
+												}	
 												break;
 											}
-										} else continue;
-									}
-									break;
-								}	
-							} else break;
+										} else continue;	
+										
+									} else {
+										$bytes = @file_put_contents($path, $pict);
+										if (!$bytes) {
+											$bytes = @file_put_contents($spath, $pict);
+											$row_product[0]['image'] = $spic_addr;
+										}
+	
+										if (!$bytes) {
+											if ($n == $npic-1) {
+												if (!$yml) {
+													$err =  " The Product has not been added. Create folder: " . $pic_int[$i] . " Row ~= " . $row_count . " SKU = " . $row[$cod] . " Link in price-list: ". $row[$pic]. " url = ".$url." is not available \n";
+													$this->adderr($err);
+												}	
+												if ($my_photo) {
+													$url = $my_photo;
+													$photo_default = 1;
+													$nolink = 0;
+													break;
+												} else {
+													$enn = 13;
+													break;
+												}
+											} else continue;
+										} else {
+											if (!$up) {
+												$report = $report."Photo added ";
+												$up++;
+											}	
+										}
+										break;
+									}	
+								} else break;
+							}
+						}
+					} else {
+						if ($n == $npic-1 and (!$optsku or empty($row[$newproduct]))) {
+							if ($my_photo) {
+								$url = $my_photo;
+								$photo_default = 1;
+								$nolink = 0;
+								break;
+							} else {
+								$enn = 14;
+								break;
+							}
 						}
 					}
-				} else {
-					if ($n == $npic-1 and (!$optsku or empty($row[$newproduct]))) {
-						if ($my_photo) {
-							$url = $my_photo;
-							$photo_default = 1;
-							$nolink = 0;
-							break;
-						} else {
-							$enn = 14;
-							break;
-						}
+					if (!empty($parsk)) break;
+				}
+				
+				$pictures_new = array();
+				if ($q > 0) {
+					$npic = $npic-$q;
+					for ($l=0; $l<60; $l++) {
+						if (!isset($pictures[$l+$q])) break;
+						$pictures_new[$l] = $pictures[$l+$q];					
 					}
-				}
-				if (!empty($parsk)) break;
-			}	// new
-			
-			$pictures_new = array();
-			if ($q > 0) {
-				$npic = $npic-$q;
-				for ($l=0; $l<16; $l++) {
-					if (!isset($pictures[$l+$q])) break;
-					$pictures_new[$l] = $pictures[$l+$q];					
-				}
-			} else 	$pictures_new = $pictures;
+				} else 	$pictures_new = $pictures;
 		
 				if ($enn and (!$optsku or empty($row[$newproduct])) and !$yml) {
 					if ($enn == 12 and $my_photo) {
@@ -20180,7 +23471,7 @@ class ModelCatalogSuppler extends Model {
 								$err =  " Defaul photo has not been added: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Default link: ". $row[$pic]. " patch = ".$path." url = ".$url." is not available \n";
 								$this->adderr($err);								
 								continue;
-							}
+							} 
 						}						
 					} else {						
 						$err =  " Any photo not found: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Default photo expected \n";
@@ -20190,7 +23481,7 @@ class ModelCatalogSuppler extends Model {
 				}	
 	
 				if ($photo_default > 0 and (!$optsku or empty($row[$newproduct])) and !$yml) $report = $report."Photo set by default ";				
-				
+	
 				$row_product[0]['weight'] = '0';
 				$row_product[0]['length'] = '0';
 				$row_product[0]['width'] = '0';
@@ -20224,13 +23515,12 @@ class ModelCatalogSuppler extends Model {
 				$quantity = 0;
 				$newstatus = 0;
 				$empt = 0;
-				$this->getQuantity($row, $qu, $my_qu, $quantity, $newstatus, $empt);
-				
+				$this->getQuantity($row, $qu, $my_qu, $quantity, $newstatus, $empt, $delim);
+	
 				if (!$empt) $quantity = '';
 				$row_product[0]['quantity'] = $quantity;
 				
-				if (empty($newstatus)) $newstatus = 0;
-				
+				if (empty($newstatus)) $newstatus = 0;				
 				if (!$row_product[0]['quantity'] and preg_match('/^[0-9]+$/', $my_qu)) {
 					$row_product[0]['quantity'] = $my_qu;
 					if (!$yml) $report = $report."Quantity set by default ";
@@ -20238,13 +23528,13 @@ class ModelCatalogSuppler extends Model {
 					if (!$row_product[0]['quantity'] and !$yml) $report = $report."Quantity = 0 ";				
 					else if ($row_product[0]['quantity'] > 0 and !$yml) $report = $report."Quantity found ";
 				}
-				
+					
 				$row_product[0]['hide'] = 1;
 				if (!$hide) $row_product[0]['hide'] = 0;
 				if ($off_prod == 1) $row_product[0]['hide'] = 0;
 
-				$qu_d = array();  // Расчет скидок по процентам от количества				
-				if (!empty($qu_discount) and substr_count($qu_discount, "=")) {				
+				$qu_d = array();  // Расчет скидок по процентам от количества
+				if (!empty($qu_discount) and substr_count($qu_discount, "=")) {
 					$pj = explode(",", $qu_discount);
 					for ($j=0; $j<20; $j++) {		
 						if (!isset($pj[$j])) break;
@@ -20259,7 +23549,7 @@ class ModelCatalogSuppler extends Model {
 						$per = $this->convertPrice($per);
 						if (!preg_match('/^[0-9.Ee+-]+$/', $per)) break;
 						$qu_d['quantity'][$j] = $q;
-						$qu_d['percent'][$j] = $per;
+						$qu_d['percent'][$j] = $per;	
 					}
 				}
 				
@@ -20337,18 +23627,18 @@ class ModelCatalogSuppler extends Model {
 						}
 					}
 				}
-				if ($ignore_margin or $rrc) $plus = 0;				
-				if (!substr_count($plus, "+")) $new_price = $row[$price] + ($row[$price] * $plus/100);
+				if (($ignore_margin and !$myplus) or $rrc) $plus = 0;
+				if (!substr_count($plus, "+") and !substr_count($plus, "--")) $new_price = $row[$price] + ($row[$price] * $plus/100);			
 				else {
-					$pl = explode("+", $plus);	
-					$f = 0;
-					if (isset($pl[0]) and !empty($pl[0])) {
-						$new_price = $row[$price] + ($row[$price] * $pl[0]/100);
-						$f = 1;
+					if (substr_count($plus, "+")) {
+						$pl = explode("+", $plus);						
+						if (isset($pl[1]) and !empty($pl[1])) $new_price = $row[$price] + $pl[1];
 					}
-					if (isset($pl[1]) and !empty($pl[1]) and $f) $new_price = $new_price + $pl[1];
-					if (isset($pl[1]) and !empty($pl[1]) and !$f) $new_price = $row[$price] + $pl[1];
-				}			
+					if (substr_count($plus, "--")) {
+						$pl = explode("--", $plus);							
+						if (isset($pl[1]) and !empty($pl[1])) $new_price = $row[$price] - $pl[1];
+					}
+				}
 				
 				if ($plus == 0 and !$yml) $report = $report."Margin = 0 ";
 				$row_product[0]['price'] = $this->convertPrice($new_price);
@@ -20387,17 +23677,19 @@ class ModelCatalogSuppler extends Model {
 						$row_product[0]['bpack'] = 1;
 						$row_product[0]['brate'] = $rate;
 						$row_product[0]['bsuppler'] = $id;
-						if (!substr_count($plus, "+")) $row_product[0]['bdisc'] = $row[$price]*$rate * $plus/100;
+						if (!substr_count($plus, "+") and !substr_count($plus, "--")) $row_product[0]['bdisc'] = $row[$price]*$rate * $plus/100;
 						else {
-							$pl = explode("+", $plus);	
-							$f = 0;
-							if (isset($pl[0]) and !empty($pl[0])) {
-								$row_product[0]['bdisc'] = $row[$price]*$rate * $pl[0]/100;
-								$f = 1;
+							if (substr_count($plus, "+")) {
+								$pl = explode("+", $plus);								
+								if (isset($pl[1]) and !empty($pl[1])) $row_product[0]['bdisc'] = $row_product[0]['bdisc'] + $pl[1];
+								
 							}
-							if (isset($pl[1]) and !empty($pl[1]) and $f) $row_product[0]['bdisc'] = $row_product[0]['bdisc'] + $pl[1];
-							if (isset($pl[1]) and !empty($pl[1]) and !$f) $row_product[0]['bdisc'] = $pl[1];
-						}	
+							if (substr_count($plus, "--")) {
+								$pl = explode("--", $plus);								
+								if (isset($pl[1]) and !empty($pl[1])) $row_product[0]['bdisc'] = $row_product[0]['bdisc'] - $pl[1];
+								
+							}
+						}
 					}	
 				}				
 				
@@ -20407,11 +23699,25 @@ class ModelCatalogSuppler extends Model {
 				$row_product[0]['ean'] = "";				
 				if (isset($row[$ean])) $row_product[0]['ean'] = $this->symbol($row[$ean]);
 				$row_product[0]['mpn'] = "";				
-				if (isset($row[$mpn])) $row_product[0]['mpn'] = $this->symbol($row[$mpn]);
-				$row_product[0]['ref'] = "";				
-				if (isset($row[$ref])) $row_product[0]['ref'] = $row[$ref];
+				if (isset($row[$mpn])) $row_product[0]['mpn'] = $this->symbol($row[$mpn]);				
+				$row_product[0]['location'] = "";				
+				if (isset($row[$location])) $row_product[0]['location'] = $this->symbol($row[$location]);
+				$row_product[0]['jan'] = "";				
+				if (isset($row[$jan])) $row_product[0]['jan'] = $this->symbol($row[$jan]);
+				$row_product[0]['isbn'] = "";				
+				if (isset($row[$isbn])) $row_product[0]['isbn'] = $this->symbol($row[$isbn]);
+				$row_product[0]['ref'] = "";
+				if (preg_match('/^[0-9]+$/', $ref) and isset($row[$ref])) $row_product[0]['ref'] = $row[$ref];
+				else $row_product[0]['ref'] = $ref;			
 				$row_product[0]['ref1'] = "";				
-				if (isset($row[$ref1])) $row_product[0]['ref1'] = $row[$ref1];
+				if (preg_match('/^[0-9]+$/', $ref1) and isset($row[$ref1])) $row_product[0]['ref1'] = $row[$ref1];
+				else $row_product[0]['ref1'] = $ref1;
+				$row_product[0]['ref2'] = "";
+				if (preg_match('/^[1-9]+$/', $ref2) and isset($row[$ref2])) $row_product[0]['ref2'] = $row[$ref2];
+				else $row_product[0]['ref2'] = $ref2;			
+				$row_product[0]['ref3'] = "";				
+				if (preg_match('/^[1-9]+$/', $ref3) and isset($row[$ref3])) $row_product[0]['ref3'] = $row[$ref3];
+				else $row_product[0]['ref3'] = $ref3;
 				$row_product[0]['seo_h1'] = 0;
 				if (isset($row[38])) $row_product[0]['seo_h1'] = $this->getName($row[38]);
 				$row_product[0]['seo_title'] = 0;
@@ -20426,11 +23732,9 @@ class ModelCatalogSuppler extends Model {
 				if (isset($row[43])) $row_product[0]['url'] = $row[43];
 				
 				if ($zero_prod) $row_product[0]['quantity'] = 0;				
-				
-				$report = $report."Product added ";
-				
+								
 				if (!$optsku or empty($row[$newproduct])) {
-					$this->putNewProduct($row_product, $parent, $last_product_id, $attr_ext, $max_attr, $langs, $row, $tags, $addseo, $catmany, $catcreate, $catdescs, $caturls, $catmd, $catmk, $catmt, $catmh, $newurl, $refers, $seo_data, $store, $off, $idcat, $t_ref,  $t_ref1, $metka, $usd);
+					$this->putNewProduct($row_product, $parent, $last_product_id, $attr_ext, $max_attr, $langs, $row, $tags, $addseo, $catmany, $catcreate, $catdescs, $caturls,  $catmd, $catmk, $catmt, $catmh, $newurl, $refers, $seo_data, $store, $off, $idcat, $t_ref, $t_ref1, $t_ref2, $t_ref3, $metka, $usd);
 
 					$product_new = 1;
 					if (!$flag_add_up) {
@@ -20456,76 +23760,119 @@ class ModelCatalogSuppler extends Model {
 				$old_product_id = $last_product_id;
 				$last_sku_id = 0;			
 
-				if (isset($row[$serie]) and !empty($row[$serie])) {
-					$rows = $this->getProductBySKU($row[$serie], $store);
+				$ss = explode(',', $serie);
+				if (isset($row[$ss[0]]) and !empty($row[$ss[0]])) {
+					$a = $skuprefix . $row[$ss[0]];
+					$rows = $this->getProductBySKU($a, $store);
 					if (isset($rows) and !empty($rows)) {
 						$serie_id = $rows[0]['product_id'];
-						$this->putSerie($last_product_id, $serie_id);
+						$a = 1;
+						if (isset($ss[1]) and is_numeric($row[$ss[1]])) $a = $row[$ss[1]];
+						$this->putSerie($last_product_id, $serie_id, $a);
 					}	
 				}
 				
-				$er = 0;				
+				$er = 0;
+				$up = 0;
 				if ($max_attr and $upattr and $upattr != 4 and (!$optsku or empty($row[$newproduct]))) {					
-					for ($j = 1; $j <= $max_attr; $j++) {
-						$attname = '';
-						$attvalue = '';
+					for ($j = 1; $j <= $max_attr; $j++) {						
+						$col = explode(",", $attr_ext[$j]);
 						if (isset($data)) unset($data);
 						$data = array();
-						$r = 0;
-						$at = $attribute_id[$j];	
-						$col = explode(",", $attr_ext[$j]);
-	
-						if (!empty($col[0]) and preg_match('/^[0-9]+$/', $col[0])) {
-							if (($at == 0 and !empty($row[$col[0]-1]) and !$yml) or ($at == 0 and !empty($row[$col[0]+1]) and $yml)){
-								
-								if (!$yml) $attname = $this->getName($row[$col[0]-1]);
-								else $attname = $this->getName($row[$col[0]+1]);
-								if ($change_attribute) $this->changeAtt($masatt, $r, $attname, $attvalue);
-								$rows = $this->getAttributeID($attname);
+						$r = 0;						
+						
+						$rc = array();
+						$rc_m = array();  // minus
+						$rc_p = array();  // plus
+						$rc1 = array();
+						$rc1_m = array(); 
+						$rc1_p = array();
+						$rc2 = array();
+						$rc2_m = array();
+						$rc2_p = array();						
+					
+						if (!empty($col[0]) and preg_match('/^[0-9]+$/', $col[0])) {							
+							$rc = explode($delim, $row[$col[0]]);							
+							$rc_p = explode($delim, $row[$col[0]+1]);
+							if (isset($row[$col[0]-1])) $rc_m = explode($delim, $row[$col[0]-1]);
+											
+							if (isset($col[1]) and !empty($col[1])) {
+								$rc1 = explode($delim, $row[$col[1]]);
+								$rc1_p = explode($delim, $row[$col[1]+1]);
+								$rc1_m = explode($delim, $row[$col[1]-1]);
+							}
+							if (isset($col[2]) and !empty($col[2])) {
+								$rc2 = explode($delim, $row[$col[2]]);
+								$rc2_p = explode($delim, $row[$col[2]+1]);
+								$rc2_m = explode($delim, $row[$col[2]-1]);
+							}
 							
-								if (isset($rows[0]['attribute_id'])) $at = $rows[0]['attribute_id'];
-								if (!$at and ($upattr == 1 or $upattr == 2 or $upattr == 5)) {
-									$data['text1'] = $attname;
-									$data['text2'] = '';
-									if (isset($col[1]) and !empty($col[1])) $data['text2'] = $this->getName($row[$col[1]-1]);
-									$data['text3'] = '';
-									if (isset($col[2]) and !empty($col[2])) $data['text3'] = $this->getName($row[$col[2]-1]);
-									$this->createAttribute($data, $attID, $langs);
-									$at = $attID;
-									if ($at == 1.2) {
-										$er = 1;
-										break;
-									}								
+							
+							$qarr = count($rc);
+							if ($price_xml) $qarr--;
+							for ($sep=0; $sep<$qarr; $sep++) {	
+								if ($rc[$sep] == '') continue;
+								$attname = '';
+								$attvalue = '';
+								$at = $attribute_id[$j];					
+							
+								if (($at == 0 and !empty($rc_m[$sep]) and !$yml) or ($at == 0 and !empty($rc_p[$sep]) and ($yml or $price_xml))) {
+								
+									if (!$yml and !$price_xml) $attname = $this->getName($rc_m[$sep]);
+									if ($yml or $price_xml) $attname = $this->getName($rc_p[$sep]);
+									if ($change_attribute) $this->changeAtt($masatt, $r, $attname, $attvalue);
+									$rows = $this->getAttributeID($attname);
+	
+									if (isset($rows[0]['attribute_id'])) $at = $rows[0]['attribute_id'];
+									if (!$at and ($upattr == 1 or $upattr == 2 or $upattr == 5)) {
+										$data['text1'] = $attname;
+										$data['text2'] = '';
+										if (isset($col[1]) and !empty($col[1])) $data['text2'] = $this->getName($rc1_m[$sep]);
+										$data['text3'] = '';
+										if (isset($col[2]) and !empty($col[2])) $data['text3'] = $this->getName($rc2_m[$sep]);
+	
+										$this->createAttribute($data, $attID, $langs);
+										$at = $attID;
+										if ($at == 1.2) {
+											$er = 1;
+											break;
+										}								
+									}
+									if (!$at) continue;
 								}
-								if (!$at) continue;
-							}					
-							if (isset($row[$col[0]]) and $row[$col[0]] != '') {
-								$t = $this->symbol($row[$col[0]]);	
-								if ($change_attribute) $this->changeAtt($masatt, $r, $attname, $t);						
-								$data['text1'] = $t;			
-								$t = '';
-								if (isset($col[1]) and $row[$col[1]] != '') {
-									$t = $this->symbol($row[$col[1]]);
-									if ($change_attribute) $this->changeAtt($masatt, $r, $attname, $t);					
-								}								
-								$data['text2'] = $t;
-								$t = '';
-								if (isset($col[2]) and $row[$col[2]] != '') {
-									$t = $this->symbol($row[$col[2]]);
-									if ($change_attribute) $this->changeAtt($masatt, $r, $attname, $t);					
-								}								
-								$data['text3'] = $t;
-								$data['product_id'] = $last_product_id;
-								$data['attribute_id'] = $at;
-								$this->putAttributeById($data, $upattr, $langs);								
-							}
-							if ($attribute_id[$j] and $filter_group_id[$j] and !empty($data)) {
-								$filters = array();
-								$this->CreateFilter($data, $filter_group_id[$j], $langs, $filters);
-								if (!empty($filters)) $this->AttributeToFilter($last_product_id, $filters);				
-							}
+
+								if (isset($rc[$sep]) and $rc[$sep] != '') {
+									$t = $this->symbol($rc[$sep]);
+									if ($change_attribute) $this->changeAtt($masatt, $r, $attname, $t);						
+									$data['text1'] = $t;
+									$t = '';
+									if (isset($col[1]) and $rc1[$sep] != '') {
+										$t = $this->symbol($rc1[$sep]);
+										if ($change_attribute) $this->changeAtt($masatt, $r, $attname, $t);					
+									}								
+									$data['text2'] = $t;
+									$t = '';
+									if (isset($col[2]) and $rc2[$sep] != '') {
+										$t = $this->symbol($rc2[$sep]);
+										if ($change_attribute) $this->changeAtt($masatt, $r, $attname, $t);					
+									}								
+									$data['text3'] = $t;
+									$data['product_id'] = $last_product_id;
+									$data['attribute_id'] = $at;
+									$this->putAttributeById($data, $upattr, $langs);
+									if (!$up) {
+										$report = $report."Attributes added ";
+										$up++;
+									}										
+								}
+								if ($attribute_id[$j] and $filter_group_id[$j] and !empty($data)) {
+									$filters = array();
+									$this->CreateFilter($data, $filter_group_id[$j], $langs, $filters);
+									if (!empty($filters)) $this->AttributeToFilter($last_product_id, $filters);				
+								}
+							}	
 						} else {											
-							if (isset($row[$parsi])) $url = $this->checkurl($row[$parsi]);
+							if (isset($row[$parsi])) $url = $this->checkurl($row[$parsi], $my_photo);
 							else $url = -1;
 							if ($url != -1) {	
 								if (strlen($ht) < 1024 or $parsed != $parsi) $ht = $this->curl_get_contents($url, 0, $sleep, $ffile);
@@ -20551,7 +23898,7 @@ class ModelCatalogSuppler extends Model {
 											$err =  " Attribute name: ". $t['name'] . " is too large. I cat it. \n";
 											$this->adderr($err);
 											$t['name'] = mb_substr($t['name'], 0, 256);
-										}	
+										}
 										$rows = $this->getAttributeID($t['name']);										
 										if (empty($rows)) {
 										    if ($upattr == 1 or $upattr == 2 or $upattr == 5) {							
@@ -20570,7 +23917,11 @@ class ModelCatalogSuppler extends Model {
 										$data['text2'] = '';
 										$data['text3'] = '';
 										$data['attribute_id'] = $at;										
-										$this->putAttributeById($data, $upattr, $langs);								
+										$this->putAttributeById($data, $upattr, $langs);
+										if (!$up) {
+											$report = $report."Attributes added ";
+											$up++;
+										}
 									}
 								} else {
 									$err =  "Row ~= " . $row_count . " SKU = " . $row[$cod] . " Attribute parse error \n";
@@ -20578,7 +23929,7 @@ class ModelCatalogSuppler extends Model {
 								}								
 							}
 						} 						
-					}
+					}				
 					if ($er) {
 						$err =  "Language 2 or 3 is not provided in the Store \n";
 						$this->adderr($err);
@@ -20603,480 +23954,481 @@ class ModelCatalogSuppler extends Model {
 					$mas_nozero = array();
 					$nozero_index = 0;
 				}	
-			
-				$mas_opt = array();
 				$opt_val = array();
 				$data_option = array();
+				$mas_opt = array();
 				$yes_option = 0;				
 				if ($max_opt and $upopt) {
 					$jj = 1;
 					for ($j = 1; $j <= $max_opt; $j++) {
 						if (empty($opt[$j])) continue;
-						$i1 = 0;
-						if (!$option_idd[$j]) {
-							if (preg_match('/^[0-9]+$/', $opt[$j]) and $opt[$j] > 2) {
-								$name_option = $row[$opt[$j]-1];
-								if ($yml) $name_option = $row[$opt[$j]+1];
-							} else $name_option = $row[$parsi-1];
-							if (!empty($name_option)) {
-								$name_option = $this->getName($name_option);
-								$option_id[$j] = $this->createOption($name_option, $langs);
-							}							
-						}
 						
-						if (!$option_id[$j]) continue;
-						if (!isset($ko[$j])) continue;
+						$no_m = array();  // minus
+						$no_p = array();  // plus
+						$no_i = array(); 
+						$no_e = array();
+						$no_ko = array();
+						$no_po = array(); 
+						$no_pr = array();
+						$no_we = array();
+						$no_art = array();
+						$no_fo = array();
+
+						if ($parsi > 0 and isset($row[$parsi-1])) $no_i = explode($delim, $row[$parsi-1]);
+						if (isset($ko[$j]) and !empty($ko[$j])) $no_ko = explode($delim, $row[$ko[$j]]);
 						
 						if (preg_match('/^[0-9]+$/', $opt[$j])) {
-							$row[$opt[$j]] = $this->symbol($row[$opt[$j]]);	
-							$row[$opt[$j]] = str_replace("&quot;", "+-=6", $row[$opt[$j]]);
-							$opt_val = explode(";" , $row[$opt[$j]]);
-						}
-						$opt_ko = array();
-						$opt_po = array();
-						$opt_we = array();
-						$opt_art = array();
-						$opt_pr = array();
-						$opt_foto = array();
-						if (isset($maso)) unset($maso);
-						if (isset($masp)) unset($masp);
-						$maso = array();
-						$masp = array();
+							if (isset($row[$opt[$j]-1])) $no_m = explode($delim, $row[$opt[$j]-1]);
+							if (isset($row[$opt[$j]+1])) $no_p = explode($delim, $row[$opt[$j]+1]);						
+							if (isset($row[$opt[$j]])) $no_e = explode($delim, $row[$opt[$j]]);							
+						} else $no_e[0] = $opt[$j];
 						
-						if (empty($ko[$j])) {
-							$err =  ' The "Quantity" field is not filled in the "Options" page '." \n";
-							$this->adderr($err);
-							break;
-						}
-						$row[$ko[$j]] = $this->symbol($row[$ko[$j]]);
-						if (isset($row[$ko[$j]])) {
-							if (substr_count($row[$ko[$j]], ';')) $opt_ko = explode(";" , $row[$ko[$j]]);
-							else $opt_ko = explode("," , $row[$ko[$j]]);
-						}
-						if (isset($row[$po[$j]])) {
-							if (substr_count($row[$po[$j]], ';')) $opt_po = explode(";" , $row[$po[$j]]);
-							else $opt_po = explode("," , $row[$po[$j]]);
-						}										
-						if (preg_match('/^[0-9]+$/', $prro[$j])) {
-							if (substr_count($row[$prro[$j]], ';')) $opt_pr = explode(";" , $row[$prro[$j]]);
-							else $opt_pr = explode("," , $row[$prro[$j]]);						
-						}		
-							
-						$p = explode("," , $pprice);
-						if ($p[0] == $prro[$j] or $prro[$j] == '') $same_column = 1;						
-						if (!empty($row[$art[$j]])) $semicolon = 1;
-
-						if (isset($row[$we[$j]])) {
-							if (substr_count($row[$we[$j]], ';')) $opt_we = explode(";" , $row[$we[$j]]);
-							else $opt_we = explode("," , $row[$we[$j]]);
-						}
-						if (isset($row[$art[$j]])) {
-							if (substr_count($row[$art[$j]], ';')) $opt_art = explode(";" , $row[$art[$j]]);
-							else $opt_art = explode("," , $row[$art[$j]]);
-						}
-						if (isset($row[$art[$j]])) {
-							if (substr_count($row[$art[$j]], ';')) $opt_art = explode(";" , $row[$art[$j]]);
-							else $opt_art = explode("," , $row[$art[$j]]);
-						}
-						if (isset($row[$foto[$j]])) $opt_foto = explode(";" , $row[$foto[$j]]);
+						if (isset($po[$j]) and !empty($po[$j])) $no_po = explode($delim, $row[$po[$j]]);
+						if (isset($we[$j]) and !empty($we[$j])) $no_we = explode($delim, $row[$we[$j]]);
+						if (isset($art[$j]) and !empty($art[$j])) $no_art = explode($delim, $row[$art[$j]]);
+						if (isset($foto[$j]) and !empty($foto[$j])) $no_fo = explode($delim, $row[$foto[$j]]);
 						
-						if (($opt[$j] and !preg_match('/^[0-9]+$/', $opt[$j])) or ($prro[$j] and !preg_match('/^[0-9]+$/', $prro[$j]))) {
-							if (isset($row[$parsi]) and !empty($row[$parsi])) {
-								$url = $this->checkurl($row[$parsi]);
-								if ($url != -1) {									
-									if (strlen($ht) < 1024 or $parsed != $parsi) $ht = $this->curl_get_contents($url, 0, $sleep, $ffile);
-									if (strlen($ht) > 1024) {
-										$parsed = $parsi;										
-										$this->ParsOptions($ht, $opt[$j], $opt_point[$j], $prro[$j], $maso, $masp);
+						if (preg_match('/^[0-9]+$/', $prro[$j])) {							
+							if (isset($prro[$j]) and !empty($prro[$j])) $no_pr = explode($delim, $row[$prro[$j]]);
+						} else $no_pr[0] = $prro[$j];										
+		
+						$qarr = count($no_e);					
+						for ($sep=0; $sep<$qarr; $sep++) {
+			
+							$i1 = 0;
+							if (!$option_idd[$j]) {
+								if (preg_match('/^[0-9]+$/', $opt[$j]) and $opt[$j] > 1) {
+									$y=0;
+									if (!$yml and !$price_xml and isset($no_m[$sep])) {
+										$name_option = $no_m[$sep];
+										$y++;
+									}	
+									if (($yml or $price_xml) and isset($no_p[$sep])) {
+										$name_option = $no_p[$sep];
+											$y++;
 									}
-									if ($maso == '') {
-										$err =  " Row ~= " . $row_count . " SKU = " . $row[$cod] ." Error in parameter parsing this option: ". $this->symbol($opt[$j]) . " price: " . $this->symbol($prro[$j]) . " Link: " . $row[$parsi] ." \n";
+									if (!$y) continue;
+								} else if (isset($no_i[$sep])) $name_option = $no_i[$sep];
+										else continue;
+								if (!empty($name_option)) {
+									$name_option = $this->getName($name_option);
+									$option_id[$j] = $this->createOption($name_option, $langs);
+								}
+							}
+				
+							if (!$option_id[$j] and !$optsku) continue;
+							if (!isset($ko[$j]) or !isset($no_ko[$sep])) continue;
+							
+							if (preg_match('/^[0-9]+$/', $opt[$j])) {
+								$no_e[$sep] = $this->symbol($no_e[$sep]);
+								$no_e[$sep] = str_replace("&quot;", "+-=6", $no_e[$sep]);
+								$opt_val = explode(";" , $no_e[$sep]);
+							}
+							$opt_ko = array();
+							$opt_po = array();
+							$opt_we = array();
+							$opt_art = array();
+							$opt_pr = array();	
+							$opt_foto = array();
+							if (isset($maso)) unset($maso);
+							if (isset($masp)) unset($masp);
+							$maso = array();
+							$masp = array();
+						
+							if (empty($ko[$j])) {
+								$err =  ' The "Quantity" field is not filled in the "Options" page '." \n";
+								$this->adderr($err);
+								break;
+							}
+							$no_ko[$sep] = $this->symbol($no_ko[$sep]);
+							if (isset($no_ko[$sep])) {
+								if (substr_count($no_ko[$sep], ';')) $opt_ko = explode(";" , $no_ko[$sep]);
+								else $opt_ko = explode("," , $no_ko[$sep]);
+							}
+							if (isset($no_po[$sep])) {
+								if (substr_count($no_po[$sep], ';')) $opt_po = explode(";" , $no_po[$sep]);
+								else $opt_po = explode("," , $no_po[$sep]);
+							}										
+							if (preg_match('/^[0-9]+$/', $prro[$j])) {
+								if (substr_count($no_pr[$sep], ';')) $opt_pr = explode(";" , $no_pr[$sep]);
+								else $opt_pr = explode("," , $no_pr[$sep]);						
+							} else $opt_pr[0] = $no_pr[0];	
+							
+							$p = explode("," , $pprice);
+							if ($p[0] == $prro[$j] or $prro[$j] == '') $same_column = 1;						
+							if (!empty($no_art[$sep])) $semicolon = 1;
+	
+							if (isset($no_we[$sep])) {
+								if (substr_count($no_we[$sep], ';')) $opt_we = explode(";" , $no_we[$sep]);
+								else $opt_we = explode("," , $no_we[$sep]);
+							}
+							if (isset($no_art[$sep])) {
+								if (substr_count($no_art[$sep], ';')) $opt_art = explode(";" , $no_art[$sep]);
+								else $opt_art = explode("," , $no_art[$sep]);
+							}
+								
+							if (isset($no_fo[$sep])) $opt_foto = explode(";" , $no_fo[$sep]);
+						
+							if (($opt[$j] and !preg_match('/^[0-9]+$/', $opt[$j])) or ($prro[$j] and !preg_match('/^[0-9]+$/', $prro[$j]))) {
+								if (isset($row[$parsi]) and !empty($row[$parsi])) {
+									$url = $this->checkurl($row[$parsi], $my_photo);
+									if ($url != -1) {									
+										if (strlen($ht) < 1024 or $parsed != $parsi) $ht = $this->curl_get_contents($url, 0, $sleep, $ffile);
+										if (strlen($ht) > 1024) {
+											$parsed = $parsi;										
+											$this->ParsOptions($ht, $opt[$j], $opt_point[$j], $prro[$j], $maso, $masp);
+										}
+										if (!isset($maso[0]) or $maso[0] == '') {
+											$err =  " Row ~= " . $row_count . " SKU = " . $row[$cod] ." Error in parameter parsing option: ". $this->symbol($opt[$j]) . " price: " . $this->symbol($prro[$j]) . " Link: " . $row[$parsi] ." \n";
+											$this->adderr($err);
+											continue;
+										} else {
+											if (isset($opt_val)) unset($opt_val);
+											if (isset($opt_pr)) unset($opt_pr);
+											for ($l=0; $l<900; $l++) {	
+												if (!isset($maso[$l])) break;			
+												if ($maso[$l]) $opt_val[$l] = $maso[$l];
+												if ($masp[$l]) $opt_pr[$l] = $masp[$l];
+												if (empty($prro[$j])) $opt_pr[$l] = '';
+											}
+										}	
+									} else {
+										$err =  " Row ~= " . $row_count . " SKU = " . $row[$cod] ." Error link for parsing options in column: ". $parsi . " \n";
 										$this->adderr($err);
 										continue;
-									} else {
-										if (isset($opt_val)) unset($opt_val);
-										if (isset($opt_pr)) unset($opt_pr);
-										for ($l=0; $l<900; $l++) {	
-											if (!isset($maso[$l])) break;			
-											if ($maso[$l]) $opt_val[$l] = $maso[$l];
-											if ($masp[$l]) $opt_pr[$l] = $masp[$l];
-											if (empty($prro[$j])) $opt_pr[$l] = '';
-										}
-									}	
+									}
 								} else {
-									$err =  " Row ~= " . $row_count . " SKU = " . $row[$cod] ." Error link for parsing options in column: ". $parsi . " \n";
+									$err =  " Row ~= " . $row_count . " SKU = " . $row[$cod] ." Empty link for parsing options in column: ". $parsi . " \n";
 									$this->adderr($err);
 									continue;
 								}
-							} else {
-								$err =  " Row ~= " . $row_count . " SKU = " . $row[$cod] ." Empty link for parsing options in column: ". $parsi . " \n";
-								$this->adderr($err);
-								continue;
 							}
-						}
-						for ($l=0; $l<200; $l++) {
-							if (isset($option_foto)) unset($option_foto);
-							$option_foto = array();
-							$option_foto[0] = 0;
-							if (isset($opt_foto[$l]) and !empty($opt_foto[$l])) {								
-								$af = explode(',', $opt_foto[$l]);							
-								for ($x=0; $x<count($af); $x++) {
-									$url = $af[$x];									
-									$url = $this->checkurl($url);	
-									$pic_addr = '';
-									$a = strlen($url)-6;
-									$en = substr($url, $a);
-									if (!substr_count($url, "/") and (stripos($en, '.jpg') or stripos($en, '.png') or stripos($en, '.jpeg') or stripos($en, '.gif') or stripos($en, '.bmp'))) {			
+							for ($l=0; $l<200; $l++) {
+								if (isset($option_foto)) unset($option_foto);
+								$option_foto = array();
+								$option_foto[0] = 0;
+								if (isset($opt_foto[$l]) and !empty($opt_foto[$l])) {								
+									$af = explode(',', $opt_foto[$l]);							
+									for ($x=0; $x<count($af); $x++) {
+										$url = $af[$x];									
+										$url = $this->checkurl($url, $my_photo);
+										$pic_addr = '';
+										$a = strlen($url)-6;
+										$en = substr($url, $a);
+										if (!substr_count($url, "/") and (stripos($en, '.jpg') or stripos($en, '.png') or stripos($en, '.jpeg') or stripos($en, '.gif') or stripos($en, '.bmp'))) {			
+											$se = $this->getSe($url, $nom);
+											$app = substr($url, 0, $nom);
+											if (substr_count($app, "/")) {
+												$nom = strpos($app, ".");
+												$app = substr($app, $nom);
+											}	
+											$app = $this->TransLit($app);							
+											$app = $this->MetaURL($app);
 	
-										$ise = ".jpg";
-										$nom = stripos($url, ".jpg");
-										if (!$nom) {
-											$nom = strrpos($url, ".jpeg");
-											if ($nom) $ise = ".jpeg";
-										}
-										if (!$nom) {
-											$nom = strrpos($url, ".png");
-											if ($nom) $ise = ".png";
-										}	
-										if (!$nom) {
-											$nom = strrpos($url, ".PNG");
-											if ($nom) $ise = ".png";
-										}
-										if (!$nom) {
-											$nom = strrpos($url, ".gif");
-											if ($nom) $ise = ".gif";
-										}
-										if (!$nom) {
-											$nom = strrpos($url, ".GIF");
-											if ($nom) $ise = ".gif";
-										}
-										if (!$nom) {
-											$nom = strrpos($url, ".bmp");
-											if ($nom) $ise = ".bmp";
-										}
-										if (!$nom) {
-											$nom = strrpos($url, ".BMP");
-											if ($nom) $ise = ".bmp";
-										}
-				
-										$a = strlen($url);
-										if (!$nom or $a - $nom > 5) {
-											$se = $ise;
-											$nom = $a;
-										} else $se = substr($url, $nom);
-										$app = substr($url, 0, $nom);
-										$nom = strpos($app, ".");
-										$app = substr($app, $nom);
-										$app = $this->TransLit($app);							
-										$app = $this->MetaURL($app);
-
-										$try = "../image/catalog/temp/".$url;
-										if (file_exists($try)) {						
+											$try = "../image/catalog/temp/".$url;
+											if (file_exists($try)) {						
+												if (!empty ($pic_int[$i]))	{
+													$spath = "../image/catalog/" .$pic_int[$i]."/";
+													if (!$subfolder) $path = "../image/catalog/" .$pic_int[$i]."/";
+													else $path = "../image/catalog/" .$pic_int[$i]."/".$papka."/";
+													$spic_addr = "catalog/".$pic_int[$i]."/".$app.$se;
+													if (!$subfolder) $pic_addr = "catalog/".$pic_int[$i]."/".$app.$se;
+													else $pic_addr = "catalog/".$pic_int[$i]."/".$papka."/".$app.$se;			
+												} else {
+													$err =  " Please, set folder for photo on page 'Category and margin'  for Category '" .$this->symbol($catmany[0])."' Row ~= " . $row_count ." \n";
+													$this->adderr($err);
+													break;
+												}		
+												if (!is_dir($spath)) {
+													if (!@mkdir($spath, 0755)) {								
+														$err =  " Photo has not been write: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Can not create folder: " . $spath. ", create it manually \n";
+														$this->adderr($err);
+														break;
+													}
+												}								
+												if (!is_dir($path)) @mkdir($path, 0755);								
+												$path = $path.$app.$se;	
+												$a = @copy ($try, $path);
+												if (!$a) {
+													$err =  " Can not copy file from: " . $try . " to: " . $path . " Set chmod 0755 or 0777 for folder: " . $spath . " \n";
+													$this->adderr($err);
+													break;
+												}											
+											} else {
+												$err =  " Photo not found: Row ~= " . $row_count . " SKU = " . $row[$cod] . " folder: " . $try . " \n";
+												$this->adderr($err);
+												$pic_addr = '';
+											}								
+										} else {	
+											$se = $this->getSe($url, $nom);
+											$app = '';
+											if (!empty($seo_data['prod_photo'])) {
+												$data['name'] = '';
+												if (isset($row_product[0]['item']) and !empty($row_product[0]['item'])) $data['name'] = $row_product[0]['item'];
+												$data['category'] = '';
+												if (isset($text_cat) and !empty($text_cat)) $data['category'] = trim($text_cat);
+												$data['manufacturer'] = '';
+												if (isset($row[$manuf]) and !empty($row[$manuf])) $data['manufacturer'] = trim($row[$manuf]);
+												$data['model'] = '';
+												if (isset($row_product[0]['model']) and !empty($row_product[0]['model'])) $data['model'] = $row_product[0]['model'];
+												$data['brand'] = '';
+												if (isset($row[$ref]) and !empty($row[$ref])) $data['brand'] = $this->getName($row[$ref]);
+												$data['sku'] = '';
+												if (isset($row[$cod]) and !empty($row[$cod])) $data['sku'] = trim($row[$cod]);
+												$app = $this->namePhoto($store, $data, $seo_data['prod_photo']);
+												$app = $this->TransLit($app);
+												$app = strtolower($app);
+											}
+											if (empty($app)) {
+												$app = substr($url, 0, $nom);
+												if (substr_count($app, "/")) {
+													$nom = strpos($app, ".");
+													$app = substr($app, $nom+7);
+												}	
+												$app = $this->TransLit($app);
+												$nom = strlen($app);
+												if ($nom > 250) $app = substr($app, $nom-250, 250);
+												if ($nom < 2) $app = rand(0, 999999999);								
+												$app = $this->MetaURL($app);
+											}								
+								
 											if (!empty ($pic_int[$i]))	{
 												$spath = "../image/catalog/" .$pic_int[$i]."/";
 												if (!$subfolder) $path = "../image/catalog/" .$pic_int[$i]."/";
 												else $path = "../image/catalog/" .$pic_int[$i]."/".$papka."/";
 												$spic_addr = "catalog/".$pic_int[$i]."/".$app.$se;
 												if (!$subfolder) $pic_addr = "catalog/".$pic_int[$i]."/".$app.$se;
-												else $pic_addr = "catalog/".$pic_int[$i]."/".$papka."/".$app.$se;			
+												else $pic_addr = "catalog/".$pic_int[$i]."/".$papka."/".$app.$se;				
 											} else {
-												$err =  " Please, set folder for photo on page 'Category and margin'  for Category '" .$this->symbol($catmany[0])."' Row ~= " . $row_count ." \n";
+												$path = "../image/catalog/photo/";											
+												$pic_addr = "catalog/photo/".$app.$se;											
+											}
+											if ((!isset($spath) or empty($spath)) and !$idcat) {
+												$err =  " Photo has not been write: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Set, please, folder for photo on the page 'Category and margin'  \n";
 												$this->adderr($err);
 												break;
-											}		
-											if (!is_dir($spath)) {
-												if (!@mkdir($spath, 0755)) {								
-													$err =  " Photo has not been write: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Can not create folder: " . $spath. ", create it manually \n";
+											}	
+											if (!is_dir($path)) {
+												if (!@mkdir($path, 0755)) {								
+													$err =  " Photo has not been write: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Can not create folder: " . $path. ", create it manually \n";
 													$this->adderr($err);
 													break;
 												}
-											}								
-											if (!is_dir($path)) @mkdir($path, 0755);								
-											$path = $path.$app.$se;	
-											$a = @copy ($try, $path);
-											if (!$a) {
-												$err =  " Can not copy file from: " . $try . " to: " . $path . " Set chmod 0755 or 0777 for folder: " . $spath . " \n";
-												$this->adderr($err);
-												break;
-											}											
-										} else {
-											$err =  " Photo not found: Row ~= " . $row_count . " SKU = " . $row[$cod] . " folder: " . $try . " \n";
-											$this->adderr($err);
-											$pic_addr = '';
-										}								
-									} else {	
-										$ise = ".jpg";
-										$nom = stripos($url, ".jpg");
-										if (!$nom) {
-											$nom = strrpos($url, ".jpeg");
-											if ($nom) $ise = ".jpeg";
-										}
-										if (!$nom) {
-											$nom = strrpos($url, ".png");
-											if ($nom) $ise = ".png";
+											}
+											$path = $path.$app.$se;										
+											if (!file_exists($path)) {
+												$pict = $this->curl_get_contents($url, 1, $sleep, $ffile);	
+												if (!$this->isPicture($pict)) {
+													$err =  " Download photo for Option, fails. Row ~= " . $row_count ." Url = ". $url . " Column = " . $foto[$j] . " \n";
+													$this->adderr($err);
+													$pic_addr = '';
+												} else {
+													$bytes = @file_put_contents($path, $pict);
+													if (!$bytes) {
+														$bytes = @file_put_contents($spath, $pict);
+														$pic_addr = $spic_addr;
+													}	
+												} 
+											}
 										}	
-										if (!$nom) {
-											$nom = strrpos($url, ".PNG");
-											if ($nom) $ise = ".png";
-										}
-										if (!$nom) {
-											$nom = strrpos($url, ".gif");
-											if ($nom) $ise = ".gif";
-										}
-										if (!$nom) {
-											$nom = strrpos($url, ".GIF");
-											if ($nom) $ise = ".gif";
-										}
-										if (!$nom) {
-											$nom = strrpos($url, ".bmp");
-											if ($nom) $ise = ".bmp";
-										}
-										if (!$nom) {
-											$nom = strrpos($url, ".BMP");
-											if ($nom) $ise = ".bmp";
-										}
-				
-										$a = strlen($url);
-										if (!$nom or $a - $nom > 5) {
-											$se = $ise;
-											$nom = $a;
-										} else $se = substr($url, $nom);	
-										$app = '';
-										if (!empty($seo_data['prod_photo'])) {
-											$data['name'] = '';
-											if (isset($row_product[0]['item']) and !empty($row_product[0]['item'])) $data['name'] = $row_product[0]['item'];
-											$data['category'] = '';
-											if (isset($text_cat) and !empty($text_cat)) $data['category'] = trim($text_cat);
-											$data['manufacturer'] = '';
-											if (isset($row[$manuf]) and !empty($row[$manuf])) $data['manufacturer'] = trim($row[$manuf]);
-											$data['model'] = '';
-											if (isset($row_product[0]['model']) and !empty($row_product[0]['model'])) $data['model'] = $row_product[0]['model'];
-											$data['brand'] = '';
-											if (isset($row[$ref]) and !empty($row[$ref])) $data['brand'] = $this->getName($row[$ref]);
-											$data['sku'] = '';
-											if (isset($row[$cod]) and !empty($row[$cod])) $data['sku'] = trim($row[$cod]);
-											$app = $this->namePhoto($store, $data, $seo_data['prod_photo']);
-											$app = $this->TransLit($app);
-											$app = strtolower($app);
-										}
-										if (empty($app)) {
-											$app = substr($url, 0, $nom);
-											$nom = strpos($app, ".");
-											$app = substr($app, $nom+7);
-											$app = $this->TransLit($app);
-											$nom = strlen($app);
-											if ($nom > 250) $app = substr($app, $nom-250, 250);
-											if ($nom < 2) $app = rand(0, 999999999);								
-											$app = $this->MetaURL($app);
-										}								
-								
-										if (!empty ($pic_int[$i]))	{
-											$spath = "../image/catalog/" .$pic_int[$i]."/";
-											if (!$subfolder) $path = "../image/catalog/" .$pic_int[$i]."/";
-											else $path = "../image/catalog/" .$pic_int[$i]."/".$papka."/";
-											$spic_addr = "catalog/".$pic_int[$i]."/".$app.$se;
-											if (!$subfolder) $pic_addr = "catalog/".$pic_int[$i]."/".$app.$se;
-											else $pic_addr = "catalog/".$pic_int[$i]."/".$papka."/".$app.$se;				
-										} else {
-											$path = "../image/catalog/photo/";											
-											$pic_addr = "catalog/photo/".$app.$se;											
-										}
-										if ((!isset($spath) or empty($spath)) and !$idcat) {
-											$err =  " Photo has not been write: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Set, please, folder for photo on the page 'Category and margin'  \n";
-											$this->adderr($err);
-											break;
-										}	
-										if (!is_dir($path)) {
-											if (!@mkdir($path, 0755)) {								
-												$err =  " Photo has not been write: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Can not create folder: " . $path. ", create it manually \n";
-												$this->adderr($err);
+										$option_foto[$x] = $pic_addr;				
+									}	
+								}
+								$e = 0;
+								if ((empty($opt_val[$l]) and !isset($opt_val[$l+1]) and !$optsku) or ($optsku and $l > 0) or (isset($row[$art[$j]]) and !isset($opt_art[$l]))) break;
+							
+								$data_option['op_val_id'] = 0;
+								if (!isset($opt_val[$l])) continue;
+								$opt_val[$l] = trim($opt_val[$l]);
+								$opt_val[$l] = str_replace("+-=6", "&quot;", $opt_val[$l]);
+								if ($option_id[$j]) {
+									$rows = $this->getOptionsById($option_id[$j]);	
+									if (!empty($rows) and isset($opt_val[$l]) and !empty($opt_val[$l])) {
+						
+										foreach ($rows as $r) {									
+											if ((string)$r['name'] == $opt_val[$l]) {	
+												$e = 1;
+												$data_option['op_val_id'] = $r['option_value_id'];
 												break;
+											}	
+										}
+										if (!$e and $change_option) {
+											for ($q=0; $q<count($mas_option); $q++) {		
+												if (isset($mas_option[$q][0]) and isset($mas_option[$q][2]) and $option_id[$j] == $mas_option[$q][0] and $opt_val[$l] == $mas_option[$q][2]) {													
+													$rows = $this->getOptionValueByName($mas_option[$q][1]);
+													if (!empty($rows)) {
+														$opt_val[$l] = $mas_option[$q][1];
+														$data_option['op_val_id'] = $rows[0]['option_value_id'];		
+														$e = 1;
+														break;
+													} else {
+														$opt_val[$l] = $mas_option[$q][1];
+														$e = 0;
+													}	
+												}		
 											}
 										}
-										$path = $path.$app.$se;										
-										if (!file_exists($path)) {
-											$pict = $this->curl_get_contents($url, 1, $sleep, $ffile);	
-											if (!$this->isPicture($pict)) {
-												$err =  " Download photo for Option, fails. Row ~= " . $row_count ." Url = ". $url . " Column = " . $foto[$j] . " \n";
-												$this->adderr($err);
-												$pic_addr = '';
-											} else {
-												$bytes = @file_put_contents($path, $pict);
-												if (!$bytes) {
-													$bytes = @file_put_contents($spath, $pict);
-													$pic_addr = $spic_addr;
-												}	
-											} 
-										}
-									}	
-									$option_foto[$x] = $pic_addr;				
+									}							
 								}	
-							}
-							$e = 0;
-							if ((empty($opt_val[$l]) and !isset($opt_val[$l+1]) and !$optsku) or ($optsku and $l > 0) or (isset($row[$art[$j]]) and !isset($opt_art[$l]))) break;
-							
-							$data_option['op_val_id'] = 0;
-							$opt_val[$l] = trim($opt_val[$l]);
-							$opt_val[$l] = str_replace("+-=6", "&quot;", $opt_val[$l]);
-							if ($option_id[$j]) {
-								$rows = $this->getOptionsById($option_id[$j]);	
-								if (!empty($rows) and isset($opt_val[$l]) and !empty($opt_val[$l])) {
-					
-									foreach ($rows as $r) {									
-										if ((string)$r['name'] == $opt_val[$l]) {	
-											$e = 1;
-											$data_option['op_val_id'] = $r['option_value_id'];
-											break;
-										}	
+								if (!$e and $option_id[$j]) {
+									if ($addopt and !empty($opt_val[$l])) {									
+										$this->addValue($option_id[$j], $ovid, $option_foto[0], $upOptionFoto);					
+										$this->addValueDescription($option_id[$j], $ovid, $opt_val[$l], $langs);							
+										$data_option['op_val_id'] = $ovid;
+										$report = $report." Option value ".$opt_val[$l]." has been added";
+									} else {									
+										$err =  " The Option value: '". $this->symbol($opt_val[$l]) . "' not found in the Store.  Row ~= " . $row_count . " SKU = " . $row[$cod] . " Please, set this Option value \n";
+										$this->adderr($err);
+										continue;
 									}
 								}
-							}	
-							if (!$e and $option_id[$j]) {
-								if ($addopt and !empty($opt_val[$l])) {									
-									$this->addValue($option_id[$j], $ovid, $option_foto[0], $upOptionFoto);
-									$this->addValueDescription($option_id[$j], $ovid, $opt_val[$l], $langs);							
-									$data_option['op_val_id'] = $ovid;
-									$report = $report." Option value ".$opt_val[$l]." has been added";
-								} else {									
-									$err =  " The Option value: '". $this->symbol($opt_val[$l]) . "' not found in the Store.  Row ~= " . $row_count . " SKU = " . $row[$cod] . " Please, set this Option value \n";
-									$this->adderr($err);
-									continue;
-								}
-							}
-						
-							if ($e and $upOptionFoto == '1' and !empty($option_foto[0])) {
-								$this->upOptionFoto($option_id[$j], $data_option['op_val_id'], $option_foto[0]);
-								$option_foto[0] = '';
-							}	
 							
-							if (isset($opt_val[$l])) $data_option['opt'] = $opt_val[$l];
+								if ($e and $upOptionFoto == '1' and !empty($option_foto[0])) {
+									$this->upOptionFoto($option_id[$j], $data_option['op_val_id'], $option_foto[0]);
+									$option_foto[0] = '';
+								}
+							
+								if (isset($opt_val[$l])) $data_option['opt'] = $opt_val[$l];
 	
-							$data_option['ko'] = 0;
-							$data_option['koj'] = 0;
-							if (isset($opt_ko[$l])) {
-								$opt_ko[$l] = trim($opt_ko[$l]);
-								$quop = 0;
-								$newstatusop = 0;
-								$emptop = 0;
-								$row1[1] = $opt_ko[$l];
-								$this->getQuantity($row1, 1, $my_qu, $quop, $newstatusop, $emptop);				
-								
-								$data_option['ko'] = $quop;
-								$data_option['koj'] = $quop;
-							}	
+								$data_option['ko'] = 0;
+								$data_option['koj'] = 0;
+								if (isset($opt_ko[$l])) {
+									$opt_ko[$l] = trim($opt_ko[$l]);
+									$quop = 0;
+									$newstatusop = 0;
+									$emptop = 0;
+									$row1[1] = $opt_ko[$l];
+									$this->getQuantity($row1, 1, $my_qu, $quop, $newstatusop, $emptop, $delim);				
+									
+									$data_option['ko'] = $quop;
+									$data_option['koj'] = $quop;
+								} 							
 												
-							if (!$optsku) {
-								$pp = 0;
-								for ($u=0; $u<$ks+1; $u++) {	
-									if (isset($same_opt[$u]['opt']) and !empty($same_opt[$u]['opt']) and $same_opt[$u]['opt'] == $data_option['opt']) {	
-										$same_opt[$u]['ko'] = $same_opt[$u]['ko']+$data_option['ko'];
-										$pp = 1;
-										break;
+								if (!$optsku) {
+									$pp = 0;
+									for ($u=0; $u<$ks+1; $u++) {	
+										if (isset($same_opt[$u]['opt']) and !empty($same_opt[$u]['opt']) and $same_opt[$u]['opt'] == $data_option['opt']) {	
+											$same_opt[$u]['ko'] = $same_opt[$u]['ko']+$data_option['ko'];
+											$pp = 1;
+											break;
+										}
 									}
+							
+									if (!$pp and !empty($data_option['opt'])) {
+										$ks++;								
+										$same_opt[$ks]['opt'] = $data_option['opt'];								
+										$same_opt[$ks]['ko'] = $data_option['ko'];
+									} elseif (isset($same_opt[$u]['ko'])) $data_option['ko'] = $same_opt[$u]['ko'];
 								}
 							
-								if (!$pp and !empty($data_option['opt'])) {
-									$ks++;								
-									$same_opt[$ks]['opt'] = $data_option['opt'];								
-									$same_opt[$ks]['ko'] = $data_option['ko'];
-								} elseif (isset($same_opt[$u]['ko'])) $data_option['ko'] = $same_opt[$u]['ko'];
-							}
+								$data_option['optsku'] = '';						
+								if (isset($opt_art[$l])) $data_option['optsku'] = $opt_art[$l];							
+								elseif ($optsku) $data_option['optsku'] = $o_optsku;
+																					
+								$data_option['pr'] = '';
+								$data_option['pr_prefix'] = '=';
+								if (empty($prro[$j])) $data_option['pr_prefix'] = '+';
+								if (isset($opt_pr[$l]) and !empty($prro[$j])) {
+									$opt_pr[$l] = trim($opt_pr[$l]);
+									$e = substr($opt_pr[$l], strlen($opt_pr[$l])-1, 1);
+									if ($e == '+' or $e == '-' or $e == '=' or $e == '%' or $e == '*' or $e == '#') {
+										$data_option['pr_prefix'] = $e;								
+										$b = substr($opt_pr[$l], 0, strlen($opt_pr[$l])-1);									
+									} else {
+										$b = $opt_pr[$l];								
+										$e = '=';
+										$data_option['pr_prefix'] = $e;								
+									}	
 							
-							$data_option['optsku'] = '';						
-							if (isset($opt_art[$l])) $data_option['optsku'] = $opt_art[$l];							
-							elseif ($optsku) $data_option['optsku'] = $o_optsku;
+									if (!empty($opt_pref[$j])) {
+										$data_option['pr_prefix'] =  $opt_pref[$j];
+										$e = $opt_pref[$j];									
+									}	
+									if (preg_match('/^[0-9.,Ee+-]+$/', $b)) {
+										$data_option['pr'] = str_replace("," , ".", $b);
+										if ($e == '=' and !$same_column) $data_option['pr'] = $data_option['pr']*$rate;
+										if ($opt_margin[$j] and $plus and $e == '=' and !$same_column) {
+											if (!substr_count($plus, "+") and !substr_count($plus, "--")) $data_option['pr'] = $data_option['pr']+(	$data_option['pr']*$plus/100);
+											else {
+												if (substr_count($plus, "+")) {
+													$pl = explode("+", $plus);	
+													if (isset($pl[1]) and !empty($pl[1])) $data_option['pr'] = $data_option['pr'] + $pl[1];
+												}
+												if (substr_count($plus, "--")) {
+													$pl = explode("--", $plus);	
+													if (isset($pl[1]) and !empty($pl[1])) $data_option['pr'] = $data_option['pr'] - $pl[1];
+												}	
+											}	
+										}
+										if ($opt_margin[$j] and $plus and $e == '=' and $same_column) $data_option['pr'] = $row_product[0]['price'];
+										$data_option['pr'] = $this->convertPrice($data_option['pr']);
+												
+									}	
+								}							
 							
-							$data_option['pr'] = '';
-							$data_option['pr_prefix'] = '=';
-							if (empty($prro[$j])) $data_option['pr_prefix'] = '+';
-							if (isset($opt_pr[$l]) and !empty($prro[$j])) {
-								$opt_pr[$l] = trim($opt_pr[$l]);
-								$e = substr($opt_pr[$l], strlen($opt_pr[$l])-1, 1);
-								if ($e == '+' or $e == '-' or $e == '=' or $e == '%' or $e == '*' or $e == '#') {
-									$data_option['pr_prefix'] = $e;								
-									$b = substr($opt_pr[$l], 0, strlen($opt_pr[$l])-1);									
-								} else {
-									$b = $opt_pr[$l];								
-									$e = '=';
-									$data_option['pr_prefix'] = $e;								
+								$data_option['po'] = 0;
+								$data_option['po_prefix'] = '=';
+								if (isset($opt_po[$l])) {
+									$opt_po[$l] = trim($opt_po[$l]);
+									$e = substr($opt_po[$l], strlen($opt_po[$l])-1, 1);
+									if ($e == '+' or $e == '-' or $e == '=' or $e == '%' or $e == '*' or $e == '#') 
+									{	
+										$data_option['po_prefix'] = $e;							
+										$b = substr($opt_po[$l], 0, strlen($opt_po[$l])-1);									
+									} else $b = substr($opt_po[$l], 0, strlen($opt_po[$l]));						
+									if (preg_match('/^[0-9.,Ee+-]+$/', $b)) $data_option['po'] = str_replace("," , ".", $b);
 								}	
-							
-								if (!empty($opt_pref[$j])) {
-									$data_option['pr_prefix'] =  $opt_pref[$j];
-									$e = $opt_pref[$j];									
-								}	
-								if (preg_match('/^[0-9.,Ee+-]+$/', $b)) {
-									$data_option['pr'] = str_replace("," , ".", $b);							
-									if ($e == '=' and !$same_column) $data_option['pr'] = $data_option['pr']*$rate;
-									if ($opt_margin[$j] and $plus and $e == '=' and !$same_column) $data_option['pr'] = $data_option['pr']+($data_option['pr']*$plus/100);
-									if ($opt_margin[$j] and $plus and $e == '=' and $same_column) $data_option['pr'] = $row_product[0]['price'];
-									$data_option['pr'] = $this->convertPrice($data_option['pr']);
-											
-								}	
-							}							
-							
-							$data_option['po'] = 0;
-							$data_option['po_prefix'] = '=';
-							if (isset($opt_po[$l])) {
-								$opt_po[$l] = trim($opt_po[$l]);
-								$e = substr($opt_po[$l], strlen($opt_po[$l])-1, 1);
-								if ($e == '+' or $e == '-' or $e == '=' or $e == '%' or $e == '*' or $e == '#') 
-								{	
-						 	        $data_option['po_prefix'] = $e;							
-									$b = substr($opt_po[$l], 0, strlen($opt_po[$l])-1);									
-							    } else $b = substr($opt_po[$l], 0, strlen($opt_po[$l]));						
-							    if (preg_match('/^[0-9.,Ee+-]+$/', $b)) $data_option['po'] = str_replace("," , ".", $b);
-							}	
 						
 							
-							$data_option['we'] = 0;
-							$data_option['we_prefix'] = '=';
-							if (isset($opt_we[$l])) {
-								$opt_we[$l] = trim($opt_we[$l]);
-								$e = substr($opt_we[$l], strlen($opt_we[$l])-1, 1);
-								if ($e == '+' or $e == '-' or $e == '=' or $e == '%' or $e == '*' or $e == '#') 
-								{ 	
-							      $data_option['we_prefix'] = $e;								
-								  $b = substr($opt_we[$l], 0, strlen($opt_we[$l])-1);
-								} else  $b = substr($opt_we[$l], 0, strlen($opt_we[$l])); 
-								if (preg_match('/^[0-9.,Ee+-]+$/', $b)) $data_option['we'] = str_replace("," , ".", $b);		
-							}							
+								$data_option['we'] = 0;
+								$data_option['we_prefix'] = '=';
+								if (isset($opt_we[$l])) {
+									$opt_we[$l] = trim($opt_we[$l]);
+									$e = substr($opt_we[$l], strlen($opt_we[$l])-1, 1);
+									if ($e == '+' or $e == '-' or $e == '=' or $e == '%' or $e == '*' or $e == '#') 
+									{ 	
+									$data_option['we_prefix'] = $e;								
+									$b = substr($opt_we[$l], 0, strlen($opt_we[$l])-1);
+									} else  $b = substr($opt_we[$l], 0, strlen($opt_we[$l])); 
+									if (preg_match('/^[0-9.,Ee+-]+$/', $b)) $data_option['we'] = str_replace("," , ".", $b);		
+								}							
 							
-							if ($j == 1 and $l == 0 ) $report = $report."Product options created ";	
-							$yes_option = 1;
-							$data_option['option_required'] = $option_required[$j];
-							$uu = 0;
-							if (isset($row[$usd])) $uu = $row[$usd];
-							$prod_opt_val_id = 0;
-							$this->upProductOption($last_product_id, $option_id[$j], $data_option, $minus, $ad, $option_type[$j], $my_price, $usd, $uu, $option_foto, $prod_opt_val_id, $upOptionFoto, $mas_prod_opt_val_id);
-							
-							for ($i1=0; $i1<900; $i1++) {
-								if (!isset($mas_prod_opt_val_id[$i1]['prod_id'])) break;
-								$mas_nozero[$nozero_index]['prod_id'] = $mas_prod_opt_val_id[$i1]['prod_id'];				
-								$nozero_index++;								
-							}
-							
-							if ($option_type[$j] == 'select' or $option_type[$j] == 'radio' or $option_type[$j] == 'image' or $option_type[$j] == 'checkbox') {
-								$mas_opt[$jj][$l][0] = $last_product_id;
-								$mas_opt[$jj][$l][1] = $option_id[$j];
-								$mas_opt[$jj][$l][2] = $data_option['op_val_id'];
-								if (!$data_option['op_val_id'] and isset($mas_prod_opt_val_id[0]['val_id'])) $mas_opt[$jj][$l][2] = $mas_prod_opt_val_id[0]['val_id'];
-								$mas_opt[$jj][$l][3] = $ko[$j];
-								$mas_opt[$jj][$l][4] = $data_option['ko'];							
-								$mas_opt[$jj][$l][5] = $data_option['pr'];							
-								$mas_opt[$jj][$l][6] = $data_option['we_prefix'];							
-								$mas_opt[$jj][$l][7] = $data_option['we'];
-								$mas_opt[$jj][$l][8] = $data_option['optsku'];
-								$mas_opt[$jj][$l][9] = $data_option['pr_prefix'];
-
-								if (isset($summa_product_options)) $summa_product_options = $summa_product_options+$data_option['ko'];
+								if ($j == 1 and $l == 0 ) $report = $report."Product options created ";	
+								$yes_option = 1;
+								$data_option['option_required'] = $option_required[$j];
+								$uu = 0;
+								if (isset($row[$usd])) $uu = $row[$usd];
+								$prod_opt_val_id = 0;
+								$this->upProductOption($last_product_id, $option_id[$j], $data_option, $minus, $ad, $option_type[$j], $my_price, $usd, $uu, $option_foto, $prod_opt_val_id, $upOptionFoto, $mas_prod_opt_val_id);
+								
+								for ($i1=0; $i1<900; $i1++) {
+									if (!isset($mas_prod_opt_val_id[$i1]['prod_id'])) break;
+									$mas_nozero[$nozero_index]['prod_id'] = $mas_prod_opt_val_id[$i1]['prod_id'];				
+									$nozero_index++;								
+								}
+								
+								if ($option_type[$j] == 'select' or $option_type[$j] == 'radio' or $option_type[$j] == 'image' or $option_type[$j] == 'checkbox') {
+									$mas_opt[$jj][$l][0] = $last_product_id;
+									$mas_opt[$jj][$l][1] = $option_id[$j];
+									$mas_opt[$jj][$l][2] = $data_option['op_val_id'];
+									if (!$data_option['op_val_id'] and isset($mas_prod_opt_val_id[0]['val_id'])) $mas_opt[$jj][$l][2] = $mas_prod_opt_val_id[0]['val_id'];
+									$mas_opt[$jj][$l][3] = $ko[$j];
+									$mas_opt[$jj][$l][4] = $data_option['ko'];							
+									$mas_opt[$jj][$l][5] = $data_option['pr'];							
+									$mas_opt[$jj][$l][6] = $data_option['we_prefix'];							
+									$mas_opt[$jj][$l][7] = $data_option['we'];
+									$mas_opt[$jj][$l][8] = $data_option['optsku'];
+									$mas_opt[$jj][$l][9] = $data_option['pr_prefix'];
 	
-								$jj++;
+									if (isset($summa_product_options)) $summa_product_options = $summa_product_options+$data_option['ko'];
+	
+									$jj++;
+								}	
 							}	
-						}	
+						}
 					}
 					if (!isset($i1)) $i1 = 0;
-					
+				
 						if ($optsku and $i1 > 1) {
 							for ($l=0; $l<900; $l++) {
 								for ($j=1; $j<=$jj; $j++) {
@@ -21128,12 +24480,12 @@ class ModelCatalogSuppler extends Model {
 								unset($gr_data);							
 							}
 						}
-									
+								
 				}
 				unset($mas_opt);
-				
+	
 				if ($yes_option and $jopt) $row_product[0]['quantity'] = $summa_options;
-				
+					
 				$this->db->query("UPDATE " . DB_PREFIX . "product SET `quantity` = '" . $row_product[0]['quantity'] . "' WHERE `product_id` = '" . $last_product_id . "'");
 		
 				// Добавление акционных цен
@@ -21145,17 +24497,24 @@ class ModelCatalogSuppler extends Model {
 						$data['product_id'] = $last_product_id;
 						$data['customer_group_id'] = $j+1;
 						$data['priority'] = 1;
+						$wmas = explode($delim, $row[$aprice[$j]]);
+						$row[$aprice[$j]] = trim($wmas[0]);
 						$pr = $this->convertPrice($row[$aprice[$j]]);						
 						if (!preg_match('/^[0-9.Ee+-]+$/', $pr)) $pr = '';
 						else $pr = $pr*$rate;
 						if (round($pr, 0) >= round($new_price, 0)) $pr = '';
 						if ($pr and $chcode) {
-							if (!substr_count($plus, "+")) $pr = $pr + ($pr * $plus/100);			
+							if (!substr_count($plus, "+") and !substr_count($plus, "--")) $pr = $pr + ($pr * $plus/100);			
 							else {
-								$pl = explode("+", $plus);									
-								if (isset($pl[0]) and !empty($pl[0])) $pr = $pr + ($pr * $pl[0]/100);				
-								if (isset($pl[1]) and !empty($pl[1])) $pr = $pr + $pl[1];							
-							}
+								if (substr_count($plus, "+")) {
+									$pl = explode("+", $plus);									
+									if (isset($pl[1]) and !empty($pl[1])) $pr = $pr + $pl[1];							
+								}
+								if (substr_count($plus, "--")) {
+									$pl = explode("--", $plus);								
+									if (isset($pl[1]) and !empty($pl[1])) $pr = $pr - $pl[1];
+								}
+							}	
 						}
 						$data['price'] = $this->convertPrice($pr);
 						$data['date_start'] = "2000-01-01";
@@ -21177,29 +24536,39 @@ class ModelCatalogSuppler extends Model {
 						if (empty($mprice[$j])) continue;						
 						$data['product_id'] = $last_product_id;
 						$data['customer_group_id'] = $j;
-						$data['priority'] = 1;			
+						$data['priority'] = 1;
+						$mm = array();
 						if (substr_count($mprice[$j], ')')) $mm = explode(')', $mprice[$j]);
 						else $mm[0] = $mprice[$j].'(col';
 						for ($k=0; $k<count($mm); $k++) {
 							$m = explode('(', $mm[$k]);							
 							if (count($m) < 2) continue;
-							$pr = $row[$m[0]];
+							$wmas = explode($delim, $row[$m[0]]); 
+							$pr = trim($wmas[0]);
 							if ($m[1] == 'col') $q = 1;
 							else {
 								if (substr_count($m[1], '=')) $q = str_replace('=', '', $m[1]);
-								else $q = $row[$m[1]];								
+								else {
+									$wmas = explode($delim, $row[$m[1]]); 
+									$q = trim($wmas[0]);
+								}								
 							}
 							$pr = $this->convertPrice($pr);						
 							if (!preg_match('/^[0-9.Ee+-]+$/', $pr)) $pr = '';
 							else $pr = $pr*$rate;
 							if (round($pr, 0) >= round($new_price, 0)) $pr = '';
 							if ($pr and $chcode) {
-								if (!substr_count($plus, "+")) $pr = $pr + ($pr * $plus/100);			
+								if (!substr_count($plus, "+") and !substr_count($plus, "--")) $pr = $pr + ($pr * $plus/100);			
 								else {
-									$pl = explode("+", $plus);									
-									if (isset($pl[0]) and !empty($pl[0])) $pr = $pr + ($pr * $pl[0]/100);				
-									if (isset($pl[1]) and !empty($pl[1])) $pr = $pr + $pl[1];							
-								}
+									if (substr_count($plus, "+")) {
+										$pl = explode("+", $plus);									
+										if (isset($pl[1]) and !empty($pl[1])) $pr = $pr + $pl[1];							
+									}
+									if (substr_count($plus, "--")) {
+										$pl = explode("--", $plus);									
+										if (isset($pl[1]) and !empty($pl[1])) $pr = $pr - $pl[1];
+									}
+								}	
 							}
 							$data['price'] = $this->convertPrice($pr);
 							$data['quantity'] = $q;
@@ -21223,17 +24592,24 @@ class ModelCatalogSuppler extends Model {
 							$data['priority'] = 1;
 							for ($k=0; $k<40; $k++) {
 								if (!isset($qu_d['quantity'][$k])) break;
+								$wmas = explode($delim, $row[$mprice[0]]); 
+								$row[$mprice[0]] = trim($wmas[0]);
 								$pr = $this->convertPrice($row[$mprice[0]]);						
 								if (!preg_match('/^[0-9.Ee+-]+$/', $pr)) $pr = '';
 								else $pr = $pr*$rate;
 								if (round($pr, 0) >= round($new_price, 0)) $pr = '';
 								if ($pr and $chcode) {
-									if (!substr_count($plus, "+")) $pr = $pr + ($pr * $plus/100);			
+									if (!substr_count($plus, "+") and !substr_count($plus, "--")) $pr = $pr + ($pr * $plus/100);			
 									else {
-										$pl = explode("+", $plus);									
-										if (isset($pl[0]) and !empty($pl[0])) $pr = $pr + ($pr * $pl[0]/100);				
-										if (isset($pl[1]) and !empty($pl[1])) $pr = $pr + $pl[1];							
-									}
+										if (substr_count($plus, "+")) {
+											$pl = explode("+", $plus);									
+											if (isset($pl[1]) and !empty($pl[1])) $pr = $pr + $pl[1];							
+										}
+										if (substr_count($plus, "--")) {
+											$pl = explode("--", $plus);										
+											if (isset($pl[1]) and !empty($pl[1])) $pr = $pr - $pl[1];
+										}
+									}	
 								}
 								$pr = $pr-$pr*$qu_d['percent'][$k]/100;
 								$data['price'] = $this->convertPrice($pr);
@@ -21257,66 +24633,34 @@ class ModelCatalogSuppler extends Model {
 					Mfilter_Plus::getInstance( $this )->updateProduct( $last_product_id );
 				} 
 				
-				if ($ff) $report = $report."Wholesale price added ";
+				if ($ff) $report = $report."Discount price added ";
 
 				if (!empty($bonus) and preg_match('/^[0-9,]+$/', $bonus)) { // бонусы
 					$bb = explode(',', $bonus);					
 					for ($j=0; $j<count($bb); $j++) {
-						if ($j == 0) {							
+						if ($j == 0) {
+							$wmas = explode($delim, $row[$bb[0]]); 
+							$row[$bb[0]] = trim($wmas[0]);
 							if (preg_match('/^[0-9]+$/', $bb[0]) and !empty($row[$bb[$j]])) $this->Bonus0($last_product_id, $row[$bb[0]]);
-						} else {							
+						} else {
+							$wmas = explode($delim, $row[$bb[$j]]); 
+							$row[$bb[$j]] = trim($wmas[0]);
 							if (preg_match('/^[0-9]+$/', $bb[$j]) and !empty($row[$bb[$j]])) $this->Bonus1($j, $last_product_id, $row[$bb[$j]]);
 						}	
 					}	
-				}						
+				}
 				
-				for ($k=1; $k<=$npic; $k++) {		
-					if (!isset($pictures_new[$k])) break;
-					$nn = $pictures_new[$k];
-					if (isset($row[$nn]) and !empty ($row[$nn])) {
+				$up = 0;
+				for ($k=1; $k<count($pictures_new); $k++) {					
+					if (!empty($pictures_new[$k])) {
 						$nolink = 0;
-						if (!substr_count($row[$nn], "/")) $nolink = 1;
-						$url = $row[$nn];
-						if (!$nolink) $url = $this->checkurl($row[$nn]);
+						if (!substr_count($pictures_new[$k], "/")) $nolink = 1;
+						$url = $pictures_new[$k];
+						if (!$nolink) $url = $this->checkurl($pictures_new[$k], $my_photo);
 						if ($url == -1) continue;
 						if ($nolink) {
-							$url = $row[$nn];
-							$ise = ".jpg";
-							$nom = stripos($url, ".jpg");
-							if (!$nom) {
-								$nom = strrpos($url, ".jpeg");
-								if ($nom) $ise = ".jpeg";
-							}
-							if (!$nom) {
-								$nom = strrpos($url, ".png");
-								if ($nom) $ise = ".png";
-							}	
-							if (!$nom) {
-								$nom = strrpos($url, ".PNG");
-								if ($nom) $ise = ".png";
-							}
-							if (!$nom) {
-								$nom = strrpos($url, ".gif");
-								if ($nom) $ise = ".gif";
-							}
-							if (!$nom) {
-								$nom = strrpos($url, ".GIF");
-								if ($nom) $ise = ".gif";
-							}
-							if (!$nom) {
-								$nom = strrpos($url, ".bmp");
-								if ($nom) $ise = ".bmp";
-							}
-							if (!$nom) {
-								$nom = strrpos($url, ".BMP");
-								if ($nom) $ise = ".bmp";
-							}
-				
-							$a = strlen($url);
-							if (!$nom or $a - $nom > 5) {
-								$se = $ise;
-								$nom = $a;
-							} else $se = substr($url, $nom);
+							$url = $pictures_new[$k];
+							$se = $this->getSe($url, $nom);
 							$app = '';
 							if (!empty($seo_data['prod_photo'])) {
 								$data['name'] = '';
@@ -21337,8 +24681,10 @@ class ModelCatalogSuppler extends Model {
 							}
 							if (empty($app)) {
 								$app = substr($url, 0, $nom);
-								$nom = strpos($app, ".");
-								$app = substr($app, $nom);
+								if (substr_count($app, "/")) {
+									$nom = strpos($app, ".");
+									$app = substr($app, $nom);
+								}	
 								$app = $this->TransLit($app);							
 								$app = $this->MetaURL($app);
 							}
@@ -21377,7 +24723,13 @@ class ModelCatalogSuppler extends Model {
 									foreach ($rows as $p) {
 										if ($p['image'] == $pic_addr) $e = 0;
 									}	
-									if ($e and !empty($pic_addr)) $this->addPicture($last_product_id, $pic_addr, $k);						
+									if ($e and !empty($pic_addr)) {
+										$this->addPicture($last_product_id, $pic_addr, $k);
+										if (!$up) {
+											$report = $report."Additional photo added ";
+											$up++;
+										}
+									}	
 								}
 							} else {
 								$err =  " Photo not found: Row ~= " . $row_count . " SKU = " . $row[$cod] . " folder: " . $try . " \n";
@@ -21385,42 +24737,7 @@ class ModelCatalogSuppler extends Model {
 								continue;
 							}
 						} else {						
-							$ise = ".jpg";
-							$nom = stripos($url, ".jpg");
-							if (!$nom) {
-								$nom = strrpos($url, ".jpeg");
-								if ($nom) $ise = ".jpeg";
-							}
-							if (!$nom) {
-								$nom = strrpos($url, ".png");
-								if ($nom) $ise = ".png";
-							}	
-							if (!$nom) {
-								$nom = strrpos($url, ".PNG");
-								if ($nom) $ise = ".png";
-							}
-							if (!$nom) {
-								$nom = strrpos($url, ".gif");
-								if ($nom) $ise = ".gif";
-							}
-							if (!$nom) {
-								$nom = strrpos($url, ".GIF");
-								if ($nom) $ise = ".gif";
-							}
-							if (!$nom) {
-								$nom = strrpos($url, ".bmp");
-								if ($nom) $ise = ".bmp";
-							}
-							if (!$nom) {
-								$nom = strrpos($url, ".BMP");
-								if ($nom) $ise = ".bmp";
-							}
-				
-							$a = strlen($url);
-							if (!$nom or $a - $nom > 5) {
-								$se = $ise;
-								$nom = $a;
-							} else $se = substr($url, $nom);
+							$se = $this->getSe($url, $nom);
 							$app = '';
 							if (!empty($seo_data['prod_photo'])) {
 								$data['name'] = '';
@@ -21441,8 +24758,10 @@ class ModelCatalogSuppler extends Model {
 							}
 							if (empty($app)) {
 								$app = substr($url, 0, $nom);
-								$nom = strpos($app, ".");
-								$app = substr($app, $nom+7);
+								if (substr_count($app, "/")) {
+									$nom = strpos($app, ".");
+									$app = substr($app, $nom+7);
+								}	
 								$app = $this->TransLit($app);
 								$nom = strlen($app);
 								if ($nom > 250) $app = substr($app, $nom-250, 250);
@@ -21475,12 +24794,10 @@ class ModelCatalogSuppler extends Model {
 								
 							} else 	{
 								$pic_addr = '';
-								if (!empty($url)) {									
-									$link = $this->symbol($url);																	
-									if (substr_count($link, "catalog/")) {
-										$nom = strpos($link, "catalog/");		
-										$link = substr($link, $nom);
-										$pic_addr = $link;		
+								if (!empty($url)) {										
+									if (substr_count($url, "catalog/")) {
+										$nom = strpos($url, "catalog/");		
+										$pic_addr = substr($url, $nom);											
 									}
 								}	
 							}
@@ -21497,7 +24814,13 @@ class ModelCatalogSuppler extends Model {
 									$bytes = @file_put_contents($spath, $pict);
 									$pic_addr = $spic_addr;
 								}	
-								if ($bytes) $this->addPicture($last_product_id, $pic_addr, $k);	
+								if ($bytes) {
+									$this->addPicture($last_product_id, $pic_addr, $k);	
+									if (!$up) {
+										$report = $report."Additional photo added ";
+										$up++;
+									}
+								}	
 							} else {
 								$rows = $this->getProductImage($last_product_id);
 								$e = 1;
@@ -21510,14 +24833,20 @@ class ModelCatalogSuppler extends Model {
 									$pa = "../image/" . $pic_addr;
 									if (!file_exists($pa)) $pic_addr = '';										
 								}
-								if ($e and !empty($pic_addr)) $this->addPicture($last_product_id, $pic_addr, $k);										
+								if ($e and !empty($pic_addr)) {
+									$this->addPicture($last_product_id, $pic_addr, $k);
+									if (!$up) {
+										$report = $report."Additional photo added ";
+										$up++;
+									}
+								}	
 							}			
 						}
 					}
 				}
 				if ($nojpg) {
 					if (!empty($parsk) and isset($row[$parsk])) {
-						$url = $this->checkurl($row[$parsk]);					
+						$url = $this->checkurl($row[$parsk], $my_photo);				
 						if (strlen($ht) < 1024 or $parsed != $parsk) $ht = $this->curl_get_contents($url, 0, $sleep, $ffile);
 						if (strlen($ht) < 1024) {										
 							$err =  " Parsing additional photo error: Row ~= " . $row_count . " url = ". $url. " Check your settings \n";
@@ -21526,7 +24855,9 @@ class ModelCatalogSuppler extends Model {
 						}
 					}
 					$parsed = $parsk;
-					for ($k=1; $k<=$ns; $k++) {						
+					$up = 0;
+					for ($k=1; $k<count($warranty); $k++) {
+						
 						if (!isset($seeks[$k]) or empty($seeks[$k])) break;						
 						$fname = "photo";
 						if (isset($marks[$k]) and !empty($marks[$k])) {												
@@ -21540,42 +24871,7 @@ class ModelCatalogSuppler extends Model {
 						$key = '';						 
 						$urlp = $this->ParsPic($ht, $url, $key, $seeks[$k], $fname, $pic_ext);		
 						if ($urlp) {				
-							$ise = ".jpg";
-							$nom = stripos($urlp, ".jpg");
-							if (!$nom) {
-								$nom = strrpos($urlp, ".jpeg");
-								if ($nom) $ise = ".jpeg";
-							}
-							if (!$nom) {
-								$nom = strrpos($urlp, ".png");
-								if ($nom) $ise = ".png";
-							}	
-							if (!$nom) {
-								$nom = strrpos($urlp, ".PNG");
-								if ($nom) $ise = ".png";
-							}
-							if (!$nom) {
-								$nom = strrpos($urlp, ".gif");
-								if ($nom) $ise = ".gif";
-							}
-							if (!$nom) {
-								$nom = strrpos($urlp, ".GIF");
-								if ($nom) $ise = ".gif";
-							}
-							if (!$nom) {
-								$nom = strrpos($urlp, ".bmp");
-								if ($nom) $ise = ".bmp";
-							}
-							if (!$nom) {
-								$nom = strrpos($urlp, ".BMP");
-								if ($nom) $ise = ".bmp";
-							}
-				
-							$a = strlen($urlp);
-							if (!$nom or $a - $nom > 5) {
-								$se = $ise;
-								$nom = $a;
-							} else $se = substr($urlp, $nom);
+							$se = $this->getSe($urlp, $nom);
 							$app = '';
 							if (!empty($seo_data['prod_photo'])) {
 								$data['name'] = '';
@@ -21596,8 +24892,10 @@ class ModelCatalogSuppler extends Model {
 							}
 							if (empty($app)) {
 								$app = substr($urlp, 0, $nom);
-								$nom = strpos($app, ".");
-								$app = substr($app, $nom+7);
+								if (substr_count($app, "/")) {
+									$nom = strpos($app, ".");
+									$app = substr($app, $nom+7);
+								}	
 								$app = $this->TransLit($app);
 								$nom = strlen($app);
 								if ($nom > 250) $app = substr($app, $nom-250, 250);
@@ -21634,7 +24932,13 @@ class ModelCatalogSuppler extends Model {
 									$bytes = @file_put_contents($spath, $pict);
 									$pic_addr = $spic_addr;
 								}	
-								if ($bytes) $this->addPicture($last_product_id, $pic_addr, $k);
+								if ($bytes) {
+									$this->addPicture($last_product_id, $pic_addr, $k);
+									if (!$up) {
+										$report = $report."Additional photo added ";
+										$up++;
+									}
+								}	
 							} else {
 								$rows = $this->getProductImage($last_product_id);
 								$e = 1;
@@ -21643,12 +24947,18 @@ class ModelCatalogSuppler extends Model {
 										if ($p['image'] == $pic_addr) $e = 0;
 									}
 								}
-								if ($e and !empty($pic_addr)) $this->addPicture($last_product_id, $pic_addr, $k);										
+								if ($e and !empty($pic_addr)) {
+									$this->addPicture($last_product_id, $pic_addr, $k);
+									if (!$up) {
+										$report = $report."Additional photo added ";
+										$up++;
+									}
+								}	
 							}					
 						} // !er				
 					} // end for picture
-				}	
-			
+				}
+				
 				if (!empty($related)) {
 					$related_val = explode(";" , $row[$related]);
 					foreach ($related_val as $val) {						
@@ -21664,13 +24974,13 @@ class ModelCatalogSuppler extends Model {
 						}	
 					}
 				}				
-			}			
+			}
 			
 			if (!empty($report)) $this->addReport($report, $row_count, $row[$cod]);
 			$old_sku = $row[$cod];
 		}		
-		if ($exsame) $this->EndEx(8);
-
+		if ($exsame) $this->EndEx(8);	
+		
 		$this->cache->delete('seo_pro');
 	
 		if ($usd) {	

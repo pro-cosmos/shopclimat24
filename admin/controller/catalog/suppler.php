@@ -117,44 +117,96 @@ class ControllerCatalogSuppler extends Controller {
 		if (isset($this->request->post) and !empty($this->request->post['command'])) {	
 		
 			$err = $this->model_catalog_suppler->Action($this->request->post, $this->request->get['form_id']);
-				
+		
 			switch ($err) {			
 				case 0: $this->session->data['success'] = $this->language->get('text_base_success');					
 					break;				
-				case 1: $this->error['warning'] = $this->language->get('error_empty');
-				    break;
-				case 2: $this->error['warning'] = $this->language->get('error_sos');
+				case 1: $this->error['warning'] = $this->language->get('error_format');
+					break;
+				case 2: $this->error['warning'] = $this->language->get('error_vol');
+					break;
+				case 3: $this->error['warning'] = $this->language->get('error_open');
+					break;
+				case 4: $this->error['warning'] = $this->language->get('error_xml');
+					break;
+				case 5: $this->error['warning'] = $this->language->get('error_sos');
+					break;
+				case 6: $this->error['warning'] = $this->language->get('error_bad_sos');
+					break;
+				case 7: $this->error['warning'] = $this->language->get('error_rate');
+					break;
+				case 8: $this->error['warning'] = $this->language->get('error_cod');
+					break;
+				case 9: $this->error['warning'] = $this->language->get('error_pers');
+					break;
+				case 10: $this->error['warning'] = $this->language->get('error_schema_open');
+					break;
+				case 11: $this->error['warning'] = $this->language->get('error_dim');
+					break;
+				case 12: $this->error['warning'] = $this->language->get('error_related');
+					break;
+				case 13: $this->error['warning'] = $this->language->get('error_pic');
+					break;
+				case 14: $this->error['warning'] = $this->language->get('error_pars');
+					break;
+				case 15: $this->error['warning'] = $this->language->get('error_warranty');
+					break;
+				case 16: $this->error['warning'] = $this->language->get('error_item');
+					break;
+				case 17: $this->error['warning'] = $this->language->get('error_file'); // free
+					break;
+				case 18: $this->error['warning'] = $this->language->get('error_weight');
+					break;
+				case 19: $this->error['warning'] = $this->language->get('error_price');
+					break;	
+				case 20: $this->error['warning'] = $this->language->get('error_optsku');
+					break;
+				case 21: $this->error['warning'] = $this->language->get('error_data');
+					break;
+				case 22: $this->error['warning'] = $this->language->get('error_folder');
+					break;
+				case 23: $this->error['warning'] = $this->language->get('error_attribute2');
+					break;
+				case 24: $this->error['warning'] = $this->language->get('error_exception');
 					break;			
-				case 3: $this->error['warning'] = $this->language->get('error_ex');
+				case 25: $this->error['warning'] = $this->language->get('error_cat');
 					break;
-				case 25: $this->error['warning'] = $this->language->get('error_con');				
+				case 26: $this->error['warning'] = $this->language->get('error_uploads');
 					break;
-				case 26: $this->error['warning'] = $this->language->get('error_attribute1');				
+				case 27: $this->error['warning'] = $this->language->get('error_save');
 					break;
-				case 27: $this->error['warning'] = $this->language->get('error_bad_sos');				
+				case 28: $this->error['warning'] = $this->language->get('error_ex');
 					break;
-				case 28: $this->error['warning'] = $this->language->get('error_set_category');				
-					break;
-				case 29: $this->error['warning'] = $this->language->get('error_create_folder');				
+				case 29: $this->error['warning'] = $this->language->get('error_empty'); // free
 					break;	
-				case 30: $this->error['warning'] = $this->language->get('error_uploads');				
+				case 30: $this->error['warning'] = $this->language->get('error_category');
 					break;
-				case 31: $this->error['warning'] = $this->language->get('rename');				
+				case 31: $this->error['warning'] = $this->language->get('error_con');				
 					break;
-				case 32: $this->error['warning'] = $this->language->get('error_filter');				
+				case 32: $this->error['warning'] = $this->language->get('error_attribute1');				
+					break;		
+				case 33: $this->error['warning'] = $this->language->get('error_set_category');				
 					break;
-				case 33: $this->error['warning'] = $this->language->get('error_fields');				
+				case 34: $this->error['warning'] = $this->language->get('error_create_folder');				
+					break;		
+				case 35: $this->error['warning'] = $this->language->get('rename');				
 					break;
-				case 34: $this->error['warning'] = $this->language->get('error_field_attribute');				
+				case 36: $this->error['warning'] = $this->language->get('error_filter');				
 					break;
-				case 35: $this->error['warning'] = $this->language->get('error_write_form');	
+				case 37: $this->error['warning'] = $this->language->get('error_fields'); // free				
 					break;
-				case 36: $this->error['warning'] = $this->language->get('error_no_option');				
+				case 38: $this->error['warning'] = $this->language->get('error_field_attribute');				
 					break;
-				case 37: $this->error['warning'] = $this->language->get('error_no_opt_val');				
+				case 39: $this->error['warning'] = $this->language->get('error_write_form');	
 					break;
-				case 38: $this->error['warning'] = $this->language->get('error_88');				
-					break;	
+				case 40: $this->error['warning'] = $this->language->get('error_no_option');				
+					break;
+				case 41: $this->error['warning'] = $this->language->get('error_no_opt_val');				
+					break;
+				case 42: $this->error['warning'] = $this->language->get('error_88'); // free				
+					break;
+				case 43: $this->error['warning'] = $this->language->get('error_excel');		
+					break;
 				
 			}		
 			$this->getList();
@@ -216,6 +268,64 @@ class ControllerCatalogSuppler extends Controller {
 		
 	}
 	
+	public function cstop() {
+		$this->load->language('catalog/suppler');
+    	$this->document->setTitle($this->language->get('heading_base_title'));
+		$this->load->model('catalog/suppler');	
+		$url = '';
+		$wait = 0;
+		$wait = $this->model_catalog_suppler->CronStop();
+		if ($wait) $this->error['warning'] = $this->language->get('text_c_wait');
+			
+		$this->response->redirect($this->url->link('catalog/suppler', 'user_token=' . $this->session->data['user_token'] . $url, true));
+	}
+
+	public function ccontinue() {
+		$this->load->language('catalog/suppler');
+    	$this->document->setTitle($this->language->get('heading_base_title'));
+		$this->load->model('catalog/suppler');		
+		$url = '';
+		$this->model_catalog_suppler->ccontinue();			
+		
+		$this->response->redirect($this->url->link('catalog/suppler', 'user_token=' . $this->session->data['user_token'] . $url, true));
+	}
+	
+	public function cstart() {
+		$this->load->language('catalog/suppler');
+    	$this->document->setTitle($this->language->get('heading_base_title'));
+		$this->load->model('catalog/suppler');		
+		$url = '';
+		$this->model_catalog_suppler->cstart();			
+	
+		$this->response->redirect($this->url->link('catalog/suppler', 'user_token=' . $this->session->data['user_token'] . $url, true));
+	}
+	
+	public function cronAction($param) {
+		$this->load->language('catalog/suppler');    	
+		$this->load->model('catalog/suppler');		
+			
+		$err = $this->model_catalog_suppler->Action($param, $param['form_id']);
+		
+		$_SESSION["e-r-r"] = $err;
+	}	
+	
+	public function cronLoadfile($param) {
+		$this->load->language('catalog/suppler');		
+		$this->load->model('catalog/suppler');
+		
+		if (!empty($param['pr_name']) and empty($param['link'])) {			
+			$file_name = $param['pr_name'];			
+			$file_tmp = "./uploads/" . $param['pr_name'];
+		} else {
+			$file_name = $param['form_id'] . '.' . $param['ext'];
+			$file_tmp = "./uploads/" . $param['form_id'] . '.' . $param['ext'];
+		}	
+	
+		$err = $this->model_catalog_suppler->loadfile($file_tmp, $file_name, $param['form_id']);
+		
+		$_SESSION["e-r-r"] = $err;
+	}
+	
 	public function load() {
 		$this->load->language('catalog/suppler');
 		$this->load->model('catalog/suppler');
@@ -229,67 +339,97 @@ class ControllerCatalogSuppler extends Controller {
 		$err = $errs[0];
 		if (!isset($errs[1])) $errs[1] = 0;
 		if (!isset($errs[2])) $errs[2] = 0;
-		
+	
 		switch ($err) {
 				
 		case 0: $this->session->data['success'] = $this->language->get('text_base_add') . $errs[1] . $this->language->get('text_base_up') . $errs[2] . '.  ' . $this->language->get('text_base_success');			
 			break;	
 		case 1: $this->error['warning'] = $this->language->get('error_format');
-			break;
-		case 2: $this->error['warning'] = $this->language->get('error_vol');
-			break;
-		case 3: $this->error['warning'] = $this->language->get('error_open');
-			break;
-		case 4: $this->error['warning'] = $this->language->get('error_xml');
-			break;
-		case 5: $this->error['warning'] = $this->language->get('error_sos');
-			break;
-		case 6: $this->error['warning'] = $this->language->get('error_bad_sos');
-			break;
-		case 7: $this->error['warning'] = $this->language->get('error_rate');
-			break;
-		case 8: $this->error['warning'] = $this->language->get('error_cod');
-			break;
-		case 9: $this->error['warning'] = $this->language->get('error_pers');
-			break;
-		case 10: $this->error['warning'] = $this->language->get('error_qu');
-			break;
-		case 11: $this->error['warning'] = $this->language->get('error_dim');
-			break;
-		case 12: $this->error['warning'] = $this->language->get('error_related');
-			break;
-		case 13: $this->error['warning'] = $this->language->get('error_pic');
-			break;
-		case 14: $this->error['warning'] = $this->language->get('error_pars');
-			break;
-		case 15: $this->error['warning'] = $this->language->get('error_warranty');
-			break;
-		case 16: $this->error['warning'] = $this->language->get('error_item');
-			break;
-		case 17: $this->error['warning'] = $this->language->get('error_file');
-			break;
-		case 18: $this->error['warning'] = $this->language->get('error_weight');
-			break;
-		case 19: $this->error['warning'] = $this->language->get('error_price');
-			break;	
-		case 20: $this->error['warning'] = $this->language->get('error_add');
-			break;
-		case 21: $this->error['warning'] = $this->language->get('error_data');
-			break;
-		case 22: $this->error['warning'] = $this->language->get('error_folder');
-			break;
-		case 23: $this->error['warning'] = $this->language->get('error_attribute');
-			break;
-		case 24: $this->error['warning'] = $this->language->get('error_site');
-			break;			
-		case 25: $this->error['warning'] = $this->language->get('error_cat');
-			break;
-		case 26: $this->error['warning'] = $this->language->get('error_uploads');
-			break;
-		case 27: $this->error['warning'] = $this->language->get('error_save');
-			break;
-		case 30: $this->error['warning'] = $this->language->get('error_category');
-			break;	
+					break;
+				case 2: $this->error['warning'] = $this->language->get('error_vol');
+					break;
+				case 3: $this->error['warning'] = $this->language->get('error_open');
+					break;
+				case 4: $this->error['warning'] = $this->language->get('error_xml');
+					break;
+				case 5: $this->error['warning'] = $this->language->get('error_sos');
+					break;
+				case 6: $this->error['warning'] = $this->language->get('error_bad_sos');
+					break;
+				case 7: $this->error['warning'] = $this->language->get('error_rate');
+					break;
+				case 8: $this->error['warning'] = $this->language->get('error_cod');
+					break;
+				case 9: $this->error['warning'] = $this->language->get('error_pers');
+					break;
+				case 10: $this->error['warning'] = $this->language->get('error_schema_open');
+					break;
+				case 11: $this->error['warning'] = $this->language->get('error_dim');
+					break;
+				case 12: $this->error['warning'] = $this->language->get('error_related');
+					break;
+				case 13: $this->error['warning'] = $this->language->get('error_pic');
+					break;
+				case 14: $this->error['warning'] = $this->language->get('error_pars');
+					break;
+				case 15: $this->error['warning'] = $this->language->get('error_warranty');
+					break;
+				case 16: $this->error['warning'] = $this->language->get('error_item');
+					break;
+				case 17: $this->error['warning'] = $this->language->get('error_file'); // free
+					break;
+				case 18: $this->error['warning'] = $this->language->get('error_weight');
+					break;
+				case 19: $this->error['warning'] = $this->language->get('error_price');
+					break;	
+				case 20: $this->error['warning'] = $this->language->get('error_optsku');
+					break;
+				case 21: $this->error['warning'] = $this->language->get('error_data');
+					break;
+				case 22: $this->error['warning'] = $this->language->get('error_folder');
+					break;
+				case 23: $this->error['warning'] = $this->language->get('error_attribute2');
+					break;
+				case 24: $this->error['warning'] = $this->language->get('error_exception');
+					break;			
+				case 25: $this->error['warning'] = $this->language->get('error_cat');
+					break;
+				case 26: $this->error['warning'] = $this->language->get('error_uploads');
+					break;
+				case 27: $this->error['warning'] = $this->language->get('error_save');
+					break;
+				case 28: $this->error['warning'] = $this->language->get('error_ex');
+					break;
+				case 29: $this->error['warning'] = $this->language->get('error_empty'); // free
+					break;	
+				case 30: $this->error['warning'] = $this->language->get('error_category');
+					break;
+				case 31: $this->error['warning'] = $this->language->get('error_con');				
+					break;
+				case 32: $this->error['warning'] = $this->language->get('error_attribute1');				
+					break;		
+				case 33: $this->error['warning'] = $this->language->get('error_set_category');				
+					break;
+				case 34: $this->error['warning'] = $this->language->get('error_create_folder');				
+					break;		
+				case 35: $this->error['warning'] = $this->language->get('rename');				
+					break;
+				case 36: $this->error['warning'] = $this->language->get('error_filter');				
+					break;
+				case 37: $this->error['warning'] = $this->language->get('error_fields'); // free				
+					break;
+				case 38: $this->error['warning'] = $this->language->get('error_field_attribute');				
+					break;
+				case 39: $this->error['warning'] = $this->language->get('error_write_form');	
+					break;
+				case 40: $this->error['warning'] = $this->language->get('error_no_option');				
+					break;
+				case 41: $this->error['warning'] = $this->language->get('error_no_opt_val');				
+					break;
+				case 42: $this->error['warning'] = $this->language->get('error_88'); // free				
+					break;
+				case 43: $this->error['warning'] = $this->language->get('error_excel');		
+					break;
 		}
 		$this->getList();
 	}
@@ -307,7 +447,7 @@ class ControllerCatalogSuppler extends Controller {
 				$err = $errs[0];
 				if (!isset($errs[1])) $errs[1] = 0;
 				if (!isset($errs[2])) $errs[2] = 0;
-				
+			
 				switch ($err) {
 				
 				case 0: $this->session->data['success'] = $this->language->get('text_base_add') . $errs[1] . $this->language->get('text_base_up') . $errs[2] . '.  ' . $this->language->get('text_base_success');
@@ -330,7 +470,7 @@ class ControllerCatalogSuppler extends Controller {
 					break;
 				case 9: $this->error['warning'] = $this->language->get('error_pers');
 					break;
-				case 10: $this->error['warning'] = $this->language->get('error_qu');
+				case 10: $this->error['warning'] = $this->language->get('error_schema_open');
 					break;
 				case 11: $this->error['warning'] = $this->language->get('error_dim');
 					break;
@@ -344,21 +484,21 @@ class ControllerCatalogSuppler extends Controller {
 					break;
 				case 16: $this->error['warning'] = $this->language->get('error_item');
 					break;
-				case 17: $this->error['warning'] = $this->language->get('error_file');
+				case 17: $this->error['warning'] = $this->language->get('error_file'); // free
 					break;
 				case 18: $this->error['warning'] = $this->language->get('error_weight');
 					break;
 				case 19: $this->error['warning'] = $this->language->get('error_price');
 					break;	
-				case 20: $this->error['warning'] = $this->language->get('error_add');
+				case 20: $this->error['warning'] = $this->language->get('error_optsku');
 					break;
 				case 21: $this->error['warning'] = $this->language->get('error_data');
 					break;
 				case 22: $this->error['warning'] = $this->language->get('error_folder');
 					break;
-				case 23: $this->error['warning'] = $this->language->get('error_attribute');
+				case 23: $this->error['warning'] = $this->language->get('error_attribute2');
 					break;
-				case 24: $this->error['warning'] = $this->language->get('error_site');
+				case 24: $this->error['warning'] = $this->language->get('error_exception');
 					break;			
 				case 25: $this->error['warning'] = $this->language->get('error_cat');
 					break;
@@ -366,12 +506,38 @@ class ControllerCatalogSuppler extends Controller {
 					break;
 				case 27: $this->error['warning'] = $this->language->get('error_save');
 					break;
-				case 28: $this->error['warning'] = $this->language->get('error_optsku');
+				case 28: $this->error['warning'] = $this->language->get('error_ex');
 					break;
-				case 29: $this->error['warning'] = $this->language->get('error_joen');
-					break;
-				case 30: $this->error['warning'] = $this->language->get('error_category');
+				case 29: $this->error['warning'] = $this->language->get('error_empty'); // free
 					break;	
+				case 30: $this->error['warning'] = $this->language->get('error_category');
+					break;
+				case 31: $this->error['warning'] = $this->language->get('error_con');				
+					break;
+				case 32: $this->error['warning'] = $this->language->get('error_attribute1');				
+					break;		
+				case 33: $this->error['warning'] = $this->language->get('error_set_category');				
+					break;
+				case 34: $this->error['warning'] = $this->language->get('error_create_folder');				
+					break;		
+				case 35: $this->error['warning'] = $this->language->get('rename');				
+					break;
+				case 36: $this->error['warning'] = $this->language->get('error_filter');				
+					break;
+				case 37: $this->error['warning'] = $this->language->get('error_fields'); // free				
+					break;
+				case 38: $this->error['warning'] = $this->language->get('error_field_attribute');				
+					break;
+				case 39: $this->error['warning'] = $this->language->get('error_write_form');	
+					break;
+				case 40: $this->error['warning'] = $this->language->get('error_no_option');				
+					break;
+				case 41: $this->error['warning'] = $this->language->get('error_no_opt_val');				
+					break;
+				case 42: $this->error['warning'] = $this->language->get('error_88'); // free				
+					break;
+				case 43: $this->error['warning'] = $this->language->get('error_excel');		
+					break;
 				}
 			}	
 		}		
@@ -428,7 +594,10 @@ class ControllerCatalogSuppler extends Controller {
 			'href'      => $this->url->link('catalog/suppler', 'user_token=' . $this->session->data['user_token'] . $url, true),
       		'separator' => ' :: '
    		);
-							
+	
+	$data['cstart'] = $this->url->link('catalog/suppler/cstart', 'user_token=' . $this->session->data['user_token'] . $url, true);
+	$data['ccontinue'] = $this->url->link('catalog/suppler/ccontinue', 'user_token=' . $this->session->data['user_token'] . $url, true);
+	$data['cstop'] = $this->url->link('catalog/suppler/cstop', 'user_token=' . $this->session->data['user_token'] . $url, true);
 	$data['insert'] = $this->url->link('catalog/suppler/insert', 'user_token=' . $this->session->data['user_token'] . $url, true);
 	$data['delete'] = $this->url->link('catalog/suppler/delete', 'user_token=' . $this->session->data['user_token'] . $url, true);	
 				
@@ -452,6 +621,22 @@ class ControllerCatalogSuppler extends Controller {
 				'suppler_id' 	  => $result['suppler_id'],
 				'name'            => $result['name'],
 				'sort_order'      => $result['sort_order'],
+				'save_form'       => $result['save_form'],
+				'report'          => $result['report'],
+				'errors'          => $result['errors'],
+				'on_off'          => $result['on_off'],
+				'go'         	  => $result['go'],
+				'csort'        	  => $result['csort'],
+				'sos'         	  => $result['sos'],
+				'text'		  	  => $result['text'],
+				'text1'		  	  => $result['text1'],
+				'text2'		  	  => $result['text2'],
+				'flag'         	  => $result['flag'],
+				'flag1'        	  => $result['flag1'],
+				'dj'			  => $result['dj'],
+				'djssf'			  => $result['djssf'],
+				'dhissf'		  => $result['dhissf'],
+				'ddmhissf'		  => $result['ddmhissf'],
 				'selected'        => isset($this->request->post['selected']) && in_array($result['form_id'], $this->request->post['selected']),
 				'action'          => $action
 			);
@@ -467,6 +652,19 @@ class ControllerCatalogSuppler extends Controller {
 		$data['column_load'] = $this->language->get('column_load');
 		$data['button_edit'] = $this->language->get('button_edit');
 		$data['button_delete'] = $this->language->get('button_delete');
+		$data['button_cstart'] = $this->language->get('button_cstart');
+		$data['button_ccontinue'] = $this->language->get('button_ccontinue');
+		$data['button_cstop'] = $this->language->get('button_cstop');		
+		$data['column_exec'] = $this->language->get('column_exec');
+		$data['column_report'] = $this->language->get('column_report');
+		$data['column_errors'] = $this->language->get('column_errors');
+		$data['column_status'] = $this->language->get('column_status');
+		$data['entry_c_on'] = $this->language->get('entry_c_on');
+		$data['entry_c_off'] = $this->language->get('entry_c_off');
+		$data['entry_c_today'] = $this->language->get('entry_c_today');
+		$data['entry_c_yday'] = $this->language->get('entry_c_yday');
+		$data['entry_c_work'] = $this->language->get('entry_c_work');
+		$data['entry_c_wait'] = $this->language->get('entry_c_wait');
 		$data['button_insert'] = $this->language->get('button_insert');
 		$data['user_token'] = $this->session->data['user_token'];
 		$data['text_confirm'] = $this->language->get('text_confirm');
@@ -575,6 +773,7 @@ class ControllerCatalogSuppler extends Controller {
 		$data['text_updte4'] = $this->language->get('text_updte4');
 		$data['text_updtee4'] = $this->language->get('text_updtee4');
 		$data['text_updtee5'] = $this->language->get('text_updtee5');
+		$data['text_updtee6'] = $this->language->get('text_updtee6');
 		$data['text_settings'] = $this->language->get('text_settings');
 		$data['text_all'] = $this->language->get('text_all');
 		$data['text_act'] = $this->language->get('text_act');
@@ -615,6 +814,7 @@ class ControllerCatalogSuppler extends Controller {
 		$data['text_ad13'] = $this->language->get('text_ad13');
 		$data['text_ad14'] = $this->language->get('text_ad14');
 		$data['text_ad15'] = $this->language->get('text_ad15');
+		$data['text_ad16'] = $this->language->get('text_ad16');
 		$data['text_kmenu'] = $this->language->get('text_kmenu');
 		$data['text_kmenu0'] = $this->language->get('text_kmenu0');
 		$data['text_kmenu1'] = $this->language->get('text_kmenu1');
@@ -623,6 +823,11 @@ class ControllerCatalogSuppler extends Controller {
 		$data['text_kmenu4'] = $this->language->get('text_kmenu4');
 		$data['text_kmenu5'] = $this->language->get('text_kmenu5');
 		$data['text_kmenu6'] = $this->language->get('text_kmenu6');
+		$data['text_kmenu7'] = $this->language->get('text_kmenu7');
+		$data['text_kmenu8'] = $this->language->get('text_kmenu8');
+		$data['text_kmenu9'] = $this->language->get('text_kmenu9');
+		$data['text_kmenu10'] = $this->language->get('text_kmenu10');
+		$data['text_kmenu11'] = $this->language->get('text_kmenu11');
 		$data['text_gbotton'] = $this->language->get('text_gbotton');
 		$data['text_competitors'] = $this->language->get('text_competitors');
 		$data['text_command0'] = $this->language->get('text_command0');
@@ -839,6 +1044,33 @@ class ControllerCatalogSuppler extends Controller {
 		$data['text_command211'] = $this->language->get('text_command211');
 		$data['text_command212'] = $this->language->get('text_command212');
 		$data['text_command213'] = $this->language->get('text_command213');
+		$data['text_command214'] = $this->language->get('text_command214');
+		$data['text_command215'] = $this->language->get('text_command215');
+		$data['text_command216'] = $this->language->get('text_command216');
+		$data['text_command217'] = $this->language->get('text_command217');
+		$data['text_command218'] = $this->language->get('text_command218');
+		$data['text_command219'] = $this->language->get('text_command219');
+		$data['text_command220'] = $this->language->get('text_command220');
+		$data['text_command221'] = $this->language->get('text_command221');
+		$data['text_command222'] = $this->language->get('text_command222');
+		$data['text_command223'] = $this->language->get('text_command223');
+		$data['text_command224'] = $this->language->get('text_command224');
+		$data['text_command225'] = $this->language->get('text_command225');
+		$data['text_command226'] = $this->language->get('text_command226');
+		$data['text_command227'] = $this->language->get('text_command227');
+		$data['text_command228'] = $this->language->get('text_command228');
+		$data['text_command229'] = $this->language->get('text_command229');
+		$data['text_command230'] = $this->language->get('text_command230');
+		$data['text_command231'] = $this->language->get('text_command231');
+		$data['text_command232'] = $this->language->get('text_command232');
+		$data['text_command233'] = $this->language->get('text_command233');
+		$data['text_command234'] = $this->language->get('text_command234');
+		$data['text_command235'] = $this->language->get('text_command235');
+		$data['text_command236'] = $this->language->get('text_command236');
+		$data['text_command237'] = $this->language->get('text_command237');
+		$data['text_command238'] = $this->language->get('text_command238');
+		$data['text_command239'] = $this->language->get('text_command239');
+		$data['text_command240'] = $this->language->get('text_command240');
 		$data['entry_name'] = $this->language->get('entry_name');
 		$data['entry_suppler_id'] = $this->language->get('entry_suppler_id');
 		$data['entry_cod'] = $this->language->get('entry_cod');
@@ -1080,6 +1312,7 @@ class ControllerCatalogSuppler extends Controller {
 		$data['entry_seo_upc'] = $this->language->get('entry_seo_upc');
 		$data['entry_seo_loc'] = $this->language->get('entry_seo_loc');
 		$data['entry_seo_mpn'] = $this->language->get('entry_seo_mpn');
+		$data['entry_seo_ean'] = $this->language->get('entry_seo_ean');
 		$data['entry_seo_isbn'] = $this->language->get('entry_seo_isbn');
 		$data['entry_seo_jan'] = $this->language->get('entry_seo_jan');	
 		$data['entry_ddesc'] = $this->language->get('entry_ddesc');
@@ -1131,6 +1364,31 @@ class ControllerCatalogSuppler extends Controller {
 		$data['entry_prefix'] = $this->language->get('entry_prefix');
 		$data['entry_seo_pr_photo'] = $this->language->get('entry_seo_pr_photo');
 		$data['entry_formdate'] = $this->language->get('entry_formdate');
+		$data['entry_task1'] = $this->language->get('entry_task1');
+		$data['entry_task2'] = $this->language->get('entry_task2');
+		$data['entry_task3'] = $this->language->get('entry_task3');
+		$data['entry_task4'] = $this->language->get('entry_task4');
+		$data['entry_source'] = $this->language->get('entry_source');
+		$data['entry_format'] = $this->language->get('entry_format');
+		$data['entry_link'] = $this->language->get('entry_link');		
+		$data['entry_ftp_name'] = $this->language->get('entry_ftp_name');
+		$data['entry_ftp_pass'] = $this->language->get('entry_ftp_pass');		
+		$data['entry_f_excel'] = $this->language->get('entry_f_excel');
+		$data['entry_f_xml'] = $this->language->get('entry_f_xml');
+		$data['entry_f_csv'] = $this->language->get('entry_f_csv');
+		$data['entry_report1'] = $this->language->get('entry_report1');
+		$data['entry_report2'] = $this->language->get('entry_report2');
+		$data['entry_report3'] = $this->language->get('entry_report3');
+		$data['entry_report4'] = $this->language->get('entry_report4');
+		$data['entry_f_name'] = $this->language->get('entry_f_name');
+		$data['entry_cron_sort'] = $this->language->get('entry_cron_sort');
+		$data['entry_cron_off'] = $this->language->get('entry_cron_off');
+		$data['entry_cron_on'] = $this->language->get('entry_cron_on');
+		$data['entry_cron_start'] = $this->language->get('entry_cron_start');
+		$data['entry_cron_hour'] = $this->language->get('entry_cron_hour');
+		$data['entry_cron_day'] = $this->language->get('entry_cron_day');
+		$data['entry_cron_week'] = $this->language->get('entry_cron_week');
+		$data['entry_cron_zone'] = $this->language->get('entry_cron_zone');
 		
     	$data['button_save'] = $this->language->get('button_save');
     	$data['button_cancel'] = $this->language->get('button_cancel');
@@ -1142,7 +1400,8 @@ class ControllerCatalogSuppler extends Controller {
 		$data['tab_option'] = $this->language->get('tab_option');
 		$data['tab_action'] = $this->language->get('tab_action');	
 		$data['tab_price'] = $this->language->get('tab_price');
-		$data['tab_seo'] = $this->language->get('tab_seo');		
+		$data['tab_seo'] = $this->language->get('tab_seo');
+		$data['tab_cron'] = $this->language->get('tab_cron');
 		
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
@@ -1313,6 +1572,8 @@ class ControllerCatalogSuppler extends Controller {
 				'newurl'       	 => $result['newurl'],
 				'ref'       	 => $result['ref'],
 				'ref1'       	 => $result['ref1'],
+				'ref2'       	 => $result['ref2'],
+				'ref3'       	 => $result['ref3'],
 				'addattr'      	 => $result['addattr'],
 				'exsame'      	 => $result['exsame'],
 				'sku2'      	 => $result['sku2'],
@@ -1350,6 +1611,9 @@ class ControllerCatalogSuppler extends Controller {
 				'upc'       	 => $result['upc'],
 				'ean'       	 => $result['ean'],
 				'mpn'       	 => $result['mpn'],
+				'location'     	 => $result['location'],
+				'jan'       	 => $result['jan'],
+				'isbn'       	 => $result['isbn'],
 				'ddata'       	 => $result['ddata'],
 				'bonus'       	 => $result['bonus'],
 				'ddesc'       	 => $result['ddesc'],
@@ -1358,6 +1622,8 @@ class ControllerCatalogSuppler extends Controller {
 				'idcat'          => $result['idcat'],
 				't_ref'        	 => $result['t_ref'],
 				't_ref1'         => $result['t_ref1'],
+				't_ref2'       	 => $result['t_ref2'],
+				't_ref3'         => $result['t_ref3'],
 				't_status'       => $result['t_status'],
 				'termin'         => $result['termin'],
 				'onoff'          => $result['onoff'],
@@ -1665,7 +1931,254 @@ class ControllerCatalogSuppler extends Controller {
 			} else {	
 				$data['baseprice'][] = $result['baseprice'];
 			}
-		}		
+		}
+
+		$results = $this->model_catalog_suppler->getSupplerCron($id);
+		
+		foreach ($results as $result) {	
+			$data['ccron'] = array();		
+		    	
+			$action = array();			
+			$action[] = array(
+				'text' => $this->language->get('text_edit'),
+				'href' => $this->url->link('catalog/suppler/update', 'user_token=' . $this->session->data['user_token'] . '&form_id=' . $result['form_id'] . $url, true)
+			);
+	
+			$data['ccron'] = array(
+				'form_id' 	  	  => $result['form_id'],
+				'suppler_id' 	  => $result['suppler_id'],
+				'cmd1'            => $result['cmd1'],
+				'cmd2'            => $result['cmd2'],
+				'cmd3'            => $result['cmd3'],
+				'cmd4'            => $result['cmd4'],
+				'cmd5'            => $result['cmd5'],
+				'cmd6'            => $result['cmd6'],
+				'act_find1'       => $result['act_find1'],
+				'act_find2'       => $result['act_find2'],
+				'act_find3'       => $result['act_find3'],
+				'act_find4'       => $result['act_find4'],
+				'act_find5'       => $result['act_find5'],
+				'act_find6'       => $result['act_find6'],				
+				'act_change1'     => $result['act_change1'],
+				'act_change2'     => $result['act_change2'],
+				'act_change3'     => $result['act_change3'],
+				'act_change4'     => $result['act_change4'],
+				'act_change5'     => $result['act_change5'],
+				'act_change6'     => $result['act_change6'],				
+				'all1'      	  => $result['all1'],
+				'all2'     	      => $result['all2'],
+				'all3'     	      => $result['all3'],
+				'all4'     	      => $result['all4'],
+				'all5'    	      => $result['all5'],
+				'all6'    	      => $result['all6'],				
+				'isno1'    	      => $result['isno1'],
+				'isno2'    	      => $result['isno2'],
+				'isno3'    	      => $result['isno3'],
+				'isno4'    	      => $result['isno4'],
+				'isno5'    	      => $result['isno5'],
+				'isno6'    	      => $result['isno6'],				
+				'link'    	      => $result['link'],
+				'ftp_name'    	  => $result['ftp_name'],
+				'ftp_pass'    	  => $result['ftp_pass'],
+				'ext'    	      => $result['ext'],
+				'rtype'           => $result['rtype'],				
+				'mail'    	      => $result['mail'],
+				'pr_name'		  => $result['pr_name'],
+				'port1'			  => $result['port1'],
+				'text'		  	  => $result['text'],
+				'text1'		  	  => $result['text1'],
+				'text2'		  	  => $result['text2'],
+				'on_off'		  => $result['on_off'],
+				'csort'		 	  => $result['csort'],
+				'action'      	  => $action
+			);
+			
+			if (isset($this->request->post['cmd1'])) {
+				$data['cmd1'] = $this->request->post['cmd1'];
+			} else {
+				$data['cmd1'] = $result['cmd1'];
+			}
+			if (isset($this->request->post['cmd2'])) {
+				$data['cmd2'] = $this->request->post['cmd2'];
+			} else {
+				$data['cmd2'] = $result['cmd2'];
+			}
+			if (isset($this->request->post['cmd3'])) {
+				$data['cmd3'] = $this->request->post['cmd3'];
+			} else {
+				$data['cmd3'] = $result['cmd3'];
+			}
+			if (isset($this->request->post['cmd4'])) {
+				$data['cmd4'] = $this->request->post['cmd4'];
+			} else {
+				$data['cmd4'] = $result['cmd4'];
+			}
+			if (isset($this->request->post['cmd5'])) {
+				$data['cmd5'] = $this->request->post['cmd5'];
+			} else {
+				$data['cmd5'] = $result['cmd5'];
+			}
+			if (isset($this->request->post['cmd6'])) {
+				$data['cmd6'] = $this->request->post['cmd6'];
+			} else {
+				$data['cmd6'] = $result['cmd6'];
+			}
+			if (isset($this->request->post['act_find1'])) {
+				$data['act_find1'] = $this->request->post['act_find1'];
+			} else {
+				$data['act_find1'] = $result['act_find1'];
+			}
+			if (isset($this->request->post['act_find2'])) {
+				$data['act_find2'] = $this->request->post['act_find2'];
+			} else {
+				$data['act_find2'] = $result['act_find2'];
+			}
+			if (isset($this->request->post['act_find3'])) {
+				$data['act_find3'] = $this->request->post['act_find3'];
+			} else {
+				$data['act_find3'] = $result['act_find3'];
+			}
+			if (isset($this->request->post['act_find4'])) {
+				$data['act_find4'] = $this->request->post['act_find4'];
+			} else {
+				$data['act_find4'] = $result['act_find4'];
+			}
+			if (isset($this->request->post['act_find5'])) {
+				$data['act_find5'] = $this->request->post['act_find5'];
+			} else {
+				$data['act_find5'] = $result['act_find5'];
+			}
+			if (isset($this->request->post['act_find6'])) {
+				$data['act_find6'] = $this->request->post['act_find6'];
+			} else {
+				$data['act_find6'] = $result['act_find6'];
+			}
+			if (isset($this->request->post['act_change1'])) {
+				$data['act_change1'] = $this->request->post['act_change1'];
+			} else {
+				$data['act_change1'] = $result['act_change1'];
+			}
+			if (isset($this->request->post['act_change2'])) {
+				$data['act_change2'] = $this->request->post['act_change2'];
+			} else {
+				$data['act_change2'] = $result['act_change2'];
+			}
+			if (isset($this->request->post['act_change3'])) {
+				$data['act_change3'] = $this->request->post['act_change3'];
+			} else {
+				$data['act_change3'] = $result['act_change3'];
+			}
+			if (isset($this->request->post['act_change4'])) {
+				$data['act_change4'] = $this->request->post['act_change4'];
+			} else {
+				$data['act_change4'] = $result['act_change4'];
+			}
+			if (isset($this->request->post['act_change5'])) {
+				$data['act_change5'] = $this->request->post['act_change5'];
+			} else {
+				$data['act_change5'] = $result['act_change5'];
+			}
+			if (isset($this->request->post['act_change6'])) {
+				$data['act_change6'] = $this->request->post['act_change6'];
+			} else {
+				$data['act_change6'] = $result['act_change6'];
+			}
+			if (isset($this->request->post['all1'])) {
+				$data['all1'] = $this->request->post['all1'];
+			} else {
+				$data['all1'] = $result['all1'];
+			}
+			if (isset($this->request->post['all2'])) {
+				$data['all2'] = $this->request->post['all2'];
+			} else {
+				$data['all2'] = $result['all2'];
+			}
+			if (isset($this->request->post['all3'])) {
+				$data['all3'] = $this->request->post['all3'];
+			} else {
+				$data['all3'] = $result['all3'];
+			}
+			if (isset($this->request->post['all4'])) {
+				$data['all4'] = $this->request->post['all4'];
+			} else {
+				$data['all4'] = $result['all4'];
+			}
+			if (isset($this->request->post['all5'])) {
+				$data['all5'] = $this->request->post['all5'];
+			} else {
+				$data['all5'] = $result['all5'];
+			}
+			if (isset($this->request->post['all6'])) {
+				$data['all6'] = $this->request->post['all6'];
+			} else {
+				$data['all6'] = $result['all6'];
+			}
+			if (isset($this->request->post['isno1'])) {
+				$data['isno1'] = $this->request->post['isno1'];
+			} else {
+				$data['isno1'] = $result['isno1'];
+			}
+			if (isset($this->request->post['isno2'])) {
+				$data['isno2'] = $this->request->post['isno2'];
+			} else {
+				$data['isno2'] = $result['isno2'];
+			}
+			if (isset($this->request->post['isno3'])) {
+				$data['isno3'] = $this->request->post['isno3'];
+			} else {
+				$data['isno3'] = $result['isno3'];
+			}
+			if (isset($this->request->post['isno4'])) {
+				$data['isno4'] = $this->request->post['isno4'];
+			} else {
+				$data['isno4'] = $result['isno4'];
+			}
+			if (isset($this->request->post['isno5'])) {
+				$data['isno5'] = $this->request->post['isno5'];
+			} else {
+				$data['isno5'] = $result['isno5'];
+			}
+			if (isset($this->request->post['isno6'])) {
+				$data['isno6'] = $this->request->post['isno6'];
+			} else {
+				$data['isno6'] = $result['isno6'];
+			}
+			if (isset($this->request->post['link'])) {
+				$data['link'] = $this->request->post['link'];
+			} else {
+				$data['link'] = $result['link'];
+			}
+			if (isset($this->request->post['ftp_name'])) {
+				$data['ftp_name'] = $this->request->post['ftp_name'];
+			} else {
+				$data['ftp_name'] = $result['ftp_name'];
+			}
+			if (isset($this->request->post['ftp_pass'])) {
+				$data['ftp_pass'] = $this->request->post['ftp_pass'];
+			} else {
+				$data['ftp_pass'] = $result['ftp_pass'];
+			}
+			if (isset($this->request->post['ext'])) {
+				$data['ext'] = $this->request->post['ext'];
+			} else {
+				$data['ext'] = $result['ext'];
+			}
+			if (isset($this->request->post['rtype'])) {
+				$data['rtype'] = $this->request->post['rtype'];
+			} else {
+				$data['rtype'] = $result['rtype'];
+			}
+			if (isset($this->request->post['mail'])) {
+				$data['mail'] = $this->request->post['mail'];
+			} else {
+				$data['mail'] = $result['mail'];
+			}
+			if (isset($this->request->post['pr_name'])) {
+				$data['pr_name'] = $this->request->post['pr_name'];
+			} else {
+				$data['pr_name'] = $result['pr_name'];
+			}
+		}
 		
 		require_once 'suppler_license/suppler_ins.php';	  //  Do not remove it !!!
 		
@@ -2159,6 +2672,30 @@ class ControllerCatalogSuppler extends Controller {
       		$data['supplers']['mpn'] = '';
     	}
 		
+		if (isset($this->request->post['location'])) {
+      		$data['location'] = $this->request->post['location'];
+    	} elseif (!empty($suppler_info)) {
+			$data['location'] = $suppler_info['location'];
+		} else {
+      		$data['supplers']['location'] = '';
+    	}
+		
+		if (isset($this->request->post['jan'])) {
+      		$data['jan'] = $this->request->post['jan'];
+    	} elseif (!empty($suppler_info)) {
+			$data['jan'] = $suppler_info['jan'];
+		} else {
+      		$data['supplers']['jan'] = '';
+    	}
+		
+		if (isset($this->request->post['isbn'])) {
+      		$data['isbn'] = $this->request->post['isbn'];
+    	} elseif (!empty($suppler_info)) {
+			$data['isbn'] = $suppler_info['isbn'];
+		} else {
+      		$data['supplers']['isbn'] = '';
+    	}
+		
 		if (isset($this->request->post['ddata'])) {
       		$data['ddata'] = $this->request->post['ddata'];
     	} elseif (!empty($suppler_info)) {
@@ -2198,6 +2735,37 @@ class ControllerCatalogSuppler extends Controller {
 		} else {
       		$data['supplers']['t_ref1'] = '0';
     	}
+		if (isset($this->request->post['ref2'])) {
+      		$data['ref2'] = $this->request->post['ref2'];
+    	} elseif (!empty($suppler_info)) {
+			$data['ref2'] = $suppler_info['ref2'];
+		} else {
+      		$data['supplers']['ref2'] = '';
+    	}
+		
+		if (isset($this->request->post['ref3'])) {
+      		$data['ref3'] = $this->request->post['ref3'];
+    	} elseif (!empty($suppler_info)) {
+			$data['ref3'] = $suppler_info['ref3'];
+		} else {
+      		$data['supplers']['ref3'] = '';
+    	}
+		
+		if (isset($this->request->post['t_ref2'])) {
+      		$data['t_ref2'] = $this->request->post['t_ref2'];
+    	} elseif (!empty($suppler_info)) {
+			$data['t_ref2'] = $suppler_info['t_ref2'];
+		} else {
+      		$data['supplers']['t_ref2'] = '0';
+    	}
+		
+		if (isset($this->request->post['t_ref3'])) {
+      		$data['t_ref3'] = $this->request->post['t_ref3'];
+    	} elseif (!empty($suppler_info)) {
+			$data['t_ref3'] = $suppler_info['t_ref3'];
+		} else {
+      		$data['supplers']['t_ref3'] = '0';
+    	}
 		
 		if (isset($this->request->post['addattr'])) {
       		$data['addattr'] = $this->request->post['addattr'];
@@ -2220,7 +2788,7 @@ class ControllerCatalogSuppler extends Controller {
     	} elseif (!empty($suppler_info)) {
 			$data['importseo'] = $suppler_info['importseo'];
 		} else {
-      		$data['supplers']['importseo'] = '0';
+      		$data['supplers']['importseo'] = '1';
     	}
 		
 		if (isset($this->request->post['pmanuf'])) {
