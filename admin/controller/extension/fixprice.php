@@ -30,256 +30,41 @@ class ControllerExtensionFixprice extends Controller {
     $data['heading_title'] = $this->language->get('heading_title');
     $data['tab_settings'] =  'Settings'; //$this->language->get( 'tab_settings' );
     $data['entry_upload'] = 'Upload'; //$this->language->get( 'entry_upload' );
-    $data['button_import'] = 'Import'; $this->language->get( 'button_import' );
+    $data['button_import'] = 'Import';
 
     $data['import'] = $this->url->link('extension/fixprice/upload', 'user_token=' . $this->session->data['user_token']);
     $data['count_product'] = 1;//$this->model_extension_export_import->getCountProduct();
 
-    $data['providers'] = array(
-      [
-        'key'=> 'rusklimat',
-        'name'=> 'Русклимат'
-      ],
-//      [
-//        'key'=> 'b2b.optim-m',
-//        'name'=> 'b2b.optim-m.ru'
-//      ],
-    );
+    $data['providers'] = [
+      'rusklimat' =>
+        [
+          'key' => 'rusklimat',
+          'name' => 'Русклимат',
+          'files' => ['catalog', 'price'],
+        ],
+    ];
 
+    foreach ($data['providers'] as $key => $provider) {
+      $path = DIR_APPLICATION . 'uploads/fixprice/' . $key;
+      $files = array_diff(scandir($path), ['..', '.']);
+      $data['fixprice_result'] = '<ul>' . implode('</li><li>', $files) . '</ul>';
 
-    //		$data['exist_filter'] = $this->model_extension_export_import->existFilter();
-    //
-    //		$data['text_export_type_category'] = ($data['exist_filter']) ? $this->language->get('text_export_type_category') : $this->language->get('text_export_type_category_old');
-    //		$data['text_export_type_product'] = ($data['exist_filter']) ? $this->language->get('text_export_type_product') : $this->language->get('text_export_type_product_old');
-    //		$data['text_export_type_poa'] = $this->language->get('text_export_type_poa');
-    //		$data['text_export_type_option'] = $this->language->get('text_export_type_option');
-    //		$data['text_export_type_attribute'] = $this->language->get('text_export_type_attribute');
-    //		$data['text_export_type_filter'] = $this->language->get('text_export_type_filter');
-    //		$data['text_export_type_customer'] = $this->language->get('text_export_type_customer');
-    //		$data['text_yes'] = $this->language->get('text_yes');
-    //		$data['text_no'] = $this->language->get('text_no');
-    //		$data['text_loading_notifications'] = $this->language->get( 'text_loading_notifications' );
-    //		$data['text_retry'] = $this->language->get('text_retry');
-    //		$data['text_used_category_ids'] = $this->language->get('text_used_category_ids');
-    //		$data['text_used_product_ids'] = $this->language->get('text_used_product_ids');
-    //
-    //		$data['entry_export'] = $this->language->get( 'entry_export' );
-    //		$data['entry_import'] = $this->language->get( 'entry_import' );
-    //		$data['entry_export_type'] = $this->language->get( 'entry_export_type' );
-    //		$data['entry_range_type'] = $this->language->get( 'entry_range_type' );
-    //		$data['entry_category_filter'] = $this->language->get( 'entry_category_filter' );
-    //		$data['entry_category'] = $this->language->get( 'entry_category' );
-    //		$data['entry_start_id'] = $this->language->get( 'entry_start_id' );
-    //		$data['entry_start_index'] = $this->language->get( 'entry_start_index' );
-    //		$data['entry_end_id'] = $this->language->get( 'entry_end_id' );
-    //		$data['entry_end_index'] = $this->language->get( 'entry_end_index' );
-    //		$data['entry_incremental'] = $this->language->get( 'entry_incremental' );
-    //		$data['entry_upload'] = $this->language->get( 'entry_upload' );
-    //		$data['entry_settings_use_option_id'] = $this->language->get( 'entry_settings_use_option_id' );
-    //		$data['entry_settings_use_option_value_id'] = $this->language->get( 'entry_settings_use_option_value_id' );
-    //		$data['entry_settings_use_attribute_group_id'] = $this->language->get( 'entry_settings_use_attribute_group_id' );
-    //		$data['entry_settings_use_attribute_id'] = $this->language->get( 'entry_settings_use_attribute_id' );
-    //		$data['entry_settings_use_filter_group_id'] = $this->language->get( 'entry_settings_use_filter_group_id' );
-    //		$data['entry_settings_use_filter_id'] = $this->language->get( 'entry_settings_use_filter_id' );
-    //		$data['entry_settings_use_export_cache'] = $this->language->get( 'entry_settings_use_export_cache' );
-    //		$data['entry_settings_use_import_cache'] = $this->language->get( 'entry_settings_use_import_cache' );
-    //
-    //		$data['tab_export'] = $this->language->get( 'tab_export' );
-    //		$data['tab_import'] = $this->language->get( 'tab_import' );
-    //		$data['tab_settings'] = $this->language->get( 'tab_settings' );
-    //
-    //		$data['button_export'] = $this->language->get( 'button_export' );
-    //		$data['button_import'] = $this->language->get( 'button_import' );
-    //		$data['button_settings'] = $this->language->get( 'button_settings' );
-    //		$data['button_export_id'] = $this->language->get( 'button_export_id' );
-    //		$data['button_export_page'] = $this->language->get( 'button_export_page' );
-    //
-    //		$data['help_range_type'] = $this->language->get( 'help_range_type' );
-    //		$data['help_category_filter'] = $this->language->get( 'help_category_filter' );
-    //		$data['help_incremental_yes'] = $this->language->get( 'help_incremental_yes' );
-    //		$data['help_incremental_no'] = $this->language->get( 'help_incremental_no' );
-    //		$data['help_import'] = ($data['exist_filter']) ? $this->language->get( 'help_import' ) : $this->language->get( 'help_import_old' );
-    //		$data['help_format'] = $this->language->get( 'help_format' );
-    //
-    //		$data['error_select_file'] = $this->language->get('error_select_file');
-    //		$data['error_post_max_size'] = str_replace( '%1', ini_get('post_max_size'), $this->language->get('error_post_max_size') );
-    //		$data['error_upload_max_filesize'] = str_replace( '%1', ini_get('upload_max_filesize'), $this->language->get('error_upload_max_filesize') );
-    //		$data['error_id_no_data'] = $this->language->get('error_id_no_data');
-    //		$data['error_page_no_data'] = $this->language->get('error_page_no_data');
-    //		$data['error_param_not_number'] = $this->language->get('error_param_not_number');
-    //		$data['error_notifications'] = $this->language->get('error_notifications');
-    //		$data['error_no_news'] = $this->language->get('error_no_news');
-    //		$data['error_batch_number'] = $this->language->get('error_batch_number');
-    //		$data['error_min_item_id'] = $this->language->get('error_min_item_id');
-    //
-    //		if (!empty($this->session->data['export_import_error']['errstr'])) {
-    //			$this->error['warning'] = $this->session->data['export_import_error']['errstr'];
-    //		}
-    //
-    // 		if (isset($this->error['warning'])) {
-    //			$data['error_warning'] = $this->error['warning'];
-    //			if (!empty($this->session->data['export_import_nochange'])) {
-    //				$data['error_warning'] .= "<br />\n".$this->language->get( 'text_nochange' );
-    //			}
-    //		} else {
-    //			$data['error_warning'] = '';
-    //		}
-    //
-    //		unset($this->session->data['export_import_error']);
-    //		unset($this->session->data['export_import_nochange']);
-    //
-    //		if (isset($this->session->data['success'])) {
-    //			$data['success'] = $this->session->data['success'];
-    //
-    //			unset($this->session->data['success']);
-    //		} else {
-    //			$data['success'] = '';
-    //		}
+      $path = DIR_APPLICATION . 'uploads/fixprice/' . $key;
+      foreach ($provider['files'] as $type) {
+        $filename = $path . '/' . date('Y.m.d') . '-' . $type . '.csv';
+        if (file_exists($filename)) {
+          $data['providers'][$key]['currentfile'][$type] = basename($filename);
+        }
+      }
 
-    $data['breadcrumbs'] = array();
-    $data['breadcrumbs'][] = array(
-      'text' => $this->language->get('text_home'),
-      'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], $this->ssl)
-    );
-    $data['breadcrumbs'][] = array(
-      'text' => $this->language->get('heading_title'),
-      'href' => $this->url->link('extension/export_import', 'user_token=' . $this->session->data['user_token'], $this->ssl)
-    );
-    //
-    //		$data['back'] = $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], $this->ssl);
-    //		$data['button_back'] = $this->language->get( 'button_back' );
-    //		$data['import'] = $this->url->link('extension/export_import/upload', 'user_token=' . $this->session->data['user_token'], $this->ssl);
-    //		$data['export'] = $this->url->link('extension/export_import/download', 'user_token=' . $this->session->data['user_token'], $this->ssl);
-    //		$data['settings'] = $this->url->link('extension/export_import/settings', 'user_token=' . $this->session->data['user_token'], $this->ssl);
-    //		$data['post_max_size'] = $this->return_bytes( ini_get('post_max_size') );
-    //		$data['upload_max_filesize'] = $this->return_bytes( ini_get('upload_max_filesize') );
-    //
-    //		if (isset($this->request->post['export_type'])) {
-    //			$data['export_type'] = $this->request->post['export_type'];
-    //		} else {
-    //			$data['export_type'] = 'p';
-    //		}
-    //
-    //		if (isset($this->request->post['range_type'])) {
-    //			$data['range_type'] = $this->request->post['range_type'];
-    //		} else {
-    //			$data['range_type'] = 'id';
-    //		}
-    //
-    //		if (isset($this->request->post['min'])) {
-    //			$data['min'] = $this->request->post['min'];
-    //		} else {
-    //			$data['min'] = '';
-    //		}
-    //
-    //		if (isset($this->request->post['max'])) {
-    //			$data['max'] = $this->request->post['max'];
-    //		} else {
-    //			$data['max'] = '';
-    //		}
-    //
-    //		if (isset($this->request->post['incremental'])) {
-    //			$data['incremental'] = $this->request->post['incremental'];
-    //		} else {
-    //			$data['incremental'] = '1';
-    //		}
-    //
-    //		if (isset($this->request->post['export_import_settings_use_option_id'])) {
-    //			$data['settings_use_option_id'] = $this->request->post['export_import_settings_use_option_id'];
-    //		} else if ($this->config->get( 'export_import_settings_use_option_id' )) {
-    //			$data['settings_use_option_id'] = '1';
-    //		} else {
-    //			$data['settings_use_option_id'] = '0';
-    //		}
-    //
-    //		if (isset($this->request->post['export_import_settings_use_option_value_id'])) {
-    //			$data['settings_use_option_value_id'] = $this->request->post['export_import_settings_use_option_value_id'];
-    //		} else if ($this->config->get( 'export_import_settings_use_option_value_id' )) {
-    //			$data['settings_use_option_value_id'] = '1';
-    //		} else {
-    //			$data['settings_use_option_value_id'] = '0';
-    //		}
-    //
-    //		if (isset($this->request->post['export_import_settings_use_attribute_group_id'])) {
-    //			$data['settings_use_attribute_group_id'] = $this->request->post['export_import_settings_use_attribute_group_id'];
-    //		} else if ($this->config->get( 'export_import_settings_use_attribute_group_id' )) {
-    //			$data['settings_use_attribute_group_id'] = '1';
-    //		} else {
-    //			$data['settings_use_attribute_group_id'] = '0';
-    //		}
-    //
-    //		if (isset($this->request->post['export_import_settings_use_attribute_id'])) {
-    //			$data['settings_use_attribute_id'] = $this->request->post['export_import_settings_use_attribute_id'];
-    //		} else if ($this->config->get( 'export_import_settings_use_attribute_id' )) {
-    //			$data['settings_use_attribute_id'] = '1';
-    //		} else {
-    //			$data['settings_use_attribute_id'] = '0';
-    //		}
-    //
-    //		if (isset($this->request->post['export_import_settings_use_filter_group_id'])) {
-    //			$data['settings_use_filter_group_id'] = $this->request->post['export_import_settings_use_filter_group_id'];
-    //		} else if ($this->config->get( 'export_import_settings_use_filter_group_id' )) {
-    //			$data['settings_use_filter_group_id'] = '1';
-    //		} else {
-    //			$data['settings_use_filter_group_id'] = '0';
-    //		}
-    //
-    //		if (isset($this->request->post['export_import_settings_use_filter_id'])) {
-    //			$data['settings_use_filter_id'] = $this->request->post['export_import_settings_use_filter_id'];
-    //		} else if ($this->config->get( 'export_import_settings_use_filter_id' )) {
-    //			$data['settings_use_filter_id'] = '1';
-    //		} else {
-    //			$data['settings_use_filter_id'] = '0';
-    //		}
-    //
-    //		if (isset($this->request->post['export_import_settings_use_export_cache'])) {
-    //			$data['settings_use_export_cache'] = $this->request->post['export_import_settings_use_export_cache'];
-    //		} else if ($this->config->get( 'export_import_settings_use_export_cache' )) {
-    //			$data['settings_use_export_cache'] = '1';
-    //		} else {
-    //			$data['settings_use_export_cache'] = '0';
-    //		}
-    //
-    //		if (isset($this->request->post['export_import_settings_use_import_cache'])) {
-    //			$data['settings_use_import_cache'] = $this->request->post['export_import_settings_use_import_cache'];
-    //		} else if ($this->config->get( 'export_import_settings_use_import_cache' )) {
-    //			$data['settings_use_import_cache'] = '1';
-    //		} else {
-    //			$data['settings_use_import_cache'] = '0';
-    //		}
-    //
-    //		$data['categories'] = array();
-    //
-    //		$min_product_id = $this->model_extension_export_import->getMinProductId();
-    //		$max_product_id = $this->model_extension_export_import->getMaxProductId();
-    //		$count_product = $this->model_extension_export_import->getCountProduct();
-    //		$min_category_id = $this->model_extension_export_import->getMinCategoryId();
-    //		$max_category_id = $this->model_extension_export_import->getMaxCategoryId();
-    //		$count_category = $this->model_extension_export_import->getCountCategory();
-    //		$min_customer_id = $this->model_extension_export_import->getMinCustomerId();
-    //		$max_customer_id = $this->model_extension_export_import->getMaxCustomerId();
-    //		$count_customer = $this->model_extension_export_import->getCountCustomer();
-    //
-    //		$data['text_used_category_ids'] = str_replace('%1',$min_category_id,$data['text_used_category_ids']);
-    //		$data['text_used_category_ids'] = str_replace('%2',$max_category_id,$data['text_used_category_ids']);
-    //		$data['text_used_product_ids'] = str_replace('%1',$min_product_id,$data['text_used_product_ids']);
-    //		$data['text_used_product_ids'] = str_replace('%2',$max_product_id,$data['text_used_product_ids']);
-    //
-    //		$data['min_product_id'] = $min_product_id;
-    //		$data['max_product_id'] = $max_product_id;
-    //		$data['count_product'] = $count_product;
-    //		$data['min_category_id'] = $min_category_id;
-    //		$data['max_category_id'] = $max_category_id;
-    //		$data['count_category'] = $count_category;
-    //		$data['min_customer_id'] = $min_customer_id;
-    //		$data['max_customer_id'] = $max_customer_id;
-    //		$data['count_customer'] = $count_customer;
-    //
-    //		$data['user_token'] = $this->session->data['user_token'];
-    //
+      if (!empty($data['providers'][$key]['currentfile']) && count($provider['files']) == count($data['providers'][$key]['currentfile'])){
+        $data['providers'][$key]['button_finish_show'] = TRUE;
+      }
+
+  }
+
 
     $this->document->addStyle('view/stylesheet/export_import.css');
-
     $data['header'] = $this->load->controller('common/header');
     $data['column_left'] = $this->load->controller('common/column_left');
     $data['footer'] = $this->load->controller('common/footer');
@@ -288,48 +73,65 @@ class ControllerExtensionFixprice extends Controller {
   }
 
 
+  public function upload() {
+    $this->load->language('extension/fixprice');
+    $this->document->setTitle($this->language->get('heading_title'));
+    $this->load->model('extension/fixprice');
+    $provider = $this->request->post['provider'];
 
-	public function upload() {
-		$this->load->language('extension/fixprice');
-		$this->document->setTitle($this->language->get('heading_title'));
-		$this->load->model('extension/fixprice');
-		$provider = $this->request->post['provider'];
 
+    if (($this->request->server['REQUEST_METHOD'] == 'POST') && ($this->validateUploadForm())) {
+      // Create the new storage folder
+      $path = DIR_APPLICATION . 'uploads/fixprice/' . $provider;
+      if (!is_dir($path)) {
+        mkdir($path, 0777);
+      }
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && ($this->validateUploadForm())) {
-//		     var_dump($this->request->files['upload']);
-			if ((isset( $this->request->files['upload'] )) && (is_uploaded_file($this->request->files['upload']['tmp_name']))) {
-				$file = $this->request->files['upload']['tmp_name'];
-
-        // Create the new storage folder
-        $path = DIR_UPLOAD . 'fixprice';
-        if (!is_dir($path)) {
-          mkdir($path, 0777);
+      // Remove files.
+      foreach (['catalog', 'price'] as $type) {
+        if (!empty($this->request->post['remove_' . $type])) {
+          $filename = $path . '/' . date('Y.m.d') . '-' . $type . '.csv';
+          if (file_exists($filename)) {
+            @unlink($filename);
+          }
         }
+        else {
+          if ((isset($this->request->files['upload_' . $type])) && (is_uploaded_file($this->request->files['upload_' . $type]['tmp_name']))) {
+            $file = $this->request->files['upload_' . $type]['tmp_name'];
+            $file_realname = $_FILES["upload_".$type]["name"];
 
-				if (substr($_FILES["upload"]["name"], -3,3) == 'zip'){
-          $file = $this->model_extension_fixprice->unzip($file, $path);
+            if (substr($file_realname, -3, 3) == 'zip') {
+              $zip_file = $file;
+              $file = $this->model_extension_fixprice->unzip($file, $path);
+              $file_realname = $file;
+              @unlink($zip_file);
+            }
+
+            if (substr($file_realname, -3, 3) == 'xml') {
+              $xml_file = $file;
+              $file = $this->model_extension_fixprice->xml2csv($file, $provider, $type);
+              @unlink($xml_file);
+            }
+
+            if (substr($file_realname, -3, 3) == 'xls') {
+              $xls_file = $file;
+              $file = $this->model_extension_fixprice->xls2csv($file, $provider, $type);
+              @unlink($xls_file);
+            }
+
+            if ($file) {
+              $this->response->redirect($this->url->link('extension/fixprice', 'user_token=' . $this->session->data['user_token'], $this->ssl));
+            }
+            else {
+              $this->error['warning'] = $this->language->get('error_upload');
+            }
+          }
         }
+      }
+    }
 
-        if (substr($file, -3,3) == 'xml'){
-          $file = $this->model_extension_fixprice->xml2csv($file, $provider);
-        }
-
-				if ($result = $this->model_extension_fixprice->upload($file,  $provider)) {
-					//$this->session->data['success'] = $this->language->get('text_success');
-
-
-					$this->response->redirect($this->url->link('extension/fixprice', 'user_token=' . $this->session->data['user_token'], $this->ssl));
-				}
-				else {
-					$this->error['warning'] = $this->language->get('error_upload');
-					$this->error['warning'] .= "<br />\n".$this->language->get( 'text_log_details_2_1_x' );
-				}
-			}
-		}
-
-		$this->getForm();
-	}
+    $this->getForm();
+  }
 
 
 	public function download() {

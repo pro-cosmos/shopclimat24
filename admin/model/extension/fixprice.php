@@ -12,111 +12,81 @@ class ModelExtensionFixprice extends Model {
       // extract it to the path we determined above
       $zip->extractTo($path_dest);
       $zip->close();
-      return $path_dest .'/'. $real_filename;
+      return $path_dest . '/' . $real_filename;
     }
   }
 
-  public function xml2csv($file, $provider) {
-  	$filename = str_replace('.xml', '.csv', basename($file));
-  	$file_csv = dirname($file). '/' . $filename;
-    if (file_exists($file_csv)){
-    	@unlink($file_csv);
-		}
 
+  public function xml2csv($file, $provider, $type) {
+    $path = DIR_APPLICATION . 'uploads/fixprice/' . $provider;
+    $filename = date('Y.m.d') . '-' . $type . '.csv';
+    // Create dir.
+    $file_csv = $path. '/' . $filename;
+    if (file_exists($file_csv)) {
+      @unlink($file_csv);
+    }
 
-    switch($provider){
-			case 'rusklimat':
+    switch ($provider) {
+      case 'rusklimat':
+        $html_field = 'parameters';
 
-        $cat = array();
-        $xml = new XMLReader();
-        $xml->open($file);
-
-        while($xml->read() && $xml->name !== 'category');
-        while($xml->name === 'category'){
-          $node = new SimpleXMLElement($xml->readOuterXML());
-          $id = +$xml->getAttribute("id");
-          $name = ''. $node;
-
-          $cat[$id] = $name;
-
-          $xml->next('category');
-        }
-        $xml->close();
-
-
+        $cat = $this->xml_get_categories($file);
         //////////////////////////////
         $xml = new XMLReader();
         $xml->open($file);
-        $is_first = true;
-        while($xml->read() && $xml->name !== 'offer');
-        while($xml->name === 'offer'){
+        $is_first = TRUE;
+        while ($xml->read() && $xml->name !== 'offer') {
+          ;
+        }
+        while ($xml->name === 'offer') {
           $str = [];
           $node = new SimpleXMLElement($xml->readOuterXML());
           $row = (array) $node;
           $attributes = $row['@attributes'];
           unset($row['@attributes']);
 
-          if($is_first){
+          if ($is_first) {
             $fields = array_keys($row);
+            // add fields from html field.
+            if (isset($row[$html_field])) {
+              $this->xml_fields_alter($fields, $row[$html_field]);
+            }
 
-            if (isset($row['parameters'])){
-              $xml_html = preg_replace("/&#?[a-z0-9]{2,8};/i","", $row['parameters']);
-              $html = simplexml_load_string($xml_html);
-              //unset parameters field
-              //unset($fields[count($fields)-1]);
-              foreach ($html->tr as $tr){
-              	$td = str_replace([',',';'], ' ', (string) $tr->td);
-              	$fields[] = $td;
-							}
-							unset($html);
-						}
-
-            $fields = array_diff($fields, ['parameters']);
-            $fields_str = mb_convert_encoding (implode(';', $fields) ,"Windows-1251" , "UTF-8" );
+            $fields = array_diff($fields, [$html_field]);
+            $fields_str = mb_convert_encoding(implode(';', $fields), "Windows-1251", "UTF-8");
             $path = fopen($file_csv, "a+");
-            fwrite($path, $fields_str. PHP_EOL);
+            fwrite($path, $fields_str . PHP_EOL);
             fclose($path);
 
-            $is_first = false;
+            $is_first = FALSE;
           }
 
-
-          if (!empty($row['parameters'])) {
-            $xml_html = preg_replace("/&#?[a-z0-9]{2,8};/i", "", $row['parameters']);
-            if ($html = simplexml_load_string($xml_html)) {
-              foreach ($html->tr as $tr) {
-                $field_name = str_replace([',',';'], ' ', (string) $tr->td);
-
-                $td = (array) $tr->td;
-                $field_value = end($td);
-                $field_value = is_string($field_value) ? (string) $field_value : (string) $field_value->b;
-                $row[$field_name] =  (string) $field_value ;
-              }
-            }
-            unset($html);
-            unset($row['parameters']);
+          // Add row items from html field.
+          if (!empty($row[$html_field])) {
+            $this->xml_row_alter($row, $row[$html_field]);
+            unset($row[$html_field]);
           }
 
 
           foreach ($fields as $k) {
-            $v = isset($row[$k])? $row[$k] : '';
+            $v = isset($row[$k]) ? $row[$k] : '';
             switch ($k) {
               case 'categoryId':
-                $v =  $cat[(string)$v] ;
+                $v = $cat[(string) $v];
                 break;
               default:
-                if (is_array($v)){
-                	$v =  implode('|', (array) $v) ;
+                if (is_array($v)) {
+                  $v = implode('|', (array) $v);
                 }
                 else {
-                  $v =  (string) $v ;
-								}
+                  $v = (string) $v;
+                }
             }
             $str[] = '"' . str_replace('"', '', $v) . '"';
           }
 
           $str = implode(';', $str);
-          $str = mb_convert_encoding ($str, "Windows-1251" , "UTF-8" );
+          $str = mb_convert_encoding($str, "Windows-1251", "UTF-8");
           $path = fopen($file_csv, "a+");
           fwrite($path, $str . PHP_EOL);
           fclose($path);
@@ -124,89 +94,222 @@ class ModelExtensionFixprice extends Model {
           $xml->next('offer');
         }
         $xml->close();
-        //gc_enable();
-				break;
-		}
+        break;
+    }
+
+    unset($xml);
+
+    return $file_csv;
   }
 
 
-  public function upload( $filename, $incremental=false ) {
-    // we use our own error handler
-    global $registry;
-    $registry = $this->registry;
-    //set_error_handler('error_handler_for_export_import',E_ALL);
-    //	register_shutdown_function('fatal_error_shutdown_handler_for_export_import');
-    return true;
-    try {
-      //$this->session->data['export_import_nochange'] = 1;
+  private function xml_row_alter(&$row, $html) {
+    $html = preg_replace("/&#?[a-z0-9]{2,8};/i", "", $html);
+    if ($html = simplexml_load_string($html)) {
+      foreach ($html->tr as $tr) {
+        $field_name = str_replace([',', ';'], ' ', (string) $tr->td);
 
+        $td = (array) $tr->td;
+        $field_value = end($td);
+        $field_value = is_string($field_value) ? (string) $field_value : (string) $field_value->b;
+        $row[$field_name] = (string) $field_value;
+      }
+    }
+    unset($html);
+  }
+
+  private function xml_fields_alter(&$fields, $html) {
+    $html = preg_replace("/&#?[a-z0-9]{2,8};/i", "", $html);
+    $html = simplexml_load_string($html);
+    foreach ($html->tr as $tr) {
+      $td = str_replace([',', ';'], ' ', (string) $tr->td);
+      $fields[] = $td;
+    }
+    unset($html);
+  }
+
+  private function xml_get_categories($file) {
+    $cat = [];
+    $xml = new XMLReader();
+    $xml->open($file);
+
+    while ($xml->read() && $xml->name !== 'category') {
+    }
+    while ($xml->name === 'category') {
+      $node = new SimpleXMLElement($xml->readOuterXML());
+      $id = (int) $xml->getAttribute("id");
+      $cat[$id] = (string) $node;
+      $xml->next('category');
+    }
+    $xml->close();
+    unset($xml);
+
+    return $cat;
+  }
+
+
+  public function xls2csv($file, $provider, $type) {
+    $path = DIR_APPLICATION . 'uploads/fixprice/' . $provider;
+    $file_csv = $path . '/' . date('Y.m.d') . '-' . $type . '.csv';
+    if (file_exists($file_csv)) {
+      @unlink($file_csv);
+    }
+
+    try {
       // we use the PHPExcel package from https://github.com/PHPOffice/PHPExcel
       $cwd = getcwd();
-      $dir = version_compare(VERSION,'3.0','>=') ? 'library/export_import' : 'PHPExcel';
-      chdir( DIR_SYSTEM.$dir );
-      require_once( 'Classes/PHPExcel.php' );
-      chdir( $cwd );
-
-      // Memory Optimization
-      if ($this->config->get( 'export_import_settings_use_import_cache' )) {
-        $cacheMethod = PHPExcel_CachedObjectStorageFactory::cache_to_phpTemp;
-        $cacheSettings = array( ' memoryCacheSize '  => '16MB'  );
-        PHPExcel_Settings::setCacheStorageMethod($cacheMethod, $cacheSettings);
-      }
+      $dir = version_compare(VERSION, '3.0', '>=') ? 'library/export_import' : 'PHPExcel';
+      chdir(DIR_SYSTEM . $dir);
+      require_once('Classes/PHPExcel.php');
+      chdir($cwd);
 
       // parse uploaded spreadsheet file
-      $inputFileType = PHPExcel_IOFactory::identify($filename);
+      $inputFileType = PHPExcel_IOFactory::identify($file);
       $objReader = PHPExcel_IOFactory::createReader($inputFileType);
-      $objReader->setReadDataOnly(true);
-      $reader = $objReader->load($filename);
+      $objReader->setReadDataOnly(TRUE);
+      $reader = $objReader->load($file);
 
-      // read the various worksheets and load them to the database
-      if (!$this->validateIncrementalOnly( $reader, $incremental )) {
-        return false;
-      }
-      if (!$this->validateUpload( $reader )) {
-        return false;
-      }
-      $this->clearCache();
-      $this->session->data['export_import_nochange'] = 0;
-      $available_product_ids = array();
-      $available_category_ids = array();
-      $available_customer_ids = array();
-      $this->uploadCategories( $reader, $incremental, $available_category_ids );
-      $this->uploadCategoryFilters( $reader, $incremental, $available_category_ids );
-      $this->uploadCategorySEOKeywords( $reader, $incremental, $available_category_ids );
-      $this->uploadProducts( $reader, $incremental, $available_product_ids );
-      $this->uploadAdditionalImages( $reader, $incremental, $available_product_ids );
-      $this->uploadSpecials( $reader, $incremental, $available_product_ids );
-      $this->uploadDiscounts( $reader, $incremental, $available_product_ids );
-      $this->uploadRewards( $reader, $incremental, $available_product_ids );
-      $this->uploadProductOptions( $reader, $incremental, $available_product_ids );
-      $this->uploadProductOptionValues( $reader, $incremental, $available_product_ids );
-      $this->uploadProductAttributes( $reader, $incremental, $available_product_ids );
-      $this->uploadProductFilters( $reader, $incremental, $available_product_ids );
-      $this->uploadProductSEOKeywords( $reader, $incremental, $available_product_ids );
-      $this->uploadOptions( $reader, $incremental );
-      $this->uploadOptionValues( $reader, $incremental );
-      $this->uploadAttributeGroups( $reader, $incremental );
-      $this->uploadAttributes( $reader, $incremental );
-      $this->uploadFilterGroups( $reader, $incremental );
-      $this->uploadFilters( $reader, $incremental );
-      $this->uploadCustomers( $reader, $incremental, $available_customer_ids );
-      $this->uploadAddresses( $reader, $incremental, $available_customer_ids );
-      return true;
+        foreach ($reader->getAllSheets() as $sheet) {
+          // Parse sheet.
+          $array = $sheet->toArray();
+          $this->xls_parse_sheet($array, $provider,  $file_csv);
+        }
+
+      return TRUE;
     } catch (Exception $e) {
-      $errstr = $e->getMessage();
-      $errline = $e->getLine();
-      $errfile = $e->getFile();
-      $errno = $e->getCode();
-      $this->session->data['export_import_error'] = array( 'errstr'=>$errstr, 'errno'=>$errno, 'errfile'=>$errfile, 'errline'=>$errline );
-      if ($this->config->get('config_error_log')) {
-        $this->log->write('PHP ' . get_class($e) . ':  ' . $errstr . ' in ' . $errfile . ' on line ' . $errline);
-      }
-      return false;
+      //      $errstr = $e->getMessage();
+      //      $errline = $e->getLine();
+      //      $errfile = $e->getFile();
+      //      $errno = $e->getCode();
+      //      $this->session->data['export_import_error'] = array( 'errstr'=>$errstr, 'errno'=>$errno, 'errfile'=>$errfile, 'errline'=>$errline );
+      //      if ($this->config->get('config_error_log')) {
+      //        $this->log->write('PHP ' . get_class($e) . ':  ' . $errstr . ' in ' . $errfile . ' on line ' . $errline);
     }
+
+    return $file_csv;
   }
-}
+
+
+  	protected function xls_parse_sheet($sheet, $provider,  $file_csv) {
+      $is_first = true;
+      $path = fopen($file_csv, "a+");
+       foreach ($sheet as $row){
+         if ($is_first) {
+           $fields = ['id', 'price', 'currency', 'qty'];
+           $fields_str = mb_convert_encoding(implode(';', $fields), "Windows-1251", "UTF-8");
+           fwrite($path, $fields_str . PHP_EOL);
+           $is_first = FALSE;
+         }
+
+        $str = [];
+         switch ($provider) {
+           case 'rusklimat':
+             if (!empty($row[1])) {
+               if (isset($row[0]) && $id = $row[0]) {
+                 if (isset($row[2]) && $price = $row[2]) {
+                   if (isset($row[3]) && $currency = $row[3]) {
+                     if (isset($row[8]) && $qty = $row[8]) {
+                       $str[] = '"' . str_replace('"', '', $id) . '"';
+                       $str[] = '"' . str_replace('"', '', $price) . '"';
+                       $str[] = '"' . str_replace('"', '', $currency) . '"';
+                       $str[] = '"' . str_replace('"', '', $qty) . '"';
+                     }
+                   }
+                 }
+               }
+             }
+             break;
+         }
+
+
+         if(!empty($str)){
+           $str = implode(';', $str);
+           $str = mb_convert_encoding($str, "Windows-1251", "UTF-8");
+           fwrite($path, $str . PHP_EOL);
+         }
+       }
+      fclose($path);
+    }
+} //end class
+
+
+//  public function upload( $filename, $incremental=false ) {
+//    // we use our own error handler
+//    global $registry;
+//    $registry = $this->registry;
+//    //set_error_handler('error_handler_for_export_import',E_ALL);
+//    //	register_shutdown_function('fatal_error_shutdown_handler_for_export_import');
+//    return true;
+//    try {
+//      //$this->session->data['export_import_nochange'] = 1;
+//
+//      // we use the PHPExcel package from https://github.com/PHPOffice/PHPExcel
+//      $cwd = getcwd();
+//      $dir = version_compare(VERSION,'3.0','>=') ? 'library/export_import' : 'PHPExcel';
+//      chdir( DIR_SYSTEM.$dir );
+//      require_once( 'Classes/PHPExcel.php' );
+//      chdir( $cwd );
+//
+//      // Memory Optimization
+//      if ($this->config->get( 'export_import_settings_use_import_cache' )) {
+//        $cacheMethod = PHPExcel_CachedObjectStorageFactory::cache_to_phpTemp;
+//        $cacheSettings = array( ' memoryCacheSize '  => '16MB'  );
+//        PHPExcel_Settings::setCacheStorageMethod($cacheMethod, $cacheSettings);
+//      }
+//
+//      // parse uploaded spreadsheet file
+//      $inputFileType = PHPExcel_IOFactory::identify($filename);
+//      $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+//      $objReader->setReadDataOnly(true);
+//      $reader = $objReader->load($filename);
+//
+//      // read the various worksheets and load them to the database
+//      if (!$this->validateIncrementalOnly( $reader, $incremental )) {
+//        return false;
+//      }
+//      if (!$this->validateUpload( $reader )) {
+//        return false;
+//      }
+//      $this->clearCache();
+//      $this->session->data['export_import_nochange'] = 0;
+//      $available_product_ids = array();
+//      $available_category_ids = array();
+//      $available_customer_ids = array();
+//      $this->uploadCategories( $reader, $incremental, $available_category_ids );
+//      $this->uploadCategoryFilters( $reader, $incremental, $available_category_ids );
+//      $this->uploadCategorySEOKeywords( $reader, $incremental, $available_category_ids );
+//      $this->uploadProducts( $reader, $incremental, $available_product_ids );
+//      $this->uploadAdditionalImages( $reader, $incremental, $available_product_ids );
+//      $this->uploadSpecials( $reader, $incremental, $available_product_ids );
+//      $this->uploadDiscounts( $reader, $incremental, $available_product_ids );
+//      $this->uploadRewards( $reader, $incremental, $available_product_ids );
+//      $this->uploadProductOptions( $reader, $incremental, $available_product_ids );
+//      $this->uploadProductOptionValues( $reader, $incremental, $available_product_ids );
+//      $this->uploadProductAttributes( $reader, $incremental, $available_product_ids );
+//      $this->uploadProductFilters( $reader, $incremental, $available_product_ids );
+//      $this->uploadProductSEOKeywords( $reader, $incremental, $available_product_ids );
+//      $this->uploadOptions( $reader, $incremental );
+//      $this->uploadOptionValues( $reader, $incremental );
+//      $this->uploadAttributeGroups( $reader, $incremental );
+//      $this->uploadAttributes( $reader, $incremental );
+//      $this->uploadFilterGroups( $reader, $incremental );
+//      $this->uploadFilters( $reader, $incremental );
+//      $this->uploadCustomers( $reader, $incremental, $available_customer_ids );
+//      $this->uploadAddresses( $reader, $incremental, $available_customer_ids );
+//      return true;
+//    } catch (Exception $e) {
+//      $errstr = $e->getMessage();
+//      $errline = $e->getLine();
+//      $errfile = $e->getFile();
+//      $errno = $e->getCode();
+//      $this->session->data['export_import_error'] = array( 'errstr'=>$errstr, 'errno'=>$errno, 'errfile'=>$errfile, 'errline'=>$errline );
+//      if ($this->config->get('config_error_log')) {
+//        $this->log->write('PHP ' . get_class($e) . ':  ' . $errstr . ' in ' . $errfile . ' on line ' . $errline);
+//      }
+//      return false;
+//    }
+//  }
+//}
 
 //static $registry = null;
 

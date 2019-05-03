@@ -52,16 +52,37 @@
 						<form action="{{ import }}" method="post" enctype="multipart/form-data" id="{{ provider.key }}" class="form-horizontal">
 							<input type="hidden" name="provider" value="{{ provider.key }}">
 							<table class="form">
-								<tr>
+									<tr>
 									<td>
-										<span class="help">{{ provider.help }}</span>
+                    {% if (fixprice_result) %}
+										<span class="help">{{ fixprice_result }}</span>
+                    {% endif %}
 									</td>
 								</tr>
 
 								<tr>
-									<td>{{ entry_upload }}<br /><br /><input type="file" name="upload" id="upload" /></td>
+									<td>
+										<p>Файл каталога:</p>
+                    {% if (provider.currentfile.catalog) %}
+										 <p><b>{{ provider.currentfile.catalog }}</b></p>
+											<input type="checkbox" name="remove_catalog" value="1" /> <b>Удалить файл</b>
+                    {% else %}
+										<input type="file" name="upload_catalog" id="upload_catalog" />
+                  {% endif %}
+									</td>
 								</tr>
 								<tr>
+									<td>
+										<p>Файл прайса:</p>
+                    {% if (provider.currentfile.price) %}
+											<p><b>{{ provider.currentfile.price }}</b></p>
+											<input type="checkbox" name="remove_price" value="1" /> <b>Удалить файл</b>
+                    {% else %}
+											<input type="file" name="upload_price" id="upload_price" />
+                    {% endif %}
+									</td>
+								</tr>
+									<tr>
 									<td class="buttons"><a onclick="uploadData('{{ provider.key }}');" class="btn btn-primary"><span>{{ button_import }}</span></a></td>
 								</tr>
 							</table>
@@ -437,9 +458,9 @@ function checkFileSize(id) {
 }
 
 function uploadData(form_id) {
-	if (checkFileSize('upload')) {
+	//if (checkFileSize('upload_catalog')) {
 		$('#'+ form_id).submit();
-	}
+	//}
 }
 
 function isNumber(txt){ 
