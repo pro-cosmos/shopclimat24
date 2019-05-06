@@ -18,16 +18,16 @@
 			<div class="panel-body">
 
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#tab-settings" data-toggle="tab">{{ tab_settings }}</a></li>
+					<li {% if (provider_current == 'settings') %} class="active" {% endif %}><a href="#tab-settings" data-toggle="tab">{{ tab_settings }}</a></li>
           {% for provider in providers %}
-							<li><a href="#tab-{{ provider.key }}" data-toggle="tab">{{ provider.name }}</a></li>
+							<li {% if (provider_current == provider.key) %} class="active" {% endif %}><a href="#tab-{{ provider.key }}" data-toggle="tab">{{ provider.name }}</a></li>
           {% endfor %}
 				</ul>
 
 				<div class="tab-content">
 
           {% for provider in providers %}
-					<div class="tab-pane" id="tab-{{ provider.key }}">
+					<div class="tab-pane {% if (provider_current == provider.key) %} active {% endif %}" id="tab-{{ provider.key }}">
 						<form action="{{ import }}" method="post" enctype="multipart/form-data" id="{{ provider.key }}" class="form-horizontal">
 							<input type="hidden" name="provider" value="{{ provider.key }}">
 							<table class="form">
@@ -81,7 +81,7 @@
           {% endfor %}
 
 
-					<div class="tab-pane active" id="tab-settings">
+					<div class="tab-pane {% if (provider_current == 'settings') %} active {% endif %}" id="tab-settings">
 						<form action="{{ settings }}" method="post" enctype="multipart/form-data" id="settings" class="form-horizontal">
 							<table class="form">
 								<tr>

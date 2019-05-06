@@ -95,9 +95,21 @@ function __construct($registry) {
             unset($row[$html_field]);
           }
 
+          $FieldReplacements = $settings['CatalogFieldReplacements'];
 
           foreach ($fields as $k) {
             $v = isset($row[$k]) ? $row[$k] : '';
+
+            // Apply field replacement
+            if (in_array($k, array_keys($FieldReplacements))){
+              if ($rules = $FieldReplacements[$k]){
+                foreach($rules as $find => $replace){
+                  $v = str_replace($find, $replace, $v);
+                }
+              }
+            }
+
+            // Alter some base fields values.
             switch ($k) {
               // Clear price.
               case 'price':
@@ -257,49 +269,55 @@ function __construct($registry) {
   }
 
 
-  	protected function xls_parse_sheet($sheet, $provider,  $file_csv) {
-      $settings = $this->config->get('fixprice_settings');
-      $is_first = true;
-      $path = fopen($file_csv, "a+");
-       foreach ($sheet as $row){
-         if ($is_first) {
-           $fields = ['id', 'price', 'currency', 'qty'];
-           $fields_str = self::encode_string(implode(',', $fields));
-           fwrite($path, $fields_str . PHP_EOL);
-           $is_first = FALSE;
-         }
+  protected function xls_parse_sheet($sheet, $provider, $file_csv) {
+    $settings = $this->config->get('fixprice_settings');
+    $price_fields = $settings['Common']['price_fields'];
+    $FieldReplacements = $settings['PriceFieldReplacements'];
+    $is_first = TRUE;
 
-        $str = [];
-         switch ($provider) {
-           case 'rusklimat':
-             if (!empty($row[1])) {
-               if (isset($row[0]) && $id = $row[0]) {
-                 if (isset($row[2]) && $price = $row[2]) {
-                   if (isset($row[3]) && $currency = $row[3]) {
-                     if (isset($row[8]) && $qty = $row[8]) {
-                       $str[] = '"' . str_replace('"', '', $id) . '"';
-                       $str[] = '"' . str_replace('"', '', $price) . '"';
-                       $str[] = '"' . str_replace('"', '', $currency) . '"';
+    $path = fopen($file_csv, "a+");
+    foreach ($sheet as $row) {
+      if ($is_first) {
+        $fields = array_diff($price_fields, ['name']);
+        $fields_str = self::encode_string(implode(',', $fields));
+        fwrite($path, $fields_str . PHP_EOL);
+        $is_first = FALSE;
+      }
 
-                       $qty = in_array($qty, ['есть', 'уточняйте'])? $settings['Common']['qty_default'] : 0;
-                       $str[] = '"' . str_replace('"', '', $qty) . '"';
-                     }
-                   }
-                 }
-               }
-             }
-             break;
-         }
+      // Loop from fields.
+      foreach ($price_fields as $field_col => $field_name) {
+        $v = isset($row[$field_col]) ? $row[$field_col] : NULL;
+
+        // Apply field replacement
+        if (in_array($field_name, array_keys($FieldReplacements))) {
+          if ($rules = $FieldReplacements[$field_name]) {
+            foreach ($rules as $find => $replace) {
+              $v = str_replace($find, $replace, $v);
+            }
+          }
+        }
+
+        $$field_name = $v;
+      }
 
 
-         if(!empty($str)){
-           $str = implode(',', $str);
-           $str = self::encode_string($str);
-           fwrite($path, $str . PHP_EOL);
-         }
-       }
-      fclose($path);
+      $str = [];
+      if ($id && $price && $name && $currency) {
+        $str[] = '"' . str_replace('"', '', $id) . '"';
+        $str[] = '"' . str_replace('"', '', $price) . '"';
+        $str[] = '"' . str_replace('"', '', $currency) . '"';
+        $str[] = '"' . str_replace('"', '', $qty) . '"';
+      }
+
+
+      if (!empty($str)) {
+        $str = implode(',', $str);
+        $str = self::encode_string($str);
+        fwrite($path, $str . PHP_EOL);
+      }
     }
+    fclose($path);
+  }
 } //end class
 
 
