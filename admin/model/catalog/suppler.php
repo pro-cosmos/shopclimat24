@@ -19649,10 +19649,20 @@ class ModelCatalogSuppler extends Model {
 			} elseif (!empty($row[$price])) $row[$price] = $this->convertPrice($row[$price])+$percent_plus;								
 						
 			if (empty($row[$price]) and $ad != 2 and $ad != 12 and $ad != 13 and !$catcreate and !$yml and $row[$cod] != "end") {
-				$err = " The Product passed: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Invalid price. Column = " . $price . "\n";
-				$this->adderr($err);
-				continue;
-			}	
+				// Allow zero price in catalog files.
+        $zero_price = FALSE;
+        if (strpos($f, 'catalog') !== FALSE && isset($row[1])) {
+          if ($values = explode(',', $row[1])) {
+              $allow_zero_price = $row[$price] == 0;
+          }
+        }
+
+        if (!$allow_zero_price) {
+          $err = " The Product passed: Row ~= " . $row_count . " SKU = " . $row[$cod] . " Invalid price. Column = " . $price . "\n";
+          $this->adderr($err);
+          continue;
+        }
+			}
 			
 			if ($except) {
 				if ($this->checkException($row[$cod], $masex, $nex)) continue;					
