@@ -3,6 +3,29 @@
 
 class ModelExtensionFixprice extends Model {
 
+  public $categories;
+  public $settings;
+
+
+function __construct($registry) {
+  parent::__construct($registry);
+
+  $this->categories = $this->getAllCategories();
+  $this->setttings = $this->config->get('fixprice_settings');
+}
+
+  public function getAllCategories() {
+    static $cache = [];
+    if (!$cache) {
+      $query = $this->db->query("SELECT DISTINCT name FROM " . DB_PREFIX . "category_description");
+      $cache = array_map(function ($v) {
+        return $v['name'];
+      }, $query->rows);
+    }
+    return $cache;
+  }
+
+
 
   public function unzip($file, $path_dest) {
     $zip = new ZipArchive;
@@ -16,10 +39,15 @@ class ModelExtensionFixprice extends Model {
     }
   }
 
+  static function encode_string($str) {
+    return mb_convert_encoding($str, 'utf-8', mb_detect_encoding($str));
+    //return mb_convert_encoding($str, "Windows-1251", "UTF-8");
+ }
 
   public function xml2csv($file, $provider, $type) {
+    $settings = $this->config->get('fixprice_settings');
     $path = DIR_APPLICATION . 'uploads/fixprice/' . $provider;
-    $filename = date('Y.m.d') . '-' . $type . '.csv';
+    $filename = $type . '.csv';
     // Create dir.
     $file_csv = $path. '/' . $filename;
     if (file_exists($file_csv)) {
@@ -53,7 +81,7 @@ class ModelExtensionFixprice extends Model {
             }
 
             $fields = array_diff($fields, [$html_field]);
-            $fields_str = mb_convert_encoding(implode(';', $fields), "Windows-1251", "UTF-8");
+            $fields_str = self::encode_string(implode(';', $fields));
             $path = fopen($file_csv, "a+");
             fwrite($path, $fields_str . PHP_EOL);
             fclose($path);
@@ -71,12 +99,29 @@ class ModelExtensionFixprice extends Model {
           foreach ($fields as $k) {
             $v = isset($row[$k]) ? $row[$k] : '';
             switch ($k) {
+              // Clear price.
+              case 'price':
+                if (!empty($settings['Common']['catalog_reset_price'])){
+                  $v = 0;
+                }
+                break;
               case 'categoryId':
                 $v = $cat[(string) $v];
                 break;
+              case 'picture':
+              case 'picturebrand':
+                if ($v) {
+                  $img_path = str_replace('/admin/','',HTTP_SERVER) .'/image/providers/' . $provider . '/' . $k . '/';
+                  $v = is_array($v) ? $v : [$v];
+                  foreach ($v as $k1 => $v1) {
+                    $v[$k1] = $img_path . $v1;
+                  }
+                  $v = implode(',', (array) $v);
+                }
+                break;
               default:
                 if (is_array($v)) {
-                  $v = implode('|', (array) $v);
+                  $v = implode(',', (array) $v);
                 }
                 else {
                   $v = (string) $v;
@@ -86,7 +131,7 @@ class ModelExtensionFixprice extends Model {
           }
 
           $str = implode(';', $str);
-          $str = mb_convert_encoding($str, "Windows-1251", "UTF-8");
+          $str = self::encode_string($str);
           $path = fopen($file_csv, "a+");
           fwrite($path, $str . PHP_EOL);
           fclose($path);
@@ -138,7 +183,29 @@ class ModelExtensionFixprice extends Model {
     while ($xml->name === 'category') {
       $node = new SimpleXMLElement($xml->readOuterXML());
       $id = (int) $xml->getAttribute("id");
-      $cat[$id] = (string) $node;
+      $category = (string) $node;
+
+      // additional replaces.
+      $settings = $this->config->get('fixprice_settings');
+      if (isset($settings['CategoryReplacements']) && $map = $settings['CategoryReplacements']) {
+        foreach ($map as $find => $replace) {
+          if (strpos($category, $find) !== FALSE) {
+            $category = $replace;
+            break;
+          }
+        }
+      }
+
+      // search in categories.
+      foreach($this->categories as $base_category){
+        if (strpos($category, $base_category) !== FALSE){
+          $category = $base_category;
+          break;
+        }
+      }
+
+
+      $cat[$id] = $category;
       $xml->next('category');
     }
     $xml->close();
@@ -150,7 +217,7 @@ class ModelExtensionFixprice extends Model {
 
   public function xls2csv($file, $provider, $type) {
     $path = DIR_APPLICATION . 'uploads/fixprice/' . $provider;
-    $file_csv = $path . '/' . date('Y.m.d') . '-' . $type . '.csv';
+    $file_csv = $path . '/' . $type . '.csv';
     if (file_exists($file_csv)) {
       @unlink($file_csv);
     }
@@ -191,12 +258,13 @@ class ModelExtensionFixprice extends Model {
 
 
   	protected function xls_parse_sheet($sheet, $provider,  $file_csv) {
+      $settings = $this->config->get('fixprice_settings');
       $is_first = true;
       $path = fopen($file_csv, "a+");
        foreach ($sheet as $row){
          if ($is_first) {
            $fields = ['id', 'price', 'currency', 'qty'];
-           $fields_str = mb_convert_encoding(implode(';', $fields), "Windows-1251", "UTF-8");
+           $fields_str = self::encode_string(implode(',', $fields));
            fwrite($path, $fields_str . PHP_EOL);
            $is_first = FALSE;
          }
@@ -212,6 +280,8 @@ class ModelExtensionFixprice extends Model {
                        $str[] = '"' . str_replace('"', '', $id) . '"';
                        $str[] = '"' . str_replace('"', '', $price) . '"';
                        $str[] = '"' . str_replace('"', '', $currency) . '"';
+
+                       $qty = in_array($qty, ['есть', 'уточняйте'])? $settings['Common']['qty_default'] : 0;
                        $str[] = '"' . str_replace('"', '', $qty) . '"';
                      }
                    }
@@ -223,8 +293,8 @@ class ModelExtensionFixprice extends Model {
 
 
          if(!empty($str)){
-           $str = implode(';', $str);
-           $str = mb_convert_encoding($str, "Windows-1251", "UTF-8");
+           $str = implode(',', $str);
+           $str = self::encode_string($str);
            fwrite($path, $str . PHP_EOL);
          }
        }

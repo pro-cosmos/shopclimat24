@@ -14,23 +14,6 @@
 		</div>
 	</div>
 	<div class="container-fluid">
-		{% if (error_warning) %}
-		<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-		</div>
-		{% endif %}
-		{% if (success) %}
-		<div class="alert alert-success"><i class="fa fa-check-circle"></i> {{ success }}
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-		</div>
-		{% endif %}
-		{% if ((not error_warning) and (not success)) %}
-		<div id="export_import_notification" class="alert alert-info"><i class="fa fa-info-circle"></i>
-			<div id="export_import_loading"><img src="view/image/export-import/loading.gif" />{{ text_loading_notifications }}</div>
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-		</div>
-		{% endif %}
-
 		<div class="panel panel-default">
 			<div class="panel-body">
 
@@ -39,10 +22,6 @@
           {% for provider in providers %}
 							<li><a href="#tab-{{ provider.key }}" data-toggle="tab">{{ provider.name }}</a></li>
           {% endfor %}
-				<!--
-				<li><a href="#tab-import" data-toggle="tab">{{ tab_import }}</a></li>
-					<li><a href="#tab-settings" data-toggle="tab">{{ tab_settings }}</a></li>
-        -->
 				</ul>
 
 				<div class="tab-content">
@@ -52,272 +31,65 @@
 						<form action="{{ import }}" method="post" enctype="multipart/form-data" id="{{ provider.key }}" class="form-horizontal">
 							<input type="hidden" name="provider" value="{{ provider.key }}">
 							<table class="form">
-									<tr>
+								<tr>
 									<td>
-                    {% if (fixprice_result) %}
-										<span class="help">{{ fixprice_result }}</span>
-                    {% endif %}
+										<p>Файл каталога:</p>
+                    {% if (provider.currentfile.catalog) %}
+										 <p>
+											 <a href="{{ provider.currentfile.catalog_url }}" target="_blank">{{ provider.currentfile.catalog }}</a>
+											<input type="hidden" name="remove_catalog" value="0" />
+											<button data-toggle="tooltip"  class="btn btn-danger" onclick="deleteFile('{{ provider.key }}', 'remove_catalog')" data-original-title="Удалить"><i class="fa fa-trash-o"></i></button>
+										 </p>
+											 {% else %}
+										<input type="file" name="upload_catalog" id="upload_catalog" />
+                  {% endif %}
 									</td>
 								</tr>
 
 								<tr>
 									<td>
-										<p>Файл каталога:</p>
-                    {% if (provider.currentfile.catalog) %}
-										 <p><b>{{ provider.currentfile.catalog }}</b></p>
-											<input type="checkbox" name="remove_catalog" value="1" /> <b>Удалить файл</b>
-                    {% else %}
-										<input type="file" name="upload_catalog" id="upload_catalog" />
-                  {% endif %}
-									</td>
-								</tr>
-								<tr>
-									<td>
 										<p>Файл прайса:</p>
                     {% if (provider.currentfile.price) %}
-											<p><b>{{ provider.currentfile.price }}</b></p>
-											<input type="checkbox" name="remove_price" value="1" /> <b>Удалить файл</b>
+											<p>
+												<a href="{{ provider.currentfile.price_url }}" target="_blank">{{ provider.currentfile.price }}</a>
+												<input type="hidden" name="remove_price" value="0" />
+												<button data-toggle="tooltip"  class="btn btn-danger" onclick="deleteFile('{{ provider.key }}', 'remove_price')" data-original-title="Удалить"><i class="fa fa-trash-o"></i></button>
+											</p>
                     {% else %}
 											<input type="file" name="upload_price" id="upload_price" />
                     {% endif %}
 									</td>
 								</tr>
-									<tr>
+
+								<tr>
 									<td class="buttons"><a onclick="uploadData('{{ provider.key }}');" class="btn btn-primary"><span>{{ button_import }}</span></a></td>
 								</tr>
+
+								<tr>
+									<td><p>Настройки:</p>
+										<textarea name="settings_{{ provider.key }}" rows="10" cols="100">{{ provider.settings }}</textarea>
+									</td>
+								</tr>
+
+								<tr>
+									<td class="buttons"><a onclick="uploadData('{{ provider.key }}');" class="btn btn-primary"><span>Save</span></a></td>
+								</tr>
+
 							</table>
 						</form>
 					</div>
           {% endfor %}
 
 
-					<!--
-                    <div class="tab-pane active" id="tab-export">
-                      <form action="{{ export }}" method="post" enctype="multipart/form-data" id="export" class="form-horizontal">
-                        <table class="form">
-                          <tr>
-                            <td>{{ entry_export }}</td>
-                          </tr>
-                          <tr>
-                            <td style="vertical-align:top;">
-                              {{ entry_export_type }}<br />
-                              {% if (export_type=='c') %}
-                              <input type="radio" name="export_type" value="c" checked="checked" />
-                              {% else %}
-                              <input type="radio" name="export_type" value="c" />
-                              {% endif %}
-                              {{ text_export_type_category }}
-                              <br />
-                              {% if (export_type=='p') %}
-                              <input type="radio" name="export_type" value="p" checked="checked" />
-                              {% else %}
-                              <input type="radio" name="export_type" value="p" />
-                              {% endif %}
-                              {{ text_export_type_product }}
-                              <br />
-                              {% if (export_type=='o') %}
-                              <input type="radio" name="export_type" value="o" checked="checked" />
-                              {% else %}
-                              <input type="radio" name="export_type" value="o" />
-                              {% endif %}
-                              {{ text_export_type_option }}
-                              <br />
-                              {% if (export_type=='a') %}
-                              <input type="radio" name="export_type" value="a" checked="checked" />
-                              {% else %}
-                              <input type="radio" name="export_type" value="a" />
-                              {% endif %}
-                              {{ text_export_type_attribute }}
-                              <br />
-                              {% if (exist_filter) %}
-                              {% if (export_type=='f') %}
-                              <input type="radio" name="export_type" value="f" checked="checked" />
-                              {% else %}
-                              <input type="radio" name="export_type" value="f" />
-                              {% endif %}
-                              {{ text_export_type_filter }}
-                              <br />
-                              {% endif %}
-                              {% if (export_type=='u') %}
-                              <input type="radio" name="export_type" value="u" checked="checked" />
-                              {% else %}
-                              <input type="radio" name="export_type" value="u" />
-                              {% endif %}
-                              {{ text_export_type_customer }}
-                              <br />
-                            </td>
-                          </tr>
-
-                          <tr id="category_filter">
-                            <td style="vertical-align:top;">{{ entry_category_filter }}<span class="help">{{ help_category_filter }}</span><br />
-                              <input type="text" name="category" value="" placeholder="{{ entry_category }}" id="input-category" class="form-control" />
-                              <div id="categories" class="well well-sm" style="height: 100px; overflow: auto;">
-                                {% for category in categories %}
-                                <div id="category{{ category.category_id }}"><i class="fa fa-minus-circle"></i> {{ category.name }}
-                                  <input type="hidden" name="categories[]" value="{{ category.category_id }}" />
-                                </div>
-                                {% endfor %}
-                              </div>
-                            </td>
-                          </tr>
-
-                          <tr id="range_type">
-                            <td style="vertical-align:top;">{{ entry_range_type }}<span class="help">{{ help_range_type }}</span><br />
-                              <input type="radio" name="range_type" value="id" id="range_type_id">{{ button_export_id }} &nbsp;&nbsp;
-                              <input type="radio" name="range_type" value="page" id="range_type_page">{{ button_export_page }}
-                              <br /><br />
-                              <span class="id">{{ entry_start_id }}</span>
-                              <span class="page">{{ entry_start_index }}</span>
-                              <br />
-                              <input type="text" name="min" value="{{ min }}" />
-                              <br />
-                              <span class="id">{{ entry_end_id }}</span>
-                              <span class="page">{{ entry_end_index }}</span>
-                              <br />
-                              <input type="text" name="max" value="{{ max }}" />
-                            </td>
-                          </tr>
-
-                          <tr>
-                            <td class="buttons"><a onclick="downloadData();" class="btn btn-primary"><span>{{ button_export }}</span></a></td>
-                          </tr>
-                        </table>
-                      </form>
-                    </div>
-
-                    <div class="tab-pane" id="tab-import">
-                      <form action="{{ import }}" method="post" enctype="multipart/form-data" id="import" class="form-horizontal">
-                        <table class="form">
-                          <tr>
-                            <td>
-                              {{ entry_import }}
-                              <span class="help">{{ help_import }}</span>
-                              <span class="help">{{ help_format }}</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              {{ entry_incremental }}<br />
-                              {% if (incremental) %}
-                              <input type="radio" name="incremental" value="1" checked="checked" />
-                              {{ text_yes }} {{ help_incremental_yes }}
-                              <br />
-                              <input type="radio" name="incremental" value="0" />
-                              {{ text_no }} {{ help_incremental_no }}
-                              {% else %}
-                              <input type="radio" name="incremental" value="1" />
-                              {{ text_yes }} {{ help_incremental_yes }}
-                              <br />
-                              <input type="radio" name="incremental" value="0" checked="checked" />
-                              {{ text_no }} {{ help_incremental_no }}
-                              {% endif %}
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>{{ entry_upload }}<br /><br /><input type="file" name="upload" id="upload" /></td>
-                          </tr>
-                          <tr>
-                            <td class="buttons"><a onclick="uploadData();" class="btn btn-primary"><span>{{ button_import }}</span></a></td>
-                          </tr>
-                        </table>
-                      </form>
-                    </div>
-          -->
-					<div class="tab-pane" id="tab-settings">
+					<div class="tab-pane active" id="tab-settings">
 						<form action="{{ settings }}" method="post" enctype="multipart/form-data" id="settings" class="form-horizontal">
 							<table class="form">
 								<tr>
-									<td>
-										<label>
-										{% if (settings_use_option_id) %}
-										<input type="checkbox" name="export_import_settings_use_option_id" value="1" checked="checked" /> {{ entry_settings_use_option_id }}
-										{% else %}
-										<input type="checkbox" name="export_import_settings_use_option_id" value="1" /> {{ entry_settings_use_option_id }}
-										{% endif %}
-										</label>
+									<td><p>Общие настройки:</p>
+										<textarea name="settings_globals" rows="10" cols="100">{{ fixprice_globals_settings }}</textarea>
 									</td>
 								</tr>
-								<tr>
-									<td>
-										<label>
-										{% if (settings_use_option_value_id) %}
-										<input type="checkbox" name="export_import_settings_use_option_value_id" value="1" checked="checked" /> {{ entry_settings_use_option_value_id }}
-										{% else %}
-										<input type="checkbox" name="export_import_settings_use_option_value_id" value="1" /> {{ entry_settings_use_option_value_id }}
-										{% endif %}
-										</label>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<label>
-										{% if (settings_use_attribute_group_id) %}
-										<input type="checkbox" name="export_import_settings_use_attribute_group_id" value="1" checked="checked" /> {{ entry_settings_use_attribute_group_id }}
-										{% else %}
-										<input type="checkbox" name="export_import_settings_use_attribute_group_id" value="1" /> {{ entry_settings_use_attribute_group_id }}
-										{% endif %}
-										</label>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<label>
-										{% if (settings_use_attribute_id) %}
-										<input type="checkbox" name="export_import_settings_use_attribute_id" value="1" checked="checked" /> {{ entry_settings_use_attribute_id }}
-										{% else %}
-										<input type="checkbox" name="export_import_settings_use_attribute_id" value="1" /> {{ entry_settings_use_attribute_id }}
-										{% endif %}
-										</label>
-									</td>
-								</tr>
-								{% if (exist_filter) %}
-								<tr>
-									<td>
-										<label>
-										{% if (settings_use_filter_group_id) %}
-										<input type="checkbox" name="export_import_settings_use_filter_group_id" value="1" checked="checked" /> {{ entry_settings_use_filter_group_id }}
-										{% else %}
-										<input type="checkbox" name="export_import_settings_use_filter_group_id" value="1" /> {{ entry_settings_use_filter_group_id }}
-										{% endif %}
-										</label>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<label>
-										{% if (settings_use_filter_id) %}
-										<input type="checkbox" name="export_import_settings_use_filter_id" value="1" checked="checked" /> {{ entry_settings_use_filter_id }}
-										{% else %}
-										<input type="checkbox" name="export_import_settings_use_filter_id" value="1" /> {{ entry_settings_use_filter_id }}
-										{% endif %}
-										</label>
-									</td>
-								</tr>
-								{% endif %}
-								<tr>
-									<td>
-										<label>
-										{% if (settings_use_export_cache) %}
-										<input type="checkbox" name="export_import_settings_use_export_cache" value="1" checked="checked" /> {{ entry_settings_use_export_cache }}
-										{% else %}
-										<input type="checkbox" name="export_import_settings_use_export_cache" value="1" /> {{ entry_settings_use_export_cache }}
-										{% endif %}
-										</label>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<label>
-										{% if (settings_use_import_cache) %}
-										<input type="checkbox" name="export_import_settings_use_import_cache" value="1" checked="checked" /> {{ entry_settings_use_import_cache }}
-										{% else %}
-										<input type="checkbox" name="export_import_settings_use_import_cache" value="1" /> {{ entry_settings_use_import_cache }}
-										{% endif %}
-										</label>
-									</td>
-								</tr>
-								<tr>
-									<td class="buttons"><a onclick="updateSettings();" class="btn btn-primary"><span>{{ button_settings }}</span></a></td>
+									<td class="buttons"><a onclick="updateSettings();" class="btn btn-primary"><span>Сохранить</span></a></td>
 								</tr>
 							</table>
 						</form>
@@ -331,84 +103,12 @@
 
 <script type="text/javascript"><!--
 
-function getNotifications() {
-	$('#export_import_notification').html('<i class="fa fa-info-circle"></i><button type="button" class="close" data-dismiss="alert">&times;</button> <div id="export_import_loading"><img src="view/image/export-import/loading.gif" />{{ text_loading_notifications }}</div>');
-	setTimeout(
-		function(){
-			$.ajax({
-				type: 'GET',
-				url: 'index.php?route=extension/export_import/getNotifications&user_token={{ user_token }}',
-				dataType: 'json',
-				success: function(json) {
-					if (json['error']) {
-						$('#export_import_notification').html('<i class="fa fa-info-circle"></i><button type="button" class="close" data-dismiss="alert">&times;</button> '+json['error']+' <span style="cursor:pointer;font-weight:bold;text-decoration:underline;float:right;" onclick="getNotifications();">{{ text_retry }}</span>');
-					} else if (json['message']) {
-						$('#export_import_notification').html('<i class="fa fa-info-circle"></i><button type="button" class="close" data-dismiss="alert">&times;</button> '+json['message']+'<br /><br />{{ text_used_category_ids}} {{ text_used_product_ids }}');
-					} else {
-						$('#export_import_notification').html('<i class="fa fa-info-circle"></i><button type="button" class="close" data-dismiss="alert">&times;</button> '+'{{ error_no_news }}');
-					}
-				},
-				failure: function(){
-					$('#export_import_notification').html('<i class="fa fa-info-circle"></i><button type="button" class="close" data-dismiss="alert">&times;</button> '+'{{ error_notifications }} <span style="cursor:pointer;font-weight:bold;text-decoration:underline;float:right;" onclick="getNotifications();">{{ text_retry }}</span>');
-				},
-				error: function() {
-					$('#export_import_notification').html('<i class="fa fa-info-circle"></i><button type="button" class="close" data-dismiss="alert">&times;</button> '+'{{ error_notifications }} <span style="cursor:pointer;font-weight:bold;text-decoration:underline;float:right;" onclick="getNotifications();">{{ text_retry }}</span>');
-				}
-			});
-		},
-		500
-	);
-}
-
-function check_category_filter(export_type) {
-	if (export_type=='p') {
-		$('#category_filter').show();
-	} else {
-		$('#category_filter').hide();
-	}
-}
-
-function check_range_type(export_type) {
-	if ((export_type=='p') || (export_type=='c') || (export_type=='u')) {
-		$('#range_type').show();
-		$('#range_type_id').prop('checked',true);
-		$('#range_type_page').prop('checked',false);
-		$('.id').show();
-		$('.page').hide();
-	} else {
-		$('#range_type').hide();
-	}
-}
-
 $(document).ready(function() {
-
-	check_category_filter($('input[name=export_type]:checked').val());
-	check_range_type($('input[name=export_type]:checked').val());
-
-	$("#range_type_id").click(function() {
-		$(".page").hide();
-		$(".id").show();
-	});
-
-	$("#range_type_page").click(function() {
-		$(".id").hide();
-		$(".page").show();
-	});
-
-	$('input[name=export_type]').click(function() {
-		check_category_filter($(this).val());
-		check_range_type($(this).val());
-	});
 
 	$('span.close').click(function() {
 		$(this).parent().remove();
 	});
 
-	$('a[data-toggle="tab"]').click(function() {
-		$('#export_import_notification').remove();
-	});
-
-	getNotifications();
 });
 
 function checkFileSize(id) {
@@ -457,6 +157,13 @@ function checkFileSize(id) {
 	}
 }
 
+    function deleteFile(form_id, type) {
+        if (confirm('Вы уверены?')) {
+            $('#' + form_id + ' input[name="'+ type +'"]').attr('value', 1);
+            $('#' + form_id).submit();
+        }
+    }
+
 function uploadData(form_id) {
 	//if (checkFileSize('upload_catalog')) {
 		$('#'+ form_id).submit();
@@ -468,7 +175,7 @@ function isNumber(txt){
 	return regExp.test(txt); 
 }
 
-count_product = {{ count_product }};
+count_product = 1;
 
 function updateCountProducts() {
 	$.ajax({

@@ -26,6 +26,10 @@ class ControllerExtensionFixprice extends Controller {
 
 
   protected function getForm() {
+    require_once DIR_SYSTEM.'library/Spyc.php';
+
+    $this->load->model('setting/setting');
+    $this->load->model('extension/fixprice');
     $data = array();
     $data['heading_title'] = $this->language->get('heading_title');
     $data['tab_settings'] =  'Settings'; //$this->language->get( 'tab_settings' );
@@ -33,35 +37,44 @@ class ControllerExtensionFixprice extends Controller {
     $data['button_import'] = 'Import';
 
     $data['import'] = $this->url->link('extension/fixprice/upload', 'user_token=' . $this->session->data['user_token']);
-    $data['count_product'] = 1;//$this->model_extension_export_import->getCountProduct();
+    $data['settings'] = $this->url->link('extension/fixprice/settings', 'user_token=' . $this->session->data['user_token'], $this->ssl);
+    $data['count_product'] = 1;
 
-    $data['providers'] = [
-      'rusklimat' =>
-        [
-          'key' => 'rusklimat',
-          'name' => 'Русклимат',
-          'files' => ['catalog', 'price'],
-        ],
-    ];
 
-    foreach ($data['providers'] as $key => $provider) {
-      $path = DIR_APPLICATION . 'uploads/fixprice/' . $key;
-      $files = array_diff(scandir($path), ['..', '.']);
-      $data['fixprice_result'] = '<ul>' . implode('</li><li>', $files) . '</ul>';
 
-      $path = DIR_APPLICATION . 'uploads/fixprice/' . $key;
-      foreach ($provider['files'] as $type) {
-        $filename = $path . '/' . date('Y.m.d') . '-' . $type . '.csv';
-        if (file_exists($filename)) {
-          $data['providers'][$key]['currentfile'][$type] = basename($filename);
+    if ($settings_globals = $this->model_setting_setting->getSetting('fixprice_globals')){
+       if(isset($settings_globals['fixprice_globals_settings'])){
+         $data['fixprice_globals_settings'] = $settings_globals['fixprice_globals_settings'];
+         $settings_globals= Spyc::YAMLLoad($settings_globals['fixprice_globals_settings']);
+         $data['providers'] = $settings_globals['providers'];
+       }
+    }
+
+
+    foreach ($data['providers'] as $provider_name => $provider) {
+      $path = DIR_APPLICATION . 'uploads/fixprice/' . $provider_name;
+
+      if ($settings = $this->model_setting_setting->getSetting('fixprice_'.$provider_name)) {
+        if (isset($settings['fixprice_'.$provider_name.'_settings'])) {
+          $settings = $settings['fixprice_'.$provider_name.'_settings'];
+          $data['providers'][$provider_name]['settings'] = $settings;
+          //$settings_array = Spyc::YAMLLoad($settings);
         }
       }
 
-      if (!empty($data['providers'][$key]['currentfile']) && count($provider['files']) == count($data['providers'][$key]['currentfile'])){
-        $data['providers'][$key]['button_finish_show'] = TRUE;
+      foreach ($provider['files'] as $type) {
+        $filename = $path . '/'. $type . '.csv';
+        $file_url = HTTP_SERVER .  'uploads/fixprice/' . $provider_name . '/' . $type . '.csv';
+        if (file_exists($filename)) {
+          $data['providers'][$provider_name]['currentfile'][$type] = basename($filename);
+          $data['providers'][$provider_name]['currentfile'][$type.'_url'] = $file_url;
+        }
       }
 
-  }
+      if (!empty($data['providers'][$provider_name]['currentfile']) && count($provider['files']) == count($data['providers'][$provider_name]['currentfile'])){
+        $data['providers'][$provider_name]['button_finish_show'] = TRUE;
+      }
+    }
 
 
     $this->document->addStyle('view/stylesheet/export_import.css');
@@ -74,23 +87,38 @@ class ControllerExtensionFixprice extends Controller {
 
 
   public function upload() {
+    if (empty($this->request->post['provider'])){
+      $this->response->redirect($this->url->link('extension/fixprice', 'user_token=' . $this->session->data['user_token'], $this->ssl));
+    }
+    require_once DIR_SYSTEM.'library/Spyc.php';
+
     $this->load->language('extension/fixprice');
     $this->document->setTitle($this->language->get('heading_title'));
     $this->load->model('extension/fixprice');
-    $provider = $this->request->post['provider'];
-
+    $this->load->model('setting/setting');
+    $provider_name = $this->request->post['provider'];
 
     if (($this->request->server['REQUEST_METHOD'] == 'POST') && ($this->validateUploadForm())) {
+
       // Create the new storage folder
-      $path = DIR_APPLICATION . 'uploads/fixprice/' . $provider;
+      $path = DIR_APPLICATION . 'uploads/fixprice/' . $provider_name;
       if (!is_dir($path)) {
         mkdir($path, 0777);
       }
 
+      // Save settings.
+      if(isset($this->request->post['settings_'.$provider_name]) && $settings = $this->request->post['settings_'.$provider_name]) {
+        $settings = $this->request->post['settings_'.$provider_name];
+        $this->model_setting_setting->editSetting('fixprice_'.$provider_name, ['fixprice_'.$provider_name.'_settings' => $settings]);
+        $this->config->set('fixprice_settings', Spyc::YAMLLoad($settings));
+      }
+
+
       // Remove files.
       foreach (['catalog', 'price'] as $type) {
+
         if (!empty($this->request->post['remove_' . $type])) {
-          $filename = $path . '/' . date('Y.m.d') . '-' . $type . '.csv';
+          $filename = $path . '/' . $type . '.csv';
           if (file_exists($filename)) {
             @unlink($filename);
           }
@@ -109,18 +137,18 @@ class ControllerExtensionFixprice extends Controller {
 
             if (substr($file_realname, -3, 3) == 'xml') {
               $xml_file = $file;
-              $file = $this->model_extension_fixprice->xml2csv($file, $provider, $type);
+              $file = $this->model_extension_fixprice->xml2csv($file, $provider_name, $type);
               @unlink($xml_file);
             }
 
             if (substr($file_realname, -3, 3) == 'xls') {
               $xls_file = $file;
-              $file = $this->model_extension_fixprice->xls2csv($file, $provider, $type);
+              $file = $this->model_extension_fixprice->xls2csv($file, $provider_name, $type);
               @unlink($xls_file);
             }
 
             if ($file) {
-              $this->response->redirect($this->url->link('extension/fixprice', 'user_token=' . $this->session->data['user_token'], $this->ssl));
+              //$this->response->redirect($this->url->link('extension/fixprice', 'user_token=' . $this->session->data['user_token'], $this->ssl));
             }
             else {
               $this->error['warning'] = $this->language->get('error_upload');
@@ -130,75 +158,26 @@ class ControllerExtensionFixprice extends Controller {
       }
     }
 
-    $this->getForm();
+    //$this->getForm();
+    $this->response->redirect($this->url->link('extension/fixprice', 'user_token=' . $this->session->data['user_token'], $this->ssl));
   }
 
 
-	public function download() {
-		$this->load->language( 'extension/export_import' );
-		$this->document->setTitle($this->language->get('heading_title'));
-		$this->load->model( 'extension/export_import' );
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateDownloadForm()) {
-			$export_type = $this->request->post['export_type'];
-			switch ($export_type) {
-				case 'c':
-				case 'p':
-				case 'u':
-					$min = null;
-					if (isset( $this->request->post['min'] ) && ($this->request->post['min']!='')) {
-						$min = $this->request->post['min'];
-					}
-					$max = null;
-					if (isset( $this->request->post['max'] ) && ($this->request->post['max']!='')) {
-						$max = $this->request->post['max'];
-					}
-					if (($min==null) || ($max==null)) {
-						$this->model_extension_export_import->download($export_type, null, null, null, null);
-					} else if ($this->request->post['range_type'] == 'id') {
-						$this->model_extension_export_import->download($export_type, null, null, $min, $max);
-					} else {
-						$this->model_extension_export_import->download($export_type, $min*($max-1-1), $min, null, null);
-					}
-					break;
-				case 'o':
-					$this->model_extension_export_import->download('o', null, null, null, null);
-					break;
-				case 'a':
-					$this->model_extension_export_import->download('a', null, null, null, null);
-					break;
-				case 'f':
-					if ($this->model_extension_export_import->existFilter()) {
-						$this->model_extension_export_import->download('f', null, null, null, null);
-						break;
-					}
-					break;
-				default:
-					break;
-			}
-			$this->response->redirect( $this->url->link( 'extension/export_import', 'user_token='.$this->request->get['user_token'], $this->ssl) );
-		}
-
-		$this->getForm();
-	}
-
-
 	public function settings() {
-		$this->load->language('extension/export_import');
+		$this->load->language('extension/ficprice');
+    $this->load->model('setting/setting');
+
 		$this->document->setTitle($this->language->get('heading_title'));
-		$this->load->model('extension/export_import');
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && ($this->validateSettingsForm())) {
-			if (!isset($this->request->post['export_import_settings_use_export_cache'])) {
-				$this->request->post['export_import_settings_use_export_cache'] = '0';
-			}
-			if (!isset($this->request->post['export_import_settings_use_import_cache'])) {
-				$this->request->post['export_import_settings_use_import_cache'] = '0';
-			}
-			$this->load->model('setting/setting');
-			$this->model_setting_setting->editSetting('export_import', $this->request->post);
+			//$this->model_setting_setting->editSetting('fixprice', $this->request->post['fixprice_globals']);
+      // Save settings.
+      if(isset($this->request->post['settings_globals']) && $settings = $this->request->post['settings_globals']) {
+        $this->model_setting_setting->editSetting('fixprice_globals', ['fixprice_globals_settings' => $settings]);
+      }
+
 			$this->session->data['success'] = $this->language->get('text_success_settings');
-			$this->response->redirect($this->url->link('extension/export_import', 'user_token=' . $this->session->data['user_token'], $this->ssl));
+			$this->response->redirect($this->url->link('extension/fixprice', 'user_token=' . $this->session->data['user_token'], $this->ssl));
 		}
-		$this->getForm();
 	}
 
 
@@ -312,6 +291,7 @@ class ControllerExtensionFixprice extends Controller {
 
 
 	protected function validateSettingsForm() {
+    return true;
 		if (!$this->user->hasPermission('access', 'extension/export_import')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 			return false;
