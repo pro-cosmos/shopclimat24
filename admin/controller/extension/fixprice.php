@@ -40,8 +40,8 @@ class ControllerExtensionFixprice extends Controller {
     $data['settings'] = $this->url->link('extension/fixprice/settings', 'user_token=' . $this->session->data['user_token'], $this->ssl);
     $data['count_product'] = 1;
 
-
-
+    $data['provider_current'] = isset($this->request->post['provider'])?  $this->request->post['provider']: 'settings';
+    
     if ($settings_globals = $this->model_setting_setting->getSetting('fixprice_globals')){
        if(isset($settings_globals['fixprice_globals_settings'])){
          $data['fixprice_globals_settings'] = $settings_globals['fixprice_globals_settings'];
@@ -158,8 +158,8 @@ class ControllerExtensionFixprice extends Controller {
       }
     }
 
-    //$this->getForm();
-    $this->response->redirect($this->url->link('extension/fixprice', 'user_token=' . $this->session->data['user_token'], $this->ssl));
+    $this->getForm();
+    //$this->response->redirect($this->url->link('extension/fixprice', 'user_token=' . $this->session->data['user_token'], $this->ssl));
   }
 
 
