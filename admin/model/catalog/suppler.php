@@ -19650,7 +19650,7 @@ class ModelCatalogSuppler extends Model {
 						
 			if (empty($row[$price]) and $ad != 2 and $ad != 12 and $ad != 13 and !$catcreate and !$yml and $row[$cod] != "end") {
 				// Allow zero price in catalog files.
-        $zero_price = FALSE;
+        $allow_zero_price = FALSE;
         if (strpos($f, 'catalog') !== FALSE && isset($row[1])) {
           if ($values = explode(',', $row[1])) {
               $allow_zero_price = $row[$price] == 0;
