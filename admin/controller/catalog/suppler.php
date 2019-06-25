@@ -2180,7 +2180,7 @@ class ControllerCatalogSuppler extends Controller {
 			}
 		}
 		
-		require_once 'suppler_license/suppler_ins.php';	  //  Do not remove it !!!
+		//require_once 'suppler_license/suppler_ins.php';	  //  Do not remove it !!!
 		
 		$data['statuses'] = $this->model_catalog_suppler->getStatus();
 		
