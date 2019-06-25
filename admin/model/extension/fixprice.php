@@ -46,6 +46,7 @@ function __construct($registry) {
 
   public function xml2csv($file, $provider, $type) {
     $settings = $this->config->get('fixprice_settings');
+    $FieldReplacements = isset($settings['CatalogFieldReplacements'])? $settings['CatalogFieldReplacements'] : [];
     $path = DIR_APPLICATION . 'uploads/fixprice/' . $provider;
     $filename = $type . '.csv';
     // Create dir.
@@ -54,11 +55,11 @@ function __construct($registry) {
       @unlink($file_csv);
     }
 
-    switch ($provider) {
-      case 'rusklimat':
-        $html_field = 'parameters';
+  //  switch ($provider) {
+  //    case 'rusklimat':
+        $html_field = isset($settings['Common']['catalog_html_field'])? $settings['Common']['catalog_html_field'] : false;
 
-        $cat = $this->xml_get_categories($file);
+        list($cats, $max_parent_level) = $this->xml_get_categories($file);
         //////////////////////////////
         $xml = new XMLReader();
         $xml->open($file);
@@ -73,14 +74,47 @@ function __construct($registry) {
           $attributes = $row['@attributes'];
           unset($row['@attributes']);
 
+          // init first required fieds.
+//          if (isset($row['categoryId'])) {
+//            // Add new field for categoryName.
+//            $row['categoryName'] = $cats[(string) $row['categoryId']]['new'];
+//            // replace base category field.
+//            $row['categoryId'] = $cats[(string) $row['categoryId']]['base'];
+//          }
+
           if ($is_first) {
+            // fields from 1st row
             $fields = array_keys($row);
-            // add fields from html field.
-            if (isset($row[$html_field])) {
-              $this->xml_fields_alter($fields, $row[$html_field]);
+
+            // add category fields from html field.
+            for($i=1;$i<=$max_parent_level;$i++){
+              $fields[] = 'category'.$i;
             }
 
-            $fields = array_diff($fields, [$html_field]);
+
+            // add fields from html field.
+            if ($html_field && isset($row[$html_field])) {
+              $this->xml_fields_alter($fields, $row[$html_field]);
+              $fields = array_diff($fields, [$html_field]);
+            }
+            // add fields from attributes
+            if (isset($settings['Common']['catalog_attr_field']) && $attr_field = $settings['Common']['catalog_attr_field']) {
+              if(isset($node->{$attr_field})){
+              foreach($node->{$attr_field} as $el){
+                $attr = $el->attributes();
+                $fld  = reset($attr['name']);
+                $fields[] = $fld;
+                //$row[$fld] = (string) $el;
+               }
+             }
+              $fields = array_diff($fields, [$attr_field]);
+            }
+            //add new custom fields
+            if (isset($settings['Common']['catalog_addnew_fields']) && $catalog_addnew_fields = $settings['Common']['catalog_addnew_fields']){
+              $fields = array_merge($fields, array_values($catalog_addnew_fields));
+            }
+
+
             $fields_str = self::encode_string(implode(';', $fields));
             $path = fopen($file_csv, "a+");
             fwrite($path, $fields_str . PHP_EOL);
@@ -89,22 +123,60 @@ function __construct($registry) {
             $is_first = FALSE;
           }
 
+          //add category row data
+          if($path = $cats[(string) $row['categoryId']]['path']){
+            foreach($path as $i => $cat_id){
+              $row['category'. ($i+1)] = $cats[$cat_id]['name'];
+            }
+          }
+
           // Add row items from html field.
           if (!empty($row[$html_field])) {
             $this->xml_row_alter($row, $row[$html_field]);
             unset($row[$html_field]);
           }
-
-          $FieldReplacements = $settings['CatalogFieldReplacements'];
+          // add values from attr field
+          if (isset($settings['Common']['catalog_attr_field']) && $attr_field = $settings['Common']['catalog_attr_field']) {
+            $this->xml_row_attr_alter($row, $node->{$attr_field});
+            unset($row[$attr_field]);
+          }
+            // add values from new fields from settings
+            if(!empty($catalog_addnew_fields)){
+              foreach($catalog_addnew_fields as $from_field => $new_field){
+                $row[$new_field] = isset($row[$from_field])? $row[$from_field] : '';
+              }
+            }
 
           foreach ($fields as $k) {
+            // set value for field
             $v = isset($row[$k]) ? $row[$k] : '';
 
             // Apply field replacement
-            if (in_array($k, array_keys($FieldReplacements))){
-              if ($rules = $FieldReplacements[$k]){
-                foreach($rules as $find => $replace){
-                  $v = str_replace($find, $replace, $v);
+            if (!empty($FieldReplacements)) {
+              if (in_array($k, array_keys($FieldReplacements))) {
+                if ($rules = $FieldReplacements[$k]) {
+                  foreach ($rules as $rule) {
+                    if (!empty($rule)) {
+                      //list($op, $find) = explode('||', $rule);
+                      $p = explode('||', $rule);
+                      $op = $p[0];
+                      $find = $p[1];
+                      if (isset($p[2])) {
+                        $replace = $p[2];
+                      }
+                      $find = mb_strtolower($find);
+                      switch ($op) {
+                        case 'IFEXISTS':
+                          $v = (int) (strpos(mb_strtolower($v), $find) !== FALSE);
+                          break;
+                        case  'REPLACEALL':
+                          $v = strpos(mb_strtolower($v), $find) !== FALSE ? $replace : $v;
+                          break;
+                        case 'REPLACE':
+                          $v = str_replace($find, $replace, mb_strtolower($v));
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -117,9 +189,10 @@ function __construct($registry) {
                   $v = 0;
                 }
                 break;
-              case 'categoryId':
-                $v = $cat[(string) $v];
-                break;
+//              case 'invertor':
+//                $txt = mb_strtolower($row['category3'] .  $row['model']);
+//                $v = (int) (strpos($txt, 'инвертор') !== FALSE && strpos($txt, 'безинвертор') === FALSE);
+//                break;
               case 'picture':
               case 'picturebrand':
                 if ($v) {
@@ -151,8 +224,8 @@ function __construct($registry) {
           $xml->next('offer');
         }
         $xml->close();
-        break;
-    }
+     //   break;
+    //}
 
     unset($xml);
 
@@ -175,6 +248,14 @@ function __construct($registry) {
     unset($html);
   }
 
+  private function xml_row_attr_alter(&$row, $data) {
+    foreach ($data as $el) {
+      $attr = $el->attributes();
+      $fld = reset($attr['name']);
+      $row[$fld] = (string) $el;
+    }
+  }
+
   private function xml_fields_alter(&$fields, $html) {
     $html = preg_replace("/&#?[a-z0-9]{2,8};/i", "", $html);
     $html = simplexml_load_string($html);
@@ -187,6 +268,7 @@ function __construct($registry) {
 
   private function xml_get_categories($file) {
     $cat = [];
+    $max_parent_level = 1;
     $xml = new XMLReader();
     $xml->open($file);
 
@@ -195,35 +277,46 @@ function __construct($registry) {
     while ($xml->name === 'category') {
       $node = new SimpleXMLElement($xml->readOuterXML());
       $id = (int) $xml->getAttribute("id");
+      $parent_id = (int) $xml->getAttribute("parentId");
       $category = (string) $node;
 
-      // additional replaces.
-      $settings = $this->config->get('fixprice_settings');
-      if (isset($settings['CategoryReplacements']) && $map = $settings['CategoryReplacements']) {
-        foreach ($map as $find => $replace) {
-          if (strpos($category, $find) !== FALSE) {
-            $category = $replace;
-            break;
-          }
-        }
+      $cat[$id]['name'] = $category;
+      $cat[$id]['pid'] = (int) $parent_id;
+      //if (!isset($cat[$id]['path'])){
+      $cat[$id]['path'] = [$id];
+      //} // = $cat[(int) $parent_id]['base'];
+      if (isset($cat[$parent_id]) && isset($cat[$parent_id]['path']) && $parent_path = $cat[$parent_id]['path']){
+        $cat[$id]['path'] = array_merge($parent_path, $cat[$id]['path']);
       }
+
+      $max_parent_level = (count($cat[$id]['path']) > $max_parent_level)? count($cat[$id]['path']) : $max_parent_level;
+
+      // additional replaces.
+//      $settings = $this->config->get('fixprice_settings');
+//      if (isset($settings['CategoryReplacements']) && $map = $settings['CategoryReplacements']) {
+//        foreach ($map as $find => $replace) {
+//          if (strpos($category, $find) !== FALSE) {
+//            $category = $replace;
+//            break;
+//          }
+//        }
+//      }
 
       // search in categories.
-      foreach($this->categories as $base_category){
-        if (strpos($category, $base_category) !== FALSE){
-          $category = $base_category;
-          break;
-        }
-      }
+//      foreach($this->categories as $base_category){
+//        if (strpos($category, $base_category) !== FALSE){
+//          $category = $base_category;
+//          break;
+//        }
+//      }
+//      $cat[$id]['new'] = $category;
 
-
-      $cat[$id] = $category;
       $xml->next('category');
     }
     $xml->close();
     unset($xml);
 
-    return $cat;
+    return [$cat, $max_parent_level];
   }
 
 
@@ -272,7 +365,7 @@ function __construct($registry) {
   protected function xls_parse_sheet($sheet, $provider, $file_csv) {
     $settings = $this->config->get('fixprice_settings');
     $price_fields = $settings['Common']['price_fields'];
-    $FieldReplacements = $settings['PriceFieldReplacements'];
+    $FieldReplacements = isset($settings['PriceFieldReplacements'])? $settings['PriceFieldReplacements'] : [];
     $is_first = TRUE;
 
     $path = fopen($file_csv, "a+");
@@ -289,17 +382,20 @@ function __construct($registry) {
         $v = isset($row[$field_col]) ? $row[$field_col] : NULL;
 
         // Apply field replacement
-        if (in_array($field_name, array_keys($FieldReplacements))) {
+        if ($FieldReplacements){
+          if (in_array($field_name, array_keys($FieldReplacements))) {
           if ($rules = $FieldReplacements[$field_name]) {
             foreach ($rules as $find => $replace) {
               $v = str_replace($find, $replace, $v);
             }
           }
         }
+      }
 
         $$field_name = $v;
       }
 
+      $currency = isset($currency)? $currency : 'RUB';
 
       $str = [];
       if ($id && $price && $name && $currency) {
@@ -307,6 +403,11 @@ function __construct($registry) {
         $str[] = '"' . str_replace('"', '', $price) . '"';
         $str[] = '"' . str_replace('"', '', $currency) . '"';
         $str[] = '"' . str_replace('"', '', $qty) . '"';
+
+        unset($id);
+        unset($price);
+        unset($currency);
+        unset($qty);
       }
 
 
@@ -9830,7 +9931,4 @@ function __construct($registry) {
 //		return true;
 //	}
 
-//}
-
-
-?>
+//}    

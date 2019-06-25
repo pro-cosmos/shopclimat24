@@ -127,21 +127,22 @@ class ControllerExtensionFixprice extends Controller {
           if ((isset($this->request->files['upload_' . $type])) && (is_uploaded_file($this->request->files['upload_' . $type]['tmp_name']))) {
             $file = $this->request->files['upload_' . $type]['tmp_name'];
             $file_realname = $_FILES["upload_".$type]["name"];
+            $file_ext = pathinfo($file_realname, PATHINFO_EXTENSION);
 
-            if (substr($file_realname, -3, 3) == 'zip') {
+            if ($file_ext == 'zip') {
               $zip_file = $file;
               $file = $this->model_extension_fixprice->unzip($file, $path);
               $file_realname = $file;
               @unlink($zip_file);
             }
 
-            if (substr($file_realname, -3, 3) == 'xml') {
+            if ($file_ext == 'xml') {
               $xml_file = $file;
               $file = $this->model_extension_fixprice->xml2csv($file, $provider_name, $type);
               @unlink($xml_file);
             }
 
-            if (substr($file_realname, -3, 3) == 'xls') {
+            if (in_array($file_ext,['xls','xlsx'])) {
               $xls_file = $file;
               $file = $this->model_extension_fixprice->xls2csv($file, $provider_name, $type);
               @unlink($xls_file);

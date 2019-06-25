@@ -211,7 +211,7 @@ $route = new Router($registry);
 /***************************  ERRORS  ***************************************/
     function mess($err, $file) {
 		switch ($err) {			
-			case 1:	$message = 'FTP: ivalid file extension';		
+			case 1:	$message = "FTP: ivalid login and/or password";		
 			break;
 			case 2:	$message = 'FTP: failed FTP connect';			
 			break;
@@ -222,87 +222,212 @@ $route = new Router($registry);
 			case 5:	$message = 'LINK: can not create file in uploads';			
 			break;
 			case 6:	$message = 'LINK: file "' . $file . '" not found';			
-			break;		
+			break;			
 		}
 		if ($err) {
 			error_handler($message);
-			$file_er    = "./uploads/errors.tmp";
-			$er = @fopen($file_er,'a');
-			if (!$er) $er = @fopen($file_er,'w+');
-			@fputs($er, $message ." \n");
-			@fclose($er);
+			$file_er    = "./uploads/log_cron.tmp";
+			$log = @fopen($file_er,'a');
+			if (!$log) $log = @fopen($file_er,'w+');
+			@fputs($log, date('Y-m-d H:i') . ' ' .$message ." \n");
+			@fclose($log);
 			return;
 		}	
 	}
-	
+
+/**************************  oups  ******************************************/	
+	function oups($local_file) {
+		$flag = 0;
+		if (!file_exists($local_file) or filesize($local_file) < 600) return 1;
+		$fp = @fopen($local_file,'r');
+		if (!$fp) return 2;
+		$a = fread($fp, 1024);
+		if (!$a) $flag = 3;
+		if ($a and substr_count($a, 'form')) $flag = 4;
+		if ($fp) fclose($fp);
+		
+		return $flag;
+	}
 /**************************  FTP  ********************************************/
-	function get_ftp($form_id, $file_source, $ftp_server, $user_name, $user_pass, $ext) {
+	function get_ftp($form_id, $file_source, $ftp_server, $user_name, $user_pass, $ext, $go) {
 		if (empty($ext)) return 1;		
 		$ext = '.' . $ext;	
-		$local_file = DIR_APPLICATION . 'uploads/' . $form_id . $ext;
+		$local_file = DIR_APPLICATION . 'uploads/' . $form_id . $ext;		
+		if (file_exists($local_file) and $go) return 0;
+		
+		$port = 21;		
+		
+		if (substr_count($ftp_server, '://')) {
+			$arr = explode(':', $ftp_server);
+			$ftp_server = substr($arr[1], 2);
+			if (isset($arr[2])) $port = $arr[2];
+		} else {	
+			if (substr_count($ftp_server, ':')) {				
+				$arr = explode(':', $ftp_server);
+				$ftp_server = $arr[0];
+				$port = $arr[1];
+			}	
+		}
+		
+		if (function_exists('ftp_ssl_connect')) $conn_id = ftp_ssl_connect($ftp_server, $port, 15);
+		else $conn_id = ftp_connect($ftp_server, $port, 15);
+ 
+		if ($conn_id == false) return 2;
 	
-		// set up basic connection	
-		$conn_id = ftp_connect($ftp_server);
-
 		// login with username and password	
 		$login_result = ftp_login($conn_id, $user_name, $user_pass);
-		if (!$login_result) return 2;
-		ftp_pasv($conn_id, true);
+		if ($login_result) return 1;
+	
+		ftp_pasv($conn_id, true);	
 
 		// try to download $server_file and save to $local_file
 		if (!ftp_get($conn_id, $local_file, $file_source, FTP_BINARY)) return 3;
 	
 		ftp_close($conn_id);
+		
+		if (oups($local_file)) return 3;
 		return 0;
-	} 
+	}
 
+/*************************** findCsrf ************************************/
+	function findCsrf($response, $text) {	
+		$pos = 0;
+		$p = stripos($response, "type='hidden'", $pos);
+		if (!$p) $p = stripos($response, 'type="hidden"', $pos);
+		if ($p) {	
+			$pos = $p;
+			$p = stripos($response, $text, $pos-80);
+			if ($p) {		
+				$f = 1;
+				$pb = stripos($response, "'", $p);
+				if ($pb-$p > 10) { $pb = stripos($response, '"', $p); $f = 2;}
+				if ($pb-$p < 10) {	
+					if ($f == 1) $pe = stripos($response, "'", $pb+1);
+					else $pe = stripos($response, "'", $pb+1);
+					if ($pe) {
+						$n = substr($response, $pb+1, $pe-$pb-1);		
+						return $n;
+					}
+				}
+			}				
+		}
+		return '';
+	}
+	
 /***************************  LINK  *****************************************/
-	function get_link($url, $form_id, $ext) {
+	function get_link($url, $form_id, $ext, $user_name, $user_pass, $go) {
 		if (empty($ext)) return 4;
 		$ext = '.' . $ext;		
 		$local_file = DIR_APPLICATION . 'uploads/' . $form_id . $ext;
+		if (file_exists($local_file) and $go) return 0;
+				
 		if (file_exists($local_file)) unlink($local_file);
-	/*	$fp = @fopen($local_file,'wb');			
-		if (!$fp) return 5;
-	
-		$ch = curl_init();		
-		curl_setopt($ch, CURLOPT_URL, $url);		
-		curl_setopt($ch, CURLOPT_FILE, $fp);
-		curl_setopt($ch, CURLOPT_HEADER, 0);	
-		curl_setopt($curl, CURLOPT_ENCODING, 'gzip,deflate');
-		curl_setopt($ch, CURLOPT_TIMEOUT, 20);		
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);		
 		
-		curl_exec($ch);
-		curl_close($ch);
-		fclose($fp);
+		if (!empty($user_name) and !empty($user_pass))
+		$cc = '/usr/bin/wget -c -t 1 --user=' . $user_name . ' --password=' . $user_pass . ' -O uploads/' . $form_id . $ext . ' "' . $url . '"';
+		else $cc = '/usr/bin/wget -c -t 1 -O uploads/' . $form_id . $ext . ' "' . $url . '"';
 		
-		$fp = @fopen($local_file,'r');
-		if (!$fp) return 6;
-		$a = fread($fp, 20);
-		if (substr_count($a, '!DOCTYPE')) {
-			fclose($fp);
-			return 6;
-		}	
-		fclose($fp); */
-	
-		$cc = '/usr/bin/wget -c -t 1 -O uploads/' . $form_id . $ext . ' "' . $url . '"';
 		$cc = str_replace('&amp;', '&', $cc);
-		exec($cc); 	
-
+		
+		exec($cc);
+	
+		if (oups($local_file)) {
+			
+			if (file_exists($local_file)) unlink($local_file);		
+			$fp = @fopen($local_file,'w+');			
+			if (!$fp) return 5;
+	
+			$ch = curl_init($url);			
+			curl_setopt($ch, CURLOPT_FILE, $fp);
+			curl_setopt($ch, CURLOPT_HEADER, 0);
+			curl_setopt($ch, CURLOPT_ENCODING, '');
+			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 20);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			if (!empty($user_name) and !empty($user_pass))
+			curl_setopt($ch, CURLOPT_USERPWD, $user_name.":".$user_pass);
+		
+			curl_exec($ch);
+			curl_close($ch);
+			fclose($fp);
+	
+			if (oups($local_file) and !empty($user_name) and !empty($user_pass)) {
+				if (file_exists($local_file)) unlink($local_file);					
+				$fp = @fopen($local_file,'w+');			
+				if (!$fp) return 5;				
+				
+				$agent = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0; en-US) Gecko/20100101 Firefox/60.0';			
+								
+				$cookie= "";
+				
+				$ch = curl_init($url);				
+				curl_setopt($ch, CURLOPT_HEADER, 1);
+				curl_setopt($ch, CURLOPT_ENCODING, '');
+				curl_setopt($ch, CURLOPT_USERAGENT, $agent);			
+				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 20);
+				curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+				curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie);
+				curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie);
+				curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				$response = curl_exec($ch);
+	
+				if (curl_errno($ch)) return 6;
+				
+				$logpass = "&username=" . $user_name . "&password=" . $user_pass;		
+				
+				$v = '';
+				$n = findCsrf($response, "name");
+				if (!empty($n)) $v = findCsrf($response, "value");				
+				if ($n and $v) $logpass = $n .'='. $v . $logpass;
+			
+				curl_setopt($ch, CURLOPT_FILE, $fp);
+				curl_setopt($ch, CURLOPT_HEADER, 0);			
+				curl_setopt($ch, CURLOPT_USERAGENT, $agent);			
+				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 20);
+				curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+				curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie);
+				curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie);							
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($ch, CURLOPT_BINARYTRANSFER, 1);			
+				curl_setopt($ch, CURLOPT_POST, 1);			
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $logpass);
+				curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+							
+				fwrite($fp, curl_exec($ch));
+				curl_close($ch);
+				fclose($fp);
+			}		
+		}		
+		if (oups($local_file)) return 6;		
 		return 0;
 	}
 	
 /**************************  END LINK ***************************************/
 
-	$query = $db->query("SELECT * FROM " . DB_PREFIX . "suppler_cron ORDER BY `nom_id`, csort ASC");
+	$query = $db->query("SELECT * FROM " . DB_PREFIX . "suppler_cron ORDER BY `csort`, `nom_id`");
+	$all = $query->rows;	
 	
-	if (empty($query->rows)) exit;	
-	
+	if (empty($query->rows)) exit;
+
+	$time_out = 0;
 	foreach ($query->rows as $row) {
+		if ($row['on_off'] and $row['go']) $time_out = 1;
 		
+	}
+	
+	$form_abort = '';
+	$f = 278785;
+	
+	foreach($query->rows as $row) {	
+	
 		$param = array();	
 		$mk = time();
 		if (substr_count($row['port1'], '+')) {
@@ -312,19 +437,25 @@ $route = new Router($registry);
 		if (substr_count($row['port1'], '-')) {
 			$a = substr($row['port1'], 1);
 			$mk = time() - (int)$a*3600;
-		}					
+		}	
+
+		if (!$row['on_off'])  continue;
+					
 		$period = 240; // pause 240 minutes  = 4 hours
 			
-		if (($mk-$row['cron_status'])/60 < $period or !$row['on_off'])  continue;
-		
+		if (($mk-$row['cron_status'])/60 < $period) continue;		
+			
 		$h = date('G', $mk);
 		$d = date('N', $mk);
 		$w = date('j', $mk);
 		$w = ceil($w/7);
-
-		if ($row['text'] != '*' and $h != (int)$row['text']) continue;
+		
+		if (!$time_out and $row['text'] != '*' and $h != (int)$row['text']) exit;
 		if ($row['text1'] != '*' and $d != (int)$row['text1']) continue;
 		if ($row['text2'] != '*' and $w != (int)$row['text2']) continue;
+		
+		$file_inc = DIR_APPLICATION . 'uploads/php/' . $row['form_id'] . '.php';    
+		if (file_exists($file_inc) and $row['task'] == 4) require_once $file_inc;
 		
 		$param['form_id'] = $row['form_id'];
 		$param['command'] = $row['cmd'];
@@ -338,36 +469,64 @@ $route = new Router($registry);
 		$param['isno'] = $row['isno'];
 		$param['pr_name'] = $row['pr_name'];
 		$param['link'] = $row['link'];
-		
-		$flag = 0;
-		if (!empty($row['link']) and !substr_count($row['link'], 'http') and !substr_count($row['link'], 'www') and !substr_count($row['link'], "/") and !empty($row['ftp_name']) and !empty($row['ftp_pass']) and $row['task'] == 4) {
-
-			$message ='';
-			$flag = 1;
-			if ($err = get_ftp($row['form_id'], $row['pr_name'], $row['link'], $row['ftp_name'], $row['ftp_pass'], $param['ext'])) {
-				$flag = 2;
-				mess($err, $row['pr_name']);
-			}
-			
-		}
-		if (!empty($row['link']) and (substr_count($row['link'], 'http') or substr_count($row['link'], 'www') or substr_count($row['link'], "/")) and  $row['task'] == 4) {
-			
-			$message ='';
-			$flag = 1;
-			if ($err = get_link($row['link'], $row['form_id'], $param['ext'])) {
-				$flag = 2;
-				mess($err, $row['link']);
-			}
-			
-		}
-		
-		$path = "./uploads/" . $param['pr_name'];	
 	
-		if ($row['task'] == 4 and !$flag) {	
-			if (!file_exists($path)) continue;
-			else $flag = 1;
-		}
+		if ($form_abort != '' and $row['form_id'] == $form_abort) {
+			$file_er    = "./uploads/log_cron.tmp";
+			$log = @fopen($file_er,'a');
+			if (!$log) $log = @fopen($file_er,'w+');	
+			@fputs($log, date('Y-m-d H:i') . " Form= " . $row['form_id'] . " The task= " . $row['task'] . " is missed because the price-list did not download  \n");			
+			@fclose($log);		
+			continue;
+		}	
 		
+		if ($f != $row['form_id']) {
+			$f = $row['form_id'];
+			foreach($all as $r) {				
+				if ($r['form_id'] == $f and $r['task'] == 4) {
+					$flag = 0;		
+					if (!empty($r['link'])) {						
+						$par['ext'] = 'xls';
+						if ($r['ext'] == 2) $par['ext'] = 'xml';
+						if ($r['ext'] == 3) $par['ext'] = 'csv';						
+						
+						if ((!empty($r['link']) and !substr_count($r['link'], '/') and !empty($r['ftp_name']) and !empty($r['ftp_pass'])) or (substr_count($r['link'], "ftp") and !empty($r['ftp_name']) and !empty($r['ftp_pass'])))  {
+							$message ='';
+							$flag = 1;
+							if ($err = get_ftp($r['form_id'], $r['pr_name'], $r['link'], $r['ftp_name'], $r['ftp_pass'], $par['ext'], $r['go'])) {
+								$flag = 2;
+								mess($err, $r['pr_name']);
+							}			
+						}
+					
+						if (!empty($r['link']) and !substr_count($r['link'], "ftp") and (substr_count($r['link'], 'http') or substr_count($r['link'], 'www') or substr_count($r['link'], "/"))) {		
+							$message ='';
+							$flag = 1;
+							if ($err = get_link($r['link'], $r['form_id'], $par['ext'], $r['ftp_name'], $r['ftp_pass'], $r['go'])) {
+								$flag = 2;
+								mess($err, $r['link']);
+							}			
+						}						
+					} else {
+						$flag = 1;
+						if (!empty($r['pr_name'])) {
+							$path = "./uploads/" . $r['pr_name'];
+							if (!file_exists($path)) $flag = 2;
+						}		
+					}					
+				}	
+			}
+		}
+
+		if ($flag == 2) {			
+			$form_abort = $f;
+			$file_er    = "./uploads/log_cron.tmp";
+			$log = @fopen($file_er,'a');
+			if (!$log) $log = @fopen($file_er,'w+');	
+			@fputs($log, date('Y-m-d H:i') . " Form= " . $row['form_id'] . " The task= " . $row['task'] . " is missed because the price-list did not download  \n");			
+			@fclose($log);		
+			continue;		
+		}		
+				
 		$task = "catalog/suppler/cronAction";
 		if ($row['task'] == 4) $task = "catalog/suppler/cronLoadfile";
 		
@@ -381,12 +540,39 @@ $route = new Router($registry);
 			$cron->run($registry, $task, $param);
 			
 			$query = $db->query("UPDATE " . DB_PREFIX . "suppler_cron SET `cron_status` = '" . $mk . "', `go` = '" . 0 . "', `save_form` = '" . $mk . "' WHERE `nom_id` = '" . $row['nom_id'] . "'");
+			
+			$file_er    = "./uploads/log_cron.tmp";
+			$log = @fopen($file_er,'a');
+			if (!$log) $log = @fopen($file_er,'w+');
+			if ($row['task'] == 4) {
+				if (empty($param['pr_name'])) $n = $param['form_id'] . '.' . $param['ext'];
+				else $n = $param['pr_name'];
+				@fputs($log, date('Y-m-d H:i') . " DONE! Form= " . $param['form_id'] . " price-list= " . $n . " \n");
+		
+				$err_rep_log  = "./uploads/log";
+				if (!is_dir($err_rep_log)) @mkdir($err_rep_log, 0755);
+				if (is_dir($err_rep_log)) {
+					@copy ("./uploads/errors.tmp", "./uploads/log/errors" . $param['form_id'] . ".tmp");
+					@copy ("./uploads/report.tmp", "./uploads/log/report" . $param['form_id'] . ".tmp");
+				}				
+			} else {
+				@fputs($log, date('Y-m-d H:i') . " DONE! Form= " . $param['form_id'] . " task= " . $row['task'] . " command= " . $param['command'] . " \n");
+			}		
+			@fclose($log);
 
+			$path = "./uploads/total.tmp";
+			if (file_exists($path)) unlink ($path);
+		
+			$path = "./uploads/sos.tmp";
+			if (file_exists($path)) unlink ($path);
+				
+			$path = "./uploads/schema.tmp";
+			if (file_exists($path)) unlink ($path);
 		}
 		
 		if ($flag == 2 and $row['task'] == 4) {
 			$query = $db->query("UPDATE " . DB_PREFIX . "suppler_cron SET `cron_status` = '" . $mk . "' WHERE `nom_id` = '" . $row['nom_id'] . "'");
-		}		
+		}
 		
 		if ($row['task'] == 4) {		
 			$errors = 0;
@@ -519,8 +705,8 @@ $route = new Router($registry);
 			$mail->setSender('Plugin "Suppliers"');
 			$mail->setSubject($subject);
 			$mail->setText($text);
-			if (($row['rtype'] == 2 or $sos< 5) and $sos != 1) $mail->addAttachment(DIR_APPLICATION . 'uploads/errors.tmp');
-			if ($row['rtype'] == 3 and $sos != 1) $mail->addAttachment(DIR_APPLICATION . 'uploads/report.tmp');
+			if (($row['rtype'] == 2 or ($sos< 5 and $row['rtype'] != 4)) and $sos != 1) $mail->addAttachment(DIR_APPLICATION . 'uploads/errors.tmp');
+			if ($row['rtype'] == 3 and $sos != 2 and $sos != 1) $mail->addAttachment(DIR_APPLICATION . 'uploads/report.tmp');
 			if ($row['rtype'] == 4 and $sos != 1) {
 				$mail->addAttachment(DIR_APPLICATION . 'uploads/errors.tmp');
 				$mail->addAttachment(DIR_APPLICATION . 'uploads/report.tmp');
